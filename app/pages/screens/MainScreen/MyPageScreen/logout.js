@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     logOutText: {
-        fontFamily: 'NotoSansKR-Medium',
+        fontFamily: 'NotoSansKR-Regular',
         color: '#AAACAE',
         fontSize: 14,
         lineHeight: 24

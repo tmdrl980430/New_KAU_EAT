@@ -3,13 +3,14 @@ import {Text, View, StyleSheet, Image} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 import LogoImage from '../../../../assets/images/kau_logo_small.png';
+import LogoText from '../../../../assets/images/logo_text.png'
 
 const HomeLogo = () => {
 
     return (
         <View style={styles.logoArea}>
             <Image style={styles.kauImg} source={LogoImage} resizeMode={'contain'}/>
-            <Text style={styles.kauText}>항식당</Text>
+            <Image style={styles.kauText}  source={LogoText} resizeMode={'contain'}/>
         </View>
     )
 }
@@ -18,7 +19,8 @@ const styles = StyleSheet.create({
     logoArea: {
         marginTop: hp("3%"),
         flexDirection: "row",
-        marginTop: 50,
+        marginTop: hp('5%'),
+        alignItems: "center"
     },
     kauImg: {
         width: 37,
@@ -28,10 +30,10 @@ const styles = StyleSheet.create({
         marginEnd: 6
     },
     kauText: {
-        fontSize: 20,
-        fontFamily: 'NotoSansKR-Regular',
-        marginTop: 9,
-        color: '#000',
+        width: 54,
+        height: 23,
+        justifyContent: 'flex-start',
+        resizeMode: 'contain'
     }
 })
 

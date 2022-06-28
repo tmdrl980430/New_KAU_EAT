@@ -28,14 +28,14 @@ const styles = StyleSheet.create({
     headerContainer: {
     },
     helloText : {
-        fontFamily : 'NotoSansKR-Medium',
+        fontFamily : 'NotoSansKR-Bold',
         color: 'white',
         fontSize : 20,
         lineHeight: 32,
         marginTop : hp('4.5%')
     },
     idText : {
-        fontFamily : 'NotoSansKR-Medium',
+        fontFamily : 'NotoSansKR-Regular',
         color: 'white',
         fontSize : 12,
         lineHeight: 16,

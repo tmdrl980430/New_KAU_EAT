@@ -32,14 +32,14 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     titleText: {
-        fontFamily: 'NotoSansKR-Medium',
+        fontFamily: 'NotoSansKR-Regular',
         color: '#343434',
         fontSize: 14,
         lineHeight: 22,
         marginTop: hp('2.8%')
     },
     countText: {
-        fontFamily: 'NotoSansKR-Medium',
+        fontFamily: 'NotoSansKR-Regular',
         color: 'black',
         fontSize: 16,
         lineHeight: 24,

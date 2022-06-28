@@ -16,8 +16,7 @@ const styles = StyleSheet.create({
     titleArea: {
         justifyContent: "space-between",
         flexDirection: "row",
-        alignItems: 'center',
-        marginTop: hp('3%')
+        alignItems: 'center'
     },
     todayMealText: {
         fontSize: 20,
