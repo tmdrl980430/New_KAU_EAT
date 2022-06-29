@@ -8,8 +8,8 @@ import BackBtn from './myPageBackBtn';
 import UserTicket from './userTicket';
 import UserInfoChange from './userInfoChange'
 import Logout from './logout';
-import { useRecoilState } from 'recoil';
-import { jwtRecoilState } from '../../../../recoil';
+import {useRecoilState} from 'recoil';
+import {jwtRecoilState} from '../../../../recoil';
 
 const MyPageScreen = () => {
 
@@ -17,7 +17,7 @@ const MyPageScreen = () => {
     const [jwt, setJwt] = useRecoilState(jwtRecoilState);
 
     console.log(`jwt : ${jwt}`);
-    
+
     const logOut = () => {
         setJwt("");
         console.log(`jwt : ${jwt}`);
@@ -42,10 +42,10 @@ const MyPageScreen = () => {
                 <View style={styles.userInfoChangeContainer}>
                     <UserInfoChange/>
                 </View>
-                <TouchableOpacity styles={styles.logOutTextArea}
-                onPress={logOut}>
+                <View style={styles.lineView}/>
+                <View styles={styles.logOutTextArea} onPress={logOut}>
                     <Logout/>
-                </TouchableOpacity>
+                </View>
             </ScrollView>
         )
     }
@@ -91,6 +91,12 @@ const styles = StyleSheet.create({
         marginStart: wp('10%'),
         marginEnd: wp('10%'),
         marginTop: hp('2.4%')
+    },
+    logOutTextArea: {
+        flex: 1,
+        marginTop: hp('3.7%'),
+        width: wp('100%'),
+        justifyContent: "center"
     }
 });
 

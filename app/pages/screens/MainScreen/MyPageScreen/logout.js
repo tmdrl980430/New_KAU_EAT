@@ -18,6 +18,7 @@ const Logout = () => {
 const styles = StyleSheet.create({
     logOutTextArea: {
         flex: 1,
+        marginTop: hp('3.7%'),
         width: wp('100%'),
         justifyContent: "center"
     },

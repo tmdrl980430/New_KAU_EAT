@@ -1,14 +1,15 @@
 import React from 'react';
 import {Text, View, StyleSheet, Image} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import RigthArrow from '../../../../assets/images/right_arrow.png';
 
-const TodayMeal = () => {
+const MyTicket = () => {
 
     return (
         <View style={styles.titleArea}>
-            <Text style={styles.todayMealText}>오늘의 식단표</Text>
+            <Text style={styles.myTicketText}>MY 식권</Text>
             <View>
-                <Text style={styles}>주간 식단 {'>'}</Text>
+                <Image style={styles.rightArrowImg} source={RigthArrow} resizeMode={'contain'}/>
             </View>
         </View>
     )
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
         marginStart: wp('10%'),
         marginEnd: wp('10%')
     },
-    todayMealText: {
+    myTicketText: {
         fontSize: 20,
         fontFamily: 'NotoSansKR-Bold',
         color: '#12121D'
@@ -31,7 +32,13 @@ const styles = StyleSheet.create({
     weekMeal: {
         fontSize: 12,
         alignItems: "center"
-    }
+    },
+    rightArrowImg: {
+        width: wp('3.5%'),
+        height: hp('1.5%'),
+        resizeMode: 'center',
+        marginStart: wp('2%')
+    },
 })
 
-export default TodayMeal;
+export default MyTicket;

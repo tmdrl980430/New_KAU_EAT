@@ -1,15 +1,185 @@
-import React from 'react';
-import {Text, View, StyleSheet, Image} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {Text, View, StyleSheet, Image, SafeAreaView} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import Carousel from 'react-native-snap-carousel';
+import {useRecoilState} from 'recoil';
+import {jwtRecoilState} from '../../../../recoil';
+import axios from 'axios';
 
+import LogoImage from '../../../../assets/images/kau_logo_today_meal.png';
 
 const MealList = () => {
 
+    const [jwt, setJwt] = useRecoilState(jwtRecoilState)
+
+    const [now, setNow] = useState(new Date());
+
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null);
+
+    const [responseData, setResponseData] = useState({});
+
+    const [menuStatus, setMenuStatus] = useState(false);
+
+    useEffect(() => {
+        console.log(todayDate);
+        console.log(responseData);
+    }, [responseData])
+
+    useEffect(() => {
+        getMealTable();
+    }, [])
+
+    const todayDate = `${now.getFullYear()}-${String(now.getMonth()).padStart(
+        2,
+        '0'
+    )}-${String(now.getDate()).padStart(2, '0')}`
+
+    // test data
+    const date = '2022-06-13'
+
+    const getMealTable = async () => {
+        console.log('getMealTable');
+
+        try {
+            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+            setError(null);
+            console.log('getMealTable_try');
+
+            // loading 상태를 true 로 바꿉니다.
+            setLoading(true);
+
+            // axios     .defaults     .headers     .common['x-access-token'] = jwt
+
+            const response = await axios
+                .get(`http://3.38.35.114/meals?date=${date}`, {
+                    headers: {
+                        "x-access-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo4LCJpYXQiOjE2NTU1NTg4NzYsI' +
+                                'mV4cCI6MTY4NzA5NDg3Nn0.A-00mT4Matep0KjJc5imo4xiXV5A2ymVfq8u5uYarc4'
+                    }
+                })
+                .then((response) => {
+                    console.log(`response 확인 : ${response.data.code}`);
+                    setResponseData(response.data.result);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            // 데이터는 response.data.code 안에 들어있다. console.log(response.data.result);
+        } catch (e) {
+            console.log('getMealTable_catch');
+            console.log(e);
+            setError(e);
+        }
+        // loading 끄기
+        setLoading(false);
+    };
+
+    const _renderItem = ({item, index}) => {
+        return (
+            <View
+                style={{
+                    position: 'relative',
+                    backgroundColor: '#3D3580',
+                    borderRadius: 16,
+                    height: hp('20%'),
+                    width: wp('85%'),
+                    marginStart: wp('8%'),
+                    marginEnd: wp('10%'),
+                    paddingStart: wp('5%'),
+                    paddingEnd: wp('5%'),
+                    justifyContent: "space-between"
+                }}>
+                <View style={styles.mealTypeContainer}>
+                    <Text
+                        style={{
+                            fontFamily: 'NotoSansKR-Bold',
+                            fontSize: 16,
+                            color: '#FFFFFF'
+                        }}>{item.mealType}
+                    </Text>
+                    {
+                        item.menuStatus == 'ACTIVE'
+                            ? (<View/>)
+                            : (
+                                <View style={styles.menuStatusContainer}>
+                                    <Text
+                                        style={{
+                                            fontFamily: 'NotoSansKR-Regular',
+                                            fontSize: 14,
+                                            color: '#FFFFFF'
+                                        }}>{item.menuStatus}</Text>
+                                </View>
+                            )
+                    }
+                </View>
+                <Text
+                    style={{
+                        fontFamily: 'NotoSansKR-Bold',
+                        fontSize: 16,
+                        color: '#FFFFFF',
+                        width: wp('62%'),
+                        marginTop: 7.6,
+                        marginBottom: hp('1.6%')
+                    }}>{item.menu}</Text>
+                <Text
+                    style={{
+                        fontFamily: 'NotoSansKR-Bold',
+                        fontSize: 18,
+                        color: '#FFFFFF',
+                        marginBottom: 21
+                    }}>{item.price}</Text>
+                <Image style={styles.kauLogo} source={LogoImage} resizeMode={'contain'}/>
+
+            </View>
+
+        )
+    }
+
     return (
-        <View>
-            
-        </View>
-    )
+        <SafeAreaView
+            style={{
+                flex: 1,
+                backgroundColor: '#FFFFFF',
+                marginTop: hp('1.7%')
+            }}>
+            <View style={{
+                    flexDirection: 'row'
+                }}>
+                <Carousel
+                    layout={"default"}
+                    data={responseData.meals}
+                    sliderWidth={300}
+                    itemWidth={330}
+                    firstItem={1}
+                    renderItem={_renderItem}
+                    loop={true}/>
+            </View>
+        </SafeAreaView>
+    );
+
 }
+
+const styles = StyleSheet.create({
+    mealTypeContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        marginTop: 15
+    },
+    menuStatusContainer: {
+        backgroundColor: '#262651',
+        borderRadius: 12,
+        paddingStart: 6,
+        paddingEnd: 6,
+        marginStart: 8
+    },
+    kauLogo: {
+        position: 'absolute',
+        top: hp('-1%'),
+        bottom: 0,
+        left: wp('48.5%'),
+    }
+
+});
 
 export default MealList;

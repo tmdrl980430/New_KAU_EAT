@@ -26,10 +26,8 @@ const Navigation = () => {
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
             setError(null);
-            //setLogin(null);
-
             // loading 상태를 true 로 바꿉니다.
-            //setLoading(true);
+            setLoading(true);
 
             axios
                 .defaults
@@ -44,9 +42,9 @@ const Navigation = () => {
                 })
                 .then((response) => {
                     console.log(`response 상태 확인 : ${response.data.code}`);
-                    // setLogin(response.data.code); 
+                    //setIsLogin(response.data.code); 
                     if(response.data.result.code === 1000){
-                        //setIsLogin(true);
+                        setIsLogin(true);
                     }
                 })
                 .catch((error) => {
@@ -68,14 +66,15 @@ const Navigation = () => {
     //     authLogin();
     // }
 
-    useEffect(() => {
-        if (jwt === ''){ 
-                setIsLogin(false); 
-            } else {     
-                setIsLogin(true);
-                authLogin();
-            }
-    }, [jwt])
+    // useEffect(() => {
+    //     if (jwt === ''){ 
+    //             setIsLogin(false); 
+    //         } else {     
+    //             setIsLogin(true);
+    //             authLogin();
+    //         }
+    //     console.log("dssad");
+    // }, [jwt])
 
 
     return (

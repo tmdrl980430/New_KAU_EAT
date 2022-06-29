@@ -3,4 +3,4 @@ import { atom } from "recoil";
 
 export const jwtRecoilState = atom({key: 'jwtRecoilState', default: ''});
 
-export const isLoginRecoilState = atom({key: 'isLoginRecoilState', default: false});
+export const isLoginRecoilState = atom({key: 'isLoginRecoilState', default: true});
