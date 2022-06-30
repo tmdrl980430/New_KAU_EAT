@@ -23,6 +23,7 @@ const MealList = () => {
 
     useEffect(() => {
         console.log(todayDate);
+        console.log(now);
         console.log(responseData);
     }, [responseData])
 
@@ -82,19 +83,19 @@ const MealList = () => {
                     position: 'relative',
                     backgroundColor: '#3D3580',
                     borderRadius: 16,
-                    height: hp('20%'),
+                    height: hp('24%'),
                     width: wp('85%'),
                     marginStart: wp('8%'),
                     marginEnd: wp('10%'),
                     paddingStart: wp('5%'),
                     paddingEnd: wp('5%'),
-                    justifyContent: "space-between"
+                    justifyContent: "space-around"
                 }}>
                 <View style={styles.mealTypeContainer}>
                     <Text
                         style={{
                             fontFamily: 'NotoSansKR-Bold',
-                            fontSize: 16,
+                            fontSize: hp('2%'),
                             color: '#FFFFFF'
                         }}>{item.mealType}
                     </Text>
@@ -106,7 +107,7 @@ const MealList = () => {
                                     <Text
                                         style={{
                                             fontFamily: 'NotoSansKR-Regular',
-                                            fontSize: 14,
+                                            fontSize: hp('1.7%'),
                                             color: '#FFFFFF'
                                         }}>{item.menuStatus}</Text>
                                 </View>
@@ -118,16 +119,16 @@ const MealList = () => {
                         fontFamily: 'NotoSansKR-Bold',
                         fontSize: 16,
                         color: '#FFFFFF',
-                        width: wp('62%'),
-                        marginTop: 7.6,
-                        marginBottom: hp('1.6%')
+                        width: wp('60%'),
+                        marginTop: hp('1%'),
+                        marginBottom: hp('0.3%')
                     }}>{item.menu}</Text>
                 <Text
                     style={{
                         fontFamily: 'NotoSansKR-Bold',
-                        fontSize: 18,
+                        fontSize: hp('2.1%'),
                         color: '#FFFFFF',
-                        marginBottom: 21
+                        marginBottom: hp('0.5%')
                     }}>{item.price}</Text>
                 <Image style={styles.kauLogo} source={LogoImage} resizeMode={'contain'}/>
 
@@ -164,20 +165,20 @@ const styles = StyleSheet.create({
     mealTypeContainer: {
         flexDirection: "row",
         alignItems: "center",
-        marginTop: 15
+        marginTop: hp('1.5%')
     },
     menuStatusContainer: {
         backgroundColor: '#262651',
-        borderRadius: 12,
-        paddingStart: 6,
-        paddingEnd: 6,
-        marginStart: 8
+        borderRadius: hp('2%'),
+        paddingStart: hp('1%'),
+        paddingEnd: hp('1%'),
+        marginStart: hp('1%')
     },
     kauLogo: {
         position: 'absolute',
         top: hp('-1%'),
         bottom: 0,
-        left: wp('48.5%'),
+        left: wp('47%'),
     }
 
 });

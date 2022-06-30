@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, Image} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 import LogoImage from '../../../../assets/images/kau_logo_small.png';
-import LogoText from '../../../../assets/images/logo_text.png';
+import LogoText from '../../../../assets/images/logo_text.png'
 
 const HomeLogo = () => {
 
@@ -17,9 +17,8 @@ const HomeLogo = () => {
 
 const styles = StyleSheet.create({
     logoArea: {
-        marginTop: hp("3%"),
         flexDirection: "row",
-        marginTop: hp('5%'),
+        marginTop: hp('6%'),
         alignItems: "center",
         marginStart: wp('10%'),
     },

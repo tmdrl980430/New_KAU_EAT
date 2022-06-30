@@ -7,6 +7,7 @@ import TodayMeal from './mealTable';
 import MealList from './todayMeals';
 import TicketPurchase from './ticketPurchase';
 import MyTicket from './myTicket';
+import TicketList from './ticketList';
 
 const HomeScreen = () => {
 
@@ -26,6 +27,7 @@ const HomeScreen = () => {
                 <MealList/>
                 <TicketPurchase/>
                 <MyTicket/>
+                <TicketList/>
             </ScrollView>
         )
     }
@@ -53,7 +55,7 @@ const styles = StyleSheet.create({
     },
     logoArea: {
         width: '100%',
-        marginTop: hp('30%'),
+        marginTop: hp('40%'),
         alignItems: 'center',
     }
 });

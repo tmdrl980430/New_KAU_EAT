@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Text, View, StyleSheet, ActivityIndicator} from 'react-native';
+import {Text, View, StyleSheet, ActivityIndicator, TouchableOpacity} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native-gesture-handler';
 import BackBtn from './myPageBackBtn';
 import UserTicket from './userTicket';
 import UserInfoChange from './userInfoChange'
-import Logout from './logout';
 import {useRecoilState} from 'recoil';
 import {jwtRecoilState} from '../../../../recoil';
 
@@ -43,9 +42,9 @@ const MyPageScreen = () => {
                     <UserInfoChange/>
                 </View>
                 <View style={styles.lineView}/>
-                <View styles={styles.logOutTextArea} onPress={logOut}>
-                    <Logout/>
-                </View>
+                <TouchableOpacity onPress={logOut}>
+                    <Text style={styles.logOutText}>로그아웃</Text>
+                </TouchableOpacity>
             </ScrollView>
         )
     }
@@ -92,11 +91,14 @@ const styles = StyleSheet.create({
         marginEnd: wp('10%'),
         marginTop: hp('2.4%')
     },
-    logOutTextArea: {
-        flex: 1,
+    logOutText: {
+        fontFamily: 'NotoSansKR-Regular',
+        color: '#AAACAE',
+        fontSize: 14,
+        lineHeight: 24,
         marginTop: hp('3.7%'),
-        width: wp('100%'),
-        justifyContent: "center"
+        marginStart : wp('44%'),
+        justifyContent: 'center',
     }
 });
 
