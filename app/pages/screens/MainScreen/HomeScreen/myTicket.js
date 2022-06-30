@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         marginEnd: wp('10%')
     },
     myTicketText: {
-        fontSize: 20,
+        fontSize: wp('5%'),
         fontFamily: 'NotoSansKR-Bold',
         color: '#12121D'
     },

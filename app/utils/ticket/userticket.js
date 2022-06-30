@@ -3,6 +3,8 @@ import {StyleSheet, View, Text, Image} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import TicketImg from '../../assets/images/ticket_black.png';
 import QrImg from '../../assets/images/qrcode.png'
+import DashedLine from '../../assets/images/dashedline.png'
+
 //재사용 가능 식권 모양
 
 const userTicket = () => {
@@ -13,8 +15,9 @@ const userTicket = () => {
             <Text style={styles.menuTypeText}>조식</Text>
             <Image style={styles.ticketImg} source={TicketImg} resizeMode={'contain'}/>
             <Text style={styles.ticketCount}>X 2</Text>
-            <View style={styles.dashedLine}></View>
+            <Image style={styles.dashedLine} source={DashedLine} resizeMode={'contain'}/>
             <Image style={styles.QrImg} source={QrImg} resizeMode={'contain'}/>
+
         </View>
     )
 
@@ -57,11 +60,9 @@ const styles = StyleSheet.create({
         left: wp('36%')
     },
     dashedLine: {
-        width : 1,
+        width: wp('1%'),
+        left: wp('30%'),
         height: hp('5.2%'),
-        borderColor: '#3D3580',
-        borderRightWidth : 1,
-        borderStyle : 'dashed'
     },
     ticketCount: {
         fontSize: 12,

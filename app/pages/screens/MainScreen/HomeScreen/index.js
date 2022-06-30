@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {Text, View, StyleSheet, ActivityIndicator} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
+import {Text, View, StyleSheet, ActivityIndicator, ScrollView, SafeAreaView} from 'react-native';
+//import {ScrollView} from 'react-native-gesture-handler';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import HomeLogo from './homeLogo';
 import TodayMeal from './mealTable';
@@ -21,14 +21,17 @@ const HomeScreen = () => {
         )
     } else {
         return (
-            <ScrollView style={styles.container}>
-                <HomeLogo style={styles.logoArea}/>
-                <TodayMeal/>
-                <MealList/>
-                <TicketPurchase/>
-                <MyTicket/>
-                <TicketList/>
-            </ScrollView>
+            <SafeAreaView style={{backgroundColor: 'white'}}>
+                <ScrollView style={styles.container}>
+                    <HomeLogo style={styles.logoArea}/>
+                    <TodayMeal/>
+                    <MealList/>
+                    <TicketPurchase/>
+                    <MyTicket/>
+                    <TicketList/>
+                </ScrollView>
+            </SafeAreaView>
+
         )
     }
 }
@@ -47,7 +50,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     container: {
-        backgroundColor: 'white',
+        backgroundColor: 'white'
     },
     paddingContainer: {
         paddingLeft: wp('10%'),
@@ -56,7 +59,7 @@ const styles = StyleSheet.create({
     logoArea: {
         width: '100%',
         marginTop: hp('40%'),
-        alignItems: 'center',
+        alignItems: 'center'
     }
 });
 

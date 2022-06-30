@@ -18,7 +18,7 @@ const HomeLogo = () => {
 const styles = StyleSheet.create({
     logoArea: {
         flexDirection: "row",
-        marginTop: hp('6%'),
+        marginTop: hp('1%'),
         alignItems: "center",
         marginStart: wp('10%'),
     },

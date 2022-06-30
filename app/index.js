@@ -11,6 +11,14 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {StyleSheet} from 'react-native';
 import Navigation from './pages/navigation';
 
+import {LogBox} from "react-native";
+
+LogBox.ignoreLogs([
+"ViewPropTypes will be removed",
+"ColorPropType will be removed",
+"Failed prop type"
+])
+
 const Stack = createNativeStackNavigator();
 
 const App = () => {

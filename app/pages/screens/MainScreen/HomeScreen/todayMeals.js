@@ -147,14 +147,21 @@ const MealList = () => {
             <View style={{
                     flexDirection: 'row'
                 }}>
-                <Carousel
-                    layout={"default"}
-                    data={responseData.meals}
-                    sliderWidth={300}
-                    itemWidth={330}
-                    firstItem={1}
-                    renderItem={_renderItem}
-                    loop={true}/>
+                {
+                    responseData === {}
+                        ? (<View/>)
+                        : (
+                            <Carousel
+                                layout={"default"}
+                                data={responseData.meals}
+                                sliderWidth={300}
+                                itemWidth={330}
+                                firstItem={1}
+                                renderItem={_renderItem}
+                                loop={true}/>
+                        )
+                }
+
             </View>
         </SafeAreaView>
     );
@@ -178,7 +185,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: hp('-1%'),
         bottom: 0,
-        left: wp('47%'),
+        left: wp('47%')
     }
 
 });

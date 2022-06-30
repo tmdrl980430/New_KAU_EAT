@@ -20,10 +20,10 @@ const BackBtn = () => {
 
 const styles = StyleSheet.create({
     backImg: {
-        width: 7,
-        height: 14,
+        width: wp('2%'),
+        height: hp('2%'),
         resizeMode: 'contain',
-        marginTop: hp('7%'),
+        marginTop: hp('2%'),
     },
     headerContainer: {
     },
