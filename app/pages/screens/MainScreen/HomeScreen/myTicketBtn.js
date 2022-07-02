@@ -1,17 +1,16 @@
 import React from 'react';
-import {Text, View, StyleSheet, Image} from 'react-native';
+import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import RigthArrow from '../../../../assets/images/right_arrow.png';
 
-const MyTicket = () => {
+const MyTicketBtn = ({navigation}) => {
 
     return (
-        <View style={styles.titleArea}>
-            <Text style={styles.myTicketText}>MY 식권</Text>
+        <TouchableOpacity style={styles.titleArea}>
             <View>
                 <Image style={styles.rightArrowImg} source={RigthArrow} resizeMode={'contain'}/>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
@@ -24,15 +23,6 @@ const styles = StyleSheet.create({
         marginStart: wp('10%'),
         marginEnd: wp('10%')
     },
-    myTicketText: {
-        fontSize: wp('5%'),
-        fontFamily: 'NotoSansKR-Bold',
-        color: '#12121D'
-    },
-    weekMeal: {
-        fontSize: 12,
-        alignItems: "center"
-    },
     rightArrowImg: {
         width: wp('3.5%'),
         height: hp('1.5%'),
@@ -41,4 +31,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default MyTicket;
+export default MyTicketBtn;

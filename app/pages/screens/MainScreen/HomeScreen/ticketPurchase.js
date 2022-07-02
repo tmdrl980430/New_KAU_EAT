@@ -1,15 +1,14 @@
 import React from 'react';
-import {Text, View, StyleSheet, Image, PlatformColor} from 'react-native';
+import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import MealList from './todayMeals';
 import TicketImage from '../../../../assets/images/ticket_white.png';
 import RigthArrow from '../../../../assets/images/right_arrow.png';
 
-const TicketPurchase = () => {
+const TicketPurchaseBtn = () => {
 
     return (
-        <View style={styles.titleArea}>
-            <Text style={styles.todayMealText}>식권 구매하기</Text>
+        <TouchableOpacity style={styles.titleArea}>
             <View style={styles.ticketPurchaseContainer}>
                 <View style={styles.ticketImgBackgroud}>
                     <Image style={styles.ticketImg} source={TicketImage} resizeMode={'contain'}/>
@@ -17,7 +16,7 @@ const TicketPurchase = () => {
                 <Text style={styles.ticketPurchaseText}>식권을 바로 구매해보세요</Text>
                 <Image style={styles.rightArrowImg} source={RigthArrow} resizeMode={'contain'}/>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
@@ -26,7 +25,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         flexDirection: "column",
         marginStart: wp('10%'),
-        marginTop: hp('4%'),
+        marginTop: hp('1%'),
         marginEnd: wp('10%')
     },
     todayMealText: {
@@ -86,4 +85,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default TicketPurchase;
+export default TicketPurchaseBtn;

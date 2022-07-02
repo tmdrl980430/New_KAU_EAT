@@ -1,18 +1,12 @@
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import Title from '../../../../utils/title/title'
 
-const TodayMeal = () => {
+const TodayMealTitle = (props) => {
 
     return (
-        <View style={styles.container}>
-            <View>
-                <Text style={styles.todayMealText}>오늘의 식단표</Text>
-            </View>
-            <View>
-                <Text style={styles.weekMeal}>주간 식단 {'>'}</Text>
-            </View>
-        </View>
+        <Title type={"todayMealText"}/>
     )
 }
 
@@ -38,4 +32,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default TodayMeal;
+export default TodayMealTitle;

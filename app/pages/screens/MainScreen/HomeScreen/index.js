@@ -1,15 +1,26 @@
 import React, {useState} from 'react';
-import {Text, View, StyleSheet, ActivityIndicator, ScrollView, SafeAreaView} from 'react-native';
+import {
+    Text,
+    View,
+    StyleSheet,
+    ActivityIndicator,
+    ScrollView,
+    SafeAreaView
+} from 'react-native';
 //import {ScrollView} from 'react-native-gesture-handler';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import HomeLogo from './homeLogo';
-import TodayMeal from './mealTable';
+import TodayMealTitle from './mealTableTitle';
 import MealList from './todayMeals';
-import TicketPurchase from './ticketPurchase';
-import MyTicket from './myTicket';
+import TicketPurchaseBtn from './ticketPurchase';
+import MyTicketBtn from './myTicketBtn';
 import TicketList from './ticketList';
+import TicketPurchaseTitle from './ticketPurchaseTitle';
+import TodayMealBtn from './mealTableBtn';
+import MyTicketTitle from './myTicketTitle'
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
 
     const [loading, setLoading] = useState(false)
 
@@ -21,13 +32,26 @@ const HomeScreen = () => {
         )
     } else {
         return (
-            <SafeAreaView style={{backgroundColor: 'white'}}>
+            <SafeAreaView
+                style={{
+                    backgroundColor: 'white'
+                }}>
                 <ScrollView style={styles.container}>
                     <HomeLogo style={styles.logoArea}/>
-                    <TodayMeal/>
+                    <View style={styles.titlecontainer}>
+                        <TodayMealTitle/>
+                        <TouchableOpacity onPress={() => navigation.navigate('WeekMeals')}>
+                            <TodayMealBtn/>
+
+                        </TouchableOpacity>
+                    </View>
                     <MealList/>
-                    <TicketPurchase/>
-                    <MyTicket/>
+                    <TicketPurchaseTitle/>
+                    <TicketPurchaseBtn/>
+                    <View style={styles.titlecontainer}>
+                        <MyTicketTitle/>
+                        <MyTicketBtn/>
+                    </View>
                     <TicketList/>
                 </ScrollView>
             </SafeAreaView>
@@ -60,6 +84,11 @@ const styles = StyleSheet.create({
         width: '100%',
         marginTop: hp('40%'),
         alignItems: 'center'
+    },
+    titlecontainer: {
+        justifyContent: "space-between",
+        flexDirection: "row",
+        alignItems: "center"
     }
 });
 

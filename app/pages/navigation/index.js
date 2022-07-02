@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {NavigationContainer} from "@react-navigation/native"
+import {NavigationContainer, StackActions} from "@react-navigation/native"
 import {createNativeStackNavigator} from "@react-navigation/native-stack"
 import Login from "../screens/LoginScreen";
 import SignUp from "../screens/SignUpScreen";
 import SignUpLast from "../screens/SignUpScreenLast";
 import Main from "../screens/MainScreen";
+import WeekMeals from "../screens/MainScreen/WeekMealScreen";
 import {useRecoilState} from 'recoil';
 import {isLoginRecoilState, jwtRecoilState} from '../../recoil';
 import axios from 'axios';
@@ -33,17 +34,18 @@ const Navigation = () => {
                 .defaults
                 .headers
                 .common['x-access-token'] = jwt
-                
+
             const response = await axios
                 .get(`http://3.38.35.114/auth/jwt`, {
-                    headers : {
-                        "x-access-token" : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo4LCJpYXQiOjE2NTU1NTg4NzYsImV4cCI6MTY4NzA5NDg3Nn0.A-00mT4Matep0KjJc5imo4xiXV5A2ymVfq8u5uYarc4'
+                    headers: {
+                        "x-access-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo4LCJpYXQiOjE2NTU1NTg4NzYsI' +
+                                'mV4cCI6MTY4NzA5NDg3Nn0.A-00mT4Matep0KjJc5imo4xiXV5A2ymVfq8u5uYarc4'
                     }
                 })
                 .then((response) => {
                     console.log(`response 상태 확인 : ${response.data.code}`);
-                    //setIsLogin(response.data.code); 
-                    if(response.data.result.code === 1000){
+                    //setIsLogin(response.data.code);
+                    if (response.data.result.code === 1000) {
                         setIsLogin(true);
                     }
                 })
@@ -59,23 +61,10 @@ const Navigation = () => {
         setLoading(false);
     };
 
-
-    // if (isLogIn) {
-    //     console.log("authLogin");
-    //     console.log(isLogIn);
-    //     authLogin();
-    // }
-
-    // useEffect(() => {
-    //     if (jwt === ''){ 
-    //             setIsLogin(false); 
-    //         } else {     
-    //             setIsLogin(true);
-    //             authLogin();
-    //         }
-    //     console.log("dssad");
-    // }, [jwt])
-
+    // if (isLogIn) {     console.log("authLogin");     console.log(isLogIn);
+    // authLogin(); } useEffect(() => {     if (jwt === ''){
+    // setIsLogin(false);         } else {             setIsLogin(true);
+    // authLogin();         }     console.log("dssad"); }, [jwt])
 
     return (
         <NavigationContainer>
@@ -89,6 +78,7 @@ const Navigation = () => {
                                     headerShown: false
                                 }}>
                                 <Stack.Screen name="Main" component={Main}></Stack.Screen>
+                                <Stack.Screen name="WeekMeals" component={WeekMeals}></Stack.Screen>
                             </Stack.Group>
                         )
                         : (
