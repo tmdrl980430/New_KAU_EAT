@@ -1,6 +1,15 @@
 import React, {useState} from 'react';
-import {Text, View, StyleSheet, ActivityIndicator, ScrollView, SafeAreaView} from 'react-native';
+import {
+    Text,
+    View,
+    StyleSheet,
+    ActivityIndicator,
+    ScrollView,
+    SafeAreaView,
+    TouchableOpacity
+} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 import BackBtn from '../../../../utils/backBtn/back'
 import CenterTitle from '../../../../utils/title/centerTitle';
 
@@ -19,11 +28,14 @@ const WeekMealsScreen = ({navigation}) => {
             <SafeAreaView style={styles.safeAreaContainer}>
                 <ScrollView style={styles.container}>
                     <View style={styles.headerContainer}>
-                        <BackBtn/>
+                        <TouchableOpacity onPress={() => navigation.replace('Main')}>
+                            <BackBtn/>
+                        </TouchableOpacity>
                         <CenterTitle type={"weekMealText"}/>
                         <View/>
                     </View>
                 </ScrollView>
+
             </SafeAreaView>
 
         )
@@ -44,22 +56,21 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     safeAreaContainer: {
-        backgroundColor: 'white',
+        backgroundColor: 'white'
     },
     container: {
         backgroundColor: 'white',
         paddingLeft: wp('10%'),
         paddingRight: wp('10%'),
         width: wp('100%'),
-        height: hp('100%'),
-
+        height: hp('100%')
     },
     logoArea: {
         width: '100%',
         marginTop: hp('40%'),
         alignItems: 'center'
     },
-    headerContainer:{
+    headerContainer: {
         marginTop: hp('3%'),
         flexDirection: "row",
         justifyContent: "space-between",

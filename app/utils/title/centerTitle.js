@@ -15,8 +15,8 @@ const CenterTitle = (props) => {
             template = <Text style={styles.text}>로그인</Text>
 
             break;
-        case "logoutText":
-            template = <Text style={styles.text}>로그아웃</Text>
+        case "signInText":
+            template = <Text style={styles.text}>회원가입</Text>
             break;
         default:
             return template

@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     signUpText:{
-        fontFamily: 'NotoSansKR-Black',
+        fontFamily: 'NotoSansKR-Bold',
         fontSize: 18,
         color: '#1F2C37',
         justifyContent: 'flex-start',

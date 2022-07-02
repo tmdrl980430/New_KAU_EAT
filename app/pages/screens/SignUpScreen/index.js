@@ -14,6 +14,8 @@ import AuthForm from "./SignUpAuthform";
 import SignUpHeader from "./Header";
 import Introduction from "./introduction";
 import SignUpBtn from "./SignUpBtn";
+import BackBtn from '../../../utils/backBtn/back'
+import CenterTitle from '../../../utils/title/centerTitle';
 
 const SignUp = ({navigation}) => {
 
@@ -28,8 +30,6 @@ const SignUp = ({navigation}) => {
     const [formatPassword, setformatPassword] = useState(true); //비밀번호 형식
     const [samePassword, setsamePassword] = useState(true); //비밀번호 일치
 
-
-
     const retrieveDuplicateId = async () => {
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
@@ -41,12 +41,19 @@ const SignUp = ({navigation}) => {
 
             if (password != passwordCheck) {
                 setsamePassword(false);
-            } else if (password == passwordCheck && id != '' && password != ''){
+            } else if (password == passwordCheck && id != '' && password != '') {
                 setsamePassword(true);
                 const response = await axios.get(
                     `http://3.38.35.114/auth/duplicate-id?id=${id}`
                 );
-                navigation.navigate('SignUpLast', {id: {id} , password: {password}});
+                navigation.navigate('SignUpLast', {
+                    id: {
+                        id
+                    },
+                    password: {
+                        password
+                    }
+                });
             }
             // 데이터는 response.data.code 안에 들어있다.
             setSignUp(response.data.code);
@@ -76,9 +83,13 @@ const SignUp = ({navigation}) => {
     } else {
         return (
             <ScrollView style={styles.container}>
-                <TouchableOpacity onPress={() => navigation.replace('Login')}>
-                    <SignUpHeader/>
-                </TouchableOpacity>
+                <View style={styles.headerContainer}>
+                    <TouchableOpacity onPress={() => navigation.replace('Login')}>
+                        <BackBtn/>
+                    </TouchableOpacity>
+                    <CenterTitle type={"signInText"}/>
+                    <View/>
+                </View>
                 <View>
                     <Introduction/>
                 </View>
@@ -146,6 +157,12 @@ const styles = StyleSheet.create({
     loginBtn: {
         marginTop: hp('16%'),
         marginBottom: hp('4%')
+    },
+    headerContainer:{
+        marginTop: hp('7%'),
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: 'center'
     }
 })
 

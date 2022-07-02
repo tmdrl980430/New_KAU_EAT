@@ -9,7 +9,11 @@ const title = (props) => {
     let template = null;
     switch (props.type) {
         case "todayMealText":
-            template = <Text style={styles.loginText}>로그인</Text>
+            template = <View style={styles.container}>
+                <View>
+                    <Text style={styles.todayMealText}>오늘의 식단표</Text>
+                </View>
+            </View>
             break;
         case "purchaseTicketText":
             template = <View style={styles.container}>

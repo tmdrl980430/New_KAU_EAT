@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import {
     View,
     StyleSheet,
@@ -9,32 +9,31 @@ import {
     TouchableOpacity
 } from 'react-native';
 import axios from 'axios';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import AuthForm from "./SignUpAuthform";
 import SignUpHeader from "./Header";
 import SignUpBtn from "./SignUpBtn";
+import BackBtn from '../../../utils/backBtn/back'
+import CenterTitle from '../../../utils/title/centerTitle';
 
-const SignUpLast = ({ route, navigation }) => {
+const SignUpLast = ({route, navigation}) => {
 
     const [loading, setLoading] = useState(false)
     const [signUp, setSignUp] = useState('');
     const [error, setError] = useState(null);
 
     // 전 화면에서 받아온 데이터
-    const { id } = route.params.id
-    const { password } = route.params.password
+    const {id} = route.params.id
+    const {password} = route.params.password
 
     const [nameInput, setNameInput] = useState('')
     const [phoneNumInput, setPhoneNumInput] = useState('')
     const [certificationNumInput, setCertificationNumInput] = useState('')
 
-    // useEffect(() => {
-    //     console.log(nameInput),
-    //         console.log(phoneNumInput),
-    //         console.log(id),
-    //         console.log(password),
-    //         console.log(signUp)
-    // }, [nameInput, phoneNumInput, id, password, signUp])
+    // useEffect(() => {     console.log(nameInput),
+    // console.log(phoneNumInput),         console.log(id),
+    // console.log(password),         console.log(signUp) }, [nameInput,
+    // phoneNumInput, id, password, signUp])
 
     const fetchSignUp = async () => {
         console.log('fetchSignUp')
@@ -46,18 +45,21 @@ const SignUpLast = ({ route, navigation }) => {
             // loading 상태를 true 로 바꿉니다.
             setLoading(true);
 
-            const response = await axios.post(`http://3.38.35.114/users`, {
-                id: id,
-                password: password,
-                name: nameInput,
-                phoneNumber: phoneNumInput
-            }).then((response) => {
-                console.log(response);
+            const response = await axios
+                .post(`http://3.38.35.114/users`, {
+                    id: id,
+                    password: password,
+                    name: nameInput,
+                    phoneNumber: phoneNumInput
+                })
+                .then((response) => {
+                    console.log(response);
 
-                return response;
-            }).catch((error) => {
-                console.log(error);
-            });
+                    return response;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
 
             navigation.replace('Login');
             // 데이터는 response.data.code 안에 들어있다.
@@ -76,30 +78,30 @@ const SignUpLast = ({ route, navigation }) => {
         fetchSignUp();
     }
 
-
-
     if (loading) {
         return (
             <View style={styles.loading}>
-                <ActivityIndicator />
+                <ActivityIndicator/>
             </View>
         )
     } else {
         return (
             <ScrollView style={styles.container}>
-                <TouchableOpacity onPress={() => navigation.replace('SignUp')}>
-                    <SignUpHeader />
-                </TouchableOpacity>
+                <View style={styles.headerContainer}>
+                    <TouchableOpacity onPress={() => navigation.replace('SignUp')}>
+                        <BackBtn/>
+                    </TouchableOpacity>
+                    <CenterTitle type={"signInText"}/>
+                    <View/>
+                </View>
                 <View style={styles.formArea}>
                     <AuthForm
                         style={styles.formArea}
                         setNameInput={setNameInput}
-                        setPhoneNumInput={setPhoneNumInput} />
+                        setPhoneNumInput={setPhoneNumInput}/>
                 </View>
-                <TouchableOpacity
-                    onPress={onPressSignUpBtn}
-                    style={styles.signUpBtn}>
-                    <SignUpBtn />
+                <TouchableOpacity onPress={onPressSignUpBtn} style={styles.signUpBtn}>
+                    <SignUpBtn/>
                 </TouchableOpacity>
             </ScrollView>
         )
@@ -152,6 +154,12 @@ const styles = StyleSheet.create({
     signUpBtn: {
         marginTop: hp('28%'),
         marginBottom: hp('4%')
+    },
+    headerContainer:{
+        marginTop: hp('7%'),
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: 'center'
     }
 })
 
