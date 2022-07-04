@@ -14,16 +14,16 @@ import AuthForm from "./LoginAuthform";
 import LoginHeader from "./Header";
 import Introduction from "./introduction";
 import LoginBtn from "./LoginBtn";
-import {signIn} from "../../../store/actions/user_actions";
-import { useRecoilState } from "recoil";
-import { jwtRecoilState } from "../../../recoil";
+import {useRecoilState} from "recoil";
+import {isLoginRecoilState, jwtRecoilState} from "../../../recoil";
 
 const Login = ({
     navigation
 }, props) => {
 
     const [loading, setLoading] = useState(false)
-    const [login, setLogin] = useState('');
+    const [login, setLogin] = useRecoilState(isLoginRecoilState);
+
     const [error, setError] = useState(null);
 
     const [jwt, setJwt] = useRecoilState(jwtRecoilState);
@@ -31,12 +31,12 @@ const Login = ({
     const [emailInput, setEmailInput] = useState("");
     const [passwordInput, setPasswordInput] = useState("");
 
+
     useEffect(() => {
         console.log(emailInput),
         console.log(passwordInput),
-        console.log(login),
-        console.log(`jwt 확인 : ${jwt}`)
-    }, [emailInput, passwordInput, login ,jwt])
+        console.log(login)
+    }, [emailInput, passwordInput, login])
 
     const fetchLogin = async () => {
         console.log('fetchLogin');
@@ -57,17 +57,19 @@ const Login = ({
                     password: passwordInput
                 })
                 .then((response) => {
-                    console.log(`response 확인 : ${response.data.result.jwt}`);
-                    setJwt(response.data.result.jwt);
-                    // props.setLogin(true);
-                    // setLogin(response.data.code);
-                    // setJwt(response.data.result.jwt);
+                    console.log(`response jwt확인 : ${response.data.result.jwt}`);
+                    console.log(`response code확인 : ${response.data.code}`);
+                    if(response.data.code == 1000){
+                        setJwt(response.data.result.jwt);
+                        console.log(jwt);
+                        setLogin(true);
+                    }
+                    //storeData(jwt);
                 })
                 .catch((error) => {
                     //console.log(error);
                 });
             // 데이터는 response.data.code 안에 들어있다.
-            
 
         } catch (e) {
             setError(e);
@@ -170,6 +172,5 @@ const styles = StyleSheet.create({
         marginTop: hp('30%')
     }
 })
-
 
 export default Login;

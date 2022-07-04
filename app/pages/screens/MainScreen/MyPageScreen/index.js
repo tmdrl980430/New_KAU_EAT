@@ -8,18 +8,24 @@ import BackBtn from './myPageBackBtn';
 import UserTicket from './userTicket';
 import UserInfoChange from './userInfoChange'
 import {useRecoilState} from 'recoil';
-import {jwtRecoilState} from '../../../../recoil';
+import {isLoginRecoilState, jwtRecoilState} from '../../../../recoil';
+import Navigation from '../../../navigation';
 
 const MyPageScreen = () => {
 
     const [loading, setLoading] = useState(false);
     const [jwt, setJwt] = useRecoilState(jwtRecoilState);
+    const [login, setLogin] = useRecoilState(isLoginRecoilState);
+
 
     console.log(`jwt : ${jwt}`);
 
     const logOut = () => {
         setJwt("");
+        setLogin(false);
         console.log(`jwt : ${jwt}`);
+        console.log(`login : ${login}`);
+
     }
 
     if (loading) {

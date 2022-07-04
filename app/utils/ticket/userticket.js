@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
         width: wp('80%'),
         marginTop: hp('1%'),
         marginEnd: wp('10%'),
-        marginStart: wp('10%'),
         alignItems: 'center'
     },
     whitecircle: {

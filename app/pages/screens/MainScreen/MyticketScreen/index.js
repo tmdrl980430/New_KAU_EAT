@@ -9,11 +9,11 @@ import {
     TouchableOpacity
 } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import DateList from '../../../screens/MainScreen/WeekMealScreen/dateList'
 import BackBtn from '../../../../utils/backBtn/back'
 import CenterTitle from '../../../../utils/title/centerTitle';
+import TicketList from './ticketList';
 
-const WeekMealsScreen = ({navigation}) => {
+const MyTicketScreen = ({navigation}) => {
 
     const [loading, setLoading] = useState(false)
 
@@ -31,11 +31,15 @@ const WeekMealsScreen = ({navigation}) => {
                         <TouchableOpacity onPress={() => navigation.replace('Main')}>
                             <BackBtn/>
                         </TouchableOpacity>
-                        <CenterTitle type={"weekMealText"}/>
+                        <CenterTitle type={"myTicketText"}/>
                         <View/>
                     </View>
-                    <DateList/>
-                    <TicketList/>
+                    <View style={styles.ticketContainer}>
+                        <TicketList/>
+                        <TicketList/>
+                        <TicketList/>
+                        <TicketList/>
+                    </View>
                 </ScrollView>
 
             </SafeAreaView>
@@ -50,6 +54,9 @@ const styles = StyleSheet.create({
         backgroudColor: 'white',
         alignItems: 'center',
         justufyContent: 'center'
+    },
+    ticketContainer: {
+        marginTop: hp('4%')
     },
     loading: {
         flex: 1,
@@ -80,4 +87,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default WeekMealsScreen;
+export default MyTicketScreen;

@@ -14,10 +14,15 @@ import {createMaterialBottomTabNavigator} from '@react-navigation/material-botto
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import HomeScreen from "./HomeScreen";
 import MyPageScreen from "./MyPageScreen"
+import { useRecoilState } from "recoil";
+import { isLoginRecoilState } from "../../../recoil";
 
 const Tab = createMaterialBottomTabNavigator();
 
 const Main = ({navigation}) => {
+
+
+    const [login, setLogin] = useRecoilState(isLoginRecoilState);
 
     return (
         <Tab.Navigator

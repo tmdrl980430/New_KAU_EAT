@@ -18,6 +18,9 @@ const CenterTitle = (props) => {
         case "signInText":
             template = <Text style={styles.text}>회원가입</Text>
             break;
+        case "myTicketText":
+            template = <Text style={styles.text}>My 식권</Text>
+            break;
         default:
             return template
     }
@@ -34,12 +37,12 @@ const styles = StyleSheet.create({
         marginEnd: wp('10%'),
         alignItems: "center"
     },
-    text:{
+    text: {
         fontFamily: 'NotoSansKR-Bold',
         fontSize: 18,
         color: '#1F2C37',
-        justifyContent: 'flex-start',
-    },
+        justifyContent: 'flex-start'
+    }
 })
 
 export default CenterTitle;

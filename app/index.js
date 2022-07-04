@@ -22,7 +22,6 @@ LogBox.ignoreLogs([
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-
     return (<Navigation/>);
 };
 

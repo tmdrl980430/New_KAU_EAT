@@ -14,22 +14,17 @@ const MealList = () => {
 
     const [now, setNow] = useState(new Date());
 
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     const [responseData, setResponseData] = useState({});
 
     const [menuStatus, setMenuStatus] = useState(false);
 
-    useEffect(() => {
-        console.log(todayDate);
-        console.log(now);
-        console.log(responseData);
-    }, [responseData])
 
     useEffect(() => {
         getMealTable();
-    }, [])
+    }, [jwt])
 
     const todayDate = `${now.getFullYear()}-${String(now.getMonth()).padStart(
         2,
@@ -41,11 +36,14 @@ const MealList = () => {
 
     const getMealTable = async () => {
         console.log('getMealTable');
+        setLoading(true);
+
 
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
             setError(null);
             console.log('getMealTable_try');
+            console.log(jwt);
 
             // loading 상태를 true 로 바꿉니다.
             setLoading(true);
@@ -55,8 +53,7 @@ const MealList = () => {
             const response = await axios
                 .get(`http://3.38.35.114/meals?date=${date}`, {
                     headers: {
-                        "x-access-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo4LCJpYXQiOjE2NTU1NTg4NzYsI' +
-                                'mV4cCI6MTY4NzA5NDg3Nn0.A-00mT4Matep0KjJc5imo4xiXV5A2ymVfq8u5uYarc4'
+                        "x-access-token": jwt
                     }
                 })
                 .then((response) => {

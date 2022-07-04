@@ -5,7 +5,8 @@ import {
     StyleSheet,
     ActivityIndicator,
     ScrollView,
-    SafeAreaView
+    SafeAreaView,
+    TouchableOpacity
 } from 'react-native';
 //import {ScrollView} from 'react-native-gesture-handler';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -18,7 +19,6 @@ import TicketList from './ticketList';
 import TicketPurchaseTitle from './ticketPurchaseTitle';
 import TodayMealBtn from './mealTableBtn';
 import MyTicketTitle from './myTicketTitle'
-import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const HomeScreen = ({navigation}) => {
 
@@ -42,7 +42,6 @@ const HomeScreen = ({navigation}) => {
                         <TodayMealTitle/>
                         <TouchableOpacity onPress={() => navigation.navigate('WeekMeals')}>
                             <TodayMealBtn/>
-
                         </TouchableOpacity>
                     </View>
                     <MealList/>
@@ -50,9 +49,13 @@ const HomeScreen = ({navigation}) => {
                     <TicketPurchaseBtn/>
                     <View style={styles.titlecontainer}>
                         <MyTicketTitle/>
-                        <MyTicketBtn/>
+                        <TouchableOpacity onPress={() => navigation.navigate('MyTicket')}>
+                            <MyTicketBtn/>
+                        </TouchableOpacity>
                     </View>
-                    <TicketList/>
+                    <View style={styles.paddingContainer}>
+                        <TicketList/>
+                    </View>
                 </ScrollView>
             </SafeAreaView>
 
