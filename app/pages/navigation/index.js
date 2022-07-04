@@ -27,19 +27,6 @@ const Navigation = () => {
 
     const [isLogIn, setIsLogin] = useState(isLoginRecoilState);
 
-    // const getData = async () => {
-    //     try {
-    //         const value = await AsyncStorage.getItem("x_access_Token")
-    //         if (value !== null) {
-    //             // value previously stored
-    //             console.log(`local storage ${value}`);
-    //             setJwt(value);
-    //         }
-    //     } catch (e) {
-    //         console.log('local storage error');
-    //         // error reading value
-    //     }
-    // }
 
     const authLogin = async () => {
         //getData();
@@ -52,10 +39,6 @@ const Navigation = () => {
             // loading 상태를 true 로 바꿉니다.
             setLoading(true);
 
-            // axios
-            //     .defaults
-            //     .headers
-            //     .common['x-access-token'] = {jwt}
 
             const response = await axios
                 .get(`http://3.38.35.114/auth/jwt`, {

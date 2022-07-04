@@ -16,7 +16,9 @@ import {LogBox} from "react-native";
 LogBox.ignoreLogs([
 "ViewPropTypes will be removed",
 "ColorPropType will be removed",
-"Failed prop type"
+"Failed prop type",
+"Can't perform",
+"Require cycle"
 ])
 
 const Stack = createNativeStackNavigator();
