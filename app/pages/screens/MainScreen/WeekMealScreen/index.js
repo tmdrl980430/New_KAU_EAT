@@ -12,6 +12,7 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import DateList from '../../../screens/MainScreen/WeekMealScreen/dateList'
 import BackBtn from '../../../../utils/backBtn/back'
 import CenterTitle from '../../../../utils/title/centerTitle';
+import Calendar from './dateList2';
 
 const WeekMealsScreen = ({navigation}) => {
 
@@ -34,8 +35,8 @@ const WeekMealsScreen = ({navigation}) => {
                         <CenterTitle type={"weekMealText"}/>
                         <View/>
                     </View>
-                    <DateList/>
-                    <TicketList/>
+                    {/* <DateList/> */}
+                    <Calendar/>
                 </ScrollView>
 
             </SafeAreaView>
