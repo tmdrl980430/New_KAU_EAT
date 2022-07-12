@@ -13,6 +13,8 @@ import DateList from '../../../screens/MainScreen/WeekMealScreen/dateList'
 import BackBtn from '../../../../utils/backBtn/back'
 import CenterTitle from '../../../../utils/title/centerTitle';
 import Calendar from './dateList2';
+import DateTitle from './dateTitle';
+import MealTable from './mealTable';
 
 const WeekMealsScreen = ({navigation}) => {
 
@@ -37,6 +39,8 @@ const WeekMealsScreen = ({navigation}) => {
                     </View>
                     {/* <DateList/> */}
                     <Calendar/>
+                    <DateTitle/>
+                    <MealTable/>
                 </ScrollView>
 
             </SafeAreaView>

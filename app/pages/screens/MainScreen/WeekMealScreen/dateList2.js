@@ -3,7 +3,31 @@ import {Text, View, StyleSheet, Platform, TouchableOpacity} from 'react-native'
 
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
-const Calendar = ({setSelectedDay, selectedDay, setFullDay}) => {
+const Calendar = ({selectedDay, setFullDay}) => {
+
+    //선택 처리 State
+    const [isSelect, setSelect] = useState([
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+    ]);
+
+    const [temp, setTempIndex] = useState(0);
+
+    const [copyisSelect, setcopySelect] = useState([
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+    ]);
+
     // 날짜 리스트 표시 관련
     const [now, setNow] = useState(new Date());
 
@@ -19,8 +43,6 @@ const Calendar = ({setSelectedDay, selectedDay, setFullDay}) => {
     const lastday = new Date(koreaNow.getFullYear(), koreaNow.getMonth() + 1, 0).getDate();
 
     const [nowMonth, setNowMonth] = useState(koreaNow.getMonth() + 1);
-
-    const [nowMonth2, setNowMonth2] = useState(koreaNow.getMonth() + 1);
 
     console.log("nowMonth", nowMonth);
 
@@ -49,7 +71,7 @@ const Calendar = ({setSelectedDay, selectedDay, setFullDay}) => {
                 year = year + 1;
             }
             month = month + 1;
-            if(month === 13){
+            if (month === 13) {
                 month = 1;
             }
         }
@@ -85,7 +107,7 @@ const Calendar = ({setSelectedDay, selectedDay, setFullDay}) => {
                         year = year - 1;
                     }
                     month = month - 1;
-                    if(month === 0){
+                    if (month === 0) {
                         month = 12;
                     }
                     lastdayCheck = 1;
@@ -179,12 +201,32 @@ const Calendar = ({setSelectedDay, selectedDay, setFullDay}) => {
         console.log(calendarObject);
     }, []);
 
-    const handleDay = (day, month , year) => {
-        const FullDay = String(year) + '-' + String(month).padStart(2, '0') +
-                '-' + String(day).padStart(2, '0');
-
+    const handleDay = (day, month, year, index) => {
+        const FullDay = String(year) + '-' + String(month).padStart(2, '0') + '-' +
+                String(day).padStart(2, '0');
+        // -> 이 FullDay를 넘겨줘야 함
+        console.log(index);
         console.log('FullDay', FullDay);
-        // setFullDay(FullDay); setSelectedDay(day);
+        //해당 인덱스 제외하고 false로 바꾸기
+
+        setSelect([
+            ...isSelect.slice(0, temp),
+            isSelect[temp] = false,
+            ...isSelect.slice(temp + 1)
+        ]);
+
+        //console.log('isSelect1', isSelect);
+
+        if (isSelect[index] === false) {
+            setSelect([
+                ...isSelect.slice(0, index),
+                isSelect[index] = true,
+                ...isSelect.slice(index + 1)
+            ]);
+        }
+        setTempIndex(index);
+
+        //console.log('isSelect2', isSelect);
     };
     return (
         <View>
@@ -192,10 +234,22 @@ const Calendar = ({setSelectedDay, selectedDay, setFullDay}) => {
                 {
                     calendarObject && calendarObject.map((calendar, index) => (
                         <TouchableOpacity
-                            style={styles.selectViewContainer}
-                            onPress={() => handleDay(calendar.day, calendar.month, calendar.year)}>
+                            style={[
+                                styles.selectViewContainer, {
+                                    backgroundColor: isSelect[index]
+                                        ? '#3D3580'
+                                        : '#F4F4F4'
+                                }
+                            ]}
+                            onPress={() => handleDay(calendar.day, calendar.month, calendar.year, index)}>
                             <Text
-                                style={styles.selectDayBoxContainerText}
+                                style={[
+                                    styles.selectDayBoxContainerText, {
+                                        color: isSelect[index]
+                                            ? 'white'
+                                            : '#9CA4AB'
+                                    }
+                                ]}
                                 key={index}
                                 pick={calendar.day == selectedDay}>
                                 {calendar.day}
@@ -227,13 +281,12 @@ const styles = StyleSheet.create({
     selectViewContainer: {
         width: wp('6%'),
         height: hp('4%'),
-        backgroundColor: "#3D3580",
         borderRadius: 5,
-        borderColor: "#3D3580",
         marginTop: hp('0.3%'),
         marginBottom: hp('0.3%'),
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        //        backgroundColor: "#3D3580",
     },
     unselectViewContainer: {
         width: wp('6%'),
@@ -249,12 +302,6 @@ const styles = StyleSheet.create({
     selectDayBoxContainerText: {
         fontFamily: 'NotoSansKR-Bold',
         color: 'white',
-        fontSize: wp("3.5%"),
-        lineHeight: 22
-    },
-    unselectDayBoxContainerText: {
-        fontFamily: 'NotoSansKR-Bold',
-        color: '#9CA4AB',
         fontSize: wp("3.5%"),
         lineHeight: 22
     }
