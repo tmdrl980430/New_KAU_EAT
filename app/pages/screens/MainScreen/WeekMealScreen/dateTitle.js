@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {
     Text,
     View,
@@ -11,12 +11,32 @@ import {
 } from 'react-native';
 
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { useRecoilState } from 'recoil';
+import { dateRecoilState } from '../../../../recoil';
 
 
 
 const DateTitle = () => {
 
     const [loading, setLoading] = useState(false)
+    const [date, setDate] = useRecoilState(dateRecoilState);
+
+    const [month, setMonth] = useState("0");
+    const [day, setDay] = useState("0");
+
+
+
+    useEffect(() => {
+        console.log("date" , date);
+
+        setMonth(date.substr(5,2));
+        setDay(date.substr(8,9));
+
+        console.log("month",month);
+        console.log("day",day);
+    }, [date])
+
+
 
     if (loading) {
         return (
@@ -27,7 +47,7 @@ const DateTitle = () => {
     } else {
         return (
             <SafeAreaView style={styles.container}>
-                <Text style={styles.dateText}>5월 4일 식단표</Text>
+                <Text style={styles.dateText}>{month}월 {day}일 식단표</Text>
             </SafeAreaView>
         )
     }

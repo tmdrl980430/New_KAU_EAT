@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Text,
     View,
@@ -9,23 +9,31 @@ import {
     Button,
     useWindowDimensions
 } from 'react-native';
+import axios from 'axios';
 
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { useRecoilState } from 'recoil';
-import { jwtRecoilState } from '../../../../recoil';
+import { dateRecoilState, jwtRecoilState } from '../../../../recoil';
 
 import MealTableComponent from '../../../../utils/meals/meal';
 
-
-
-const MealTable = ({date}) => {
+const MealTable = () => {
 
     const [loading, setLoading] = useState(false)
 
-    const [jwt, setJwt] = useRecoilState(jwtRecoilState)
+    const [jwt, setJwt] = useRecoilState(jwtRecoilState);
     const [error, setError] = useState(null);
 
+    const [date, setDate] = useRecoilState(dateRecoilState);
 
+    const [ticketObject, setTicketObject] = useState([]);
+
+
+
+
+    useEffect(() => {
+        getMealTable();
+    }, [date])
 
 
     const getMealTable = async () => {
@@ -49,7 +57,8 @@ const MealTable = ({date}) => {
                 })
                 .then((response) => {
                     console.log(`response 확인 : ${response.data.code}`);
-                    setResponseData(response.data.result);
+                    setTicketObject(response.data.result.meals);
+                    console.log(response.data.result.meals);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -61,6 +70,8 @@ const MealTable = ({date}) => {
         }
         // loading 끄기
         setLoading(false);
+        console.log("ticketObject",ticketObject)
+
     };
 
 
