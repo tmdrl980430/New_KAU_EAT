@@ -12,8 +12,8 @@ import {
 import axios from 'axios';
 
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import { useRecoilState } from 'recoil';
-import { dateRecoilState, jwtRecoilState } from '../../../../recoil';
+import {useRecoilState} from 'recoil';
+import {dateRecoilState, jwtRecoilState} from '../../../../recoil';
 
 import MealTableComponent from '../../../../utils/meals/meal';
 
@@ -26,20 +26,18 @@ const MealTable = () => {
 
     const [date, setDate] = useRecoilState(dateRecoilState);
 
-    const [ticketObject, setTicketObject] = useState([]);
-
-
-
+    const [tableObject, setTableObject] = useState([]);
 
     useEffect(() => {
-        getMealTable();
+        if(date != ""){
+            getMealTable();
+        }
+        console.log("tableObject", tableObject);
     }, [date])
-
 
     const getMealTable = async () => {
         console.log('getMealTable');
         setLoading(true);
-
 
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
@@ -57,7 +55,7 @@ const MealTable = () => {
                 })
                 .then((response) => {
                     console.log(`response 확인 : ${response.data.code}`);
-                    setTicketObject(response.data.result.meals);
+                    setTableObject(response.data.result.meals);
                     console.log(response.data.result.meals);
                 })
                 .catch((error) => {
@@ -70,10 +68,8 @@ const MealTable = () => {
         }
         // loading 끄기
         setLoading(false);
-        console.log("ticketObject",ticketObject)
 
     };
-
 
     if (loading) {
         return (
@@ -84,7 +80,11 @@ const MealTable = () => {
     } else {
         return (
             <SafeAreaView style={styles.container}>
-                <MealTableComponent type={"lunchText"}/>
+                {
+                    tableObject && tableObject.map((menu, index) => (
+                        <MealTableComponent type={menu.mealType} price={menu.price} mealType={menu.mealType} menu={menu.menu} key={index}/>
+                    ))
+                }
             </SafeAreaView>
         )
     }
@@ -94,10 +94,10 @@ const styles = StyleSheet.create({
     container: {
         marginTop: hp('3%')
     },
-    dateText : {
+    dateText: {
         fontFamily: 'NotoSansKR-Bold',
         fontSize: hp("2.1%"),
-        color: '#2B2D41',
+        color: '#2B2D41'
     }
 });
 

@@ -36,8 +36,6 @@ const DateTitle = () => {
         console.log("day",day);
     }, [date])
 
-
-
     if (loading) {
         return (
             <View style={styles.loading}>

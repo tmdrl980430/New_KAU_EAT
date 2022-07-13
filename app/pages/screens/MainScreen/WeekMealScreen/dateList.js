@@ -5,7 +5,7 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import {useRecoilState} from 'recoil';
 import {dateRecoilState} from '../../../../recoil';
 
-const Calendar = ({selectedDay, setFullDay}) => {
+const Calendar = () => {
 
     //선택 처리 State
     const [isSelect, setSelect] = useState([
@@ -21,6 +21,7 @@ const Calendar = ({selectedDay, setFullDay}) => {
     const [temp, setTempIndex] = useState(0);
 
     const [date, setDate] = useRecoilState(dateRecoilState);
+    let firstdayIndex;
 
     // 날짜 리스트 표시 관련
     const [now, setNow] = useState(new Date());
@@ -36,6 +37,8 @@ const Calendar = ({selectedDay, setFullDay}) => {
 
     const lastday = new Date(koreaNow.getFullYear(), koreaNow.getMonth() + 1, 0).getDate();
 
+    console.log("datedatedate",date);
+;
     const [nowMonth, setNowMonth] = useState(koreaNow.getMonth() + 1);
 
     console.log("nowMonth", nowMonth);
@@ -120,6 +123,9 @@ const Calendar = ({selectedDay, setFullDay}) => {
                 ]);
 
                 setTempIndex(todayWeek - 1);
+
+                firstdayIndex = todayWeek -1;
+                
             }
             today++;
             todayWeek++;
@@ -270,8 +276,7 @@ const Calendar = ({selectedDay, setFullDay}) => {
                                             : '#9CA4AB'
                                     }
                                 ]}
-                                key={index}
-                                pick={calendar.day == selectedDay}>
+                                key={index}>
                                 {calendar.day}
                             </Text>
                         </TouchableOpacity>
