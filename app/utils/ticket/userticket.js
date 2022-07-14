@@ -24,6 +24,16 @@ const userTicket = (props) => {
                     <Text style={styles.menuTypeText}>{props.mealTypeName}</Text>
                     <Image style={styles.ticketImg} source={TicketImg} resizeMode={'contain'}/>
                     <Text style={styles.ticketCount}>X {props.mealTicketCount}</Text>
+                    {
+                        props.menuStatus === 'ACTIVE'
+                            ? (<View/>)
+                            : (
+                                <View style={styles.soldoutContainer}>
+                                    <Text style={styles.soldoutText}>품절</Text>
+                                </View>
+                            )
+                    }
+
                 </View>
                 <View style={styles.qrimgContainer}>
                     <Image style={styles.dashedLine} source={DashedLine} resizeMode={'contain'}/>
@@ -76,7 +86,7 @@ const styles = StyleSheet.create({
         height: hp('5.2%')
     },
     ticketCount: {
-        fontSize: 12,
+        fontSize: hp('1.5%'),
         fontFamily: 'NotoSansKR-Regular',
         color: 'black',
         marginStart: wp('1.5%')
@@ -84,7 +94,7 @@ const styles = StyleSheet.create({
     qrimgContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginEnd: wp('4%'),
+        marginEnd: wp('4%')
     },
     ticketInfoView: {
         flexDirection: 'row',
@@ -95,6 +105,22 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between'
+    },
+    soldoutContainer: {
+        backgroundColor: '#26265180',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: hp('2%'),
+        paddingStart: wp('2%'),
+        paddingEnd: wp('2%'),
+        paddingTop: hp('0.1%'),
+        paddingBottom: hp('0.2%'),
+        marginStart: wp('1.5%')
+    },
+    soldoutText: {
+        fontSize: hp('1.4%'),
+        fontFamily: 'NotoSansKR-Regular',
+        color: 'white'
     }
 })
 
