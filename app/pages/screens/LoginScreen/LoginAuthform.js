@@ -4,16 +4,7 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import Input from "../../../utils/forms/input";
 
 const AuthForm = (props) => {
-    // const [inputState, setInputState] = useState({
-    //     type: 'Login',
-    //     action: 'Login',
-    //     actionMode: '새로 등록할게요~',
-    //     hasErrors: false,
-    //     value: "",
-    //     type: "textinput",
-    //     rules: {},
-    //     valid: false
-    // });
+
 
     return (
         <View style={styles.container}>

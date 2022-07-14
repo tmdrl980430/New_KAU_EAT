@@ -16,6 +16,7 @@ import Introduction from "./introduction";
 import LoginBtn from "./LoginBtn";
 import {useRecoilState} from "recoil";
 import {isLoginRecoilState, jwtRecoilState} from "../../../recoil";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({
     navigation
@@ -31,12 +32,23 @@ const Login = ({
     const [emailInput, setEmailInput] = useState("");
     const [passwordInput, setPasswordInput] = useState("");
 
-
     useEffect(() => {
         console.log(emailInput),
         console.log(passwordInput),
         console.log(login)
     }, [emailInput, passwordInput, login])
+
+    useEffect(() => {
+        storeJwt(jwt);
+    }, [jwt])
+
+    const storeJwt = async (value) => {
+        try {
+            await AsyncStorage.setItem(`jwt`, value)
+        } catch (e) {
+            // saving error
+        }
+    }
 
     const fetchLogin = async () => {
         console.log('fetchLogin');
@@ -59,7 +71,7 @@ const Login = ({
                 .then((response) => {
                     console.log(`response jwt확인 : ${response.data.result.jwt}`);
                     console.log(`response code확인 : ${response.data.code}`);
-                    if(response.data.code == 1000){
+                    if (response.data.code == 1000) {
                         setJwt(response.data.result.jwt);
                         console.log(jwt);
                         setLogin(true);

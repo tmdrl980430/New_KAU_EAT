@@ -10,6 +10,8 @@ import WeekMeals from "../screens/MainScreen/WeekMealScreen";
 import MyTicket from "../screens/MainScreen/MyticketScreen";
 import {useRecoilState} from 'recoil';
 import {isLoginRecoilState, jwtRecoilState, userIdxRecoilState} from '../../recoil';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import axios from 'axios';
@@ -27,6 +29,21 @@ const Navigation = () => {
 
     const [isLogIn, setIsLogin] = useState(isLoginRecoilState);
 
+    useEffect(() => {
+        getJwt();
+    }, [])
+
+    const getJwt = async () => {
+        try {
+            const value = await AsyncStorage.getItem('jwt')
+            if (value !== null) {
+                // value previously stored
+                setJwt(value);
+            }
+        } catch (e) {
+            // error reading value
+        }
+    }
 
     const authLogin = async () => {
         //getData();
@@ -38,7 +55,6 @@ const Navigation = () => {
             setError(null);
             // loading 상태를 true 로 바꿉니다.
             setLoading(true);
-
 
             const response = await axios
                 .get(`http://3.38.35.114/auth/jwt`, {
@@ -81,16 +97,16 @@ const Navigation = () => {
         console.log(`jwt : ${jwt}`);
 
         if (jwt != "") {
-            setLoading(true); 
+            setLoading(true);
             authLogin();
-            setLoading(false); 
+            setLoading(false);
 
         } else if (jwt === '') {
-            setLoading(true); 
+            setLoading(true);
             setIsLogin(false);
-            setLoading(false); 
+            setLoading(false);
 
-        } 
+        }
     }, [jwt])
 
     if (loading) {

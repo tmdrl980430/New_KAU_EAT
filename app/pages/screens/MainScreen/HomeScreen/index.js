@@ -63,7 +63,6 @@ const HomeScreen = ({navigation}) => {
 
 const styles = StyleSheet.create({
     topContainer: {
-        paddingBottom: hp('5%'),
         backgroundColor: 'white'
     },
     backgroud: {
