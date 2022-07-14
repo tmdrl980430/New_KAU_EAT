@@ -74,7 +74,7 @@ const TicketList = () => {
     };
 
     return (
-        <View >
+        <View style={styles.container}>
             {
                 ticketObject && ticketObject.map((ticket, index) => (
                     <Ticket
@@ -87,5 +87,11 @@ const TicketList = () => {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container : {
+        paddingBottom : hp('3%')
+    }
+})
 
 export default TicketList;

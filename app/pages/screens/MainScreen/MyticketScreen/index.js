@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     safeAreaContainer: {
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        paddingBottom: hp('5%')
     },
     container: {
         backgroundColor: 'white',

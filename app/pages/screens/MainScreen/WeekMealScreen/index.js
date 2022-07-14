@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     safeAreaContainer: {
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        paddingBottom : hp('5%'),
     },
     container: {
         backgroundColor: 'white',
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
         marginTop: hp('3%'),
         flexDirection: "row",
         justifyContent: "space-between",
-        alignItems: 'center'
+        alignItems: 'center',
     }
 });
 
