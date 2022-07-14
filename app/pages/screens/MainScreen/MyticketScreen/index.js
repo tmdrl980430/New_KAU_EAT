@@ -36,9 +36,6 @@ const MyTicketScreen = ({navigation}) => {
                     </View>
                     <View style={styles.ticketContainer}>
                         <TicketList/>
-                        <TicketList/>
-                        <TicketList/>
-                        <TicketList/>
                     </View>
                 </ScrollView>
 

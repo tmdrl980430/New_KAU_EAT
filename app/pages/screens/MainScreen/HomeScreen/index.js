@@ -33,9 +33,7 @@ const HomeScreen = ({navigation}) => {
     } else {
         return (
             <SafeAreaView
-                style={{
-                    backgroundColor: 'white'
-                }}>
+                style={styles.topContainer}>
                 <ScrollView style={styles.container}>
                     <HomeLogo style={styles.logoArea}/>
                     <View style={styles.titlecontainer}>
@@ -64,6 +62,10 @@ const HomeScreen = ({navigation}) => {
 }
 
 const styles = StyleSheet.create({
+    topContainer: {
+        paddingBottom: hp('5%'),
+        backgroundColor: 'white'
+    },
     backgroud: {
         flex: 1,
         backgroudColor: 'white',

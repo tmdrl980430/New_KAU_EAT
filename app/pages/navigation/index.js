@@ -54,6 +54,7 @@ const Navigation = () => {
 
                     if (response.data.code === 1001) {
                         setUserIdx(response.data.result.userIdx);
+                        console.log(userIdx);
                         setIsLogin(true);
                         setLoading(false);
                     }

@@ -38,7 +38,7 @@ const Calendar = () => {
     const lastday = new Date(koreaNow.getFullYear(), koreaNow.getMonth() + 1, 0).getDate();
 
     console.log("datedatedate",date);
-;
+
     const [nowMonth, setNowMonth] = useState(koreaNow.getMonth() + 1);
 
     console.log("nowMonth", nowMonth);
@@ -267,6 +267,7 @@ const Calendar = () => {
                                         : '#F4F4F4'
                                 }
                             ]}
+                            key={index}
                             onPress={() => handleDay(calendar.day, calendar.month, calendar.year, index)}>
                             <Text
                                 style={[
@@ -275,8 +276,7 @@ const Calendar = () => {
                                             ? 'white'
                                             : '#9CA4AB'
                                     }
-                                ]}
-                                key={index}>
+                                ]}>
                                 {calendar.day}
                             </Text>
                         </TouchableOpacity>
