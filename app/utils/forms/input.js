@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         paddingTop: 16,
         paddingBottom: 16,
         marginTop: hp('1%'),
-        fontFamily: 'NotoSansKR-Thin',
+        fontFamily: 'NotoSansKR-Regular',
         fontSize : 12
     },
     textFormRevised: {
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         paddingTop: 16,
         paddingBottom: 16,
         marginTop: hp('1%'),
-        fontFamily: 'NotoSansKR-Thin',
+        fontFamily: 'NotoSansKR-Regular',
         fontSize : 12
     },
     textSignUpInput: {
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         paddingTop: 16,
         paddingBottom: 16,
         marginTop: hp('1%'),
-        fontFamily: 'NotoSansKR-Thin',
+        fontFamily: 'NotoSansKR-Regular',
         fontSize : 12
     }
 })

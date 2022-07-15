@@ -30,6 +30,10 @@ const SignUpLast = ({route, navigation}) => {
     const [phoneNumInput, setPhoneNumInput] = useState('')
     const [certificationNumInput, setCertificationNumInput] = useState('')
 
+    const [nameInputmessage, setNameInputmessage] = useState("");
+    const [phoneNumberInputmessage, setPhoneNumberInputmessage] = useState("");
+    const [certificationNumInputmessage, setCertificationNumInputmessage] = useState("");
+
     // useEffect(() => {     console.log(nameInput),
     // console.log(phoneNumInput),         console.log(id),
     // console.log(password),         console.log(signUp) }, [nameInput,
@@ -98,7 +102,10 @@ const SignUpLast = ({route, navigation}) => {
                     <AuthForm
                         style={styles.formArea}
                         setNameInput={setNameInput}
-                        setPhoneNumInput={setPhoneNumInput}/>
+                        setPhoneNumInput={setPhoneNumInput}
+                        nameInputmessage={nameInputmessage}
+                        phoneNumberInputmessage={phoneNumberInputmessage}
+                        certificationNumInputmessage={certificationNumInputmessage}/>
                 </View>
                 <TouchableOpacity onPress={onPressSignUpBtn} style={styles.signUpBtn}>
                     <SignUpBtn/>

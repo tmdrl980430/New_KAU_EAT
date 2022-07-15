@@ -32,11 +32,12 @@ const Login = ({
     const [emailInput, setEmailInput] = useState("");
     const [passwordInput, setPasswordInput] = useState("");
 
-    useEffect(() => {
-        console.log(emailInput),
-        console.log(passwordInput),
-        console.log(login)
-    }, [emailInput, passwordInput, login])
+    const [idInputmessage, setIdInputmessage] = useState("");
+    const [passwordInputmessage, setPasswordInputmessage] = useState("");
+
+    // useEffect(() => {     console.log(emailInput),
+    // console.log(passwordInput),     console.log(login) }, [emailInput,
+    // passwordInput, login])
 
     useEffect(() => {
         storeJwt(jwt);
@@ -52,42 +53,71 @@ const Login = ({
 
     const fetchLogin = async () => {
         console.log('fetchLogin');
-
-        let submittedForm = {};
-
-        try {
-            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
-            setError(null);
-            setLogin(null);
-
-            // loading 상태를 true 로 바꿉니다.
-            setLoading(true);
-
-            const response = await axios
-                .post(`http://3.38.35.114/auth/login`, {
-                    id: emailInput,
-                    password: passwordInput
-                })
-                .then((response) => {
-                    console.log(`response jwt확인 : ${response.data.result.jwt}`);
-                    console.log(`response code확인 : ${response.data.code}`);
-                    if (response.data.code == 1000) {
-                        setJwt(response.data.result.jwt);
-                        console.log(jwt);
-                        setLogin(true);
-                    }
-                    //storeData(jwt);
-                })
-                .catch((error) => {
-                    //console.log(error);
-                });
-            // 데이터는 response.data.code 안에 들어있다.
-
-        } catch (e) {
-            setError(e);
+        console.log(emailInput);
+        console.log(passwordInput);
+        if (emailInput === "") {
+            //아이디를 입력해주세요. 출력
+            setIdInputmessage('아이디를 입력해주세요.');
+            return
+        } else {
+            setIdInputmessage('');
         }
-        // loading 끄기
-        setLoading(false);
+        if (passwordInput === "") {
+            setPasswordInputmessage("비밀번호를 입력해주세요.");
+            return
+        } else {
+            setPasswordInputmessage("");
+
+        }
+
+        if (emailInput != "" && passwordInput != "") {
+            try {
+                // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+                setError(null);
+                setLogin(null);
+
+                // loading 상태를 true 로 바꿉니다.
+                setLoading(true);
+
+                const response = await axios
+                    .post(`http://3.38.35.114/auth/login`, {
+                        id: emailInput,
+                        password: passwordInput
+                    })
+                    .then((response) => {
+                        console.log(`response jwt확인 : ${response.data.result.jwt}`);
+                        console.log(`response code확인 : ${response.data.code}`);
+                        if (response.data.code == 1000) {
+                            setJwt(response.data.result.jwt);
+                            console.log(jwt);
+                            setLogin(true);
+                            setEmailInput("");
+                            setPasswordInput("");
+                        }
+                    })
+                    .catch((error) => {
+                        if (error.response.data.code == 3002) {
+                            setPasswordInputmessage("비밀번호가 틀렸습니다.");
+                            setEmailInput("");
+                            setPasswordInput("");
+                        } else if (error.response.data.code == 3004) {
+                            setIdInputmessage("아이디가 틀렸습니다.");
+                            setEmailInput("");
+                            setPasswordInput("");
+                        }
+                    });
+                // 데이터는 response.data.code 안에 들어있다.
+
+            } catch (e) {
+                setError(e);
+            }
+            // loading 끄기
+            setLoading(false);
+
+            setEmailInput("");
+            setPasswordInput("");
+        }
+
     };
 
     const onPressLoginBtn = () => {
@@ -115,7 +145,9 @@ const Login = ({
                     <AuthForm
                         style={styles.formArea}
                         setEmailInput={setEmailInput}
-                        setPasswordInput={setPasswordInput}/>
+                        setPasswordInput={setPasswordInput}
+                        idInputmessage={idInputmessage}
+                        passwordInputmessage={passwordInputmessage}/>
                 </View>
                 <TouchableOpacity style={styles.loginBtn} onPress={onPressLoginBtn}>
                     <LoginBtn/>

@@ -16,11 +16,9 @@ const AuthForm = (props) => {
                 placeholder='아이디를 입력해주세요.'
                 onChangeText={(e) => props.setId(e)}/>
             {
-                props.setduplicateId ? (
-                    <Text style={styles.errorText}>중복된 아이디 입니다.</Text>
-                ) : (
-                    <Text style={styles.errorText}></Text>
-                )
+                props.idInputmessage === ""
+                    ? (<View/>)
+                    : (<Text style={styles.messageText}>{props.idInputmessage}</Text>)
             }
             <Text style={styles.titleText}>비밀번호</Text>
             <Input
@@ -32,11 +30,9 @@ const AuthForm = (props) => {
                 onChangeText={(e) => props.setPassword(e)}
                 placeholder='비밀번호를 입력해주세요.'/>
             {
-                props.setformatPassword ? (
-                    <Text style={styles.errorText}></Text>
-                ) : (
-                    <Text style={styles.errorText}>비밀번호 형식에 맞지 않습니다.</Text>
-                )
+                props.passwordInputmessage === ""
+                    ? (<View/>)
+                    : (<Text style={styles.messageText}>{props.passwordInputmessage}</Text>)
             }
             <Text style={styles.titleText}>비밀번호 확인</Text>
             <Input
@@ -48,11 +44,9 @@ const AuthForm = (props) => {
                 onChangeText={(e) => props.setPasswordCheck(e)}
                 placeholder='위에 입력한 동일한 비밀번호를 입력해주세요.'/>
             {
-                props.setsamePassword ? (
-                    <Text style={styles.errorText}></Text>
-                ) : (
-                    <Text style={styles.errorText}>비밀번호가 일치하지 않습니다.</Text>
-                )
+                props.passwordcheckInputmessage === ""
+                    ? (<View/>)
+                    : (<Text style={styles.messageText}>{props.passwordcheckInputmessage}</Text>)
             }
         </View>
     )
@@ -84,6 +78,12 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#1F2C37',
         marginTop: 20
+    },
+    messageText: {
+        fontFamily: 'NotoSansKR-Regular',
+        marginStart: wp('4%'),
+        fontSize: hp('1.3%'),
+        color: '#FF3D3D'
     }
 })
 

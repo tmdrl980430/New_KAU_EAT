@@ -30,38 +30,77 @@ const SignUp = ({navigation}) => {
     const [formatPassword, setformatPassword] = useState(true); //비밀번호 형식
     const [samePassword, setsamePassword] = useState(true); //비밀번호 일치
 
+    const [idInputmessage, setIdInputmessage] = useState("");
+    const [passwordInputmessage, setPasswordInputmessage] = useState("");
+    const [passwordcheckInputmessage, setPasswordcheckInputmessage] = useState("");
+
     const retrieveDuplicateId = async () => {
-        try {
-            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
-            setError(null);
-            setSignUp(null);
-
-            // loading 상태를 true 로 바꿉니다.
-            setLoading(true);
-
-            if (password != passwordCheck) {
-                setsamePassword(false);
-            } else if (password == passwordCheck && id != '' && password != '') {
-                setsamePassword(true);
-                const response = await axios.get(
-                    `http://3.38.35.114/auth/duplicate-id?id=${id}`
-                );
-                navigation.navigate('SignUpLast', {
-                    id: {
-                        id
-                    },
-                    password: {
-                        password
-                    }
-                });
-            }
-            // 데이터는 response.data.code 안에 들어있다.
-            setSignUp(response.data.code);
-        } catch (e) {
-            setError(e);
+        if (id == "") {
+            setIdInputmessage("아이디를 입력해주세요.");
+            return;
+        } else {
+            setIdInputmessage('');
         }
-        // loading 끄기
-        setLoading(false);
+        if (password == "") {
+            setPasswordInputmessage("비밀번호를 입력해주세요.");
+            return;
+        } else {
+            setPasswordInputmessage('');
+        }
+        if (passwordCheck == "") {
+            setPasswordcheckInputmessage("위와 동일한 비밀번호를 입력해주세요.");
+            return;
+        } else {
+            setPasswordcheckInputmessage('');
+        }
+        if (id != "" && password != "" && passwordCheck != "") {
+            try {
+                // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+                setError(null);
+                setSignUp(null);
+
+                // loading 상태를 true 로 바꿉니다.
+                setLoading(true);
+
+                if (password != passwordCheck) {
+                    setsamePassword(false);
+                    setPasswordcheckInputmessage("비밀번호가 일치하지 않습니다.");
+                } else if (password == passwordCheck && id != '' && password != '') {
+                    setsamePassword(true);
+                    setPasswordcheckInputmessage("");
+                    const response = await axios
+                        .get(
+                            `http://3.38.35.114/auth/duplicate-id?id=${id}`
+                        )
+                        .then((response) => {
+                            console.log(`response code확인 : ${response.data.code}`);
+                            if (response.data.code == 1000) {
+                                navigation.navigate('SignUpLast', {
+                                    id: {
+                                        id
+                                    },
+                                    password: {
+                                        password
+                                    }
+                                });
+                            }
+                            if (response.data.code == 3001) {
+                                setIdInputmessage("중복된 아이디입니다.");
+
+                            }
+                        })
+                        .catch((error) => {
+
+                        });
+                }
+                // 데이터는 response.data.code 안에 들어있다.
+                setSignUp(response.data.code);
+            } catch (e) {
+            }
+            // loading 끄기
+            setLoading(false);
+        }
+
     };
 
     useEffect(() => {
@@ -101,7 +140,10 @@ const SignUp = ({navigation}) => {
                         setPasswordCheck={setPasswordCheck}
                         setduplicateId={duplicateId}
                         setformatPassword={formatPassword}
-                        setsamePassword={samePassword}/>
+                        setsamePassword={samePassword}
+                        idInputmessage={idInputmessage}
+                        passwordInputmessage={passwordInputmessage}
+                        passwordcheckInputmessage={passwordcheckInputmessage}/>
                 </View>
                 <TouchableOpacity style={styles.loginBtn} onPress={onPressNextBtn}>
                     <SignUpBtn/>
@@ -158,7 +200,7 @@ const styles = StyleSheet.create({
         marginTop: hp('16%'),
         marginBottom: hp('4%')
     },
-    headerContainer:{
+    headerContainer: {
         marginTop: hp('7%'),
         flexDirection: "row",
         justifyContent: "space-between",

@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         marginTop: hp('2.8%')
     },
     countText: {
-        fontFamily: 'NotoSansKR-Medium',
+        fontFamily: 'NotoSansKR-Regular',
         color: 'black',
         fontSize: 16,
         lineHeight: 24,
