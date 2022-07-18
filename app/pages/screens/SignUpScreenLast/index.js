@@ -26,54 +26,106 @@ const SignUpLast = ({route, navigation}) => {
     const {id} = route.params.id
     const {password} = route.params.password
 
-    const [nameInput, setNameInput] = useState('')
-    const [phoneNumInput, setPhoneNumInput] = useState('')
-    const [certificationNumInput, setCertificationNumInput] = useState('')
+    const [nameInput, setNameInput] = useState('');
+    const [phoneNumInput, setPhoneNumInput] = useState('');
+    const [certificationNumInput, setCertificationNumInput] = useState('');
+    const [responseCertificationNum, setResponseCertificationNum] = useState('');
+    const [certificationNumBtnStatus, setCertificationNumBtnStatus] = useState(
+        false
+    );
 
     const [nameInputmessage, setNameInputmessage] = useState("");
     const [phoneNumberInputmessage, setPhoneNumberInputmessage] = useState("");
     const [certificationNumInputmessage, setCertificationNumInputmessage] = useState("");
 
-    // useEffect(() => {     console.log(nameInput),
-    // console.log(phoneNumInput),         console.log(id),
-    // console.log(password),         console.log(signUp) }, [nameInput,
-    // phoneNumInput, id, password, signUp])
+    const phoneNumberRegex = /^(01\d{1})([0-9]{3,4})([0-9]{4})$/;
 
-    const fetchSignUp = async () => {
-        console.log('fetchSignUp')
+    useEffect(() => {
+        if ( certificationNumInput != "" && responseCertificationNum != "" && certificationNumInput === responseCertificationNum){
+            setCertificationNumInputmessage("인증되었습니다.");
+        }
+    }, [certificationNumInput])
+
+    useEffect(() => {
+        console.log(phoneNumInput);
+        console.log(phoneNumberRegex.test(phoneNumInput))
+        if (phoneNumberRegex.test(phoneNumInput) && certificationNumBtnStatus == true) {
+            requestCertificationPhone();
+        } else {
+            setCertificationNumBtnStatus(false);
+        }
+    }, [certificationNumBtnStatus])
+
+    const requestCertificationPhone = async () => {
+        console.log('requestCertificationPhone')
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
             setError(null);
-            setSignUp(" ");
 
             // loading 상태를 true 로 바꿉니다.
-            setLoading(true);
 
             const response = await axios
-                .post(`http://3.38.35.114/users`, {
-                    id: id,
-                    password: password,
-                    name: nameInput,
-                    phoneNumber: phoneNumInput
-                })
+                .post(
+                    `http://3.38.35.114/auth/phone`,
+                    {phoneNumber: phoneNumInput}
+                )
                 .then((response) => {
                     console.log(response);
-
+                    setResponseCertificationNum(response.data.result.authNumber);
                     return response;
                 })
                 .catch((error) => {
                     console.log(error);
                 });
-
-            navigation.replace('Login');
             // 데이터는 response.data.code 안에 들어있다.
-            setSignUp(response.data.code);
 
         } catch (e) {
             setError(e);
         }
-        // loading 끄기
-        setLoading(false);
+    };
+
+    const fetchSignUp = async () => {
+        console.log('fetchSignUp')
+
+        console.log("certificationNumInput", certificationNumInput)
+        console.log("responseCertificationNum", responseCertificationNum)
+
+        if ( certificationNumInput != "" && responseCertificationNum != "" && certificationNumInput === responseCertificationNum) {
+            try {
+                // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+                setError(null);
+                setSignUp(" ");
+
+                // loading 상태를 true 로 바꿉니다.
+                setLoading(true);
+
+                const response = await axios
+                    .post(`http://3.38.35.114/users`, {
+                        id: id,
+                        password: password,
+                        name: nameInput,
+                        phoneNumber: phoneNumInput
+                    })
+                    .then((response) => {
+                        console.log(response);
+
+                        return response;
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+
+                navigation.replace('Login');
+                // 데이터는 response.data.code 안에 들어있다.
+                setSignUp(response.data.code);
+
+            } catch (e) {
+                setError(e);
+            }
+            // loading 끄기
+            setLoading(false);
+        }
+
     };
 
     const onPressSignUpBtn = () => {
@@ -103,6 +155,8 @@ const SignUpLast = ({route, navigation}) => {
                         style={styles.formArea}
                         setNameInput={setNameInput}
                         setPhoneNumInput={setPhoneNumInput}
+                        setCertificationNumInput={setCertificationNumInput}
+                        setCertificationNumBtnStatus={setCertificationNumBtnStatus}
                         nameInputmessage={nameInputmessage}
                         phoneNumberInputmessage={phoneNumberInputmessage}
                         certificationNumInputmessage={certificationNumInputmessage}/>
@@ -162,7 +216,7 @@ const styles = StyleSheet.create({
         marginTop: hp('28%'),
         marginBottom: hp('4%')
     },
-    headerContainer:{
+    headerContainer: {
         marginTop: hp('7%'),
         flexDirection: "row",
         justifyContent: "space-between",

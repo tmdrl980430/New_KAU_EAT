@@ -10,7 +10,11 @@ const MealTableComponent = (props) => {
         <View style={styles.container}>
             <Text style={styles.text}>{props.mealType}</Text>
             <View style={styles.viewContainer}>
-                <Text style={styles.menuText} numberOfLines={2}>{props.menu}</Text>
+                {
+                    props.menu === null
+                        ? (<Text style={styles.menuText} numberOfLines={2}>휴무</Text>)
+                        : (<Text style={styles.menuText} numberOfLines={2}>{props.menu.menu}</Text>)
+                }
                 <Text style={styles.priceText}>{props.price}</Text>
             </View>
             <View style={styles.lineView}></View>

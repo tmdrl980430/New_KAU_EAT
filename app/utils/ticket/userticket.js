@@ -25,13 +25,13 @@ const userTicket = (props) => {
                     <Image style={styles.ticketImg} source={TicketImg} resizeMode={'contain'}/>
                     <Text style={styles.ticketCount}>X {props.mealTicketCount}</Text>
                     {
-                        props.menuStatus === 'ACTIVE'
-                            ? (<View/>)
-                            : (
+                        props.menuStatus === '품절'
+                            ? (
                                 <View style={styles.soldoutContainer}>
                                     <Text style={styles.soldoutText}>품절</Text>
                                 </View>
                             )
+                            : (<View/>)
                     }
 
                 </View>

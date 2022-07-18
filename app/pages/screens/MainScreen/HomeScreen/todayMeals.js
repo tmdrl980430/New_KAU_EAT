@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, Image, SafeAreaView} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Carousel from 'react-native-snap-carousel';
 import {useRecoilState} from 'recoil';
-import {jwtRecoilState} from '../../../../recoil';
+import {dateRecoilState, jwtRecoilState} from '../../../../recoil';
 import axios from 'axios';
 
 import LogoImage from '../../../../assets/images/kau_logo_today_meal.png';
@@ -11,6 +11,7 @@ import LogoImage from '../../../../assets/images/kau_logo_today_meal.png';
 const MealList = () => {
 
     const [jwt, setJwt] = useRecoilState(jwtRecoilState)
+    const [date, setDate] = useRecoilState(dateRecoilState)
 
     const [now, setNow] = useState(new Date());
 
@@ -21,23 +22,24 @@ const MealList = () => {
 
     const [menuStatus, setMenuStatus] = useState(false);
 
-
     useEffect(() => {
         getMealTable();
     }, [jwt])
+
+    useEffect(() => {
+        console.log('responseData', responseData);
+    }, [responseData])
 
     const todayDate = `${now.getFullYear()}-${String(now.getMonth()).padStart(
         2,
         '0'
     )}-${String(now.getDate()).padStart(2, '0')}`
 
-    // test data
-    const date = '2022-06-13'
+    // test data const date = '2022-06-13'
 
     const getMealTable = async () => {
         console.log('getMealTable');
         setLoading(true);
-
 
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
@@ -94,39 +96,84 @@ const MealList = () => {
                             fontFamily: 'NotoSansKR-Bold',
                             fontSize: hp('2%'),
                             color: '#FFFFFF'
-                        }}>{item.mealType}
+                        }}>{item.mealTypeName}
                     </Text>
                     {
-                        item.menuStatus == 'ACTIVE'
-                            ? (<View/>)
-                            : (
+                        item.menu == null
+                            ? (
                                 <View style={styles.menuStatusContainer}>
                                     <Text
                                         style={{
                                             fontFamily: 'NotoSansKR-Regular',
                                             fontSize: hp('1.7%'),
                                             color: '#FFFFFF'
-                                        }}>{item.menuStatus}</Text>
+                                        }}>휴무</Text>
+                                </View>
+                            )
+                            : (
+                                <View style={styles.menuStatusContainer}>{
+                                        item.menu.menuStatus == "ACTIVE"
+                                            ? (<View/>)
+                                            : (
+                                                <Text
+                                                    style={{
+                                                        fontFamily: 'NotoSansKR-Regular',
+                                                        fontSize: hp('1.7%'),
+                                                        color: '#FFFFFF'
+                                                    }}>품절</Text>
+                                            )
+                                    }
                                 </View>
                             )
                     }
                 </View>
-                <Text
-                    style={{
-                        fontFamily: 'NotoSansKR-Bold',
-                        fontSize: 16,
-                        color: '#FFFFFF',
-                        width: wp('60%'),
-                        marginTop: hp('1%'),
-                        marginBottom: hp('0.3%')
-                    }}>{item.menu}</Text>
-                <Text
-                    style={{
-                        fontFamily: 'NotoSansKR-Bold',
-                        fontSize: hp('2.1%'),
-                        color: '#FFFFFF',
-                        marginBottom: hp('0.5%')
-                    }}>{item.price}</Text>
+                {
+                    item.menu == null
+                        ? (
+                            <Text
+                                style={{
+                                    fontFamily: 'NotoSansKR-Bold',
+                                    fontSize: 16,
+                                    color: '#FFFFFF',
+                                    width: wp('60%'),
+                                    marginTop: hp('1%'),
+                                    marginBottom: hp('0.3%')
+                                }}></Text>
+                        )
+                        : (
+                            <Text
+                                style={{
+                                    fontFamily: 'NotoSansKR-Bold',
+                                    fontSize: 16,
+                                    color: '#FFFFFF',
+                                    width: wp('60%'),
+                                    marginTop: hp('1%'),
+                                    marginBottom: hp('0.3%')
+                                }}>{item.menu.menu}</Text>
+                        )
+                }
+                {
+                    item.menu == null
+                        ? (
+                            <Text
+                                style={{
+                                    fontFamily: 'NotoSansKR-Bold',
+                                    fontSize: hp('2.1%'),
+                                    color: '#FFFFFF',
+                                    marginBottom: hp('0.5%')
+                                }}></Text>
+                        )
+                        : (
+                            <Text
+                                style={{
+                                    fontFamily: 'NotoSansKR-Bold',
+                                    fontSize: hp('2.1%'),
+                                    color: '#FFFFFF',
+                                    marginBottom: hp('0.5%')
+                                }}>{item.menu.price}</Text>
+                        )
+                }
+
                 <Image style={styles.kauLogo} source={LogoImage} resizeMode={'contain'}/>
 
             </View>
@@ -150,7 +197,7 @@ const MealList = () => {
                         : (
                             <Carousel
                                 layout={"default"}
-                                data={responseData.meals}
+                                data={responseData}
                                 sliderWidth={300}
                                 itemWidth={330}
                                 firstItem={1}

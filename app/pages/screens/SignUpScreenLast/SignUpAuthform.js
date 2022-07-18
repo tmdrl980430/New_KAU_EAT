@@ -12,18 +12,19 @@ import Input from "../../../utils/forms/input";
 
 const AuthForm = (props) => {
 
-    const [inputState, setInputState] = useState({
-        type: 'Login',
-        action: 'Login',
-        actionMode: '새로 등록할게요~',
-        hasErrors: false,
-        value: "",
-        type: "textinput",
-        rules: {},
-        valid: false
-    });
+    const [loading, setLoading] = useState(false)
 
-    const [certificationNumInput, setCertificationNumInput] = useState("")
+    const [error, setError] = useState(null);
+
+    //const phoneNumberRegex = /^\d{3}\d{3,4}\d{4}$/;
+    
+
+    const certificationPhone = () => {
+
+        console.log("certificationPhone");
+        props.setCertificationNumBtnStatus(true);
+    }
+
 
     return (
         <View style={styles.container}>
@@ -51,19 +52,24 @@ const AuthForm = (props) => {
                         onChangeText={text => props.setPhoneNumInput(text)}
                         placeholder='휴대폰 번호를 입력해주세요.'/>
                 </View>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={certificationPhone} >
                     <Text style={styles.buttonTitle}>인증하기</Text>
                 </TouchableOpacity>
             </View>
             <Text style={styles.titleText}>인증번호 확인</Text>
             <Input
-                value={certificationNumInput}
+                value={props.certificationNumInput}
                 type={"textinput"}
                 autoCapitalize={'none'}
                 keyboardType={'number-pad'}
                 secureTextEntry={false}
-                onChangeText={text => setCertificationNumInput(text)}
+                onChangeText={text => props.setCertificationNumInput(text)}
                 placeholder='인증번호를 입력해주세요.'/>
+            {
+                props.certificationNumInputmessage === ""
+                    ? (<View/>)
+                    : (<Text style={styles.messageText}>{props.certificationNumInputmessage}</Text>)
+            }
         </View>
     )
 
@@ -108,6 +114,12 @@ const styles = StyleSheet.create({
     phoneArea: {
         flex: 1,
         flexDirection: "row"
+    },
+    messageText: {
+        fontFamily: 'NotoSansKR-Regular',
+        marginStart: wp('4%'),
+        fontSize: hp('1.3%'),
+        color: '#4CD964'
     }
 })
 

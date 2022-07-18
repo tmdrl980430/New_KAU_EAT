@@ -55,8 +55,8 @@ const MealTable = () => {
                 })
                 .then((response) => {
                     console.log(`response 확인 : ${response.data.code}`);
-                    setTableObject(response.data.result.meals);
-                    console.log(response.data.result.meals);
+                    setTableObject(response.data.result);
+                    console.log(response.data.result);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -82,7 +82,7 @@ const MealTable = () => {
             <SafeAreaView style={styles.container}>
                 {
                     tableObject && tableObject.map((menu, index) => (
-                        <MealTableComponent type={menu.mealType} price={menu.price} mealType={menu.mealType} menu={menu.menu} key={index}/>
+                        <MealTableComponent type={menu.mealTypeName} price={menu.price} mealType={menu.mealTypeName} menu={menu.menu} key={index}/>
                     ))
                 }
             </SafeAreaView>

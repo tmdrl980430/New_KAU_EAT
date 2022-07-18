@@ -27,7 +27,7 @@ const AuthForm = (props) => {
                 autoCapitalize={'none'}
                 keyboardType={'default'}
                 secureTextEntry={true}
-                onChangeText={(e) => props.setPassword(e)}
+                onChangeText={(text) => props.setPassword(text)}
                 placeholder='비밀번호를 입력해주세요.'/>
             {
                 props.passwordInputmessage === ""
@@ -41,7 +41,7 @@ const AuthForm = (props) => {
                 autoCapitalize={'none'}
                 keyboardType={'default'}
                 secureTextEntry={true}
-                onChangeText={(e) => props.setPasswordCheck(e)}
+                onChangeText={(text) => props.setPasswordCheck(text)}
                 placeholder='위에 입력한 동일한 비밀번호를 입력해주세요.'/>
             {
                 props.passwordcheckInputmessage === ""

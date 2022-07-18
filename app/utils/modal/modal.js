@@ -18,7 +18,7 @@ const Modal = (props) => {
         case "signInText":
             template = <Text style={styles.text}>회원가입</Text>
             break;
-        case "myTicketText":
+        case "myTicketText":x 
             template = <Text style={styles.text}>My 식권</Text>
             break;
         default:
