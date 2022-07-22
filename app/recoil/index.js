@@ -11,6 +11,12 @@ export const isLoginRecoilState = atom(
     {key: 'isLoginRecoilState', default: true}
 );
 
+export const userIdRecoilState = atom({key: 'userIdRecoilState', default: ''});
+
+export const userNameRecoilState = atom({key: 'userNameRecoilState', default: ''});
+
+export const userTicketRecoilState = atom({key: 'userTicketRecoilState', default: 0});
+
 const now = new Date();
 
 const utcNow = now.getTime() + (now.getTimezoneOffset() * 60 * 1000); // 현재 시간을 utc로 변환한 밀리세컨드값

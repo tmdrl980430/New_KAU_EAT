@@ -1,20 +1,22 @@
 import React, {useState} from "react";
 import {View, Text, Image, StyleSheet} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { useRecoilState } from "recoil";
 
 import KAU_Logo from '../../../../assets/images/mypage_kau_logo.png';
+import { userIdRecoilState, userNameRecoilState } from "../../../../recoil";
 
 const BackBtn = () => {
 
-    const [name, setName] = useState("김승기")
-    const [id, setId] = useState("rlatmdrl98")
+    const [userName, setUserName] = useRecoilState(userNameRecoilState);
+    const [userId, setUserId] = useRecoilState(userIdRecoilState);
 
     return (
         <View style={styles.headerContainer}>
             <View style={styles.flexView}>
                 <View>
-                    <Text style={styles.helloText}>안녕하세요{"\n"}{name}님</Text>
-                    <Text style={styles.idText}>{id}</Text>
+                    <Text style={styles.helloText}>안녕하세요{"\n"}{userName}님</Text>
+                    <Text style={styles.idText}>{userId}</Text>
                 </View>
                 <Image style={styles.kauImg} source={KAU_Logo} resizeMode={'contain'}/>
             </View>

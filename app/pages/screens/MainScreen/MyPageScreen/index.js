@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Text, View, StyleSheet, ActivityIndicator, TouchableOpacity, SafeAreaView} from 'react-native';
@@ -8,14 +8,21 @@ import BackBtn from './myPageBackBtn';
 import UserTicket from './userTicket';
 import UserInfoChange from './userInfoChange'
 import {useRecoilState} from 'recoil';
-import {isLoginRecoilState, jwtRecoilState} from '../../../../recoil';
+import {isLoginRecoilState, jwtRecoilState, userIdRecoilState, userIdxRecoilState, userNameRecoilState, userTicketRecoilState} from '../../../../recoil';
 import Navigation from '../../../navigation';
+import axios from 'axios';
 
 const MyPageScreen = () => {
 
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     const [jwt, setJwt] = useRecoilState(jwtRecoilState);
+    const [userIdx, setUserIdx] = useRecoilState(userIdxRecoilState);
     const [login, setLogin] = useRecoilState(isLoginRecoilState);
+
+    const [userName, setUserName] = useRecoilState(userNameRecoilState);
+    const [userId, setUserId] = useRecoilState(userIdRecoilState);
+    const [userTicket, setUserTicket] = useRecoilState(userTicketRecoilState);
 
 
     console.log(`jwt : ${jwt}`);
@@ -27,6 +34,49 @@ const MyPageScreen = () => {
         console.log(`login : ${login}`);
 
     }
+
+    useEffect(() => {
+        getUserInfo();
+    }, [])
+
+    const getUserInfo = async () => {
+        console.log('getUserInfo');
+        setLoading(true);
+
+        try {
+            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+            setError(null);
+            console.log('getUserInfo');
+            console.log(jwt);
+
+            // loading 상태를 true 로 바꿉니다.
+            setLoading(true);
+
+            const response = await axios
+                .get(`http://3.38.35.114/users/${userIdx}`, {
+                    headers: {
+                        "x-access-token": jwt
+                    }
+                })
+                .then((response) => {
+                    console.log(`userInfo response 확인 : ${response.data.code}`);
+                    setUserId(response.data.result.userInfo.id);
+                    setUserName(response.data.result.userInfo.name);
+                    setUserTicket(response.data.result.userInfo.mealTicketCount);
+
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            // 데이터는 response.data.code 안에 들어있다. console.log(response.data.result);
+        } catch (e) {
+            console.log('getUserInfo_catch');
+            console.log(e);
+            setError(e);
+        }
+        // loading 끄기
+        setLoading(false);
+    };
 
     if (loading) {
         return (
