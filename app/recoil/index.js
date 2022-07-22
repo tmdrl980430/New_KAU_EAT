@@ -22,3 +22,6 @@ const today = String(koreaNow.getFullYear()) + '-' + String(
 ).padStart(2, '0') + '-' + String(koreaNow.getDate()).padStart(2, '0')
 
 export const dateRecoilState = atom({key: 'dateRecoilState', default: today});
+
+
+export const cefiBtnRecoilState = atom({key: 'cefiBtnRecoilState', default: false});

@@ -27,6 +27,14 @@ const input = (props) => {
 const styles = StyleSheet.create({
     textForm: {
         borderColor: '#ECF1F6',
+        ...Platform.select({
+            ios: {
+                height: hp('6.2%')
+            },
+            android: {
+                height: hp('8.5%')
+            }
+        }),
         borderRadius: 20,
         borderWidth: 1,
         paddingStart: 16,
@@ -34,9 +42,17 @@ const styles = StyleSheet.create({
         paddingBottom: 16,
         marginTop: hp('1%'),
         fontFamily: 'NotoSansKR-Regular',
-        fontSize : 12
+        fontSize: 12
     },
     textFormRevised: {
+        ...Platform.select({
+            ios: {
+                height: hp('6.2%')
+            },
+            android: {
+                height: hp('8.5%')
+            }
+        }),
         borderColor: '#FF3D3D',
         borderRadius: 20,
         borderWidth: 1,
@@ -45,9 +61,17 @@ const styles = StyleSheet.create({
         paddingBottom: 16,
         marginTop: hp('1%'),
         fontFamily: 'NotoSansKR-Regular',
-        fontSize : 12
+        fontSize: 12
     },
     textSignUpInput: {
+        ...Platform.select({
+            ios: {
+                height: hp('6.2%')
+            },
+            android: {
+                height: hp('8.5%')
+            }
+        }),
         borderColor: '#ECF1F6',
         borderRadius: 20,
         borderWidth: 1,
@@ -56,7 +80,7 @@ const styles = StyleSheet.create({
         paddingBottom: 16,
         marginTop: hp('1%'),
         fontFamily: 'NotoSansKR-Regular',
-        fontSize : 12
+        fontSize: 12
     }
 })
 

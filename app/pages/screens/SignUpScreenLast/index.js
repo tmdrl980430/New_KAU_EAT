@@ -15,6 +15,8 @@ import SignUpHeader from "./Header";
 import SignUpBtn from "./SignUpBtn";
 import BackBtn from '../../../utils/backBtn/back'
 import CenterTitle from '../../../utils/title/centerTitle';
+import {useRecoilState} from "recoil";
+import {cefiBtnRecoilState} from "../../../recoil";
 
 const SignUpLast = ({route, navigation}) => {
 
@@ -30,31 +32,46 @@ const SignUpLast = ({route, navigation}) => {
     const [phoneNumInput, setPhoneNumInput] = useState('');
     const [certificationNumInput, setCertificationNumInput] = useState('');
     const [responseCertificationNum, setResponseCertificationNum] = useState('');
-    const [certificationNumBtnStatus, setCertificationNumBtnStatus] = useState(
-        false
+    const [certificationNumBtnStatus, setCertificationNumBtnStatus] = useRecoilState(
+        cefiBtnRecoilState
     );
 
     const [nameInputmessage, setNameInputmessage] = useState("");
     const [phoneNumberInputmessage, setPhoneNumberInputmessage] = useState("");
-    const [certificationNumInputmessage, setCertificationNumInputmessage] = useState("");
+    const [certificationNumInputmessage, setCertificationNumInputmessage] = useState(
+        ""
+    );
 
     const phoneNumberRegex = /^(01\d{1})([0-9]{3,4})([0-9]{4})$/;
 
     useEffect(() => {
-        if ( certificationNumInput != "" && responseCertificationNum != "" && certificationNumInput === responseCertificationNum){
+        console.log("certificationNumBtnStatus", certificationNumBtnStatus);
+
+        if (certificationNumInput != "" && responseCertificationNum != "" && certificationNumInput === responseCertificationNum) {
             setCertificationNumInputmessage("인증되었습니다.");
         }
     }, [certificationNumInput])
 
     useEffect(() => {
         console.log(phoneNumInput);
-        console.log(phoneNumberRegex.test(phoneNumInput))
-        if (phoneNumberRegex.test(phoneNumInput) && certificationNumBtnStatus == true) {
+        console.log("phoneNumberRegex", phoneNumberRegex.test(phoneNumInput));
+        console.log("certificationNumBtnStatus", certificationNumBtnStatus);
+        if (phoneNumberRegex.test(phoneNumInput) && certificationNumBtnStatus === true) {
             requestCertificationPhone();
-        } else {
+            setPhoneNumberInputmessage('');
+            console.log("requestCertificationPhone 실행");
+
+        } else if(phoneNumberRegex.test(phoneNumInput) === false) {
             setCertificationNumBtnStatus(false);
+            setPhoneNumberInputmessage('휴대폰 번호를 입력해주세요.');
         }
-    }, [certificationNumBtnStatus])
+
+        if(certificationNumBtnStatus === false){
+            setResponseCertificationNum('');
+        }
+        
+
+    }, [certificationNumBtnStatus, phoneNumInput])
 
     const requestCertificationPhone = async () => {
         console.log('requestCertificationPhone')
@@ -90,7 +107,7 @@ const SignUpLast = ({route, navigation}) => {
         console.log("certificationNumInput", certificationNumInput)
         console.log("responseCertificationNum", responseCertificationNum)
 
-        if ( certificationNumInput != "" && responseCertificationNum != "" && certificationNumInput === responseCertificationNum) {
+        if (certificationNumInput != "" && responseCertificationNum != "" && certificationNumInput === responseCertificationNum) {
             try {
                 // 요청이 시작 할 때에는 error 와 users 를 초기화하고
                 setError(null);
@@ -156,7 +173,6 @@ const SignUpLast = ({route, navigation}) => {
                         setNameInput={setNameInput}
                         setPhoneNumInput={setPhoneNumInput}
                         setCertificationNumInput={setCertificationNumInput}
-                        setCertificationNumBtnStatus={setCertificationNumBtnStatus}
                         nameInputmessage={nameInputmessage}
                         phoneNumberInputmessage={phoneNumberInputmessage}
                         certificationNumInputmessage={certificationNumInputmessage}/>
