@@ -170,7 +170,7 @@ const MealList = () => {
                                     fontSize: hp('2.1%'),
                                     color: '#FFFFFF',
                                     marginBottom: hp('0.5%')
-                                }}>{item.menu.price}</Text>
+                                }}>{item.price}원</Text>
                         )
                 }
 

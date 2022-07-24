@@ -8,6 +8,8 @@ import SignUpLast from "../screens/SignUpScreenLast";
 import Main from "../screens/MainScreen";
 import WeekMeals from "../screens/MainScreen/WeekMealScreen";
 import MyTicket from "../screens/MainScreen/MyticketScreen";
+import TicketPurchase from "../screens/MainScreen/TicketPurchaseScreen";
+
 import {useRecoilState} from 'recoil';
 import {isLoginRecoilState, jwtRecoilState, userIdxRecoilState} from '../../recoil';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -130,6 +132,7 @@ const Navigation = () => {
                                     <Stack.Screen name="Main" component={Main}></Stack.Screen>
                                     <Stack.Screen name="WeekMeals" component={WeekMeals}></Stack.Screen>
                                     <Stack.Screen name="MyTicket" component={MyTicket}></Stack.Screen>
+                                    <Stack.Screen name="TicketPurchase" component={TicketPurchase}></Stack.Screen>
                                 </Stack.Group>
                             )
                             : (

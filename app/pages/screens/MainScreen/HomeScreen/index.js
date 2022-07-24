@@ -32,8 +32,7 @@ const HomeScreen = ({navigation}) => {
         )
     } else {
         return (
-            <SafeAreaView
-                style={styles.topContainer}>
+            <SafeAreaView style={styles.topContainer}>
                 <ScrollView style={styles.container}>
                     <HomeLogo style={styles.logoArea}/>
                     <View style={styles.titlecontainer}>
@@ -44,7 +43,10 @@ const HomeScreen = ({navigation}) => {
                     </View>
                     <MealList/>
                     <TicketPurchaseTitle/>
-                    <TicketPurchaseBtn/>
+                    <TouchableOpacity onPress={() => navigation.navigate('TicketPurchase')}>
+                        <TicketPurchaseBtn/>
+                    </TouchableOpacity>
+
                     <View style={styles.titlecontainer}>
                         <MyTicketTitle/>
                         <TouchableOpacity onPress={() => navigation.navigate('MyTicket')}>

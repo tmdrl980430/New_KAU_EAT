@@ -8,7 +8,7 @@ import RigthArrow from '../../../../assets/images/right_arrow.png';
 const TicketPurchaseBtn = () => {
 
     return (
-        <TouchableOpacity style={styles.titleArea}>
+        <View style={styles.titleArea} >
             <View style={styles.ticketPurchaseContainer}>
                 <View style={styles.ticketImgBackgroud}>
                     <Image style={styles.ticketImg} source={TicketImage} resizeMode={'contain'}/>
@@ -16,7 +16,7 @@ const TicketPurchaseBtn = () => {
                 <Text style={styles.ticketPurchaseText}>식권을 바로 구매해보세요</Text>
                 <Image style={styles.rightArrowImg} source={RigthArrow} resizeMode={'contain'}/>
             </View>
-        </TouchableOpacity>
+        </View>
     )
 }
 

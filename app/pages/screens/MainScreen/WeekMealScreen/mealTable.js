@@ -29,11 +29,25 @@ const MealTable = () => {
     const [tableObject, setTableObject] = useState([]);
 
     useEffect(() => {
-        if(date != ""){
+        if (date != "") {
             getMealTable();
         }
         console.log("tableObject", tableObject);
     }, [date])
+
+    useEffect(() => {
+        const now = new Date();
+
+        const utcNow = now.getTime() + (now.getTimezoneOffset() * 60 * 1000); // 현재 시간을 utc로 변환한 밀리세컨드값
+        const koreaTimeDiff = 9 * 60 * 60 * 1000; // 한국 시간은 UTC보다 9시간 빠름(9시간의 밀리세컨드 표현)
+        const koreaNow = new Date(utcNow + koreaTimeDiff); // utc로 변환된 값을 한국 시간으로 변환시키기 위해 9시간(밀리세컨드)를 더함
+
+        const today = String(koreaNow.getFullYear()) + '-' + String(
+            koreaNow.getMonth() + 1
+        ).padStart(2, '0') + '-' + String(koreaNow.getDate()).padStart(2, '0')
+
+        setDate(today);
+    }, [])
 
     const getMealTable = async () => {
         console.log('getMealTable');
@@ -82,7 +96,12 @@ const MealTable = () => {
             <SafeAreaView style={styles.container}>
                 {
                     tableObject && tableObject.map((menu, index) => (
-                        <MealTableComponent type={menu.mealTypeName} price={menu.price} mealType={menu.mealTypeName} menu={menu.menu} key={index}/>
+                        <MealTableComponent
+                            type={menu.mealTypeName}
+                            price={menu.price}
+                            mealType={menu.mealTypeName}
+                            menu={menu.menu}
+                            key={index}/>
                     ))
                 }
             </SafeAreaView>
@@ -92,7 +111,7 @@ const MealTable = () => {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: hp('3%')
+        marginTop: hp('2%')
     },
     dateText: {
         fontFamily: 'NotoSansKR-Bold',
