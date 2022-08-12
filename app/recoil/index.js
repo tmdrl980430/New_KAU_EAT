@@ -36,3 +36,9 @@ export const purchaseTicketRecoilState = atom({key: 'purchaseTicketRecoilState',
 
 
 export const clickQrImgRecoilState= atom({key: 'clickQrImgRecoilState', default: ""});
+
+
+export const modalRecoilState= atom({key: 'modalRecoilState', default: false});
+
+
+export const qrModalRecoilState= atom({key: 'qrModalRecoilState', default: false});

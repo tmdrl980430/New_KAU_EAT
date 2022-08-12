@@ -45,7 +45,6 @@ const PurchaseTableComponent = (props) => {
                     <Text style={styles.countText}>{purchaseTicket[props.index]}</Text>
                     <TouchableOpacity onPress={clickPlus(props.index)}>
                         <Image style={styles.Img} source={Plus} resizeMode={'contain'}/>
-
                     </TouchableOpacity>
 
                 </View>

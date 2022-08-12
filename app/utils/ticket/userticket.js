@@ -18,12 +18,13 @@ const userTicket = (props) => {
 
     const [clickKind, setClickKind] = useRecoilState(clickQrImgRecoilState);
 
+    
     const clickQrImg = () => {
-        setClickKind(props.mealTypeName);
+        setClickKind({mealType: props.mealTypeName, ticketCount: props.mealTicketCount});
     }
 
     useEffect(() => {
-        console.log("clickKind : ",clickKind);
+        console.log("clickKind : ", clickKind);
     });
 
     return (
