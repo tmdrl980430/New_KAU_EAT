@@ -47,6 +47,13 @@ const HomeScreen = ({navigation}) => {
 
     }, [clickKind]);
 
+    useEffect(() => {
+
+        setModalState(false);
+        setQeModalState(false);
+
+    }, []);
+
     if (loading) {
         return (
             <View style={styles.loading}>
