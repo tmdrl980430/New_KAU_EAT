@@ -17,13 +17,16 @@ import Line2 from '../../assets/images/lineRightTop.png'
 import Line3 from '../../assets/images/lineLeftBottom.png'
 import Line4 from '../../assets/images/lineRightBottom.png'
 import {useRecoilState} from "recoil";
-import {clickQrImgRecoilState, dateRecoilState, modalRecoilState, qrModalRecoilState, userIdxRecoilState} from "../../recoil";
+import {clickQrImgRecoilState, dateRecoilState, modalRecoilState, qrModalRecoilState, qrTicketCountRecoilState, userIdxRecoilState} from "../../recoil";
 
 //재사용 가능 제목 component
 
-const QrModal = (props) => {
+const QrModal = () => {
 
     const [qrModalState, setQrModalState] = useRecoilState(qrModalRecoilState);
+
+    const [qrTicketCount, setQrTicketCount] = useRecoilState(qrTicketCountRecoilState);
+
 
 
     const [date, setDate] = useRecoilState(dateRecoilState);
@@ -33,12 +36,10 @@ const QrModal = (props) => {
     const [qrInfo, setQrInfo] = useState([
         {
             userIdx: {userIdx},
-            ticketCount: 1,
+            ticketCount: {qrTicketCount},
             date: {date}
         }
     ]);
-
-    const [modalState, setModalState] = useRecoilState(modalRecoilState);
 
     const [clickKind, setClickKind] = useRecoilState(clickQrImgRecoilState);
 
@@ -59,7 +60,7 @@ const QrModal = (props) => {
 
                     <View style={styles.ticketInfoView}>
                         <Image style={styles.ticketImg} source={TicketImg} resizeMode={'contain'}/>
-                        <Text style={styles.ticketCount}>X {clickKind.ticketCount}</Text>
+                        <Text style={styles.ticketCount}>X {qrTicketCount}</Text>
                     </View>
                     <Text style={styles.menuTypeText}>{clickKind.mealType}</Text>
                     <View style={styles.qrCodeContainer}>
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
         height: hp('100%'),
         backgroundColor: '#000000A1',
         paddingBottom: hp('25%'),
-        paddingTop: hp('25%'),
+        paddingTop: hp('20%'),
         paddingStart: wp('10%'),
         paddingEnd: wp('10%')
     },

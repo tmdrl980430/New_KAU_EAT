@@ -69,7 +69,6 @@ const HomeScreen = ({navigation}) => {
                 {
                     qrModalState != false && <QrModal/>
                 }
-                
                 <ScrollView style={styles.container}>
                     <HomeLogo style={styles.logoArea}/>
                     <View style={styles.titlecontainer}>

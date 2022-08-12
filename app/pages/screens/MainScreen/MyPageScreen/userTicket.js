@@ -1,11 +1,11 @@
 import React, {useState} from "react";
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { useRecoilState } from "recoil";
 import TicketImg from '../../../../assets/images/ticket_mypage.png';
 import { userTicketRecoilState } from "../../../../recoil";
 
-const UserTicket = () => {
+const UserTicket = ({navigation}) => {
 
     const [userTicket, setUserTicket] = useRecoilState(userTicketRecoilState);
 

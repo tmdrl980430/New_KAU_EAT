@@ -12,7 +12,7 @@ import {isLoginRecoilState, jwtRecoilState, userIdRecoilState, userIdxRecoilStat
 import Navigation from '../../../navigation';
 import axios from 'axios';
 
-const MyPageScreen = () => {
+const MyPageScreen = ({navigation}) => {
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -94,9 +94,9 @@ const MyPageScreen = () => {
                     <View style={styles.headerContainer}>
                         <BackBtn/>
                     </View>
-                    <View style={styles.ticketContainer}>
+                    <TouchableOpacity style={styles.ticketContainer} onPress={() => navigation.push('MyTicket')}>
                         <UserTicket/>
-                    </View>
+                    </TouchableOpacity>
                     <View style={styles.lineView}/>
                     <View style={styles.userInfoChangeContainer}>
                         <UserInfoChange/>

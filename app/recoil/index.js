@@ -42,3 +42,5 @@ export const modalRecoilState= atom({key: 'modalRecoilState', default: false});
 
 
 export const qrModalRecoilState= atom({key: 'qrModalRecoilState', default: false});
+
+export const qrTicketCountRecoilState= atom({key: 'qrTicketCountRecoilState', default: 1});

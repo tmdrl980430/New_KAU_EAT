@@ -20,7 +20,9 @@ const userTicket = (props) => {
 
     
     const clickQrImg = () => {
-        setClickKind({mealType: props.mealTypeName, ticketCount: props.mealTicketCount});
+        if (0 < props.mealTicketCount){
+            setClickKind({mealType: props.mealTypeName, ticketCount: props.mealTicketCount});
+        }
     }
 
     useEffect(() => {
