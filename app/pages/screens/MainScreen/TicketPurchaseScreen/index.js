@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Text,
     View,
@@ -8,41 +8,48 @@ import {
     SafeAreaView,
     TouchableOpacity
 } from 'react-native';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import BackBtn from '../../../../utils/backBtn/back'
 import CenterTitle from '../../../../utils/title/centerTitle';
 import PurchaseTable from './purchaseTable';
 import PurchaseBtn from './PurchaseBtn';
 
-const TicketPurchaseScreen = ({navigation}) => {
+import { purchaseTicketRecoilState } from '../../../../recoil';
+import { useRecoilState } from 'recoil';
+
+const TicketPurchaseScreen = ({ navigation }) => {
 
     const [loading, setLoading] = useState(false)
 
+    const [purchaseTicket, setPurchaseTicket] = useRecoilState(
+        purchaseTicketRecoilState
+    );
+
+    useEffect(() => {
+        setPurchaseTicket([0, 0, 0, 0])
+    }, [])
+
     if (loading) {
-        return (
-            <View style={styles.loading}>
-                <ActivityIndicator/>
-            </View>
-        )
+        return (< View style={
+            styles.loading
+        } > <ActivityIndicator /></View>)
     } else {
         return (
-            <SafeAreaView style={styles.safeAreaContainer}>
+            <SafeAreaView SafeAreaView style={styles.safeAreaContainer}> 
                 <ScrollView style={styles.container}>
                     <View style={styles.headerContainer}>
                         <TouchableOpacity onPress={() => navigation.replace('Main')}>
-                            <BackBtn/>
+                            <BackBtn />
                         </TouchableOpacity>
-                        <CenterTitle type={"ticketPurchaseText"}/>
+                        < CenterTitle type={"ticketPurchaseText"} />
                         <View/>
                     </View>
-                    <PurchaseTable/>
-                    <TouchableOpacity style={styles.purchaseBtn} >
-                        <PurchaseBtn/>
+                    <PurchaseTable />
+                    <TouchableOpacity style={styles.purchaseBtn} onPress={() => navigation.replace('IamScreen')}>
+                        <PurchaseBtn />
                     </TouchableOpacity>
                 </ScrollView>
-
             </SafeAreaView>
-
         )
     }
 }
@@ -84,7 +91,7 @@ const styles = StyleSheet.create({
     },
     purchaseBtn: {
         marginTop: hp('7%'),
-        marginBottom: hp('10%'),
+        marginBottom: hp('10%')
     }
 });
 

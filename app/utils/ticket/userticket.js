@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {StyleSheet, View, Text, Image} from 'react-native';
+import React, {useEffect, useState} from "react";
+import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import TicketImg from '../../assets/images/ticket_black.png';
 import QrImg from '../../assets/images/qrcode.png'
@@ -7,7 +7,7 @@ import DashedLine from '../../assets/images/dashedline.png'
 
 import axios from "axios";
 import {useRecoilState} from "recoil";
-import {jwtRecoilState, userIdxRecoilState} from "../../recoil";
+import {jwtRecoilState, userIdxRecoilState, clickQrImg, clickQrImgRecoilState} from "../../recoil";
 
 //재사용 가능 식권 모양
 
@@ -15,6 +15,16 @@ const userTicket = (props) => {
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+
+    const [clickKind, setClickKind] = useRecoilState(clickQrImgRecoilState);
+
+    const clickQrImg = () => {
+        setClickKind(props.mealTypeName);
+    }
+
+    useEffect(() => {
+        console.log("clickKind : ",clickKind);
+    });
 
     return (
         <View style={styles.ticketContainer}>
@@ -37,7 +47,10 @@ const userTicket = (props) => {
                 </View>
                 <View style={styles.qrimgContainer}>
                     <Image style={styles.dashedLine} source={DashedLine} resizeMode={'contain'}/>
-                    <Image style={styles.QrImg} source={QrImg} resizeMode={'contain'}/>
+                    <TouchableOpacity onPress={clickQrImg}>
+                        <Image style={styles.QrImg} source={QrImg} resizeMode={'contain'}/>
+                    </TouchableOpacity>
+
                 </View>
             </View>
 

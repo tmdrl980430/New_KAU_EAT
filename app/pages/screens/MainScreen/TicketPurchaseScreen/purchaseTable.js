@@ -67,7 +67,8 @@ const PurchaseTable = () => {
 
     useEffect(() => {
         console.log("tableObject0", tableObject0);
-        console.log("tableObject0.mealTypeName", tableObject0.menu);
+        console.log("tableObject0.menu", tableObject0.menu);
+        
     }, [tableObject0])
 
     const getPruchaseTable = async () => {
@@ -174,17 +175,6 @@ const PurchaseTable = () => {
                         )
                         : (<View/>)
                 }
-                {/* {
-                    tableObject && tableObject.map((menu, index) => (
-                        <PurchaseTableComponent
-                            type={menu.mealTypeName}
-                            price={menu.price}
-                            mealType={menu.mealTypeName}
-                            menu={menu.menu}
-                            key={index}
-                            index={index}/>
-                    ))
-                } */}
             </SafeAreaView>
         )
     }

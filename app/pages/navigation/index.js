@@ -9,7 +9,12 @@ import Main from "../screens/MainScreen";
 import WeekMeals from "../screens/MainScreen/WeekMealScreen";
 import MyTicket from "../screens/MainScreen/MyticketScreen";
 import TicketPurchase from "../screens/MainScreen/TicketPurchaseScreen";
-
+import BootPayScreen from '../screens/MainScreen/TicketPurchaseScreen/BootPayScreen/index';
+import IamProtScreen from '../screens/MainScreen/TicketPurchaseScreen/IamPortScreen';
+import BillingEnroll from '../screens/MainScreen/TicketPurchaseScreen/IamPortScreen/PaymentEnroll';
+import Payment from '../screens/MainScreen/TicketPurchaseScreen/IamPortScreen/Payment';
+import GoBootpayTest from '../screens/MainScreen/TicketPurchaseScreen/BootPayScreen/GoBootpayTest';
+import QrCodeScreen from '../screens/MainScreen/QRcodeScreen';
 import {useRecoilState} from 'recoil';
 import {isLoginRecoilState, jwtRecoilState, userIdxRecoilState} from '../../recoil';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -133,6 +138,11 @@ const Navigation = () => {
                                     <Stack.Screen name="WeekMeals" component={WeekMeals}></Stack.Screen>
                                     <Stack.Screen name="MyTicket" component={MyTicket}></Stack.Screen>
                                     <Stack.Screen name="TicketPurchase" component={TicketPurchase}></Stack.Screen>
+                                    <Stack.Screen name="BootPayScreen" component={BootPayScreen}></Stack.Screen>
+                                    <Stack.Screen name='IamPortScreen' component={IamProtScreen}></Stack.Screen>
+                                    <Stack.Screen name='Payment' component={Payment}></Stack.Screen>
+                                    <Stack.Screen name='PaymentEnroll' component={BillingEnroll}></Stack.Screen>
+                                    <Stack.Screen name='QrCodeScreen' component={QrCodeScreen}></Stack.Screen>
                                 </Stack.Group>
                             )
                             : (

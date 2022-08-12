@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Text,
     View,
@@ -9,16 +9,15 @@ import {
     TouchableOpacity
 } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import { useRecoilState } from 'recoil';
-import { clickQrImgRecoilState } from '../../../../recoil';
-import BackBtn from '../../../../utils/backBtn/back'
-import CenterTitle from '../../../../utils/title/centerTitle';
-import TicketList from './ticketList';
+import {useRecoilState} from 'recoil';
+import GoBootpayTest from './GoBootpayTest';
+import BackBtn from '../../../../../utils/backBtn/back'
+import Test from './test';
+import IamPortTest from './iamportTest';
 
-const MyTicketScreen = ({navigation}) => {
+const BootPayScreen = ({navigation}) => {
 
     const [loading, setLoading] = useState(false)
-
 
     if (loading) {
         return (
@@ -29,19 +28,11 @@ const MyTicketScreen = ({navigation}) => {
     } else {
         return (
             <SafeAreaView style={styles.safeAreaContainer}>
-                <ScrollView style={styles.container}>
-                    <View style={styles.headerContainer}>
-                        <TouchableOpacity onPress={() => navigation.replace('Main')}>
-                            <BackBtn/>
-                        </TouchableOpacity>
-                        <CenterTitle type={"myTicketText"}/>
-                        <View/>
-                    </View>
-                    <View style={styles.ticketContainer}>
-                        <TicketList/>
-                    </View>
-                </ScrollView>
-
+                {/* <GoBootpayTest/> */}
+                <TouchableOpacity onPress={() => navigation.replace('Main')}>
+                    <BackBtn/>
+                </TouchableOpacity>
+                <IamPortTest/>
             </SafeAreaView>
 
         )
@@ -55,9 +46,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justufyContent: 'center'
     },
-    ticketContainer: {
-        marginTop: hp('4%')
-    },
     loading: {
         flex: 1,
         backgroundColor: 'white',
@@ -66,7 +54,8 @@ const styles = StyleSheet.create({
     },
     safeAreaContainer: {
         backgroundColor: 'white',
-        paddingBottom: hp('5%')
+        height: hp('100%'),
+        width: wp('100%')
     },
     container: {
         backgroundColor: 'white',
@@ -85,7 +74,11 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: 'center'
+    },
+    purchaseBtn: {
+        marginTop: hp('7%'),
+        marginBottom: hp('10%')
     }
 });
 
-export default MyTicketScreen;
+export default BootPayScreen;

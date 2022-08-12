@@ -45,10 +45,10 @@ const PurchaseComponent2 = (props) => {
         <View style={styles.container}>
             <Text style={styles.text}>{props.mealType}</Text>
             <View style={styles.viewContainer}>
-                {
+            {
                     props.menu != null
-                        ? (<Text style={styles.menuText} numberOfLines={1}>휴무</Text>)
-                        : (<Text style={styles.menuText} numberOfLines={1}>{props.menu}</Text>)
+                        ? (<Text style={styles.menuText} numberOfLines={1}>{props.menu}</Text>)
+                        : (<Text style={styles.menuText} numberOfLines={1}>휴무</Text>)
                 }
             </View>
             <View style={styles.lineView}></View>

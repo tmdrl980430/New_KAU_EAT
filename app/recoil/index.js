@@ -33,3 +33,6 @@ export const dateRecoilState = atom({key: 'dateRecoilState', default: today});
 export const cefiBtnRecoilState = atom({key: 'cefiBtnRecoilState', default: false});
 
 export const purchaseTicketRecoilState = atom({key: 'purchaseTicketRecoilState', default: [0, 0, 0, 0]});
+
+
+export const clickQrImgRecoilState= atom({key: 'clickQrImgRecoilState', default: ""});
