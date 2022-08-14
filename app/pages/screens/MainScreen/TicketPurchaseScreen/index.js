@@ -13,26 +13,25 @@ import BackBtn from '../../../../utils/backBtn/back'
 import CenterTitle from '../../../../utils/title/centerTitle';
 import PurchaseTable from './purchaseTable';
 import PurchaseBtn from './PurchaseBtn';
-
 import { purchaseTicketRecoilState } from '../../../../recoil';
 import { useRecoilState } from 'recoil';
 
 const TicketPurchaseScreen = ({ navigation }) => {
 
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
 
-    const [purchaseTicket, setPurchaseTicket] = useRecoilState(
-        purchaseTicketRecoilState
-    );
+    const [purchaseTicket, setPurchaseTicket] = useRecoilState(purchaseTicketRecoilState);
 
     useEffect(() => {
-        setPurchaseTicket([0, 0, 0, 0])
-    }, [])
+        setPurchaseTicket([0, 0, 0, 0]);
+    }, []);
 
     if (loading) {
-        return (< View style={
-            styles.loading
-        } > <ActivityIndicator /></View>)
+        return (
+            <View style={styles.loading}>
+                <ActivityIndicator/>
+            </View>
+        )
     } else {
         return (
             <SafeAreaView SafeAreaView style={styles.safeAreaContainer}> 
