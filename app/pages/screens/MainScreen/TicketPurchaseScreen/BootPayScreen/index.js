@@ -32,7 +32,7 @@ const BootPayScreen = ({navigation}) => {
                 <TouchableOpacity onPress={() => navigation.replace('Main')}>
                     <BackBtn/>
                 </TouchableOpacity>
-                <IamPortTest/>
+                <GoBootpayTest/>
             </SafeAreaView>
 
         )

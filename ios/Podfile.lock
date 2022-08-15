@@ -73,7 +73,7 @@ PODS:
     - FlipperKit/FlipperKitNetworkPlugin
   - fmt (6.2.1)
   - glog (0.3.5)
-  - iamport-react-native (2.0.1):
+  - iamport-react-native (2.0.2):
     - React-Core
   - libevent (2.1.12)
   - OpenSSL-Universal (1.1.1100)
@@ -578,7 +578,7 @@ SPEC CHECKSUMS:
   FlipperKit: cbdee19bdd4e7f05472a66ce290f1b729ba3cb86
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 476ee3e89abb49e07f822b48323c51c57124b572
-  iamport-react-native: f6b9f0d0c7c0f4c4dc2b119c143a95a20b166a3a
+  iamport-react-native: 2effc6d89aebafca5117c214b7ed22c8d163cbb5
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   RCT-Folly: 4d8508a426467c48885f1151029bc15fa5d7b3b8

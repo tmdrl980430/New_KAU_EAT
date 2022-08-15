@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {View, ActivityIndicator, StyleSheet, Platform} from 'react-native'
+import {View, ActivityIndicator, StyleSheet, Platform, SafeAreaView,ScrollView} from 'react-native'
 import {NavigationContainer, StackActions} from "@react-navigation/native"
 import {createNativeStackNavigator} from "@react-navigation/native-stack"
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Login from "../screens/LoginScreen";
 import SignUp from "../screens/SignUpScreen";
 import SignUpLast from "../screens/SignUpScreenLast";
@@ -10,8 +11,7 @@ import WeekMeals from "../screens/MainScreen/WeekMealScreen";
 import MyTicket from "../screens/MainScreen/MyticketScreen";
 import TicketPurchase from "../screens/MainScreen/TicketPurchaseScreen";
 import BootPayScreen from '../screens/MainScreen/TicketPurchaseScreen/BootPayScreen/index';
-import IamProtScreen from '../screens/MainScreen/TicketPurchaseScreen/IamPortScreen';
-import BillingEnroll from '../screens/MainScreen/TicketPurchaseScreen/IamPortScreen/PaymentEnroll';
+import IamPortScreen from '../screens/MainScreen/TicketPurchaseScreen/IamPortScreen';
 import Payment from '../screens/MainScreen/TicketPurchaseScreen/IamPortScreen/Payment';
 import GoBootpayTest from '../screens/MainScreen/TicketPurchaseScreen/BootPayScreen/GoBootpayTest';
 import QrCodeScreen from '../screens/MainScreen/QRcodeScreen';
@@ -125,6 +125,7 @@ const Navigation = () => {
     } else {
         return (
             <NavigationContainer>
+                <View style={styles.topContainer}></View>
                 <Stack.Navigator>
                     {
                         isLogIn
@@ -139,9 +140,8 @@ const Navigation = () => {
                                     <Stack.Screen name="MyTicket" component={MyTicket}></Stack.Screen>
                                     <Stack.Screen name="TicketPurchase" component={TicketPurchase}></Stack.Screen>
                                     <Stack.Screen name="BootPayScreen" component={BootPayScreen}></Stack.Screen>
-                                    <Stack.Screen name='IamPortScreen' component={IamProtScreen}></Stack.Screen>
+                                    <Stack.Screen name='IamPortScreen' component={IamPortScreen}></Stack.Screen>
                                     <Stack.Screen name='Payment' component={Payment}></Stack.Screen>
-                                    <Stack.Screen name='PaymentEnroll' component={BillingEnroll}></Stack.Screen>
                                     <Stack.Screen name='QrCodeScreen' component={QrCodeScreen}></Stack.Screen>
                                 </Stack.Group>
                             )
@@ -169,6 +169,17 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center'
-    }
+    },
+    topContainer: {
+        ...Platform.select({
+            ios: {
+                backgroundColor: 'white',
+                paddingTop: hp('5.7%')
+            },
+            android: {
+                height: hp('0%')
+            }
+        }),
+    },
 });
 export default Navigation

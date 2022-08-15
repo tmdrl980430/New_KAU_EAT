@@ -44,7 +44,7 @@ const TicketPurchaseScreen = ({ navigation }) => {
                         <View/>
                     </View>
                     <PurchaseTable />
-                    <TouchableOpacity style={styles.purchaseBtn} onPress={() => navigation.replace('IamScreen')}>
+                    <TouchableOpacity style={styles.purchaseBtn} onPress={() => navigation.replace('Payment')}>
                         <PurchaseBtn />
                     </TouchableOpacity>
                 </ScrollView>
