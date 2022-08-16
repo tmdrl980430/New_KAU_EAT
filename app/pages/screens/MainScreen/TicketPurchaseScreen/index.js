@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Text,
     View,
@@ -8,23 +8,44 @@ import {
     SafeAreaView,
     TouchableOpacity
 } from 'react-native';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import BackBtn from '../../../../utils/backBtn/back'
 import CenterTitle from '../../../../utils/title/centerTitle';
 import PurchaseTable from './purchaseTable';
 import PurchaseBtn from './PurchaseBtn';
-import { purchaseTicketRecoilState } from '../../../../recoil';
-import { useRecoilState } from 'recoil';
+import {merchantUidRecoilState, purchaseTicketRecoilState,dateRecoilState, userIdxRecoilState, currentTimeRecoilState} from '../../../../recoil';
+import {useRecoilState} from 'recoil';
 
-const TicketPurchaseScreen = ({ navigation }) => {
+const TicketPurchaseScreen = ({navigation}) => {
 
     const [loading, setLoading] = useState(false);
 
-    const [purchaseTicket, setPurchaseTicket] = useRecoilState(purchaseTicketRecoilState);
+    const [purchaseTicket, setPurchaseTicket] = useRecoilState(
+        purchaseTicketRecoilState
+    );
+
+    const [userIdx, setUserIdx] = useRecoilState(
+        userIdxRecoilState
+    );
+
+    const [currentTime, setCurrentTime] = useRecoilState(
+        currentTimeRecoilState
+    );
+
+    const [date, setDate] = useRecoilState(
+        dateRecoilState
+    );
+
+    const [uid, setUid] = useRecoilState(merchantUidRecoilState);
+
+    //const uid = '55555'
+
+    setUid(date + currentTime + userIdx);
 
     useEffect(() => {
         setPurchaseTicket([0, 0, 0, 0]);
     }, []);
+
 
     if (loading) {
         return (
@@ -34,18 +55,22 @@ const TicketPurchaseScreen = ({ navigation }) => {
         )
     } else {
         return (
-            <SafeAreaView SafeAreaView style={styles.safeAreaContainer}> 
+            <SafeAreaView SafeAreaView="SafeAreaView" style={styles.safeAreaContainer}>
                 <ScrollView style={styles.container}>
                     <View style={styles.headerContainer}>
                         <TouchableOpacity onPress={() => navigation.replace('Main')}>
-                            <BackBtn />
+                            <BackBtn/>
                         </TouchableOpacity>
-                        < CenterTitle type={"ticketPurchaseText"} />
+                        < CenterTitle type={"ticketPurchaseText"}/>
                         <View/>
                     </View>
-                    <PurchaseTable />
-                    <TouchableOpacity style={styles.purchaseBtn} onPress={() => navigation.replace('Payment')}>
-                        <PurchaseBtn />
+                    <PurchaseTable/>
+                    <TouchableOpacity
+                        style={styles.purchaseBtn}
+                        onPress={() => navigation.replace('Payment', {uid: {
+                                uid
+                            }})}>
+                        <PurchaseBtn/>
                     </TouchableOpacity>
                 </ScrollView>
             </SafeAreaView>

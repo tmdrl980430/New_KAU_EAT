@@ -13,9 +13,13 @@ export const isLoginRecoilState = atom(
 
 export const userIdRecoilState = atom({key: 'userIdRecoilState', default: ''});
 
-export const userNameRecoilState = atom({key: 'userNameRecoilState', default: ''});
+export const userNameRecoilState = atom(
+    {key: 'userNameRecoilState', default: ''}
+);
 
-export const userTicketRecoilState = atom({key: 'userTicketRecoilState', default: 0});
+export const userTicketRecoilState = atom(
+    {key: 'userTicketRecoilState', default: 0}
+);
 
 const now = new Date();
 
@@ -27,20 +31,43 @@ const today = String(koreaNow.getFullYear()) + '-' + String(
     koreaNow.getMonth() + 1
 ).padStart(2, '0') + '-' + String(koreaNow.getDate()).padStart(2, '0')
 
+//결제 uid를 위해 사용하는 시간
+let hours = koreaNow.getHours(); //시
+let minutes = koreaNow.getMinutes(); //분
+let seconds = koreaNow.getSeconds(); //초
+let milliseconds = koreaNow.getMilliseconds(); //밀리초
+const currentTime = hours + ':' + minutes + ':' + seconds + ':' +
+        milliseconds
+
+export const currentTimeRecoilState = atom(
+    {key: 'currentTimeRecoilState', default: currentTime}
+);
+
+export const merchantUidRecoilState = atom(
+    {key: 'merchantUidRecoilState', default: ''}
+);
+
 export const dateRecoilState = atom({key: 'dateRecoilState', default: today});
 
+export const cefiBtnRecoilState = atom(
+    {key: 'cefiBtnRecoilState', default: false}
+);
 
-export const cefiBtnRecoilState = atom({key: 'cefiBtnRecoilState', default: false});
+export const purchaseTicketRecoilState = atom({
+    key: 'purchaseTicketRecoilState',
+    default: [0, 0, 0, 0]
+});
 
-export const purchaseTicketRecoilState = atom({key: 'purchaseTicketRecoilState', default: [0, 0, 0, 0]});
+export const clickQrImgRecoilState = atom(
+    {key: 'clickQrImgRecoilState', default: ""}
+);
 
+export const modalRecoilState = atom({key: 'modalRecoilState', default: false});
 
-export const clickQrImgRecoilState= atom({key: 'clickQrImgRecoilState', default: ""});
+export const qrModalRecoilState = atom(
+    {key: 'qrModalRecoilState', default: false}
+);
 
-
-export const modalRecoilState= atom({key: 'modalRecoilState', default: false});
-
-
-export const qrModalRecoilState= atom({key: 'qrModalRecoilState', default: false});
-
-export const qrTicketCountRecoilState= atom({key: 'qrTicketCountRecoilState', default: 1});
+export const qrTicketCountRecoilState = atom(
+    {key: 'qrTicketCountRecoilState', default: 1}
+);
