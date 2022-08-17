@@ -20,11 +20,12 @@ import TicketPurchaseTitle from './ticketPurchaseTitle';
 import TodayMealBtn from './mealTableBtn';
 import MyTicketTitle from './myTicketTitle'
 import {useRecoilState} from 'recoil';
-import {clickQrImgRecoilState, modalRecoilState, qrModalRecoilState} from '../../../../recoil';
+import {clickQrImgRecoilState, modalRecoilState, purchasemodalRecoilState, qrModalRecoilState} from '../../../../recoil';
 
 import TicketCountModal from '../../../../utils/modal/tickeCountmodal'
 
 import QrModal from '../../../../utils/modal/ticketmodal'
+import PurchaseResultModal from '../../../../utils/modal/puschaseResultmodal';
 const HomeScreen = ({navigation}) => {
 
     const [loading, setLoading] = useState(false)
@@ -34,6 +35,9 @@ const HomeScreen = ({navigation}) => {
     const [modalState, setModalState] = useRecoilState(modalRecoilState);
 
     const [qrModalState, setQeModalState] = useRecoilState(qrModalRecoilState);
+
+    const [purchasemodalState, setPurchaseModalState] = useRecoilState(purchasemodalRecoilState);
+
 
     useEffect(() => {
 
@@ -69,6 +73,8 @@ const HomeScreen = ({navigation}) => {
                 {
                     qrModalState != false && <QrModal/>
                 }
+                {purchasemodalState != false && <PurchaseResultModal/>}
+
                 <ScrollView style={styles.container}>
                     <HomeLogo style={styles.logoArea}/>
                     <View style={styles.titlecontainer}>

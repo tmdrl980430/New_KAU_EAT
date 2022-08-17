@@ -1,16 +1,32 @@
 import React, {useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Text, View, StyleSheet, ActivityIndicator, TouchableOpacity, SafeAreaView} from 'react-native';
+import {
+    Text,
+    View,
+    StyleSheet,
+    ActivityIndicator,
+    TouchableOpacity,
+    SafeAreaView
+} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {ScrollView} from 'react-native-gesture-handler';
 import BackBtn from './myPageBackBtn';
 import UserTicket from './userTicket';
 import UserInfoChange from './userInfoChange'
 import {useRecoilState} from 'recoil';
-import {isLoginRecoilState, jwtRecoilState, userIdRecoilState, userIdxRecoilState, userNameRecoilState, userTicketRecoilState} from '../../../../recoil';
+import {
+    isLoginRecoilState,
+    jwtRecoilState,
+    logoutmodalRecoilState,
+    userIdRecoilState,
+    userIdxRecoilState,
+    userNameRecoilState,
+    userTicketRecoilState
+} from '../../../../recoil';
 import Navigation from '../../../navigation';
 import axios from 'axios';
+import LogoutModal from '../../../../utils/modal/logoutmodal';
 
 const MyPageScreen = ({navigation}) => {
 
@@ -25,14 +41,14 @@ const MyPageScreen = ({navigation}) => {
     const [userTicket, setUserTicket] = useRecoilState(userTicketRecoilState);
 
 
+    const [logoutodalState, setLogoutModalState] = useRecoilState(logoutmodalRecoilState);
+
+
     console.log(`jwt : ${jwt}`);
 
-    const logOut = () => {
-        setJwt("");
-        setLogin(false);
-        console.log(`jwt : ${jwt}`);
-        console.log(`login : ${login}`);
-
+    const logOutMadal = () => {
+        setLogoutModalState(true);
+        console.log(`logoutodalState : ${logoutodalState}`);
     }
 
     useEffect(() => {
@@ -90,11 +106,14 @@ const MyPageScreen = ({navigation}) => {
                 style={{
                     backgroundColor: '#3D3580'
                 }}>
+                {logoutodalState != false && <LogoutModal/>}
                 <ScrollView style={styles.container}>
                     <View style={styles.headerContainer}>
                         <BackBtn/>
                     </View>
-                    <TouchableOpacity style={styles.ticketContainer} onPress={() => navigation.push('MyTicket')}>
+                    <TouchableOpacity
+                        style={styles.ticketContainer}
+                        onPress={() => navigation.push('MyTicket')}>
                         <UserTicket/>
                     </TouchableOpacity>
                     <View style={styles.lineView}/>
@@ -102,7 +121,7 @@ const MyPageScreen = ({navigation}) => {
                         <UserInfoChange/>
                     </View>
                     <View style={styles.lineView}/>
-                    <TouchableOpacity onPress={logOut}>
+                    <TouchableOpacity onPress={logOutMadal}>
                         <Text style={styles.logOutText}>로그아웃</Text>
                     </TouchableOpacity>
                 </ScrollView>

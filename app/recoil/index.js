@@ -64,6 +64,12 @@ export const clickQrImgRecoilState = atom(
 
 export const modalRecoilState = atom({key: 'modalRecoilState', default: false});
 
+export const logoutmodalRecoilState = atom({key: 'logoutmodalRecoilState', default: false});
+
+export const purchasemodalRecoilState = atom({key: 'purchasemodalRecoilState', default: false});
+
+export const SoldOutConfirmModalRecoilState = atom({key: 'SoldOutConfirmModalRecoilState', default: false});
+
 export const qrModalRecoilState = atom(
     {key: 'qrModalRecoilState', default: false}
 );

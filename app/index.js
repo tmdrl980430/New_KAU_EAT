@@ -18,7 +18,8 @@ LogBox.ignoreLogs([
 "ColorPropType will be removed",
 "Failed prop type",
 "Can't perform",
-"Require cycle"
+"Require cycle",
+"Did not receive response to shouldStartLoad in time, defaulting to YES"
 ])
 
 const Stack = createNativeStackNavigator();

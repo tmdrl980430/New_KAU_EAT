@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, ActivityIndicator, SafeAreaView} from 'react-nat
 import IMP from 'iamport-react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {useRecoilState} from 'recoil';
-import {jwtRecoilState, purchaseTicketRecoilState} from '../../../../../../recoil';
+import {jwtRecoilState, purchasemodalRecoilState, purchaseTicketRecoilState} from '../../../../../../recoil';
 import axios from 'axios';
 
 const Payment = ({navigation, route}) => {
@@ -12,6 +12,8 @@ const Payment = ({navigation, route}) => {
 
     const [loading, setLoading] = useState(false);
     const [jwt, setJwt] = useRecoilState(jwtRecoilState);
+
+    const [purchasemodalState, setPurchaseModalState] = useRecoilState(purchasemodalRecoilState);
 
 
     //결제가 완료된 후 [0,0,0,0]으로 초기화를 시켜줘야 함(아직 안함)
@@ -35,7 +37,6 @@ const Payment = ({navigation, route}) => {
                 headers: {
                     "Content-Type": "application/json",
                     "x-access-token": jwt
-                    
                 },
                 data: {
                     imp_uid: res.imp_uid,
@@ -44,6 +45,7 @@ const Payment = ({navigation, route}) => {
             }).then((res) => {
                 // 서버 결제 API 성공시 로직
                 console.log('callBackres', res);
+                setPurchaseModalState(true);
 
             }).catch ((e) => {
                 console.log(`out payerror : ${e}`);
@@ -51,6 +53,7 @@ const Payment = ({navigation, route}) => {
         } else {
             //결제 실패 modal 띄워주기 (진행안함)
             console.log(`결제에 실패하였습니다. 에러 내용: ${res.error_msg}`);
+            setPurchaseModalState(true);
         }
 
     };
