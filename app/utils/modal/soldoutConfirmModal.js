@@ -23,7 +23,8 @@ import {
     logoutmodalRecoilState,
     jwtRecoilState,
     isLoginRecoilState,
-    SoldOutConfirmModalRecoilState
+    SoldOutConfirmModalRecoilState,
+    SoldOutConfirmRecoilState
 } from "../../recoil";
 
 //재사용 가능 제목 component
@@ -34,12 +35,18 @@ const SoldOutConfirmModal = (props) => {
         SoldOutConfirmModalRecoilState
     );
 
+    const [soldOutConfirmState, setSoldOutConfirmState] = useRecoilState(
+        SoldOutConfirmRecoilState
+    );
+
     const clickCancle = () => {
         setSoldOutConfirmModalState(false);
+        setSoldOutConfirmState(false);
     }
 
     const clickConfirm = () => {
         setSoldOutConfirmModalState(false);
+        setSoldOutConfirmState(true);
     }
 
     return (

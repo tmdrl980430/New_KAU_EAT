@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, ActivityIndicator, SafeAreaView} from 'react-nat
 import IMP from 'iamport-react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {useRecoilState} from 'recoil';
-import {jwtRecoilState, purchasemodalRecoilState, purchaseTicketRecoilState} from '../../../../../../recoil';
+import {jwtRecoilState, purchasemodalRecoilState, purchaseTicketRecoilState} from '../../../../../recoil';
 import axios from 'axios';
 
 const Payment = ({navigation, route}) => {

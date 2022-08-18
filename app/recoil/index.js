@@ -70,6 +70,8 @@ export const purchasemodalRecoilState = atom({key: 'purchasemodalRecoilState', d
 
 export const SoldOutConfirmModalRecoilState = atom({key: 'SoldOutConfirmModalRecoilState', default: false});
 
+export const SoldOutConfirmRecoilState = atom({key: 'SoldOutConfirmRecoilState', default: false});
+
 export const qrModalRecoilState = atom(
     {key: 'qrModalRecoilState', default: false}
 );

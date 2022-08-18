@@ -24,6 +24,9 @@ const CenterTitle = (props) => {
         case "ticketPurchaseText":
             template = <Text style={styles.text}>식권 구매하기</Text>
             break;
+        case "ticketPaymentsText":
+            template = <Text style={styles.text}>식권 결제</Text>
+            break;
         default:
             return template
     }

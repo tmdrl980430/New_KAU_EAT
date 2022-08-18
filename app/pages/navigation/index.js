@@ -10,10 +10,7 @@ import Main from "../screens/MainScreen";
 import WeekMeals from "../screens/MainScreen/WeekMealScreen";
 import MyTicket from "../screens/MainScreen/MyticketScreen";
 import TicketPurchase from "../screens/MainScreen/TicketPurchaseScreen";
-import BootPayScreen from '../screens/MainScreen/TicketPurchaseScreen/BootPayScreen/index';
-import IamPortScreen from '../screens/MainScreen/TicketPurchaseScreen/IamPortScreen';
-import Payment from '../screens/MainScreen/TicketPurchaseScreen/IamPortScreen/Payment';
-import GoBootpayTest from '../screens/MainScreen/TicketPurchaseScreen/BootPayScreen/GoBootpayTest';
+import Payment from '../screens/MainScreen/TicketPurchaseScreen/Payment';
 import QrCodeScreen from '../screens/MainScreen/QRcodeScreen';
 import {useRecoilState} from 'recoil';
 import {isLoginRecoilState, jwtRecoilState, userIdxRecoilState} from '../../recoil';
@@ -22,6 +19,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import axios from 'axios';
+import PurchaseConfirmScreen from '../screens/MainScreen/TicketPurchaseScreen/PurchaseConfirmScreen';
 
 const Stack = createNativeStackNavigator()
 
@@ -139,8 +137,7 @@ const Navigation = () => {
                                     <Stack.Screen name="WeekMeals" component={WeekMeals}></Stack.Screen>
                                     <Stack.Screen name="MyTicket" component={MyTicket}></Stack.Screen>
                                     <Stack.Screen name="TicketPurchase" component={TicketPurchase}></Stack.Screen>
-                                    <Stack.Screen name="BootPayScreen" component={BootPayScreen}></Stack.Screen>
-                                    <Stack.Screen name='IamPortScreen' component={IamPortScreen}></Stack.Screen>
+                                    <Stack.Screen name='PurchaseConfirmScreen' component={PurchaseConfirmScreen}></Stack.Screen>
                                     <Stack.Screen name='Payment' component={Payment}></Stack.Screen>
                                     <Stack.Screen name='QrCodeScreen' component={QrCodeScreen}></Stack.Screen>
                                 </Stack.Group>

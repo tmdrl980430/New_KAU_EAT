@@ -9,10 +9,10 @@ import {
     TouchableOpacity
 } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import BackBtn from '../../../../utils/backBtn/back'
-import CenterTitle from '../../../../utils/title/centerTitle';
-import PurchaseTable from './purchaseTable';
-import PurchaseBtn from './PurchaseBtn';
+import BackBtn from '../../../../../utils/backBtn/back'
+import CenterTitle from '../../../../../utils/title/centerTitle';
+import PurchaseTable from '../purchaseTable';
+import PurchaseBtn from '../PurchaseBtn';
 import {
     merchantUidRecoilState,
     purchaseTicketRecoilState,
@@ -22,12 +22,14 @@ import {
     jwtRecoilState,
     SoldOutConfirmModalRecoilState,
     SoldOutConfirmRecoilState
-} from '../../../../recoil';
+} from '../../../../../recoil';
 import {useRecoilState} from 'recoil';
 import axios from 'axios';
-import SoldOutConfirmModal from '../../../../utils/modal/soldoutConfirmModal';
+import SoldOutConfirmModal from '../../../../../utils/modal/soldoutConfirmModal';
+import PaymentsTableComponent from '../../../../../utils/purchase/payments';
+import PaymentsBtn from './PurchaseBtn';
 
-const TicketPurchaseScreen = ({navigation}) => {
+const PurchaseConfirmScreen = ({navigation}) => {
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -51,30 +53,27 @@ const TicketPurchaseScreen = ({navigation}) => {
 
     const [uid, setUid] = useRecoilState(merchantUidRecoilState);
 
-
     const [tableObject0, setTableObject0] = useState([]);
     const [tableObject1, setTableObject1] = useState([]);
     const [tableObject2, setTableObject2] = useState([]);
     const [tableObject3, setTableObject3] = useState([]);
+
+    const [ticketObject, setTicketObject] = useState([]);
 
     let cost = (purchaseTicket[0] * 3000) + (purchaseTicket[1] * 5000) + (
         purchaseTicket[2] * 6000
     ) + (purchaseTicket[3] * 5000)
 
     useEffect(() => {
-        setPurchaseTicket([0, 0, 0, 0]);
         getPruchaseTable();
+        setUid(date + '/' + currentTime + '/' + userIdx);
     }, []);
 
     useEffect(() => {
-        console.log('soldOutConfirmState: ', soldOutConfirmState);
+        console.log('uid: ', uid);
+    }, [uid]);
 
-        if (soldOutConfirmState === true) {
-            navigation.replace('PurchaseConfirmScreen')
-            setSoldOutConfirmState(false);
-        }
 
-    }, [soldOutConfirmState]);
 
     const getPruchaseTable = async () => {
         console.log('getPruchaseTable');
@@ -100,7 +99,7 @@ const TicketPurchaseScreen = ({navigation}) => {
                     setTableObject1(response.data.result[1]);
                     setTableObject2(response.data.result[2]);
                     setTableObject3(response.data.result[3]);
-
+                    setTicketObject(response.data.result);
                     console.log("조회", response.data.result[1]);
                 })
                 .catch((error) => {
@@ -116,48 +115,51 @@ const TicketPurchaseScreen = ({navigation}) => {
 
     };
 
-
     const clickPurchase = () => {
-        
-        //품절된 식권이 있을 떄 실행을 하는 것.
+        postCreatePayments();
+            navigation.replace('Payment', {uid: {
+                    uid
+                }})
 
-        if(purchaseTicket[0] > 0){
-            if(tableObject0.menu === null){
-                setSoldOutConfirmModalState(true);
-            } else {
-                if(tableObject0.menu.menuStatus === "ACTIVE"){
-                    setSoldOutConfirmModalState(true);
-                }
-            }
+    };
+
+    const postCreatePayments = async () => {
+        console.log('postCreatePayments');
+        setLoading(true);
+
+        try {
+            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+            setError(null);
+            console.log(jwt);
+            console.log(userIdx);
+
+            // loading 상태를 true 로 바꿉니다.
+            setLoading(true);
+
+            const response = await axios
+                .post(`http://3.38.35.114/payments`, {
+                    userIdx: userIdx,
+                    merchant_uid: uid,
+                    price: cost
+                }, {
+                    headers: {
+                        "x-access-token": jwt
+                    }
+                })
+                .then((response) => {
+                    console.log(`response 확인 : ${response.data.code}`);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            // 데이터는 response.data.code 안에 들어있다. console.log(response.data.result);
+        } catch (e) {
+            console.log("outerror", e);
+            setError(e);
         }
-        if(purchaseTicket[1] > 0){
-            if(tableObject1.menu === null){
-                setSoldOutConfirmModalState(true);
-            } else {
-                if(tableObject1.menu.menuStatus === "ACTIVE"){
-                    setSoldOutConfirmModalState(true);
-                }
-            }
-        }
-        if(purchaseTicket[2] > 0){
-            if(tableObject2.menu === null){
-                setSoldOutConfirmModalState(true);
-            } else {
-                if(tableObject2.menu.menuStatus === "ACTIVE"){
-                    setSoldOutConfirmModalState(true);
-                }
-            }
-        }
-        if(purchaseTicket[3] > 0){
-            if(tableObject3.menu === null){
-                setSoldOutConfirmModalState(true);
-            } else {
-                if(tableObject3.menu.menuStatus === "ACTIVE"){
-                    setSoldOutConfirmModalState(true);
-                }
-            }
-        }
-        console.log('purchaseTicket', purchaseTicket);
+
+        // loading 끄기
+        setLoading(false);
 
     };
 
@@ -169,22 +171,40 @@ const TicketPurchaseScreen = ({navigation}) => {
         )
     } else {
         return (
-            <SafeAreaView SafeAreaView="SafeAreaView" style={styles.safeAreaContainer}>
-                {soldOutConfirmmodalState != false && <SoldOutConfirmModal/>}
+            <SafeAreaView style={styles.safeAreaContainer}>
                 <ScrollView style={styles.container}>
                     <View style={styles.headerContainer}>
                         <TouchableOpacity onPress={() => navigation.replace('Main')}>
                             <BackBtn/>
                         </TouchableOpacity>
-                        < CenterTitle type={"ticketPurchaseText"}/>
+                        <CenterTitle type={"ticketPaymentsText"}/>
                         <View/>
                     </View>
-                    <PurchaseTable/>
+                    <View>
+                        {
+                            ticketObject && ticketObject.map((ticket, index) => (
+                                <PaymentsTableComponent
+                                        mealTypeName={ticket.mealTypeName}
+                                        menu={ticket.menu}
+                                        price={ticket.price}
+                                        count={purchaseTicket[index]}
+                                        key={index}/>
+                            ))
+                        }
+                    </View>
+                    <View style={styles.lineView}></View>
+                    <View style={styles.priceContainer}>
+                        <Text style={styles.priceText}>총 결제금액</Text>
+                        <Text style={styles.priceText}>{cost}원</Text>
+                    </View>
                     <TouchableOpacity style={styles.purchaseBtn} onPress={clickPurchase}>
-                        <PurchaseBtn/>
+                        <PaymentsBtn
+                            cost={cost}/>
                     </TouchableOpacity>
                 </ScrollView>
+
             </SafeAreaView>
+
         )
     }
 }
@@ -224,10 +244,26 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: 'center'
     },
+    priceContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginTop: hp('2.85%')
+    },
+    priceText: {
+        fontFamily: 'NotoSansKR-Bold',
+        fontSize: hp('1.8%'),
+        color: 'black'
+    },
+    lineView: {
+        height: hp('0.2%'),
+        backgroundColor: '#F4F4F4',
+        marginTop: hp('3%')
+    },
     purchaseBtn: {
-        marginTop: hp('7%'),
-        marginBottom: hp('10%')
+        marginTop: hp('50%'),
+        marginBottom: hp('10%'),
     }
 });
 
-export default TicketPurchaseScreen;
+export default PurchaseConfirmScreen;
