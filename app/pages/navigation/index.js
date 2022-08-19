@@ -13,7 +13,7 @@ import TicketPurchase from "../screens/MainScreen/TicketPurchaseScreen";
 import Payment from '../screens/MainScreen/TicketPurchaseScreen/Payment';
 import QrCodeScreen from '../screens/MainScreen/QRcodeScreen';
 import {useRecoilState} from 'recoil';
-import {isLoginRecoilState, jwtRecoilState, userIdxRecoilState} from '../../recoil';
+import {isLoginRecoilState, jwtRecoilState, paymentsRecoilState, userIdxRecoilState} from '../../recoil';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -24,6 +24,9 @@ import PurchaseConfirmScreen from '../screens/MainScreen/TicketPurchaseScreen/Pu
 const Stack = createNativeStackNavigator()
 
 const Navigation = () => {
+
+
+    const [paymentsState, setPamentsState] = useRecoilState(paymentsRecoilState);
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -123,7 +126,7 @@ const Navigation = () => {
     } else {
         return (
             <NavigationContainer>
-                <View style={styles.topContainer}></View>
+                {paymentsState != false && <View style={styles.topContainer}></View>}
                 <Stack.Navigator>
                     {
                         isLogIn
@@ -171,7 +174,7 @@ const styles = StyleSheet.create({
         ...Platform.select({
             ios: {
                 backgroundColor: 'white',
-                paddingTop: hp('5.7%')
+                paddingTop: hp('3.6%')
             },
             android: {
                 height: hp('0%')

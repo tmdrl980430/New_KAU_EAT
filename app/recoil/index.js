@@ -62,9 +62,17 @@ export const clickQrImgRecoilState = atom(
     {key: 'clickQrImgRecoilState', default: ""}
 );
 
+export const paymentsRecoilState = atom({key: 'paymentsRecoilState', default: false});
+
 export const modalRecoilState = atom({key: 'modalRecoilState', default: false});
 
 export const logoutmodalRecoilState = atom({key: 'logoutmodalRecoilState', default: false});
+
+export const phoneNumberRecoilState = atom({key: 'phoneNumberRecoilState', default: ''});
+
+export const phonecefimodalRecoilState = atom({key: 'phonecefimodalRecoilState', default: false});
+
+export const phoneceficonfirmmodalRecoilState = atom({key: 'phoneceficonfirmmodalRecoilState', default: false});
 
 export const purchasemodalRecoilState = atom({key: 'purchasemodalRecoilState', default: false});
 

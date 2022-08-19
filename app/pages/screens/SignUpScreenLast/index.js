@@ -16,7 +16,8 @@ import SignUpBtn from "./SignUpBtn";
 import BackBtn from '../../../utils/backBtn/back'
 import CenterTitle from '../../../utils/title/centerTitle';
 import {useRecoilState} from "recoil";
-import {cefiBtnRecoilState} from "../../../recoil";
+import {cefiBtnRecoilState, phoneceficonfirmmodalRecoilState, phonecefimodalRecoilState, phoneNumberRecoilState} from "../../../recoil";
+import PhoneCefiModal from "../../../utils/modal/phoneCefimodal";
 
 const SignUpLast = ({route, navigation}) => {
 
@@ -29,12 +30,19 @@ const SignUpLast = ({route, navigation}) => {
     const {password} = route.params.password
 
     const [nameInput, setNameInput] = useState('');
-    const [phoneNumInput, setPhoneNumInput] = useState('');
+    //const [phoneNumInput, setPhoneNumInput] = useState('');
+
+    const [phoneNumInput, setPhoneNumInput] = useRecoilState(phoneNumberRecoilState);
+
     const [certificationNumInput, setCertificationNumInput] = useState('');
     const [responseCertificationNum, setResponseCertificationNum] = useState('');
     const [certificationNumBtnStatus, setCertificationNumBtnStatus] = useRecoilState(
         cefiBtnRecoilState
     );
+
+    const [phoneCefimodalState, setPhoneCefiModalState] = useRecoilState(phonecefimodalRecoilState);
+
+    const [phoneCefiCofirmState, setPhoneCefiConfirmState] = useRecoilState(phoneceficonfirmmodalRecoilState);
 
     const [nameInputmessage, setNameInputmessage] = useState("");
     const [phoneNumberInputmessage, setPhoneNumberInputmessage] = useState("");
@@ -45,6 +53,9 @@ const SignUpLast = ({route, navigation}) => {
     const phoneNumberRegex = /^(01\d{1})([0-9]{3,4})([0-9]{4})$/;
 
     useEffect(() => {
+        setPhoneNumInput("");
+    }, [])
+    useEffect(() => {
         console.log("certificationNumBtnStatus", certificationNumBtnStatus);
 
         if (certificationNumInput != "" && responseCertificationNum != "" && certificationNumInput === responseCertificationNum) {
@@ -52,14 +63,19 @@ const SignUpLast = ({route, navigation}) => {
         }
     }, [certificationNumInput])
 
+
     useEffect(() => {
         console.log(phoneNumInput);
         console.log("phoneNumberRegex", phoneNumberRegex.test(phoneNumInput));
         console.log("certificationNumBtnStatus", certificationNumBtnStatus);
-        if (phoneNumberRegex.test(phoneNumInput) && certificationNumBtnStatus === true) {
+        if (phoneNumberRegex.test(phoneNumInput) && certificationNumBtnStatus === true && phoneCefiCofirmState == true ) {
+            
             requestCertificationPhone();
+
             setPhoneNumberInputmessage('');
             console.log("requestCertificationPhone 실행");
+            setPhoneCefiConfirmState(false);
+            setCertificationNumBtnStatus(false);
 
         } else if(phoneNumberRegex.test(phoneNumInput) === false) {
             setCertificationNumBtnStatus(false);
@@ -160,6 +176,9 @@ const SignUpLast = ({route, navigation}) => {
     } else {
         return (
             <ScrollView style={styles.container}>
+                {
+                    phoneCefimodalState != false && <PhoneCefiModal/>
+                }
                 <View style={styles.headerContainer}>
                     <TouchableOpacity onPress={() => navigation.replace('SignUp')}>
                         <BackBtn/>

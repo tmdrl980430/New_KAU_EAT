@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, ActivityIndicator, SafeAreaView} from 'react-nat
 import IMP from 'iamport-react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {useRecoilState} from 'recoil';
-import {jwtRecoilState, purchasemodalRecoilState, purchaseTicketRecoilState} from '../../../../../recoil';
+import {jwtRecoilState, paymentsRecoilState, purchasemodalRecoilState, purchaseTicketRecoilState} from '../../../../../recoil';
 import axios from 'axios';
 
 const Payment = ({navigation, route}) => {
@@ -16,6 +16,9 @@ const Payment = ({navigation, route}) => {
     const [purchasemodalState, setPurchaseModalState] = useRecoilState(purchasemodalRecoilState);
 
 
+    const [paymentsState, setPamentsState] = useRecoilState(paymentsRecoilState);
+
+
     //결제가 완료된 후 [0,0,0,0]으로 초기화를 시켜줘야 함(아직 안함)
     const [purchaseTicket, setPurchaseTicket] = useRecoilState(
         purchaseTicketRecoilState
@@ -25,6 +28,7 @@ const Payment = ({navigation, route}) => {
 
     useEffect(() => {
         console.log("uid", uid);
+        setPamentsState(true);
     }, []);
 
     const fetchPay = async (res) => {

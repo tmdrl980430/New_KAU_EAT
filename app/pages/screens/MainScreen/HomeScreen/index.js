@@ -20,7 +20,7 @@ import TicketPurchaseTitle from './ticketPurchaseTitle';
 import TodayMealBtn from './mealTableBtn';
 import MyTicketTitle from './myTicketTitle'
 import {useRecoilState} from 'recoil';
-import {clickQrImgRecoilState, modalRecoilState, purchasemodalRecoilState, qrModalRecoilState} from '../../../../recoil';
+import {clickQrImgRecoilState, modalRecoilState, paymentsRecoilState, purchasemodalRecoilState, qrModalRecoilState} from '../../../../recoil';
 
 import TicketCountModal from '../../../../utils/modal/tickeCountmodal'
 
@@ -39,6 +39,8 @@ const HomeScreen = ({navigation}) => {
     const [purchasemodalState, setPurchaseModalState] = useRecoilState(purchasemodalRecoilState);
 
 
+    const [paymentsState, setPamentsState] = useRecoilState(paymentsRecoilState);
+
     useEffect(() => {
 
         console.log("clickKind : ", clickKind);
@@ -55,6 +57,7 @@ const HomeScreen = ({navigation}) => {
 
         setModalState(false);
         setQeModalState(false);
+        setPamentsState(false);
 
     }, []);
 

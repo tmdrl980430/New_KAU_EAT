@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {useRecoilState} from "recoil";
-import {cefiBtnRecoilState} from "../../../recoil";
+import {cefiBtnRecoilState, phoneceficonfirmmodalRecoilState, phonecefimodalRecoilState, phoneNumberRecoilState} from "../../../recoil";
 import Input from "../../../utils/forms/input";
 
 const AuthForm = (props) => {
@@ -22,6 +22,13 @@ const AuthForm = (props) => {
     const [certificationNumBtnStatus, setCertificationNumBtnStatus] = useRecoilState(
         cefiBtnRecoilState
     );
+
+    const [phoneCefimodalState, setPhoneCefiModalState] = useRecoilState(phonecefimodalRecoilState);
+
+    const [phoneCefiCofirmState, setPhoneCefiConfirmState] = useRecoilState(phoneceficonfirmmodalRecoilState);
+
+
+    const [phoneNumInput, setPhoneNumInput] = useRecoilState(phoneNumberRecoilState);
 
     const [cefiing, setCefiIng] = useState(false);
 
@@ -40,9 +47,9 @@ const AuthForm = (props) => {
                 setMinute(Math.floor(count / 60));
                 setSecond(count % 60);
                 setCount(count - 1);
-                console.log('minute: ', minute);
-                console.log('second: ', second);
-                console.log('count: ', count);
+                // console.log('minute: ', minute);
+                // console.log('second: ', second);
+                // console.log('count: ', count);
 
     
                 if (count <= 0) {
@@ -67,22 +74,30 @@ const AuthForm = (props) => {
 
     }, [cefiing, certificationNumBtnStatus])
 
+    useEffect(() => {
+        if(phoneCefiCofirmState === true){
+
+            setCertificationNumBtnStatus(true);
+
+            if (isRunning) {
+                //clearInterval(timer);
+                setCefiIng(false);
+    
+                setCefiIng(true);
+                setCount(180);
+            } else {
+                setCefiIng(true);
+                setCount(180);
+            }
+        }
+
+    }, [phoneCefiCofirmState])
+
     const certificationPhone = () => {
 
         console.log("certificationPhone", certificationNumBtnStatus);
 
-        setCertificationNumBtnStatus(true);
-
-        if (isRunning) {
-            //clearInterval(timer);
-            setCefiIng(false);
-
-            setCefiIng(true);
-            setCount(180);
-        } else {
-            setCefiIng(true);
-            setCount(180);
-        }
+        setPhoneCefiModalState(true);
 
     }
 
@@ -104,12 +119,12 @@ const AuthForm = (props) => {
                         marginEnd: wp('3%')
                     }}>
                     <Input
-                        value={props.phoneNumInput}
+                        value={phoneNumInput}
                         type={"textinput"}
                         autoCapitalize={'none'}
                         keyboardType={'phone-pad'}
                         secureTextEntry={false}
-                        onChangeText={text => props.setPhoneNumInput(text)}
+                        onChangeText={text => setPhoneNumInput(text)}
                         placeholder='휴대폰 번호를 입력해주세요.'></Input>
                     {
                         props.phoneNumberInputmessage === ""
