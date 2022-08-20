@@ -4,10 +4,13 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import RigthArrow from '../../../../assets/images/right_arrow.png';
 import Ticket from '../../../../utils/ticket/userticket';
 import axios from 'axios';
-import {jwtRecoilState, userIdxRecoilState} from '../../../../recoil';
+import {jwtRecoilState, severURLRecoilState, userIdxRecoilState} from '../../../../recoil';
 import {useRecoilState} from 'recoil';
 
 const TicketList = () => {
+
+    const [IP, setIP] = useRecoilState(severURLRecoilState);
+
 
     const [loading, setLoading] = useState(false);
 
@@ -49,7 +52,7 @@ const TicketList = () => {
 
             const response = await axios
                 .get(
-                    `http://3.38.35.114/mealtickets?userIdx=${userIdx}&date=${today}`,
+                    `${IP}/mealtickets?userIdx=${userIdx}&date=${today}`,
                     {
                         headers: {
                             "x-access-token": jwt

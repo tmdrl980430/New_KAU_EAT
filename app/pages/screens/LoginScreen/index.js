@@ -15,12 +15,15 @@ import LoginHeader from "./Header";
 import Introduction from "./introduction";
 import LoginBtn from "./LoginBtn";
 import {useRecoilState} from "recoil";
-import {isLoginRecoilState, jwtRecoilState} from "../../../recoil";
+import {isLoginRecoilState, jwtRecoilState, severURLRecoilState} from "../../../recoil";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({
     navigation
 }, props) => {
+
+
+    const [IP, setIP] = useRecoilState(severURLRecoilState);
 
     const [loading, setLoading] = useState(false)
     const [login, setLogin] = useRecoilState(isLoginRecoilState);
@@ -80,7 +83,7 @@ const Login = ({
                 setLoading(true);
 
                 const response = await axios
-                    .post(`http://3.38.35.114/auth/login`, {
+                    .post(`${IP}/auth/login`, {
                         id: emailInput,
                         password: passwordInput
                     })

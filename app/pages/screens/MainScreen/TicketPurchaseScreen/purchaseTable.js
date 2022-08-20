@@ -13,7 +13,7 @@ import axios from 'axios';
 
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {useRecoilState} from 'recoil';
-import {dateRecoilState, jwtRecoilState, purchaseTicketRecoilState} from '../../../../recoil';
+import {dateRecoilState, jwtRecoilState, purchaseTicketRecoilState, severURLRecoilState} from '../../../../recoil';
 
 import PurchaseTableComponent from '../../../../utils/purchase/purchase';
 import PurchaseComponent from './purchaseComponent'
@@ -22,6 +22,9 @@ import PurchaseComponent2 from './purchaseComponent2'
 import PurchaseComponent3 from './purchaseComponent3'
 
 const PurchaseTable = () => {
+
+    const [IP, setIP] = useRecoilState(severURLRecoilState);
+
 
     const [loading, setLoading] = useState(false)
 
@@ -84,7 +87,7 @@ const PurchaseTable = () => {
             setLoading(true);
 
             const response = await axios
-                .get(`http://3.38.35.114/meals?date=${date}`, {
+                .get(`${IP}/meals?date=${date}`, {
                     headers: {
                         "x-access-token": jwt
                     }

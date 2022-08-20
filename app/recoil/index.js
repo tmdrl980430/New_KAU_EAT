@@ -1,6 +1,9 @@
 import React from "react";
 import {atom} from "recoil";
 
+
+export const severURLRecoilState = atom({key: 'severURLRecoilState', default: 'http://3.38.35.114/web'});
+
 export const jwtRecoilState = atom({key: 'jwtRecoilState', default: ''});
 
 export const userIdxRecoilState = atom(

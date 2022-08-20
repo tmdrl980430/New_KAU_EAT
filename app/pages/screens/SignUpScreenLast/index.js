@@ -16,10 +16,13 @@ import SignUpBtn from "./SignUpBtn";
 import BackBtn from '../../../utils/backBtn/back'
 import CenterTitle from '../../../utils/title/centerTitle';
 import {useRecoilState} from "recoil";
-import {cefiBtnRecoilState, phoneceficonfirmmodalRecoilState, phonecefimodalRecoilState, phoneNumberRecoilState} from "../../../recoil";
+import {cefiBtnRecoilState, phoneceficonfirmmodalRecoilState, phonecefimodalRecoilState, phoneNumberRecoilState, severURLRecoilState} from "../../../recoil";
 import PhoneCefiModal from "../../../utils/modal/phoneCefimodal";
 
 const SignUpLast = ({route, navigation}) => {
+
+    const [IP, setIP] = useRecoilState(severURLRecoilState);
+
 
     const [loading, setLoading] = useState(false)
     const [signUp, setSignUp] = useState('');
@@ -99,7 +102,7 @@ const SignUpLast = ({route, navigation}) => {
 
             const response = await axios
                 .post(
-                    `http://3.38.35.114/auth/phone`,
+                    `${IP}/auth/phone`,
                     {phoneNumber: phoneNumInput}
                 )
                 .then((response) => {

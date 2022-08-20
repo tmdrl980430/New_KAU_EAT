@@ -16,8 +16,12 @@ import Introduction from "./introduction";
 import SignUpBtn from "./SignUpBtn";
 import BackBtn from '../../../utils/backBtn/back'
 import CenterTitle from '../../../utils/title/centerTitle';
+import { severURLRecoilState } from "../../../recoil";
 
 const SignUp = ({navigation}) => {
+
+    const [IP, setIP] = useRecoilState(severURLRecoilState);
+
 
     const [signUp, setSignUp] = useState('');
     const [loading, setLoading] = useState(false);
@@ -70,7 +74,7 @@ const SignUp = ({navigation}) => {
                     setPasswordcheckInputmessage("");
                     const response = await axios
                         .get(
-                            `http://3.38.35.114/auth/duplicate-id?id=${id}`
+                            `${IP}/auth/duplicate-id?id=${id}`
                         )
                         .then((response) => {
                             console.log(`response code확인 : ${response.data.code}`);

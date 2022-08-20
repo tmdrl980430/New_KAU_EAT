@@ -19,6 +19,7 @@ import {
     isLoginRecoilState,
     jwtRecoilState,
     logoutmodalRecoilState,
+    severURLRecoilState,
     userIdRecoilState,
     userIdxRecoilState,
     userNameRecoilState,
@@ -29,6 +30,9 @@ import axios from 'axios';
 import LogoutModal from '../../../../utils/modal/logoutmodal';
 
 const MyPageScreen = ({navigation}) => {
+
+    const [IP, setIP] = useRecoilState(severURLRecoilState);
+
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -69,7 +73,7 @@ const MyPageScreen = ({navigation}) => {
             setLoading(true);
 
             const response = await axios
-                .get(`http://3.38.35.114/users/${userIdx}`, {
+                .get(`${IP}/users/${userIdx}`, {
                     headers: {
                         "x-access-token": jwt
                     }

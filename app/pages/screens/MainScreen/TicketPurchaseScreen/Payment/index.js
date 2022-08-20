@@ -3,10 +3,13 @@ import {View, Text, StyleSheet, ActivityIndicator, SafeAreaView} from 'react-nat
 import IMP from 'iamport-react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {useRecoilState} from 'recoil';
-import {jwtRecoilState, paymentsRecoilState, purchasemodalRecoilState, purchaseTicketRecoilState} from '../../../../../recoil';
+import {jwtRecoilState, paymentsRecoilState, purchasemodalRecoilState, purchaseTicketRecoilState, severURLRecoilState} from '../../../../../recoil';
 import axios from 'axios';
 
 const Payment = ({navigation, route}) => {
+
+    const [IP, setIP] = useRecoilState(severURLRecoilState);
+
 
     const [error, setError] = useState(null);
 
@@ -36,7 +39,7 @@ const Payment = ({navigation, route}) => {
         if (res.imp_success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
             // axios로 HTTP 요청
             axios({
-                url: `http://3.38.35.114/payments/complete`, // 예: https://www.myservice.com/payments/complete
+                url: `${IP}/payments/complete`, // 예: https://www.myservice.com/payments/complete
                 method: "post",
                 headers: {
                     "Content-Type": "application/json",

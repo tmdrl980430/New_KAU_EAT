@@ -21,7 +21,8 @@ import {
     currentTimeRecoilState,
     jwtRecoilState,
     SoldOutConfirmModalRecoilState,
-    SoldOutConfirmRecoilState
+    SoldOutConfirmRecoilState,
+    severURLRecoilState
 } from '../../../../../recoil';
 import {useRecoilState} from 'recoil';
 import axios from 'axios';
@@ -30,6 +31,9 @@ import PaymentsTableComponent from '../../../../../utils/purchase/payments';
 import PaymentsBtn from './PurchaseBtn';
 
 const PurchaseConfirmScreen = ({navigation}) => {
+
+    const [IP, setIP] = useRecoilState(severURLRecoilState);
+
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -88,7 +92,7 @@ const PurchaseConfirmScreen = ({navigation}) => {
             setLoading(true);
 
             const response = await axios
-                .get(`http://3.38.35.114/meals?date=${date}`, {
+                .get(`${IP}/meals?date=${date}`, {
                     headers: {
                         "x-access-token": jwt
                     }

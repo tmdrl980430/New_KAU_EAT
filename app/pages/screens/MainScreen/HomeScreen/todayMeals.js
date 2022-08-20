@@ -3,12 +3,14 @@ import {Text, View, StyleSheet, Image, SafeAreaView} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Carousel from 'react-native-snap-carousel';
 import {useRecoilState} from 'recoil';
-import {dateRecoilState, jwtRecoilState} from '../../../../recoil';
+import {dateRecoilState, jwtRecoilState, severURLRecoilState} from '../../../../recoil';
 import axios from 'axios';
 
 import LogoImage from '../../../../assets/images/kau_logo_today_meal.png';
 
 const MealList = () => {
+
+    const [IP, setIP] = useRecoilState(severURLRecoilState);
 
     const [jwt, setJwt] = useRecoilState(jwtRecoilState)
     const [date, setDate] = useRecoilState(dateRecoilState)
@@ -53,7 +55,7 @@ const MealList = () => {
             // axios     .defaults     .headers     .common['x-access-token'] = jwt
 
             const response = await axios
-                .get(`http://3.38.35.114/meals?date=${date}`, {
+                .get(`${IP}/meals?date=${date}`, {
                     headers: {
                         "x-access-token": jwt
                     }

@@ -13,7 +13,7 @@ import TicketPurchase from "../screens/MainScreen/TicketPurchaseScreen";
 import Payment from '../screens/MainScreen/TicketPurchaseScreen/Payment';
 import QrCodeScreen from '../screens/MainScreen/QRcodeScreen';
 import {useRecoilState} from 'recoil';
-import {isLoginRecoilState, jwtRecoilState, paymentsRecoilState, userIdxRecoilState} from '../../recoil';
+import {isLoginRecoilState, jwtRecoilState, paymentsRecoilState, severURLRecoilState, userIdxRecoilState} from '../../recoil';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -25,6 +25,7 @@ const Stack = createNativeStackNavigator()
 
 const Navigation = () => {
 
+    const [IP, setIP] = useRecoilState(severURLRecoilState);
 
     const [paymentsState, setPamentsState] = useRecoilState(paymentsRecoilState);
 
@@ -65,7 +66,7 @@ const Navigation = () => {
             setLoading(true);
 
             const response = await axios
-                .get(`http://3.38.35.114/auth/jwt`, {
+                .get(`${IP}/auth/jwt`, {
                     headers: {
                         "x-access-token": jwt
                     }

@@ -13,11 +13,14 @@ import axios from 'axios';
 
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {useRecoilState} from 'recoil';
-import {dateRecoilState, jwtRecoilState} from '../../../../recoil';
+import {dateRecoilState, jwtRecoilState, severURLRecoilState} from '../../../../recoil';
 
 import MealTableComponent from '../../../../utils/meals/meal';
 
 const MealTable = () => {
+
+    const [IP, setIP] = useRecoilState(severURLRecoilState);
+
 
     const [loading, setLoading] = useState(false)
 
@@ -62,7 +65,7 @@ const MealTable = () => {
             setLoading(true);
 
             const response = await axios
-                .get(`http://3.38.35.114/meals?date=${date}`, {
+                .get(`${IP}/meals?date=${date}`, {
                     headers: {
                         "x-access-token": jwt
                     }
