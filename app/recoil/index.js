@@ -4,6 +4,8 @@ import {atom} from "recoil";
 
 export const severURLRecoilState = atom({key: 'severURLRecoilState', default: 'http://3.38.35.114/web'});
 
+export const phoneDuplicateRecoilState = atom({key: 'phoneDuplicateRecoilState', default: false});
+
 export const jwtRecoilState = atom({key: 'jwtRecoilState', default: ''});
 
 export const userIdxRecoilState = atom(
@@ -70,6 +72,8 @@ export const paymentsRecoilState = atom({key: 'paymentsRecoilState', default: fa
 export const modalRecoilState = atom({key: 'modalRecoilState', default: false});
 
 export const logoutmodalRecoilState = atom({key: 'logoutmodalRecoilState', default: false});
+
+export const findIdmodalRecoilState = atom({key: 'findIdmodalRecoilState', default: false});
 
 export const phoneNumberRecoilState = atom({key: 'phoneNumberRecoilState', default: ''});
 

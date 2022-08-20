@@ -17,6 +17,7 @@ import SignUpBtn from "./SignUpBtn";
 import BackBtn from '../../../utils/backBtn/back'
 import CenterTitle from '../../../utils/title/centerTitle';
 import { severURLRecoilState } from "../../../recoil";
+import { useRecoilState } from "recoil";
 
 const SignUp = ({navigation}) => {
 

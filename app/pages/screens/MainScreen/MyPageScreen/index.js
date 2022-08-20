@@ -121,9 +121,9 @@ const MyPageScreen = ({navigation}) => {
                         <UserTicket/>
                     </TouchableOpacity>
                     <View style={styles.lineView}/>
-                    <View style={styles.userInfoChangeContainer}>
+                    <TouchableOpacity style={styles.userInfoChangeContainer} onPress={() => navigation.replace('ChangePasswordScreen')}>
                         <UserInfoChange/>
-                    </View>
+                    </TouchableOpacity>
                     <View style={styles.lineView}/>
                     <TouchableOpacity onPress={logOutMadal}>
                         <Text style={styles.logOutText}>로그아웃</Text>

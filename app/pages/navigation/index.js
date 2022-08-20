@@ -6,6 +6,10 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import Login from "../screens/LoginScreen";
 import SignUp from "../screens/SignUpScreen";
 import SignUpLast from "../screens/SignUpScreenLast";
+import FindPasswordScreen from '../screens/FindPasswordScreen';
+import FindIdScreen from '../screens/FindIdScreen';
+import ChangePasswordScreenLogin from '../screens/LoginScreen/ChangePasswordScreen';
+import ChangePasswordScreen from '../screens/MainScreen/MyPageScreen/ChangePasswordScreen';
 import Main from "../screens/MainScreen";
 import WeekMeals from "../screens/MainScreen/WeekMealScreen";
 import MyTicket from "../screens/MainScreen/MyticketScreen";
@@ -144,6 +148,8 @@ const Navigation = () => {
                                     <Stack.Screen name='PurchaseConfirmScreen' component={PurchaseConfirmScreen}></Stack.Screen>
                                     <Stack.Screen name='Payment' component={Payment}></Stack.Screen>
                                     <Stack.Screen name='QrCodeScreen' component={QrCodeScreen}></Stack.Screen>
+                                    <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen}></Stack.Screen>
+
                                 </Stack.Group>
                             )
                             : (
@@ -155,6 +161,9 @@ const Navigation = () => {
                                     <Stack.Screen name="Login" component={Login} setIsLogin={setIsLogin}></Stack.Screen>
                                     <Stack.Screen name="SignUp" component={SignUp}></Stack.Screen>
                                     <Stack.Screen name="SignUpLast" component={SignUpLast}></Stack.Screen>
+                                    <Stack.Screen name="FindPasswordScreen" component={FindPasswordScreen}></Stack.Screen>
+                                    <Stack.Screen name="FindIdScreen" component={FindIdScreen}></Stack.Screen>
+                                    <Stack.Screen name="ChangePasswordScreenLogin" component={ChangePasswordScreenLogin}></Stack.Screen>
                                 </Stack.Group>
                             )
                     }

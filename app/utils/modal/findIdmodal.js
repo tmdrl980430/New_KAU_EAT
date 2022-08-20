@@ -13,45 +13,36 @@ import MinusImg from '../../assets/images/minus_arrow.png'
 import PlusImg from '../../assets/images/plus_arrow.png'
 import CloseImg from '../../assets/images/close.png'
 import {useRecoilState} from "recoil";
-import {phoneceficonfirmmodalRecoilState, phonecefimodalRecoilState} from "../../recoil";
+import {jwtRecoilState, findIdmodalRecoilState} from "../../recoil";
 
 //재사용 가능 제목 component
 
-const PhoneCefiModal = () => {
+const FindIdModal = (props) => {
 
-    const [phoneCefimodalState, setPhoneCefiModalState] = useRecoilState(phonecefimodalRecoilState);
+    const [findIdmodalState, setFindIdModalState] = useRecoilState(findIdmodalRecoilState);
 
-
-    const [phoneCefiCofirmState, setPhoneCefiConfirmState] = useRecoilState(phoneceficonfirmmodalRecoilState);
-
-    const clickCancle = () => {
-        setPhoneCefiModalState(false);
-    }
 
     const clickConfirm = () => {
-        setPhoneCefiModalState(false);
-        setPhoneCefiConfirmState(true);
+        setFindIdModalState(false);
     }
 
     return (
-        <Modal animationType="fade" transparent={false} visible={phoneCefimodalState}>
+        <Modal animationType="fade" transparent={false} visible={findIdmodalState}>
             <View style={styles.bigmodalContainer}>
                 <View style={styles.modalContainer}>
                     <View style={styles.closeContainer}>
                         <View/>
                         <TouchableOpacity
                             onPress={() => {
-                                setPhoneCefiModalState(false);
+                                setLogoutModalState(false);
+                                setClickKind("");
                             }}>
                             <Image style={styles.closeImg} source={CloseImg} resizeMode={'contain'}/>
                         </TouchableOpacity>
                     </View>
 
-                    <Text style={styles.descirptionText}>인증번호를{'\n'}받으시겠습니까?</Text>
+                    <Text style={styles.descirptionText}>유저의 아이디는{'\n'}{props.findId}입니다.</Text>
                     <View style={styles.buttonContainer}>
-                        <TouchableOpacity style={styles.cancleContainer} onPress={clickCancle} >
-                            <Text style={styles.cancleText}>취소</Text>
-                        </TouchableOpacity>
                         <TouchableOpacity style={styles.confirmContainer} onPress={clickConfirm}>
                             <Text style={styles.confirmText}>확인</Text>
                         </TouchableOpacity>
@@ -168,4 +159,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default PhoneCefiModal;
+export default FindIdModal;

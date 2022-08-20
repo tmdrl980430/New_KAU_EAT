@@ -27,6 +27,15 @@ const CenterTitle = (props) => {
         case "ticketPaymentsText":
             template = <Text style={styles.text}>식권 결제</Text>
             break;
+        case "findPasswordText":
+            template = <Text style={styles.text}>비밀번호 찾기</Text>
+            break;
+        case "changePasswordText":
+            template = <Text style={styles.text}>비밀번호 변경</Text>
+            break;
+        case "findIdText":
+            template = <Text style={styles.text}>아이디 찾기</Text>
+            break;
         default:
             return template
     }

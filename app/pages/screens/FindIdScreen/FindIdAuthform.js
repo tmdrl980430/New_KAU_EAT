@@ -18,10 +18,9 @@ const AuthForm = (props) => {
 
     const [loading, setLoading] = useState(false)
 
-    const [error, setError] = useState(null);
-
     const [IP, setIP] = useRecoilState(severURLRecoilState);
 
+    const [error, setError] = useState(null);
 
     const [certificationNumBtnStatus, setCertificationNumBtnStatus] = useRecoilState(
         cefiBtnRecoilState
@@ -30,6 +29,8 @@ const AuthForm = (props) => {
     const [phoneCefimodalState, setPhoneCefiModalState] = useRecoilState(phonecefimodalRecoilState);
 
     const [phoneCefiCofirmState, setPhoneCefiConfirmState] = useRecoilState(phoneceficonfirmmodalRecoilState);
+
+
     const [duplicatePhone, setDuplicatePhone] = useRecoilState(phoneDuplicateRecoilState);
 
 
@@ -101,56 +102,13 @@ const AuthForm = (props) => {
     const certificationPhone = () => {
 
         console.log("certificationPhone", certificationNumBtnStatus);
+        setPhoneCefiModalState(true);
 
-        phoneNumberDuplicate();
-        if(duplicatePhone === true){
-            setPhoneCefiModalState(true);
-        } else {
-            props.setPhoneNumberInputmessage('이미 가입된 휴대폰 번호입니다.');
-        }
     }
 
-    const phoneNumberDuplicate = async () => {
-        console.log('phoneNumberDuplicate')
-        try {
-            setError(null);
-            const responseDuplicate = await axios
-                .get(
-                    `${IP}/auth/duplicate-phone?phoneNumber=${phoneNumInput}`
-                )
-                .then((res) => {
-                    console.log(res);
-                    console.log(res.data.code);
-                    if (res.data.code === 1000) {
-                        setDuplicatePhone(true);
-                    } else if (res.data.code === 3010) {
-                        setDuplicatePhone(false);
-                    } else {
-                        setDuplicatePhone(false);
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                    setDuplicatePhone(false);
-                });
-            // 데이터는 response.data.code 안에 들어있다.
-
-        } catch (e) {
-            console.log('outerror')
-            setError(e);
-        }
-    };
 
     return (
         <View style={styles.container}>
-            <Text style={styles.titleText}>이름</Text>
-            <Input
-                value={props.nameInput}
-                type={"textinput"}
-                autoCapitalize={'none'}
-                keyboardType={'default'}
-                placeholder='이름을 입력해주세요.'
-                onChangeText={text => props.setNameInput(text)}/>
             <Text style={styles.titleText}>휴대폰 번호</Text>
             <View style={styles.phoneArea}>
                 <View

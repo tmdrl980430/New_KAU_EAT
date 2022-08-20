@@ -22,7 +22,6 @@ const Login = ({
     navigation
 }, props) => {
 
-
     const [IP, setIP] = useRecoilState(severURLRecoilState);
 
     const [loading, setLoading] = useState(false)
@@ -38,9 +37,8 @@ const Login = ({
     const [idInputmessage, setIdInputmessage] = useState("");
     const [passwordInputmessage, setPasswordInputmessage] = useState("");
 
-    // useEffect(() => {     console.log(emailInput),
-    // console.log(passwordInput),     console.log(login) }, [emailInput,
-    // passwordInput, login])
+    // useEffect(() => {     console.log(emailInput), console.log(passwordInput),
+    // console.log(login) }, [emailInput, passwordInput, login])
 
     useEffect(() => {
         storeJwt(jwt);
@@ -156,7 +154,13 @@ const Login = ({
                     <LoginBtn/>
                 </TouchableOpacity>
                 <View style={styles.signuptextArea}>
-                    <TouchableOpacity onPress={() => navigation.navigate('SignUpLast')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('FindIdScreen')}>
+                        <Text style={styles.signuptext}>아이디 찾기</Text>
+                    </TouchableOpacity>
+                    <Text style={styles.signuptext}>
+                        |
+                    </Text>
+                    <TouchableOpacity onPress={() => navigation.navigate('FindPasswordScreen')}>
                         <Text style={styles.signuptext}>비밀번호 찾기</Text>
                     </TouchableOpacity>
                     <Text style={styles.signuptext}>
