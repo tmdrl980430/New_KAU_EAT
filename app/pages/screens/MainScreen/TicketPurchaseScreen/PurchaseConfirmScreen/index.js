@@ -84,9 +84,11 @@ const PurchaseConfirmScreen = ({navigation}) => {
         let milliseconds = koreaNow.getMilliseconds(); //밀리초
         const currentTime = hours + ':' + minutes + ':' + seconds + ':' +
                 milliseconds
-                
+
         getPruchaseTable();
+
         setUid(today + '/' + currentTime + '/' + userIdx);
+
     }, []);
 
     useEffect(() => {
@@ -135,9 +137,6 @@ const PurchaseConfirmScreen = ({navigation}) => {
 
     const clickPurchase = () => {
         postCreatePayments();
-        navigation.replace('Payment', {uid: {
-                uid
-            }})
 
     };
 
@@ -155,7 +154,7 @@ const PurchaseConfirmScreen = ({navigation}) => {
             setLoading(true);
 
             const response = await axios
-                .post(`http://3.38.35.114/payments`, {
+                .post(`${IP}/payments`, {
                     userIdx: userIdx,
                     merchant_uid: uid,
                     price: cost
@@ -166,6 +165,11 @@ const PurchaseConfirmScreen = ({navigation}) => {
                 })
                 .then((response) => {
                     console.log(`response 확인 : ${response.data.code}`);
+                    if(response.data.code === 1000){
+                        navigation.replace('Payment', {uid: {
+                            uid
+                        }})
+                    }
                 })
                 .catch((error) => {
                     console.log(error);
@@ -200,7 +204,7 @@ const PurchaseConfirmScreen = ({navigation}) => {
                         <CenterTitle type={"ticketPaymentsText"}/>
                         <View/>
                     </View>
-                    <View>
+                    <View style={styles.tableContainer}>
                         {
                             ticketObject && ticketObject.map((ticket, index) => (
                                 <PaymentsTableComponent
@@ -250,10 +254,19 @@ const styles = StyleSheet.create({
     },
     container: {
         backgroundColor: 'white',
-        paddingLeft: wp('10%'),
-        paddingRight: wp('10%'),
+        paddingLeft: wp('9%'),
+        paddingRight: wp('9%'),
         width: wp('100%'),
         height: hp('100%')
+    },
+    tableContainer: {
+        ...Platform.select({
+            ios: {},
+            android: {
+                paddingStart: wp('0.5%'),
+                paddingEnd: wp('4%')
+            }
+        })
     },
     logoArea: {
         width: '100%',

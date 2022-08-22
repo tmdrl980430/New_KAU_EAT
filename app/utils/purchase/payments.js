@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         marginTop: hp('3%'),
         flexDirection: 'column',
         backgroundColor: 'white',
-        width: '100%',
+        width: wp('80%'),
         borderRadius: 12,
         ...Platform.select({
             ios: {
@@ -92,6 +92,8 @@ const styles = StyleSheet.create({
         color: '#1F2C37'
     },
     priceContainer: {
+        marginTop : hp('1%'),
+        marginBottom : hp('1%'),
         paddingStart: wp('5%'),
         paddingEnd: wp('5%'),
         flexDirection: 'row',
