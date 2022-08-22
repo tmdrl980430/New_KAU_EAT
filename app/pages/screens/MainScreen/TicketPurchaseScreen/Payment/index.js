@@ -3,24 +3,35 @@ import {View, Text, StyleSheet, ActivityIndicator, SafeAreaView} from 'react-nat
 import IMP from 'iamport-react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {useRecoilState} from 'recoil';
-import {jwtRecoilState, paymentsRecoilState, purchasemodalRecoilState, purchaseTicketRecoilState, severURLRecoilState} from '../../../../../recoil';
+import {
+    dateRecoilState,
+    jwtRecoilState,
+    paymentsRecoilState,
+    purchasemodalRecoilState,
+    purchaseTicketRecoilState,
+    severURLRecoilState,
+    userIdxRecoilState
+} from '../../../../../recoil';
 import axios from 'axios';
 
 const Payment = ({navigation, route}) => {
 
     const [IP, setIP] = useRecoilState(severURLRecoilState);
 
-
     const [error, setError] = useState(null);
 
     const [loading, setLoading] = useState(false);
     const [jwt, setJwt] = useRecoilState(jwtRecoilState);
 
-    const [purchasemodalState, setPurchaseModalState] = useRecoilState(purchasemodalRecoilState);
+    const [purchasemodalState, setPurchaseModalState] = useRecoilState(
+        purchasemodalRecoilState
+    );
 
+    const [userIdx, setUserIdx] = useRecoilState(userIdxRecoilState);
 
-    const [paymentsState, setPamentsState] = useRecoilState(paymentsRecoilState);
+    const [date, setDate] = useRecoilState(dateRecoilState);
 
+    const [paymentsState, setPaymentsState] = useRecoilState(paymentsRecoilState);
 
     //결제가 완료된 후 [0,0,0,0]으로 초기화를 시켜줘야 함(아직 안함)
     const [purchaseTicket, setPurchaseTicket] = useRecoilState(
@@ -31,7 +42,7 @@ const Payment = ({navigation, route}) => {
 
     useEffect(() => {
         console.log("uid", uid);
-        setPamentsState(true);
+        setPaymentsState(true);
     }, []);
 
     const fetchPay = async (res) => {
@@ -49,21 +60,66 @@ const Payment = ({navigation, route}) => {
                     imp_uid: res.imp_uid,
                     merchant_uid: res.merchant_uid
                 }
-            }).then((res) => {
-                // 서버 결제 API 성공시 로직
-                console.log('callBackres', res);
-                setPurchaseModalState(true);
-
-            }).catch ((e) => {
-                console.log(`out payerror : ${e}`);
             })
-        } else {
+                .then((res) => {
+                    // 서버 결제 API 성공시 로직
+                    console.log('callBackres', res.data.code);
+
+                    if (res.data.code === 1000) {
+                        userTicketModify();
+                        setPurchaseModalState(false);
+                    } else {
+                        setPurchaseModalState(true);
+                    }
+                })
+                .catch((e) => {
+                    console.log(`out payerror : ${e}`);
+                })
+            } else {
             //결제 실패 modal 띄워주기 (진행안함)
             console.log(`결제에 실패하였습니다. 에러 내용: ${res.error_msg}`);
             setPurchaseModalState(true);
         }
 
     };
+
+    const userTicketModify = async () => {
+        console.log('userTicketModify');
+
+        const response = await axios
+            .patch(`${IP}/mealtickets?type=buy`, {
+                userIdx: userIdx,
+                date: date,
+                mealTickets: [
+                    {
+                        mealTypeIdx: 1,
+                        amount: purchaseTicket[0]
+                    }, {
+                        mealTypeIdx: 2,
+                        amount: purchaseTicket[1]
+                    }, {
+                        mealTypeIdx: 3,
+                        amount: purchaseTicket[2]
+                    }, {
+                        mealTypeIdx: 4,
+                        amount: purchaseTicket[3]
+                    }
+                ]
+            })
+            .then((response) => {
+                console.log(`response code확인`, response);
+
+                if (response.data.code == 1000) {
+                    console.log('수정 완료');
+
+                    setPurchaseTicket([0, 0, 0, 0])
+                    navigation.replace('Main');
+                }
+            })
+            .catch((error) => {
+                console.log(`error : `, error);
+            });
+    }
 
     let cost = (purchaseTicket[0] * 3000) + (purchaseTicket[1] * 5000) + (
         purchaseTicket[2] * 6000
@@ -94,7 +150,7 @@ const Payment = ({navigation, route}) => {
         console.log('callBackres.merchant_uid', res.merchant_uid);
         console.log('callBackres.imp_success', res.imp_success);
         fetchPay(res);
-        
+
         console.groupEnd('callback');
 
         console.group('userData');

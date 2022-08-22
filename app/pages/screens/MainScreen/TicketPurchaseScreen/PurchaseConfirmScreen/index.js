@@ -34,7 +34,6 @@ const PurchaseConfirmScreen = ({navigation}) => {
 
     const [IP, setIP] = useRecoilState(severURLRecoilState);
 
-
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [jwt, setJwt] = useRecoilState(jwtRecoilState);
@@ -69,15 +68,30 @@ const PurchaseConfirmScreen = ({navigation}) => {
     ) + (purchaseTicket[3] * 5000)
 
     useEffect(() => {
+        const now = new Date();
+
+        const utcNow = now.getTime() + (now.getTimezoneOffset() * 60 * 1000); // 현재 시간을 utc로 변환한 밀리세컨드값
+        const koreaTimeDiff = 9 * 60 * 60 * 1000; // 한국 시간은 UTC보다 9시간 빠름(9시간의 밀리세컨드 표현)
+        const koreaNow = new Date(utcNow + koreaTimeDiff); // utc로 변환된 값을 한국 시간으로 변환시키기 위해 9시간(밀리세컨드)를 더함
+
+        const today = String(koreaNow.getFullYear()) + '-' + String(
+            koreaNow.getMonth() + 1
+        ).padStart(2, '0') + '-' + String(koreaNow.getDate()).padStart(2, '0')
+
+        let hours = koreaNow.getHours(); //시
+        let minutes = koreaNow.getMinutes(); //분
+        let seconds = koreaNow.getSeconds(); //초
+        let milliseconds = koreaNow.getMilliseconds(); //밀리초
+        const currentTime = hours + ':' + minutes + ':' + seconds + ':' +
+                milliseconds
+                
         getPruchaseTable();
-        setUid(date + '/' + currentTime + '/' + userIdx);
+        setUid(today + '/' + currentTime + '/' + userIdx);
     }, []);
 
     useEffect(() => {
         console.log('uid: ', uid);
     }, [uid]);
-
-
 
     const getPruchaseTable = async () => {
         console.log('getPruchaseTable');
@@ -121,9 +135,9 @@ const PurchaseConfirmScreen = ({navigation}) => {
 
     const clickPurchase = () => {
         postCreatePayments();
-            navigation.replace('Payment', {uid: {
-                    uid
-                }})
+        navigation.replace('Payment', {uid: {
+                uid
+            }})
 
     };
 
@@ -178,7 +192,9 @@ const PurchaseConfirmScreen = ({navigation}) => {
             <SafeAreaView style={styles.safeAreaContainer}>
                 <ScrollView style={styles.container}>
                     <View style={styles.headerContainer}>
-                        <TouchableOpacity onPress={() => navigation.replace('Main')} activeOpacity={0.95}>
+                        <TouchableOpacity
+                            onPress={() => navigation.replace('Main')}
+                            activeOpacity={0.95}>
                             <BackBtn/>
                         </TouchableOpacity>
                         <CenterTitle type={"ticketPaymentsText"}/>
@@ -188,11 +204,11 @@ const PurchaseConfirmScreen = ({navigation}) => {
                         {
                             ticketObject && ticketObject.map((ticket, index) => (
                                 <PaymentsTableComponent
-                                        mealTypeName={ticket.mealTypeName}
-                                        menu={ticket.menu}
-                                        price={ticket.price}
-                                        count={purchaseTicket[index]}
-                                        key={index}/>
+                                    mealTypeName={ticket.mealTypeName}
+                                    menu={ticket.menu}
+                                    price={ticket.price}
+                                    count={purchaseTicket[index]}
+                                    key={index}/>
                             ))
                         }
                     </View>
@@ -201,9 +217,11 @@ const PurchaseConfirmScreen = ({navigation}) => {
                         <Text style={styles.priceText}>총 결제금액</Text>
                         <Text style={styles.priceText}>{cost}원</Text>
                     </View>
-                    <TouchableOpacity style={styles.purchaseBtn} onPress={clickPurchase} activeOpacity={0.95}>
-                        <PaymentsBtn
-                            cost={cost}/>
+                    <TouchableOpacity
+                        style={styles.purchaseBtn}
+                        onPress={clickPurchase}
+                        activeOpacity={0.95}>
+                        <PaymentsBtn cost={cost}/>
                     </TouchableOpacity>
                 </ScrollView>
 
@@ -266,7 +284,7 @@ const styles = StyleSheet.create({
     },
     purchaseBtn: {
         marginTop: hp('50%'),
-        marginBottom: hp('10%'),
+        marginBottom: hp('10%')
     }
 });
 
