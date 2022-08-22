@@ -178,7 +178,7 @@ const PurchaseConfirmScreen = ({navigation}) => {
             <SafeAreaView style={styles.safeAreaContainer}>
                 <ScrollView style={styles.container}>
                     <View style={styles.headerContainer}>
-                        <TouchableOpacity onPress={() => navigation.replace('Main')}>
+                        <TouchableOpacity onPress={() => navigation.replace('Main')} activeOpacity={0.95}>
                             <BackBtn/>
                         </TouchableOpacity>
                         <CenterTitle type={"ticketPaymentsText"}/>
@@ -201,7 +201,7 @@ const PurchaseConfirmScreen = ({navigation}) => {
                         <Text style={styles.priceText}>총 결제금액</Text>
                         <Text style={styles.priceText}>{cost}원</Text>
                     </View>
-                    <TouchableOpacity style={styles.purchaseBtn} onPress={clickPurchase}>
+                    <TouchableOpacity style={styles.purchaseBtn} onPress={clickPurchase} activeOpacity={0.95}>
                         <PaymentsBtn
                             cost={cost}/>
                     </TouchableOpacity>

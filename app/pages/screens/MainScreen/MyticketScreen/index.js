@@ -62,7 +62,7 @@ const MyTicketScreen = ({navigation}) => {
                 }
                 <ScrollView style={styles.container}>
                     <View style={styles.headerContainer}>
-                        <TouchableOpacity onPress={() => navigation.replace('Main')}>
+                        <TouchableOpacity onPress={() => navigation.replace('Main')} activeOpacity={0.95}>
                             <BackBtn/>
                         </TouchableOpacity>
                         <CenterTitle type={"myTicketText"}/>

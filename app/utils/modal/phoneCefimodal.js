@@ -42,7 +42,7 @@ const PhoneCefiModal = () => {
                         <TouchableOpacity
                             onPress={() => {
                                 setPhoneCefiModalState(false);
-                            }}>
+                            }} activeOpacity={0.95}>
                             <Image style={styles.closeImg} source={CloseImg} resizeMode={'contain'}/>
                         </TouchableOpacity>
                     </View>

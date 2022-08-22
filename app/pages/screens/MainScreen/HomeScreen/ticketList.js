@@ -82,6 +82,7 @@ const TicketList = () => {
                 ticketObject && ticketObject.map((ticket, index) => (
                     <Ticket
                         mealTypeName={ticket.name}
+                        mealTypeIdx={ticket.mealTypeIdx}
                         mealTicketCount={ticket.mealTicketCount}
                         menuStatus={ticket.menuStatus}
                         key={index}/>

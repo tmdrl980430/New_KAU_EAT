@@ -191,7 +191,7 @@ const SignUpLast = ({route, navigation}) => {
                     phoneCefimodalState != false && <PhoneCefiModal/>
                 }
                 <View style={styles.headerContainer}>
-                    <TouchableOpacity onPress={() => navigation.replace('SignUp')}>
+                    <TouchableOpacity onPress={() => navigation.replace('SignUp')} activeOpacity={0.95}>
                         <BackBtn/>
                     </TouchableOpacity>
                     <CenterTitle type={"signInText"}/>
@@ -208,7 +208,7 @@ const SignUpLast = ({route, navigation}) => {
                         setPhoneNumberInputmessage={setPhoneNumberInputmessage}
                         certificationNumInputmessage={certificationNumInputmessage}/>
                 </View>
-                <TouchableOpacity onPress={onPressSignUpBtn} style={styles.signUpBtn}>
+                <TouchableOpacity onPress={onPressSignUpBtn} style={styles.signUpBtn} activeOpacity={0.95}>
                     <SignUpBtn/>
                 </TouchableOpacity>
             </ScrollView>

@@ -82,19 +82,19 @@ const HomeScreen = ({navigation}) => {
                     <HomeLogo style={styles.logoArea}/>
                     <View style={styles.titlecontainer}>
                         <TodayMealTitle/>
-                        <TouchableOpacity onPress={() => navigation.replace('WeekMeals')}>
+                        <TouchableOpacity onPress={() => navigation.replace('WeekMeals')} activeOpacity={0.95}>
                             <TodayMealBtn/>
                         </TouchableOpacity>
                     </View>
                     <MealList/>
                     <TicketPurchaseTitle/>
-                    <TouchableOpacity onPress={() => navigation.replace('TicketPurchase')}>
+                    <TouchableOpacity onPress={() => navigation.replace('TicketPurchase')} activeOpacity={0.95}>
                         <TicketPurchaseBtn/>
                     </TouchableOpacity>
 
                     <View style={styles.titlecontainer}>
                         <MyTicketTitle/>
-                        <TouchableOpacity onPress={() => navigation.replace('MyTicket')}>
+                        <TouchableOpacity onPress={() => navigation.replace('MyTicket')} activeOpacity={0.95}>
                             <MyTicketBtn/>
                         </TouchableOpacity>
                     </View>

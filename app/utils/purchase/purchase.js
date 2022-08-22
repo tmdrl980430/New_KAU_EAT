@@ -39,11 +39,11 @@ const PurchaseTableComponent = (props) => {
             <View style={styles.priceContainer}>
                 <Text style={styles.priceText}>{props.price}</Text>
                 <View style={styles.ButtonView}>
-                    <TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.95}>
                         <Image style={styles.Img} source={Minus} resizeMode={'contain'}/>
                     </TouchableOpacity>
                     <Text style={styles.countText}>{purchaseTicket[props.index]}</Text>
-                    <TouchableOpacity onPress={clickPlus(props.index)}>
+                    <TouchableOpacity onPress={clickPlus(props.index)} activeOpacity={0.95}>
                         <Image style={styles.Img} source={Plus} resizeMode={'contain'}/>
                     </TouchableOpacity>
 

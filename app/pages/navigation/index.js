@@ -15,7 +15,6 @@ import WeekMeals from "../screens/MainScreen/WeekMealScreen";
 import MyTicket from "../screens/MainScreen/MyticketScreen";
 import TicketPurchase from "../screens/MainScreen/TicketPurchaseScreen";
 import Payment from '../screens/MainScreen/TicketPurchaseScreen/Payment';
-import QrCodeScreen from '../screens/MainScreen/QRcodeScreen';
 import {useRecoilState} from 'recoil';
 import {isLoginRecoilState, jwtRecoilState, paymentsRecoilState, severURLRecoilState, userIdxRecoilState} from '../../recoil';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -147,7 +146,6 @@ const Navigation = () => {
                                     <Stack.Screen name="TicketPurchase" component={TicketPurchase}></Stack.Screen>
                                     <Stack.Screen name='PurchaseConfirmScreen' component={PurchaseConfirmScreen}></Stack.Screen>
                                     <Stack.Screen name='Payment' component={Payment}></Stack.Screen>
-                                    <Stack.Screen name='QrCodeScreen' component={QrCodeScreen}></Stack.Screen>
                                     <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen}></Stack.Screen>
 
                                 </Stack.Group>

@@ -18,16 +18,17 @@ const userTicket = (props) => {
 
     const [clickKind, setClickKind] = useRecoilState(clickQrImgRecoilState);
 
-    
     const clickQrImg = () => {
-        if (0 < props.mealTicketCount){
-            setClickKind({mealType: props.mealTypeName, ticketCount: props.mealTicketCount});
+        if (0 < props.mealTicketCount) {
+            setClickKind(
+                {mealType: props.mealTypeName, ticketCount: props.mealTicketCount, mealTypeIdx: props.mealTypeIdx}
+            );
         }
     }
 
     useEffect(() => {
         console.log("clickKind : ", clickKind);
-    });
+    }, []);
 
     return (
         <View style={styles.ticketContainer}>
@@ -35,8 +36,16 @@ const userTicket = (props) => {
             <View style={styles.ticketBoxContainer}>
                 <View style={styles.ticketInfoView}>
                     <Text style={styles.menuTypeText}>{props.mealTypeName}</Text>
-                    <Image style={styles.ticketImg} source={TicketImg} resizeMode={'contain'}/>
-                    <Text style={styles.ticketCount}>X {props.mealTicketCount}</Text>
+                    <Image style={styles.ticketImg} source={TicketImg} resizeMode={'contain'}/> 
+                    {
+                        props.mealTicketCount === null
+                            ? (
+                                <Text style={styles.ticketCount}>X 0</Text>
+                            )
+                            : (
+                                <Text style={styles.ticketCount}>X {props.mealTicketCount}</Text>
+                            )
+                    }
                     {
                         props.menuStatus === '품절'
                             ? (
@@ -50,7 +59,7 @@ const userTicket = (props) => {
                 </View>
                 <View style={styles.qrimgContainer}>
                     <Image style={styles.dashedLine} source={DashedLine} resizeMode={'contain'}/>
-                    <TouchableOpacity onPress={clickQrImg}>
+                    <TouchableOpacity onPress={clickQrImg} activeOpacity={0.95}>
                         <Image style={styles.QrImg} source={QrImg} resizeMode={'contain'}/>
                     </TouchableOpacity>
 

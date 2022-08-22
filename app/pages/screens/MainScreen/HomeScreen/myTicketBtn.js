@@ -6,8 +6,8 @@ import RigthArrow from '../../../../assets/images/right_arrow.png';
 const MyTicketBtn = ({navigation}) => {
 
     return (
-        <TouchableOpacity style={styles.titleArea}>
-            <View>
+        <TouchableOpacity style={styles.titleArea} activeOpacity={0.95}>
+            <View style={styles.viewContainer}>
                 <Image style={styles.rightArrowImg} source={RigthArrow} resizeMode={'contain'}/>
             </View>
         </TouchableOpacity>
@@ -29,6 +29,10 @@ const styles = StyleSheet.create({
         resizeMode: 'center',
         marginStart: wp('2%')
     },
+    viewContainer: {
+        width: wp('5%'),
+        height: hp('2%'),
+    }
 })
 
 export default MyTicketBtn;

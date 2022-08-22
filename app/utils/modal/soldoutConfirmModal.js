@@ -62,7 +62,7 @@ const SoldOutConfirmModal = (props) => {
                             onPress={() => {
                                 setLogoutModalState(false);
                                 setClickKind("");
-                            }}>
+                            }} activeOpacity={0.95}>
                             <Image style={styles.closeImg} source={CloseImg} resizeMode={'contain'}/>
                         </TouchableOpacity>
                     </View>
@@ -75,10 +75,10 @@ const SoldOutConfirmModal = (props) => {
                     </View>
 
                     <View style={styles.buttonContainer}>
-                        <TouchableOpacity style={styles.cancleContainer} onPress={clickCancle}>
+                        <TouchableOpacity style={styles.cancleContainer} onPress={clickCancle} activeOpacity={0.95}>
                             <Text style={styles.cancleText}>취소</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.confirmContainer} onPress={clickConfirm}>
+                        <TouchableOpacity style={styles.confirmContainer} onPress={clickConfirm} activeOpacity={0.95}>
                             <Text style={styles.confirmText}>확인</Text>
                         </TouchableOpacity>
                     </View>

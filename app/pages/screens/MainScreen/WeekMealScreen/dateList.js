@@ -267,6 +267,7 @@ const Calendar = () => {
                                         : '#F4F4F4'
                                 }
                             ]}
+                            activeOpacity={0.95}
                             key={index}
                             onPress={() => handleDay(calendar.day, calendar.month, calendar.year, index)}>
                             <Text

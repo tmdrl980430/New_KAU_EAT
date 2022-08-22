@@ -33,7 +33,6 @@ const MyPageScreen = ({navigation}) => {
 
     const [IP, setIP] = useRecoilState(severURLRecoilState);
 
-
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [jwt, setJwt] = useRecoilState(jwtRecoilState);
@@ -44,9 +43,9 @@ const MyPageScreen = ({navigation}) => {
     const [userId, setUserId] = useRecoilState(userIdRecoilState);
     const [userTicket, setUserTicket] = useRecoilState(userTicketRecoilState);
 
-
-    const [logoutodalState, setLogoutModalState] = useRecoilState(logoutmodalRecoilState);
-
+    const [logoutodalState, setLogoutModalState] = useRecoilState(
+        logoutmodalRecoilState
+    );
 
     console.log(`jwt : ${jwt}`);
 
@@ -115,19 +114,24 @@ const MyPageScreen = ({navigation}) => {
                     <View style={styles.headerContainer}>
                         <BackBtn/>
                     </View>
-                    <TouchableOpacity
-                        style={styles.ticketContainer}
-                        onPress={() => navigation.push('MyTicket')}>
-                        <UserTicket/>
-                    </TouchableOpacity>
-                    <View style={styles.lineView}/>
-                    <TouchableOpacity style={styles.userInfoChangeContainer} onPress={() => navigation.replace('ChangePasswordScreen')}>
-                        <UserInfoChange/>
-                    </TouchableOpacity>
-                    <View style={styles.lineView}/>
-                    <TouchableOpacity onPress={logOutMadal}>
-                        <Text style={styles.logOutText}>로그아웃</Text>
-                    </TouchableOpacity>
+                    <View style={styles.viweBackground}>
+                        <TouchableOpacity
+                            style={styles.ticketContainer}
+                            onPress={() => navigation.push('MyTicket')} activeOpacity={0.95}>
+                            <UserTicket/>
+                        </TouchableOpacity>
+                        <View style={styles.lineView}/>
+                        <TouchableOpacity
+                            style={styles.userInfoChangeContainer}
+                            onPress={() => navigation.replace('ChangePasswordScreen')} activeOpacity={0.95}>
+                            <UserInfoChange/>
+                        </TouchableOpacity>
+                        <View style={styles.lineView}/>
+                        <TouchableOpacity onPress={logOutMadal} activeOpacity={0.95}>
+                            <Text style={styles.logOutText}>로그아웃</Text>
+                        </TouchableOpacity>
+                    </View>
+
                 </ScrollView>
             </SafeAreaView>
 
@@ -149,7 +153,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     container: {
-        backgroundColor: 'white',
+        backgroundColor: '#3D3580',
         height: hp('100%')
     },
     logoArea: {
@@ -185,6 +189,10 @@ const styles = StyleSheet.create({
         marginTop: hp('3.7%'),
         marginStart: wp('44%'),
         justifyContent: 'center'
+    },
+    viweBackground : {
+        backgroundColor : 'white',
+        height : hp('100%'),
     }
 });
 

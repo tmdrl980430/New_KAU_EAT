@@ -36,14 +36,15 @@ const FindIdModal = (props) => {
                             onPress={() => {
                                 setLogoutModalState(false);
                                 setClickKind("");
-                            }}>
+                            }}
+                            activeOpacity={0.95}>
                             <Image style={styles.closeImg} source={CloseImg} resizeMode={'contain'}/>
                         </TouchableOpacity>
                     </View>
 
                     <Text style={styles.descirptionText}>유저의 아이디는{'\n'}{props.findId}입니다.</Text>
                     <View style={styles.buttonContainer}>
-                        <TouchableOpacity style={styles.confirmContainer} onPress={clickConfirm}>
+                        <TouchableOpacity style={styles.confirmContainer} onPress={clickConfirm} activeOpacity={0.95}>
                             <Text style={styles.confirmText}>확인</Text>
                         </TouchableOpacity>
                     </View>

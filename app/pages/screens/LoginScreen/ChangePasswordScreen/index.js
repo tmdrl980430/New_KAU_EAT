@@ -120,7 +120,7 @@ const ChangePasswordScreen = ({navigation}) => {
         return (
             <ScrollView style={styles.container}>
                 <View style={styles.headerContainer}>
-                    <TouchableOpacity onPress={() => navigation.replace('Login')}>
+                    <TouchableOpacity onPress={() => navigation.replace('Login')} activeOpacity={0.95}>
                         <BackBtn/>
                     </TouchableOpacity>
                     <CenterTitle type={"changePasswordText"}/>
@@ -138,8 +138,7 @@ const ChangePasswordScreen = ({navigation}) => {
                         passwordCheckInputmessage={passwordCheckInputmessage}
                         setPasswordCheckInputmessage={setPasswordCheckInputmessage}/>
                 </View>
-                <TouchableOpacity style={styles.loginBtn} onPress={patchPassword
-}>
+                <TouchableOpacity style={styles.loginBtn} onPress={patchPassword} activeOpacity={0.95}>
                     <ChangeBtn/>
                 </TouchableOpacity>
             </ScrollView>

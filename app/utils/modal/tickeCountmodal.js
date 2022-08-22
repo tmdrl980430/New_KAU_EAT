@@ -75,27 +75,27 @@ const TicketCountModal = (props) => {
                             onPress={() => {
                                 setModalState(false);
                                 setClickKind("");
-                            }}>
+                            }} activeOpacity={0.95}>
                             <Image style={styles.closeImg} source={CloseImg} resizeMode={'contain'}/>
-                        </TouchableOpacity>
+                        </TouchableOpacity >
                     </View>
 
                     <Text style={styles.descirptionText}>식권을 몇장{'\n'}사용하시겠습니까?</Text>
 
                     <View style={styles.ticketCountView}>
-                        <TouchableOpacity onPress={clickMinus}>
+                        <TouchableOpacity onPress={clickMinus} activeOpacity={0.95}>
                             <Image style={styles.countImg} source={MinusImg} resizeMode={'contain'}/>
                         </TouchableOpacity>
                         <Text style={styles.ticketCount}>{count}</Text>
-                        <TouchableOpacity onPress={clickPlus}>
+                        <TouchableOpacity onPress={clickPlus} activeOpacity={0.95}>
                             <Image style={styles.countImg} source={PlusImg} resizeMode={'contain'}/>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.buttonContainer}>
-                        <TouchableOpacity style={styles.cancleContainer} onPress={clickCancle} >
+                        <TouchableOpacity style={styles.cancleContainer} onPress={clickCancle} activeOpacity={0.95}>
                             <Text style={styles.cancleText}>취소</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.confirmContainer} onPress={clickConfirm}>
+                        <TouchableOpacity style={styles.confirmContainer} onPress={clickConfirm} activeOpacity={0.95}>
                             <Text style={styles.confirmText}>확인</Text>
                         </TouchableOpacity>
                     </View>

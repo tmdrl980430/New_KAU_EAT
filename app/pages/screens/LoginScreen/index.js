@@ -17,6 +17,7 @@ import LoginBtn from "./LoginBtn";
 import {useRecoilState} from "recoil";
 import {isLoginRecoilState, jwtRecoilState, severURLRecoilState} from "../../../recoil";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import CenterTitle from "../../../utils/title/centerTitle";
 
 const Login = ({
     navigation
@@ -136,8 +137,10 @@ const Login = ({
     } else {
         return (
             <ScrollView style={styles.container}>
-                <View>
-                    <LoginHeader/>
+                <View style={styles.headerContainer}>
+                    <View/>
+                    <CenterTitle type="loginText"/>
+                    <View/>
                 </View>
                 <View>
                     <Introduction/>
@@ -150,23 +153,23 @@ const Login = ({
                         idInputmessage={idInputmessage}
                         passwordInputmessage={passwordInputmessage}/>
                 </View>
-                <TouchableOpacity style={styles.loginBtn} onPress={onPressLoginBtn}>
+                <TouchableOpacity style={styles.loginBtn} onPress={onPressLoginBtn}activeOpacity={0.95} >
                     <LoginBtn/>
                 </TouchableOpacity>
                 <View style={styles.signuptextArea}>
-                    <TouchableOpacity onPress={() => navigation.navigate('FindIdScreen')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('FindIdScreen')} activeOpacity={0.95}>
                         <Text style={styles.signuptext}>아이디 찾기</Text>
                     </TouchableOpacity>
                     <Text style={styles.signuptext}>
                         |
                     </Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('FindPasswordScreen')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('FindPasswordScreen')} activeOpacity={0.95}>
                         <Text style={styles.signuptext}>비밀번호 찾기</Text>
                     </TouchableOpacity>
                     <Text style={styles.signuptext}>
                         |
                     </Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('SignUp')} activeOpacity={0.95}>
                         <Text style={styles.signuptext}>회원가입</Text>
                     </TouchableOpacity>
                 </View>
@@ -182,6 +185,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    headerContainer: {
+        marginTop: hp('7%'),
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: 'center'
     },
     container: {
         flex: 1,

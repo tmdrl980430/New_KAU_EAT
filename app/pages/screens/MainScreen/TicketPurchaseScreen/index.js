@@ -177,14 +177,14 @@ const TicketPurchaseScreen = ({navigation}) => {
                 {soldOutConfirmmodalState != false && <SoldOutConfirmModal/>}
                 <ScrollView style={styles.container}>
                     <View style={styles.headerContainer}>
-                        <TouchableOpacity onPress={() => navigation.replace('Main')}>
+                        <TouchableOpacity onPress={() => navigation.replace('Main')} activeOpacity={0.95}>
                             <BackBtn/>
                         </TouchableOpacity>
-                        < CenterTitle type={"ticketPurchaseText"}/>
+                        <CenterTitle type={"ticketPurchaseText"}/>
                         <View/>
                     </View>
                     <PurchaseTable/>
-                    <TouchableOpacity style={styles.purchaseBtn} onPress={clickPurchase}>
+                    <TouchableOpacity style={styles.purchaseBtn} onPress={clickPurchase} activeOpacity={0.95}>
                         <PurchaseBtn/>
                     </TouchableOpacity>
                 </ScrollView>
@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
         marginTop: hp('3%'),
         flexDirection: "row",
         justifyContent: "space-between",
-        alignItems: 'center'
+        alignItems: 'center',
     },
     purchaseBtn: {
         marginTop: hp('7%'),

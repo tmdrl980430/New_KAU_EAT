@@ -15,13 +15,22 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import HomeScreen from "./HomeScreen";
 import MyPageScreen from "./MyPageScreen"
 import {useRecoilState} from "recoil";
-import {clickQrImgRecoilState, isLoginRecoilState} from "../../../recoil";
+import {clickQrImgRecoilState, isLoginRecoilState, mainRerenderingRecoilState} from "../../../recoil";
 
 const Tab = createMaterialBottomTabNavigator();
 
 const Main = ({navigation}) => {
 
     const [login, setLogin] = useRecoilState(isLoginRecoilState);
+
+    const [mainRe, setMainRe] = useRecoilState(mainRerenderingRecoilState);
+
+    useEffect(() => {
+        if(mainRe === true){
+            navigation.replace('Main');
+        }
+        setMainRe(false);
+    },[mainRe])
 
     return (
         <Tab.Navigator

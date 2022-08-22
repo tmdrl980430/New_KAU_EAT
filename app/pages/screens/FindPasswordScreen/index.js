@@ -182,7 +182,7 @@ const FindPasswordScreen = ({route, navigation}) => {
             <ScrollView style={styles.container}>
                 {phoneCefimodalState != false && <PhoneCefiModal/>}
                 <View style={styles.headerContainer}>
-                    <TouchableOpacity onPress={() => navigation.replace('Login')}>
+                    <TouchableOpacity onPress={() => navigation.replace('Login')} activeOpacity={0.95}>
                         <BackBtn/>
                     </TouchableOpacity>
                     <CenterTitle type={"findPasswordText"}/>
@@ -200,7 +200,7 @@ const FindPasswordScreen = ({route, navigation}) => {
                         setPhoneNumberInputmessage={setPhoneNumberInputmessage}
                         certificationNumInputmessage={certificationNumInputmessage}/>
                 </View>
-                <TouchableOpacity onPress={onPressSignUpBtn} style={styles.signUpBtn}>
+                <TouchableOpacity onPress={onPressSignUpBtn} style={styles.signUpBtn} activeOpacity={0.95}>
                     <FindPasswordNextBtn/>
                 </TouchableOpacity>
             </ScrollView>

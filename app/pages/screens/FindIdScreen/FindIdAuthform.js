@@ -133,12 +133,12 @@ const AuthForm = (props) => {
                 {
                     cefiing === false
                         ? (
-                            <TouchableOpacity style={styles.button} onPress={certificationPhone}>
+                            <TouchableOpacity style={styles.button} onPress={certificationPhone} activeOpacity={0.95}>
                                 <Text style={styles.buttonTitle}>인증하기</Text>
                             </TouchableOpacity>
                         )
                         : (
-                            <TouchableOpacity style={styles.buttonSelect} onPress={certificationPhone}>
+                            <TouchableOpacity style={styles.buttonSelect} onPress={certificationPhone} activeOpacity={0.95}>
                                 <Text style={styles.buttonTitleSelect}>재요청하기</Text>
                             </TouchableOpacity>
                         )

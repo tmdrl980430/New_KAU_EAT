@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
     StyleSheet,
     View,
@@ -17,7 +17,15 @@ import Line2 from '../../assets/images/lineRightTop.png'
 import Line3 from '../../assets/images/lineLeftBottom.png'
 import Line4 from '../../assets/images/lineRightBottom.png'
 import {useRecoilState} from "recoil";
-import {clickQrImgRecoilState, dateRecoilState, modalRecoilState, qrModalRecoilState, qrTicketCountRecoilState, userIdxRecoilState} from "../../recoil";
+import {
+    clickQrImgRecoilState,
+    dateRecoilState,
+    mainRerenderingRecoilState,
+    modalRecoilState,
+    qrModalRecoilState,
+    qrTicketCountRecoilState,
+    userIdxRecoilState
+} from "../../recoil";
 
 //재사용 가능 제목 component
 
@@ -25,23 +33,32 @@ const QrModal = () => {
 
     const [qrModalState, setQrModalState] = useRecoilState(qrModalRecoilState);
 
-    const [qrTicketCount, setQrTicketCount] = useRecoilState(qrTicketCountRecoilState);
+    const [qrTicketCount, setQrTicketCount] = useRecoilState(
+        qrTicketCountRecoilState
+    );
 
-
+    const [clickKind, setClickKind] = useRecoilState(clickQrImgRecoilState);
 
     const [date, setDate] = useRecoilState(dateRecoilState);
 
     const [userIdx, setUserIdx] = useRecoilState(userIdxRecoilState);
 
-    const [qrInfo, setQrInfo] = useState([
-        {
-            userIdx: {userIdx},
-            ticketCount: {qrTicketCount},
-            date: {date}
-        }
-    ]);
+    const [mainRe, setMainRe] = useRecoilState(mainRerenderingRecoilState);
 
-    const [clickKind, setClickKind] = useRecoilState(clickQrImgRecoilState);
+    const [qrInfo, setQrInfo] = useState(
+        `
+        {
+            "userIdx": ${userIdx},
+            "date": "${date}",
+            "mealTypeIdx" : ${clickKind.mealTypeIdx},
+            "amount" : ${qrTicketCount}
+        }
+    `
+    );
+
+    useEffect(() => {
+        console.log('qrInfo', qrInfo);
+    }, [qrInfo]);
 
     return (
         <Modal animationType="fade" transparent={false} visible={qrModalState}>
@@ -53,7 +70,9 @@ const QrModal = () => {
                             onPress={() => {
                                 setQrModalState(false);
                                 setClickKind("");
-                            }}>
+                                setMainRe(true);
+                            }}
+                            activeOpacity={0.95}>
                             <Image style={styles.closeImg} source={CloseImg} resizeMode={'contain'}/>
                         </TouchableOpacity>
                     </View>

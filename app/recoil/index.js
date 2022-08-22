@@ -67,6 +67,9 @@ export const clickQrImgRecoilState = atom(
     {key: 'clickQrImgRecoilState', default: ""}
 );
 
+export const mainRerenderingRecoilState = atom({key: 'mainRerenderingRecoilState', default: false});
+
+
 export const paymentsRecoilState = atom({key: 'paymentsRecoilState', default: false});
 
 export const modalRecoilState = atom({key: 'modalRecoilState', default: false});

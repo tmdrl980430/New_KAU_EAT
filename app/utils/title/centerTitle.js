@@ -54,9 +54,9 @@ const styles = StyleSheet.create({
     },
     text: {
         fontFamily: 'NotoSansKR-Bold',
-        fontSize: 18,
+        fontSize: hp('2.3%'),
         color: '#1F2C37',
-        justifyContent: 'flex-start'
+        alignItems: "center"
     }
 })
 
