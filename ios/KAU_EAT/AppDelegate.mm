@@ -8,7 +8,7 @@
 
 //아임포트Linking
 #import <React/RCTLinkingManager.h>
-
+#import "RNSplashScreen.h" // 추가
 
 #if RCT_NEW_ARCH_ENABLED
 #import <React/CoreModulesPlugins.h>
@@ -61,6 +61,8 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  [RNSplashScreen show]; // 추가
+
   return YES;
 }
 
