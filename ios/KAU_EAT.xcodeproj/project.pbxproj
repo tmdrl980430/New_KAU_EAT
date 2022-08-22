@@ -32,6 +32,8 @@
 		56E2016453BB47BE8441838E /* NotoSansKRBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 82DA691A6F4B48A7829F92DE /* NotoSansKRBold.otf */; };
 		570C165528B41EF900656A77 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 570C165428B41EF900656A77 /* SplashScreen.storyboard */; };
 		570C165728B42AD900656A77 /* splash_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 570C165628B42AD900656A77 /* splash_logo.png */; };
+		570C165828B433E600656A77 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		570C165928B4350000656A77 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		5A7DE613F7B14E8BB32BB502 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CF4B2B536DFF49C48E4903D7 /* NotoSansKR-Bold.otf */; };
 		5E5052C6F4E04E2492E9FF7E /* NotoSansKRBlack.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3D463FBFC134446BB2B4A241 /* NotoSansKRBlack.otf */; };
 		6196A9F915EA4D34BE8589ED /* LotteMartDream-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA663FCA3CB34549B1BC9B4A /* LotteMartDream-Light.ttf */; };
@@ -433,6 +435,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				570C165928B4350000656A77 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +469,7 @@
 				AAC15A1F47E2418B8B493849 /* LotteMartDreamBold.ttf in Resources */,
 				7155F7742A4F4301B5495D71 /* LotteMartDreamLight.ttf in Resources */,
 				8CB22969B3CA4172A7D6A820 /* LotteMartDreamMedium.ttf in Resources */,
+				570C165828B433E600656A77 /* Images.xcassets in Resources */,
 				0B3DA160044640BBAB0DEE4A /* LotteMartHappyBold.ttf in Resources */,
 				BBEB2702E5CD40DE86E77793 /* LotteMartHappyLight.ttf in Resources */,
 				EB18B7400A3F4B11B1811334 /* LotteMartHappyMedium.ttf in Resources */,
@@ -734,6 +738,7 @@
 			baseConfigurationReference = 6E9AEDAC76270BD1E9C325A8 /* Pods-KAU_EAT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
@@ -762,6 +767,7 @@
 			baseConfigurationReference = 6597361F54CE207F76A49795 /* Pods-KAU_EAT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_TESTABILITY = NO;

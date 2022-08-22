@@ -3,7 +3,6 @@ import {View, Text, Image, StyleSheet} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { useRecoilState } from "recoil";
 
-import KAU_Logo from '../../../../assets/images/mypage_kau_logo.png';
 import { userIdRecoilState, userNameRecoilState } from "../../../../recoil";
 
 const BackBtn = () => {
@@ -18,7 +17,6 @@ const BackBtn = () => {
                     <Text style={styles.helloText}>안녕하세요{"\n"}{userName}님</Text>
                     <Text style={styles.idText}>{userId}</Text>
                 </View>
-                <Image style={styles.kauImg} source={KAU_Logo} resizeMode={'contain'}/>
             </View>
 
         </View>

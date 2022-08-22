@@ -6,7 +6,6 @@ import {useRecoilState} from 'recoil';
 import {dateRecoilState, jwtRecoilState, severURLRecoilState} from '../../../../recoil';
 import axios from 'axios';
 
-import LogoImage from '../../../../assets/images/kau_logo_today_meal.png';
 
 const MealList = () => {
 
@@ -175,9 +174,6 @@ const MealList = () => {
                                 }}>{item.price}원</Text>
                         )
                 }
-
-                <Image style={styles.kauLogo} source={LogoImage} resizeMode={'contain'}/>
-
             </View>
 
         )

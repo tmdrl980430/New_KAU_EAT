@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View, StyleSheet, Image} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
-import LogoImage from '../../../../assets/images/kau_logo_small.png';
+import LogoImage from '../../../../assets/images/home_logo.png';
 import LogoText from '../../../../assets/images/logo_text.png'
 
 const HomeLogo = () => {
