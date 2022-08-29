@@ -6,7 +6,8 @@ import {
     ScrollView,
     Text,
     Button,
-    TouchableOpacity
+    TouchableOpacity,
+    SafeAreaView
 } from 'react-native';
 import axios from 'axios';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -69,6 +70,10 @@ const FindPasswordScreen = ({route, navigation}) => {
 
         if (certificationNumInput != "" && responseCertificationNum != "" && certificationNumInput === responseCertificationNum) {
             setCertificationNumInputmessage("인증되었습니다.");
+        } else if ( certificationNumInput.length > 3 && responseCertificationNum.length > 3 && certificationNumInput !== responseCertificationNum){
+            setCertificationNumInputmessage("인증번호가 일치하지 않습니다.");
+        } else if (certificationNumInput.length < 4 && responseCertificationNum.length > 3){
+            setCertificationNumInputmessage("인증번호를 입력해주세요.");
         }
     }, [certificationNumInput])
 
@@ -87,7 +92,11 @@ const FindPasswordScreen = ({route, navigation}) => {
 
         } else if (phoneNumberRegex.test(phoneNumInput) === false) {
             setCertificationNumBtnStatus(false);
-            setPhoneNumberInputmessage('휴대폰 번호를 입력해주세요.');
+            setPhoneNumberInputmessage('올바른 휴대폰 번호를 입력해주세요.');
+        }
+
+        if (phoneNumberRegex.test(phoneNumInput) === true) {
+            setPhoneNumberInputmessage('휴대폰 번호 인증을 진행해주세요.');
         }
 
         if (certificationNumBtnStatus === false) {
@@ -145,8 +154,8 @@ const FindPasswordScreen = ({route, navigation}) => {
 
                             //비밀번호 변경화면으로 이동
                             navigation.replace('ChangePasswordScreenLogin', {phoneNumber: {
-                                phoneNumInput
-                            }});                       
+                                    phoneNumInput
+                                }});
                         } else if (response.data.code === 3003) {
                             setIdInputmessage("존재하지 않는 아이디입니다.")
                         }
@@ -179,37 +188,50 @@ const FindPasswordScreen = ({route, navigation}) => {
         )
     } else {
         return (
-            <ScrollView style={styles.container}>
-                {phoneCefimodalState != false && <PhoneCefiModal/>}
+            <SafeAreaView style={styles.topContainer}>
                 <View style={styles.headerContainer}>
-                    <TouchableOpacity onPress={() => navigation.replace('Login')} activeOpacity={0.95}>
+                    <TouchableOpacity
+                        onPress={() => navigation.replace('Login')}
+                        activeOpacity={0.95}>
                         <BackBtn/>
                     </TouchableOpacity>
                     <CenterTitle type={"findPasswordText"}/>
-                    <View/>
+                    <View style={styles.viewContainer}/>
                 </View>
-                <View style={styles.formArea}>
-                    <AuthForm
-                        style={styles.formArea}
-                        setIdInput={setIdInput}
-                        setPhoneNumInput={setPhoneNumInput}
-                        setCertificationNumInput={setCertificationNumInput}
-                        idInputmessage={idInputmessage}
-                        setIdInputmessage={setIdInputmessage}
-                        phoneNumberInputmessage={phoneNumberInputmessage}
-                        setPhoneNumberInputmessage={setPhoneNumberInputmessage}
-                        certificationNumInputmessage={certificationNumInputmessage}/>
-                </View>
-                <TouchableOpacity onPress={onPressSignUpBtn} style={styles.signUpBtn} activeOpacity={0.95}>
-                    <FindPasswordNextBtn/>
-                </TouchableOpacity>
-            </ScrollView>
+                <ScrollView style={styles.container}>
+                    {phoneCefimodalState != false && <PhoneCefiModal/>}
+                    <View style={styles.formArea}>
+                        <AuthForm
+                            style={styles.formArea}
+                            setIdInput={setIdInput}
+                            setPhoneNumInput={setPhoneNumInput}
+                            setCertificationNumInput={setCertificationNumInput}
+                            idInputmessage={idInputmessage}
+                            setIdInputmessage={setIdInputmessage}
+                            phoneNumberInputmessage={phoneNumberInputmessage}
+                            setPhoneNumberInputmessage={setPhoneNumberInputmessage}
+                            certificationNumInputmessage={certificationNumInputmessage}/>
+                    </View>
+                    <TouchableOpacity
+                        onPress={onPressSignUpBtn}
+                        style={styles.signUpBtn}
+                        activeOpacity={0.95}>
+                        <FindPasswordNextBtn/>
+                    </TouchableOpacity>
+                </ScrollView>
+            </SafeAreaView>
+
         )
     }
 
 }
 
 const styles = StyleSheet.create({
+    topContainer: {
+        backgroundColor: 'white',
+        width: wp('100%'),
+        height: hp('100%')
+    },
     loading: {
         flex: 1,
         backgroundColor: 'white',
@@ -256,10 +278,15 @@ const styles = StyleSheet.create({
         marginBottom: hp('4%')
     },
     headerContainer: {
-        marginTop: hp('7%'),
+        marginTop: hp('3%'),
         flexDirection: "row",
         justifyContent: "space-between",
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingLeft: wp('10%'),
+        paddingRight: wp('10%')
+    },
+    viewContainer: {
+        width: wp('10%')
     }
 })
 

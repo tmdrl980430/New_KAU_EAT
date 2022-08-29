@@ -133,42 +133,33 @@ const TicketPurchaseScreen = ({navigation}) => {
 
         //품절된 식권이 있을 떄 실행을 하는 것.
 
-        if (purchaseTicket[0] > 0) {
-            if (tableObject0.menu === null) {
+        if (purchaseTicket[0] > 0 || purchaseTicket[1] > 0 || purchaseTicket[2] > 0 || purchaseTicket[3] > 0) {
+            if (tableObject0.menu === null || tableObject1.menu === null || tableObject2.menu === null || tableObject3.menu === null) {
                 setSoldOutConfirmModalState(true);
             } else {
-                if (tableObject0.menu.menuStatus === "ACTIVE") {
+                if (tableObject0.menu.menuStatus === "품절" && purchaseTicket[0] > 0) {
                     setSoldOutConfirmModalState(true);
+                    return
                 }
+                if (tableObject1.menu.menuStatus === "품절" && purchaseTicket[1] > 0) {
+                    setSoldOutConfirmModalState(true);
+                    return
+                }
+                if (tableObject2.menu.menuStatus === "품절" && purchaseTicket[2] > 0) {
+                    setSoldOutConfirmModalState(true);
+                    return
+                }
+                if (tableObject3.menu.menuStatus === "품절" && purchaseTicket[3] > 0) {
+                    setSoldOutConfirmModalState(true);
+                    return
+                }
+
+                setSoldOutConfirmModalState(false);
+                setSoldOutConfirmState(true);
+
             }
         }
-        if (purchaseTicket[1] > 0) {
-            if (tableObject1.menu === null) {
-                setSoldOutConfirmModalState(true);
-            } else {
-                if (tableObject1.menu.menuStatus === "ACTIVE") {
-                    setSoldOutConfirmModalState(true);
-                }
-            }
-        }
-        if (purchaseTicket[2] > 0) {
-            if (tableObject2.menu === null) {
-                setSoldOutConfirmModalState(true);
-            } else {
-                if (tableObject2.menu.menuStatus === "ACTIVE") {
-                    setSoldOutConfirmModalState(true);
-                }
-            }
-        }
-        if (purchaseTicket[3] > 0) {
-            if (tableObject3.menu === null) {
-                setSoldOutConfirmModalState(true);
-            } else {
-                if (tableObject3.menu.menuStatus === "ACTIVE") {
-                    setSoldOutConfirmModalState(true);
-                }
-            }
-        }
+
         console.log('purchaseTicket', purchaseTicket);
 
     };

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
     Text,
     View,
@@ -6,7 +6,8 @@ import {
     ActivityIndicator,
     ScrollView,
     SafeAreaView,
-    TouchableOpacity
+    TouchableOpacity,
+    RefreshControl
 } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {useRecoilState} from 'recoil';
@@ -26,6 +27,16 @@ const MyTicketScreen = ({navigation}) => {
     const [modalState, setModalState] = useRecoilState(modalRecoilState);
 
     const [qrModalState, setQeModalState] = useRecoilState(qrModalRecoilState);
+
+    const wait = (timeout) => {
+        return new Promise(resolve => setTimeout(resolve, timeout));
+    }
+    const [refreshing, setRefreshing] = useState(false);
+
+    const onRefresh = useCallback(() => {
+        setRefreshing(true);
+        wait(2000).then(() => setRefreshing(false));
+    }, []);
 
     useEffect(() => {
 
@@ -65,7 +76,16 @@ const MyTicketScreen = ({navigation}) => {
                     <CenterTitle type={"myTicketText"}/>
                     <View style={styles.viewContainer}/>
                 </View>
-                <ScrollView style={styles.container}>
+                <ScrollView
+                    style={styles.container}
+                    refreshControl={<RefreshControl
+                    refreshing = {
+                        refreshing
+                    }
+                    onRefresh = {
+                        onRefresh
+                    }
+                    />}>
                     <View style={styles.ticketContainer}>
                         <TicketList/>
                     </View>
@@ -119,7 +139,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     viewContainer: {
-        width: wp('10%'),
+        width: wp('10%')
     }
 });
 

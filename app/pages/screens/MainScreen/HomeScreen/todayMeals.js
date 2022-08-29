@@ -23,6 +23,7 @@ const MealList = () => {
 
     const [menuStatus, setMenuStatus] = useState(false);
 
+
     useEffect(() => {
         getMealTable();
     }, [jwt])
@@ -35,8 +36,6 @@ const MealList = () => {
         2,
         '0'
     )}-${String(now.getDate()).padStart(2, '0')}`
-
-    // test data const date = '2022-06-13'
 
     const getMealTable = async () => {
         console.log('getMealTable');

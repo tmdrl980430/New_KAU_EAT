@@ -54,6 +54,8 @@ export const merchantUidRecoilState = atom(
 
 export const dateRecoilState = atom({key: 'dateRecoilState', default: today});
 
+export const weekDateRecoilState = atom({key: 'weekDateRecoilState', default: today});
+
 export const cefiBtnRecoilState = atom(
     {key: 'cefiBtnRecoilState', default: false}
 );

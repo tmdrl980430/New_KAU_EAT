@@ -45,6 +45,10 @@ const AuthForm = (props) => {
     let isRunning = false;
 
     useEffect(() => {
+        setCefiIng(false);
+    },[])
+
+    useEffect(() => {
 
 
         if(count === 180 || cefiing === true){
@@ -208,11 +212,8 @@ const styles = StyleSheet.create({
                 height: hp('8.5%')
             }
         }),
-        borderRadius: 20,
+        borderRadius: hp('2%'),
         borderWidth: 1,
-        paddingStart: 16,
-        paddingTop: 16,
-        paddingBottom: 16,
         marginTop: hp('1%'),
         flex: 1,
         justifyContent: "center"
@@ -227,11 +228,8 @@ const styles = StyleSheet.create({
                 height: hp('8.5%')
             }
         }),
-        borderRadius: 20,
+        borderRadius: hp('2%'),
         borderWidth: 1,
-        paddingStart: 16,
-        paddingTop: 16,
-        paddingBottom: 16,
         marginTop: hp('1%'),
         flex: 1,
         justifyContent: "center"
@@ -239,16 +237,18 @@ const styles = StyleSheet.create({
     buttonTitle: {
         color: '#DBDBDB',
         fontFamily: 'NotoSansKR-Medium',
-        fontSize: 12,
+        fontSize: hp('1.3%'),
         justifyContent: "center",
-        alignItems: 'center'
+        alignItems: 'center',
+        textAlign: 'center'
     },
     buttonTitleSelect: {
         color: '#3D3580',
         fontFamily: 'NotoSansKR-Medium',
-        fontSize: 12,
+        fontSize: hp('1.3%'),
         justifyContent: "center",
-        alignItems: 'center'
+        alignItems: 'center',
+        textAlign: 'center'
     },
     phoneArea: {
         flex: 1,

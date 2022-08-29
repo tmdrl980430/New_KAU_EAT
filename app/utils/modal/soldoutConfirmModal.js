@@ -60,8 +60,7 @@ const SoldOutConfirmModal = (props) => {
                         <View/>
                         <TouchableOpacity
                             onPress={() => {
-                                setLogoutModalState(false);
-                                setClickKind("");
+                                setSoldOutConfirmModalState(false);
                             }} activeOpacity={0.95}>
                             <Image style={styles.closeImg} source={CloseImg} resizeMode={'contain'}/>
                         </TouchableOpacity>

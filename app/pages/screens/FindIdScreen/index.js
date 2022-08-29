@@ -6,7 +6,8 @@ import {
     ScrollView,
     Text,
     Button,
-    TouchableOpacity
+    TouchableOpacity,
+    SafeAreaView
 } from 'react-native';
 import axios from 'axios';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -35,7 +36,7 @@ const FindIdScreen = ({route, navigation}) => {
         findIdmodalRecoilState
     );
 
-    const [findId , setFindId] = useState("");
+    const [findId, setFindId] = useState("");
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -75,8 +76,12 @@ const FindIdScreen = ({route, navigation}) => {
     useEffect(() => {
         console.log("certificationNumBtnStatus", certificationNumBtnStatus);
 
-        if (certificationNumInput != "" && responseCertificationNum != "" && certificationNumInput === responseCertificationNum) {
+        if (certificationNumInput.length > 3 && responseCertificationNum.length > 3&& certificationNumInput === responseCertificationNum) {
             setCertificationNumInputmessage("인증되었습니다.");
+        } else if ( certificationNumInput.length > 3 && responseCertificationNum.length > 3 && certificationNumInput !== responseCertificationNum){
+            setCertificationNumInputmessage("인증번호가 일치하지 않습니다.");
+        } else if (certificationNumInput.length < 4 && responseCertificationNum.length > 3){
+            setCertificationNumInputmessage("인증번호를 입력해주세요.");
         }
     }, [certificationNumInput])
 
@@ -95,7 +100,11 @@ const FindIdScreen = ({route, navigation}) => {
 
         } else if (phoneNumberRegex.test(phoneNumInput) === false) {
             setCertificationNumBtnStatus(false);
-            setPhoneNumberInputmessage('휴대폰 번호를 입력해주세요.');
+            setPhoneNumberInputmessage('올바른 휴대폰 번호를 입력해주세요.');
+        }
+
+        if (phoneNumberRegex.test(phoneNumInput) === true) {
+            setPhoneNumberInputmessage('휴대폰 번호 인증을 진행해주세요.');
         }
 
         if (certificationNumBtnStatus === false) {
@@ -174,7 +183,6 @@ const FindIdScreen = ({route, navigation}) => {
 
         fetchIdFind();
 
-
     }
 
     if (loading) {
@@ -185,43 +193,54 @@ const FindIdScreen = ({route, navigation}) => {
         )
     } else {
         return (
-            <ScrollView style={styles.container}>
-
-                {
-                    findIdmodalState != false && 
-                        <FindIdModal
-                            findId={findId}/>
-                }
-                {phoneCefimodalState != false && <PhoneCefiModal/>}
+            <SafeAreaView style={styles.topContainer}>
                 <View style={styles.headerContainer}>
-                    <TouchableOpacity onPress={() => navigation.replace('Login')} activeOpacity={0.95}>
-                        <BackBtn/>
+                        <TouchableOpacity
+                            onPress={() => navigation.replace('Login')}
+                            activeOpacity={0.95}>
+                            <BackBtn/>
+                        </TouchableOpacity>
+                        <CenterTitle type={"findIdText"}/>
+                        <View style={styles.viewContainer}/>
+                    </View>
+                <ScrollView style={styles.container}>
+
+                    {findIdmodalState != false && <FindIdModal findId={findId}/>}
+                    {phoneCefimodalState != false && <PhoneCefiModal/>}
+                    <View style={styles.formArea}>
+                        <AuthForm
+                            style={styles.formArea}
+                            setIdInput={setIdInput}
+                            setPhoneNumInput={setPhoneNumInput}
+                            setCertificationNumInput={setCertificationNumInput}
+                            idInputmessage={idInputmessage}
+                            setIdInputmessage={setIdInputmessage}
+                            phoneNumberInputmessage={phoneNumberInputmessage}
+                            setPhoneNumberInputmessage={setPhoneNumberInputmessage}
+                            certificationNumInputmessage={certificationNumInputmessage}
+                            certificationNumBtnStatus={certificationNumBtnStatus}
+                            setCertificationNumBtnStatus={setCertificationNumBtnStatus}/>
+                    </View>
+                    <TouchableOpacity
+                        onPress={onPressSignUpBtn}
+                        style={styles.signUpBtn}
+                        activeOpacity={0.95}>
+                        <FindIdNextBtn/>
                     </TouchableOpacity>
-                    <CenterTitle type={"findIdText"}/>
-                    <View/>
-                </View>
-                <View style={styles.formArea}>
-                    <AuthForm
-                        style={styles.formArea}
-                        setIdInput={setIdInput}
-                        setPhoneNumInput={setPhoneNumInput}
-                        setCertificationNumInput={setCertificationNumInput}
-                        idInputmessage={idInputmessage}
-                        setIdInputmessage={setIdInputmessage}
-                        phoneNumberInputmessage={phoneNumberInputmessage}
-                        setPhoneNumberInputmessage={setPhoneNumberInputmessage}
-                        certificationNumInputmessage={certificationNumInputmessage}/>
-                </View>
-                <TouchableOpacity onPress={onPressSignUpBtn} style={styles.signUpBtn} activeOpacity={0.95}>
-                    <FindIdNextBtn/>
-                </TouchableOpacity>
-            </ScrollView>
+                </ScrollView>
+            </SafeAreaView>
+
         )
     }
 
 }
 
 const styles = StyleSheet.create({
+    topContainer: {
+        backgroundColor: 'white',
+        width: wp('100%'),
+        height: hp('100%')
+    },
     loading: {
         flex: 1,
         backgroundColor: 'white',
@@ -268,10 +287,15 @@ const styles = StyleSheet.create({
         marginBottom: hp('4%')
     },
     headerContainer: {
-        marginTop: hp('7%'),
+        paddingLeft: wp('10%'),
+        paddingRight: wp('10%'),
+        marginTop: hp('3%'),
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: 'center'
+    },
+    viewContainer: {
+        width: wp('10%')
     }
 })
 

@@ -1,5 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {View, ActivityIndicator, StyleSheet, Platform, SafeAreaView,ScrollView} from 'react-native'
+import {
+    View,
+    ActivityIndicator,
+    StyleSheet,
+    Platform,
+    SafeAreaView,
+    ScrollView
+} from 'react-native'
 import {NavigationContainer, StackActions} from "@react-navigation/native"
 import {createNativeStackNavigator} from "@react-navigation/native-stack"
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -16,7 +23,14 @@ import MyTicket from "../screens/MainScreen/MyticketScreen";
 import TicketPurchase from "../screens/MainScreen/TicketPurchaseScreen";
 import Payment from '../screens/MainScreen/TicketPurchaseScreen/Payment';
 import {useRecoilState} from 'recoil';
-import {isLoginRecoilState, jwtRecoilState, paymentsRecoilState, severURLRecoilState, userIdxRecoilState} from '../../recoil';
+import {
+    isLoginRecoilState,
+    jwtRecoilState,
+    paymentsRecoilState,
+    severURLRecoilState,
+    userIdxRecoilState,
+    userNameRecoilState
+} from '../../recoil';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -39,11 +53,14 @@ const Navigation = () => {
 
     const [userIdx, setUserIdx] = useRecoilState(userIdxRecoilState);
 
+    const [userName, setUserName] = useRecoilState(userNameRecoilState);
+
     const [isLogIn, setIsLogin] = useState(isLoginRecoilState);
 
     useEffect(() => {
         getJwt();
     }, [])
+
 
     const getJwt = async () => {
         try {
@@ -56,6 +73,7 @@ const Navigation = () => {
             // error reading value
         }
     }
+
 
     const authLogin = async () => {
         //getData();
@@ -161,7 +179,9 @@ const Navigation = () => {
                                     <Stack.Screen name="SignUpLast" component={SignUpLast}></Stack.Screen>
                                     <Stack.Screen name="FindPasswordScreen" component={FindPasswordScreen}></Stack.Screen>
                                     <Stack.Screen name="FindIdScreen" component={FindIdScreen}></Stack.Screen>
-                                    <Stack.Screen name="ChangePasswordScreenLogin" component={ChangePasswordScreenLogin}></Stack.Screen>
+                                    <Stack.Screen
+                                        name="ChangePasswordScreenLogin"
+                                        component={ChangePasswordScreenLogin}></Stack.Screen>
                                 </Stack.Group>
                             )
                     }
@@ -187,7 +207,7 @@ const styles = StyleSheet.create({
             android: {
                 height: hp('0%')
             }
-        }),
-    },
+        })
+    }
 });
 export default Navigation

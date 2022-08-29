@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, Platform, TouchableOpacity} from 'react-native'
 
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {useRecoilState} from 'recoil';
-import {dateRecoilState} from '../../../../recoil';
+import {dateRecoilState, weekDateRecoilState} from '../../../../recoil';
 
 const Calendar = () => {
 
@@ -20,7 +20,7 @@ const Calendar = () => {
 
     const [temp, setTempIndex] = useState(0);
 
-    const [date, setDate] = useRecoilState(dateRecoilState);
+    const [date, setDate] = useRecoilState(weekDateRecoilState);
     let firstdayIndex;
 
     // 날짜 리스트 표시 관련

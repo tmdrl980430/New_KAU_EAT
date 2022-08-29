@@ -12,14 +12,14 @@ import {
 
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { useRecoilState } from 'recoil';
-import { dateRecoilState } from '../../../../recoil';
+import { dateRecoilState, weekDateRecoilState } from '../../../../recoil';
 
 
 
 const DateTitle = () => {
 
     const [loading, setLoading] = useState(false)
-    const [date, setDate] = useRecoilState(dateRecoilState);
+    const [date, setDate] = useRecoilState(weekDateRecoilState);
 
     const [month, setMonth] = useState("0");
     const [day, setDay] = useState("0");

@@ -196,7 +196,7 @@ const PurchaseConfirmScreen = ({navigation}) => {
             <SafeAreaView style={styles.safeAreaContainer}>
                 <View style={styles.headerContainer}>
                     <TouchableOpacity
-                        onPress={() => navigation.replace('Main')}
+                        onPress={() => navigation.replace('TicketPurchase')}
                         activeOpacity={0.95}>
                         <BackBtn/>
                     </TouchableOpacity>

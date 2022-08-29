@@ -15,7 +15,8 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import HomeScreen from "./HomeScreen";
 import MyPageScreen from "./MyPageScreen"
 import {useRecoilState} from "recoil";
-import {clickQrImgRecoilState, isLoginRecoilState, mainRerenderingRecoilState} from "../../../recoil";
+import axios from "axios";
+import {clickQrImgRecoilState, isLoginRecoilState, jwtRecoilState, mainRerenderingRecoilState, severURLRecoilState, userIdxRecoilState, userNameRecoilState} from "../../../recoil";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -25,12 +26,67 @@ const Main = ({navigation}) => {
 
     const [mainRe, setMainRe] = useRecoilState(mainRerenderingRecoilState);
 
+    const [IP, setIP] = useRecoilState(severURLRecoilState);
+
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    const [jwt, setJwt] = useRecoilState(jwtRecoilState);
+
+    const [userIdx, setUserIdx] = useRecoilState(userIdxRecoilState);
+
+    const [userName, setUserName] = useRecoilState(userNameRecoilState);
+
     useEffect(() => {
         if (mainRe === true) {
             navigation.replace('Main');
         }
         setMainRe(false);
     }, [mainRe])
+
+    useEffect(() => {
+        getUserInfo();
+    },[])
+
+    const getUserInfo = async () => {
+        console.log('getUserInfo');
+        setLoading(true);
+
+        try {
+            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+            setError(null);
+            console.log('getUserInfo');
+            console.log(jwt);
+
+            // loading 상태를 true 로 바꿉니다.
+            setLoading(true);
+
+            const response = await axios
+                .get(`${IP}/users/${userIdx}`, {
+                    headers: {
+                        "x-access-token": jwt
+                    }
+                })
+                .then((response) => {
+                    console.log(`userInfo response 확인 : ${response.data.result.userInfo.name}`);
+
+                    console.log(`userInfo response code 확인 : ${response.data.code}`);
+                    setUserName(response.data.result.userInfo.name);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            // 데이터는 response.data.code 안에 들어있다. console.log(response.data.result);
+        } catch (e) {
+            console.log('getUserInfo_catch');
+            console.log(e);
+            setError(e);
+        }
+        // loading 끄기
+        setLoading(false);
+    };
+
+
 
     return (
         <Tab.Navigator

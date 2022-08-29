@@ -81,6 +81,10 @@ const SignUpLast = ({route, navigation}) => {
 
         if (certificationNumInput != "" && responseCertificationNum != "" && certificationNumInput === responseCertificationNum) {
             setCertificationNumInputmessage("인증되었습니다.");
+        } else if ( certificationNumInput.length > 3 && responseCertificationNum.length > 3 && certificationNumInput !== responseCertificationNum){
+            setCertificationNumInputmessage("인증번호가 일치하지 않습니다.");
+        } else if (certificationNumInput.length < 4 && responseCertificationNum.length > 3){
+            setCertificationNumInputmessage("인증번호를 입력해주세요.");
         }
     }, [certificationNumInput])
 
@@ -103,7 +107,11 @@ const SignUpLast = ({route, navigation}) => {
 
         } else if (phoneNumberRegex.test(phoneNumInput) === false) {
             setCertificationNumBtnStatus(false);
-            setPhoneNumberInputmessage('휴대폰 번호를 입력해주세요.');
+            setPhoneNumberInputmessage('올바른 휴대폰 번호를 입력해주세요.');
+        }
+
+        if (phoneNumberRegex.test(phoneNumInput) === true) {
+            setPhoneNumberInputmessage('휴대폰 번호 인증을 진행해주세요.');
         }
 
         if (certificationNumBtnStatus === false) {

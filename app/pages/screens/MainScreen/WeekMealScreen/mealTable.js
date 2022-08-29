@@ -13,7 +13,7 @@ import axios from 'axios';
 
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {useRecoilState} from 'recoil';
-import {dateRecoilState, jwtRecoilState, severURLRecoilState} from '../../../../recoil';
+import {dateRecoilState, jwtRecoilState, severURLRecoilState, weekDateRecoilState} from '../../../../recoil';
 
 import MealTableComponent from '../../../../utils/meals/meal';
 
@@ -27,7 +27,7 @@ const MealTable = () => {
     const [jwt, setJwt] = useRecoilState(jwtRecoilState);
     const [error, setError] = useState(null);
 
-    const [date, setDate] = useRecoilState(dateRecoilState);
+    const [date, setDate] = useRecoilState(weekDateRecoilState);
 
     const [tableObject, setTableObject] = useState([]);
 

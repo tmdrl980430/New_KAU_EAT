@@ -53,6 +53,7 @@ const HomeScreen = ({navigation}) => {
         wait(2000).then(() => setRefreshing(false));
     }, []);
 
+
     useEffect(() => {
 
         console.log("clickKind : ", clickKind);

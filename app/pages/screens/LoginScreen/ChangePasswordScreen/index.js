@@ -6,14 +6,15 @@ import {
     ScrollView,
     Text,
     Button,
-    TouchableOpacity
+    TouchableOpacity,
+    SafeAreaView
 } from 'react-native';
 import axios from 'axios';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import AuthForm from "./ChangeAuthform";
 import ChangeBtn from "./ChangeBtn";
 import {useRecoilState} from "recoil";
-import { phoneNumberRecoilState, severURLRecoilState} from "../../../../recoil";
+import {phoneNumberRecoilState, severURLRecoilState} from "../../../../recoil";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import BackBtn from '../../../../utils/backBtn/back'
 import CenterTitle from "../../../../utils/title/centerTitle";
@@ -25,8 +26,9 @@ const ChangePasswordScreen = ({navigation}) => {
 
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/;
 
-
-    const [phoneNumInput, setPhoneNumInput] = useRecoilState(phoneNumberRecoilState);
+    const [phoneNumInput, setPhoneNumInput] = useRecoilState(
+        phoneNumberRecoilState
+    );
 
     const [passwordInputmessage, setPasswordInputmessage] = useState("");
 
@@ -55,9 +57,8 @@ const ChangePasswordScreen = ({navigation}) => {
         console.log('patchPassword');
 
         console.log('passwordInput', passwordInput);
-        console.log('passwordCheckInput', passwordCheckInput);        
+        console.log('passwordCheckInput', passwordCheckInput);
         console.log('phoneNumber', phoneNumInput);
-
 
         if (passwordInput == "") {
             setPasswordInputmessage("비밀번호를 입력해주세요.");
@@ -120,36 +121,49 @@ const ChangePasswordScreen = ({navigation}) => {
         )
     } else {
         return (
-            <ScrollView style={styles.container}>
+            <SafeAreaView style={styles.topContainer}>
                 <View style={styles.headerContainer}>
-                    <TouchableOpacity onPress={() => navigation.replace('Login')} activeOpacity={0.95}>
+                    <TouchableOpacity
+                        onPress={() => navigation.replace('Login')}
+                        activeOpacity={0.95}>
                         <BackBtn/>
                     </TouchableOpacity>
                     <CenterTitle type={"changePasswordText"}/>
-                    <View/>
+                    <View style={styles.viewContainer}/>
                 </View>
-                <View style={styles.formArea}>
-                    <AuthForm
-                        style={styles.formArea}
-                        setPasswordInput={setPasswordInput}
-                        passwordInput={passwordInput}
-                        passwordInputmessage={passwordInputmessage}
-                        setPasswordInputmessage={setPasswordInputmessage}
-                        passwordCheckInput={passwordCheckInput}
-                        setPasswordCheckInput={setPasswordCheckInput}
-                        passwordCheckInputmessage={passwordCheckInputmessage}
-                        setPasswordCheckInputmessage={setPasswordCheckInputmessage}/>
-                </View>
-                <TouchableOpacity style={styles.loginBtn} onPress={patchPassword} activeOpacity={0.95}>
-                    <ChangeBtn/>
-                </TouchableOpacity>
-            </ScrollView>
+                <ScrollView style={styles.container}>
+                    <View style={styles.formArea}>
+                        <AuthForm
+                            style={styles.formArea}
+                            setPasswordInput={setPasswordInput}
+                            passwordInput={passwordInput}
+                            passwordInputmessage={passwordInputmessage}
+                            setPasswordInputmessage={setPasswordInputmessage}
+                            passwordCheckInput={passwordCheckInput}
+                            setPasswordCheckInput={setPasswordCheckInput}
+                            passwordCheckInputmessage={passwordCheckInputmessage}
+                            setPasswordCheckInputmessage={setPasswordCheckInputmessage}/>
+                    </View>
+                    <TouchableOpacity
+                        style={styles.loginBtn}
+                        onPress={patchPassword}
+                        activeOpacity={0.95}>
+                        <ChangeBtn/>
+                    </TouchableOpacity>
+                </ScrollView>
+            </SafeAreaView>
+
         )
     }
 
 }
 
 const styles = StyleSheet.create({
+    topContainer: {
+        backgroundColor: 'white',
+        width: wp('100%'),
+        height: hp('100%')
+    },
     loading: {
         flex: 1,
         backgroundColor: 'white',
@@ -196,10 +210,15 @@ const styles = StyleSheet.create({
         marginTop: hp('48%')
     },
     headerContainer: {
-        marginTop: hp('7%'),
+        marginTop: hp('3%'),
         flexDirection: "row",
         justifyContent: "space-between",
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingLeft: wp('10%'),
+        paddingRight: wp('10%')
+    },
+    viewContainer: {
+        width: wp('10%')
     }
 })
 
