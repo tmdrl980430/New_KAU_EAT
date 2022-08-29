@@ -10,7 +10,8 @@ import {
     purchasemodalRecoilState,
     purchaseTicketRecoilState,
     severURLRecoilState,
-    userIdxRecoilState
+    userIdxRecoilState,
+    userNameRecoilState
 } from '../../../../../recoil';
 import axios from 'axios';
 
@@ -28,6 +29,8 @@ const Payment = ({navigation, route}) => {
     );
 
     const [userIdx, setUserIdx] = useRecoilState(userIdxRecoilState);
+
+    const [name, setName] = useRecoilState(userNameRecoilState);
 
     const [date, setDate] = useRecoilState(dateRecoilState);
 
@@ -78,7 +81,7 @@ const Payment = ({navigation, route}) => {
                 .catch((e) => {
                     console.log(`out payerror : ${e}`);
                 })
-        } else {
+            } else {
             //결제 실패 modal 띄워주기 (진행안함)
             console.log(`결제에 실패하였습니다. 에러 내용: ${res.error_msg}`);
             setPurchaseModalState(true);
@@ -139,16 +142,16 @@ const Payment = ({navigation, route}) => {
         merchant_uid: uid, // 상점에서 관리하는 주문 번호
         name: '식권',
         amount: cost, // 결제창에 표시될 금액. 실제 승인이 이뤄지지는 않습니다.
-        customer_uid: 'imp27534884', // 필수 입력.
+        customer_uid: 'imp47381767', // 필수 입력.
         buyer_email: '',
-        buyer_name: '김승기',
+        buyer_name: name,
         buyer_tel: '',
         app_scheme: 'kaueat'
     };
 
     const callBack = (res) => {
         console.group('callback');
-        //console.log('callBackres', res);
+        console.log('callBackres', res);
         console.log('callBackres.imp', res.imp_uid);
         console.log('callBackres.merchant_uid', res.merchant_uid);
         console.log('callBackres.imp_success', res.imp_success);
@@ -167,7 +170,7 @@ const Payment = ({navigation, route}) => {
     return (
         <IMP.Payment
             style={styles.backgroud}
-            userCode={'imp27534884'}
+            userCode={'imp47381767'}
             loading={(
                 <View style={styles.loading}>
                     <ActivityIndicator/>

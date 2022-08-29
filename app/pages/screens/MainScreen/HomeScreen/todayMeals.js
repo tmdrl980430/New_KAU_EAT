@@ -196,9 +196,9 @@ const MealList = () => {
                             <Carousel
                                 layout={"default"}
                                 data={responseData}
-                                sliderWidth={300}
-                                itemWidth={330}
-                                firstItem={1}
+                                sliderWidth={wp('85%')}
+                                itemWidth={wp('85%')}
+                                firstItem={0}
                                 renderItem={_renderItem}
                                 loop={true}/>
                         )

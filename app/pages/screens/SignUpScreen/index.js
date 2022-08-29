@@ -16,13 +16,14 @@ import Introduction from "./introduction";
 import SignUpBtn from "./SignUpBtn";
 import BackBtn from '../../../utils/backBtn/back'
 import CenterTitle from '../../../utils/title/centerTitle';
-import { severURLRecoilState } from "../../../recoil";
-import { useRecoilState } from "recoil";
+import {severURLRecoilState} from "../../../recoil";
+import {useRecoilState} from "recoil";
 
 const SignUp = ({navigation}) => {
 
     const [IP, setIP] = useRecoilState(severURLRecoilState);
 
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/;
 
     const [signUp, setSignUp] = useState('');
     const [loading, setLoading] = useState(false);
@@ -46,12 +47,14 @@ const SignUp = ({navigation}) => {
         } else {
             setIdInputmessage('');
         }
-        if(id.length < 6){
+        if (id.length < 6) {
             setIdInputmessage("아이디는 6자리 이상 입력해주세요.");
         }
         if (password == "") {
             setPasswordInputmessage("비밀번호를 입력해주세요.");
             return;
+        } else if (passwordRegex.test(password) !== true) {
+            setPasswordInputmessage('비밀번호는 영문/숫자를 혼용 8~20자리 이내로 입력해주세요.');
         } else {
             setPasswordInputmessage('');
         }
@@ -77,9 +80,7 @@ const SignUp = ({navigation}) => {
                     setsamePassword(true);
                     setPasswordcheckInputmessage("");
                     const response = await axios
-                        .get(
-                            `${IP}/auth/duplicate-id?id=${id}`
-                        )
+                        .get(`${IP}/auth/duplicate-id?id=${id}`)
                         .then((response) => {
                             console.log(`response code확인 : ${response.data.code}`);
                             if (response.data.code == 1000) {
@@ -97,14 +98,11 @@ const SignUp = ({navigation}) => {
 
                             }
                         })
-                        .catch((error) => {
-
-                        });
+                        .catch((error) => {});
                 }
                 // 데이터는 response.data.code 안에 들어있다.
                 setSignUp(response.data.code);
-            } catch (e) {
-            }
+            } catch (e) {}
             // loading 끄기
             setLoading(false);
         }
@@ -131,7 +129,9 @@ const SignUp = ({navigation}) => {
         return (
             <ScrollView style={styles.container}>
                 <View style={styles.headerContainer}>
-                    <TouchableOpacity onPress={() => navigation.replace('Login')} activeOpacity={0.95}>
+                    <TouchableOpacity
+                        onPress={() => navigation.replace('Login')}
+                        activeOpacity={0.95}>
                         <BackBtn/>
                     </TouchableOpacity>
                     <CenterTitle type={"signInText"}/>
@@ -153,7 +153,10 @@ const SignUp = ({navigation}) => {
                         passwordInputmessage={passwordInputmessage}
                         passwordcheckInputmessage={passwordcheckInputmessage}/>
                 </View>
-                <TouchableOpacity style={styles.loginBtn} onPress={onPressNextBtn} activeOpacity={0.95}>
+                <TouchableOpacity
+                    style={styles.loginBtn}
+                    onPress={onPressNextBtn}
+                    activeOpacity={0.95}>
                     <SignUpBtn/>
                 </TouchableOpacity>
             </ScrollView>

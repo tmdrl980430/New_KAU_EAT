@@ -23,6 +23,8 @@ const ChangePasswordScreen = ({navigation}) => {
     const [passwordInput, setPasswordInput] = useState('');
     const [passwordCheckInput, setPasswordCheckInput] = useState('');
 
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/;
+
     const [userIdx, setUserIdx] = useRecoilState(userIdxRecoilState);
 
     const [phoneNumInput, setPhoneNumInput] = useRecoilState(phoneNumberRecoilState);
@@ -30,7 +32,7 @@ const ChangePasswordScreen = ({navigation}) => {
     const [passwordInputmessage, setPasswordInputmessage] = useState("");
 
     const [passwordCheckInputmessage, setPasswordCheckInputmessage] = useState(
-        "영문/숫자를 혼용 8~12자리 이내로 입력해주세요."
+        "비밀번호는 영문/숫자를 혼용 8~20자리 이내로 입력해주세요."
     );
 
     const [IP, setIP] = useRecoilState(severURLRecoilState);
@@ -65,10 +67,9 @@ const ChangePasswordScreen = ({navigation}) => {
         }
         if (passwordCheckInput == "") {
             setPasswordCheckInputmessage("위와 동일한 비밀번호를 입력해주세요.");
-        } else {
-            setPasswordCheckInputmessage('영문/숫자를 혼용 8~12자리 이내로 입력해주세요.');
+        } else if (passwordRegex.test(passwordInput) !== true) {
+            setPasswordInputmessage('비밀번호는 영문/숫자를 혼용 8~20자리 이내로 입력해주세요.');
         }
-
         if (passwordInput != passwordCheckInput) {
             setPasswordCheckInputmessage("비밀번호가 일치하지 않습니다.");
         }
