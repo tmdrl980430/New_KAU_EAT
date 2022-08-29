@@ -6,6 +6,7 @@ import {
     ScrollView,
     Text,
     Button,
+    SafeAreaView,
     TouchableOpacity
 } from 'react-native';
 import axios from 'axios';
@@ -136,50 +137,64 @@ const Login = ({
         )
     } else {
         return (
-            <ScrollView style={styles.container}>
-                <View style={styles.headerContainer}>
-                    <View/>
-                    <CenterTitle type="loginText"/>
-                    <View/>
-                </View>
-                <View>
-                    <Introduction/>
-                </View>
-                <View style={styles.formArea}>
-                    <AuthForm
-                        style={styles.formArea}
-                        setEmailInput={setEmailInput}
-                        setPasswordInput={setPasswordInput}
-                        idInputmessage={idInputmessage}
-                        passwordInputmessage={passwordInputmessage}/>
-                </View>
-                <TouchableOpacity style={styles.loginBtn} onPress={onPressLoginBtn}activeOpacity={0.95} >
-                    <LoginBtn/>
-                </TouchableOpacity>
-                <View style={styles.signuptextArea}>
-                    <TouchableOpacity onPress={() => navigation.navigate('FindIdScreen')} activeOpacity={0.95}>
-                        <Text style={styles.signuptext}>아이디 찾기</Text>
+            <SafeAreaView style={styles.topContainer}>
+                <ScrollView style={styles.container}>
+                    <View style={styles.headerContainer}>
+                        <View/>
+                        <CenterTitle type="loginText"/>
+                        <View/>
+                    </View>
+                    <View>
+                        <Introduction/>
+                    </View>
+                    <View style={styles.formArea}>
+                        <AuthForm
+                            style={styles.formArea}
+                            setEmailInput={setEmailInput}
+                            setPasswordInput={setPasswordInput}
+                            idInputmessage={idInputmessage}
+                            passwordInputmessage={passwordInputmessage}/>
+                    </View>
+                    <TouchableOpacity activeOpacity={0.95} style={styles.loginBtn} onPress={onPressLoginBtn}>
+                        <LoginBtn/>
                     </TouchableOpacity>
-                    <Text style={styles.signuptext}>
-                        |
-                    </Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('FindPasswordScreen')} activeOpacity={0.95}>
-                        <Text style={styles.signuptext}>비밀번호 찾기</Text>
-                    </TouchableOpacity>
-                    <Text style={styles.signuptext}>
-                        |
-                    </Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('SignUp')} activeOpacity={0.95}>
-                        <Text style={styles.signuptext}>회원가입</Text>
-                    </TouchableOpacity>
-                </View>
-            </ScrollView>
+                    <View style={styles.signuptextArea}>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('FindIdScreen')}
+                            activeOpacity={0.95}>
+                            <Text style={styles.signuptext}>아이디 찾기</Text>
+                        </TouchableOpacity>
+                        <Text style={styles.signuptext}>
+                            |
+                        </Text>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('FindPasswordScreen')}
+                            activeOpacity={0.95}>
+                            <Text style={styles.signuptext}>비밀번호 찾기</Text>
+                        </TouchableOpacity>
+                        <Text style={styles.signuptext}>
+                            |
+                        </Text>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('SignUp')}
+                            activeOpacity={0.95}>
+                            <Text style={styles.signuptext}>회원가입</Text>
+                        </TouchableOpacity>
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
+
         )
     }
 
 }
 
 const styles = StyleSheet.create({
+    topContainer: {
+        backgroundColor: 'white',
+        width : wp('100%'),
+        height: hp('100%'),
+    },
     loading: {
         flex: 1,
         backgroundColor: 'white',
@@ -187,7 +202,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     headerContainer: {
-        marginTop: hp('7%'),
+        marginTop: hp('3%'),
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: 'center'

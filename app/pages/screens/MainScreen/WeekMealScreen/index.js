@@ -29,14 +29,16 @@ const WeekMealsScreen = ({navigation}) => {
     } else {
         return (
             <SafeAreaView style={styles.safeAreaContainer}>
+                <View style={styles.headerContainer}>
+                    <TouchableOpacity
+                        onPress={() => navigation.replace('Main')}
+                        activeOpacity={0.95}>
+                        <BackBtn/>
+                    </TouchableOpacity>
+                    <CenterTitle type={"weekMealText"}/>
+                    <View style={styles.viewContainer}/>
+                </View>
                 <ScrollView style={styles.container}>
-                    <View style={styles.headerContainer}>
-                        <TouchableOpacity onPress={() => navigation.replace('Main')} activeOpacity={0.95}>
-                            <BackBtn/>
-                        </TouchableOpacity>
-                        <CenterTitle type={"weekMealText"}/>
-                        <View/>
-                    </View>
                     <Calendar/>
                     <DateTitle/>
                     <MealTable/>
@@ -63,7 +65,7 @@ const styles = StyleSheet.create({
     },
     safeAreaContainer: {
         backgroundColor: 'white',
-        paddingBottom : hp('5%'),
+        paddingBottom: hp('5%')
     },
     container: {
         backgroundColor: 'white',
@@ -82,6 +84,11 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: 'center',
+        paddingLeft: wp('10%'),
+        paddingRight: wp('10%'),
+    },
+    viewContainer: {
+        width: wp('10%'),
     }
 });
 

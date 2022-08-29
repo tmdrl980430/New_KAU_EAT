@@ -165,10 +165,10 @@ const PurchaseConfirmScreen = ({navigation}) => {
                 })
                 .then((response) => {
                     console.log(`response 확인 : ${response.data.code}`);
-                    if(response.data.code === 1000){
+                    if (response.data.code === 1000) {
                         navigation.replace('Payment', {uid: {
-                            uid
-                        }})
+                                uid
+                            }})
                     }
                 })
                 .catch((error) => {
@@ -194,16 +194,16 @@ const PurchaseConfirmScreen = ({navigation}) => {
     } else {
         return (
             <SafeAreaView style={styles.safeAreaContainer}>
+                <View style={styles.headerContainer}>
+                    <TouchableOpacity
+                        onPress={() => navigation.replace('Main')}
+                        activeOpacity={0.95}>
+                        <BackBtn/>
+                    </TouchableOpacity>
+                    <CenterTitle type={"ticketPaymentsText"}/>
+                    <View style={styles.viewContainer}/>
+                </View>
                 <ScrollView style={styles.container}>
-                    <View style={styles.headerContainer}>
-                        <TouchableOpacity
-                            onPress={() => navigation.replace('Main')}
-                            activeOpacity={0.95}>
-                            <BackBtn/>
-                        </TouchableOpacity>
-                        <CenterTitle type={"ticketPaymentsText"}/>
-                        <View/>
-                    </View>
                     <View style={styles.tableContainer}>
                         {
                             ticketObject && ticketObject.map((ticket, index) => (
@@ -274,6 +274,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     headerContainer: {
+        paddingLeft: wp('9%'),
+        paddingRight: wp('9%'),
         marginTop: hp('3%'),
         flexDirection: "row",
         justifyContent: "space-between",
@@ -297,7 +299,10 @@ const styles = StyleSheet.create({
     },
     purchaseBtn: {
         marginTop: hp('50%'),
-        marginBottom: hp('10%')
+        marginBottom: hp('15%')
+    },
+    viewContainer: {
+        width: wp('10%'),
     }
 });
 

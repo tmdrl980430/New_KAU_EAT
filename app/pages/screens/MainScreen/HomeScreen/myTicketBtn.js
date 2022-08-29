@@ -3,14 +3,12 @@ import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import RigthArrow from '../../../../assets/images/right_arrow.png';
 
-const MyTicketBtn = ({navigation}) => {
+const MyTicketBtn = () => {
 
     return (
-        <TouchableOpacity style={styles.titleArea} activeOpacity={0.95}>
-            <View style={styles.viewContainer}>
-                <Image style={styles.rightArrowImg} source={RigthArrow} resizeMode={'contain'}/>
-            </View>
-        </TouchableOpacity>
+        <View style={styles.titleArea}>
+            <Image style={styles.rightArrowImg} source={RigthArrow} resizeMode={'contain'}/>
+        </View>
     )
 }
 
@@ -24,14 +22,14 @@ const styles = StyleSheet.create({
         marginEnd: wp('10%')
     },
     rightArrowImg: {
-        width: wp('3.5%'),
-        height: hp('1.5%'),
+        width: wp('4.6%'),
+        height: hp('1.6%'),
         resizeMode: 'center',
         marginStart: wp('2%')
     },
     viewContainer: {
         width: wp('5%'),
-        height: hp('2%'),
+        height: hp('2%')
     }
 })
 

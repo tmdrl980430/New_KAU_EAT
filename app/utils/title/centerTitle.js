@@ -44,14 +44,6 @@ const CenterTitle = (props) => {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        justifyContent: "space-between",
-        flexDirection: "row",
-        marginTop: hp('3%'),
-        marginStart: wp('10%'),
-        marginEnd: wp('10%'),
-        alignItems: "center"
-    },
     text: {
         fontFamily: 'NotoSansKR-Bold',
         fontSize: hp('2.3%'),

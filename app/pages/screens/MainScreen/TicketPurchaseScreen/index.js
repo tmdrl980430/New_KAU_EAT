@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
     Text,
     View,
@@ -6,7 +6,8 @@ import {
     ActivityIndicator,
     ScrollView,
     SafeAreaView,
-    TouchableOpacity
+    TouchableOpacity,
+    RefreshControl
 } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import BackBtn from '../../../../utils/backBtn/back'
@@ -32,7 +33,6 @@ const TicketPurchaseScreen = ({navigation}) => {
 
     const [IP, setIP] = useRecoilState(severURLRecoilState);
 
-
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [jwt, setJwt] = useRecoilState(jwtRecoilState);
@@ -55,11 +55,20 @@ const TicketPurchaseScreen = ({navigation}) => {
 
     const [uid, setUid] = useRecoilState(merchantUidRecoilState);
 
-
     const [tableObject0, setTableObject0] = useState([]);
     const [tableObject1, setTableObject1] = useState([]);
     const [tableObject2, setTableObject2] = useState([]);
     const [tableObject3, setTableObject3] = useState([]);
+
+    const wait = (timeout) => {
+        return new Promise(resolve => setTimeout(resolve, timeout));
+    }
+    const [refreshing, setRefreshing] = useState(false);
+
+    const onRefresh = useCallback(() => {
+        setRefreshing(true);
+        wait(2000).then(() => setRefreshing(false));
+    }, []);
 
     let cost = (purchaseTicket[0] * 3000) + (purchaseTicket[1] * 5000) + (
         purchaseTicket[2] * 6000
@@ -120,43 +129,42 @@ const TicketPurchaseScreen = ({navigation}) => {
 
     };
 
-
     const clickPurchase = () => {
-        
+
         //품절된 식권이 있을 떄 실행을 하는 것.
 
-        if(purchaseTicket[0] > 0){
-            if(tableObject0.menu === null){
+        if (purchaseTicket[0] > 0) {
+            if (tableObject0.menu === null) {
                 setSoldOutConfirmModalState(true);
             } else {
-                if(tableObject0.menu.menuStatus === "ACTIVE"){
+                if (tableObject0.menu.menuStatus === "ACTIVE") {
                     setSoldOutConfirmModalState(true);
                 }
             }
         }
-        if(purchaseTicket[1] > 0){
-            if(tableObject1.menu === null){
+        if (purchaseTicket[1] > 0) {
+            if (tableObject1.menu === null) {
                 setSoldOutConfirmModalState(true);
             } else {
-                if(tableObject1.menu.menuStatus === "ACTIVE"){
+                if (tableObject1.menu.menuStatus === "ACTIVE") {
                     setSoldOutConfirmModalState(true);
                 }
             }
         }
-        if(purchaseTicket[2] > 0){
-            if(tableObject2.menu === null){
+        if (purchaseTicket[2] > 0) {
+            if (tableObject2.menu === null) {
                 setSoldOutConfirmModalState(true);
             } else {
-                if(tableObject2.menu.menuStatus === "ACTIVE"){
+                if (tableObject2.menu.menuStatus === "ACTIVE") {
                     setSoldOutConfirmModalState(true);
                 }
             }
         }
-        if(purchaseTicket[3] > 0){
-            if(tableObject3.menu === null){
+        if (purchaseTicket[3] > 0) {
+            if (tableObject3.menu === null) {
                 setSoldOutConfirmModalState(true);
             } else {
-                if(tableObject3.menu.menuStatus === "ACTIVE"){
+                if (tableObject3.menu.menuStatus === "ACTIVE") {
                     setSoldOutConfirmModalState(true);
                 }
             }
@@ -173,18 +181,32 @@ const TicketPurchaseScreen = ({navigation}) => {
         )
     } else {
         return (
-            <SafeAreaView SafeAreaView="SafeAreaView" style={styles.safeAreaContainer}>
+            <SafeAreaView style={styles.safeAreaContainer}>
                 {soldOutConfirmmodalState != false && <SoldOutConfirmModal/>}
-                <ScrollView style={styles.container}>
-                    <View style={styles.headerContainer}>
-                        <TouchableOpacity onPress={() => navigation.replace('Main')} activeOpacity={0.95}>
-                            <BackBtn/>
-                        </TouchableOpacity>
-                        <CenterTitle type={"ticketPurchaseText"}/>
-                        <View/>
-                    </View>
+                <View style={styles.headerContainer}>
+                    <TouchableOpacity
+                        onPress={() => navigation.replace('Main')}
+                        activeOpacity={0.95}>
+                        <BackBtn/>
+                    </TouchableOpacity>
+                    <CenterTitle type={"ticketPurchaseText"}/>
+                    <View style={styles.viewContainer}/>
+                </View>
+                <ScrollView
+                    style={styles.container}
+                    refreshControl={<RefreshControl
+                    refreshing = {
+                        refreshing
+                    }
+                    onRefresh = {
+                        onRefresh
+                    }
+                    />}>
                     <PurchaseTable/>
-                    <TouchableOpacity style={styles.purchaseBtn} onPress={clickPurchase} activeOpacity={0.95}>
+                    <TouchableOpacity
+                        style={styles.purchaseBtn}
+                        onPress={clickPurchase}
+                        activeOpacity={0.95}>
                         <PurchaseBtn/>
                     </TouchableOpacity>
                 </ScrollView>
@@ -223,14 +245,19 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     headerContainer: {
+        paddingLeft: wp('10%'),
+        paddingRight: wp('10%'),
         marginTop: hp('3%'),
         flexDirection: "row",
         justifyContent: "space-between",
-        alignItems: 'center',
+        alignItems: 'center'
     },
     purchaseBtn: {
         marginTop: hp('7%'),
-        marginBottom: hp('10%')
+        marginBottom: hp('20%')
+    },
+    viewContainer: {
+        width: wp('10%')
     }
 });
 

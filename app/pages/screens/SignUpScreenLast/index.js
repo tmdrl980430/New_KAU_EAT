@@ -6,7 +6,8 @@ import {
     ScrollView,
     Text,
     Button,
-    TouchableOpacity
+    TouchableOpacity,
+    SafeAreaView
 } from 'react-native';
 import axios from 'axios';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -16,20 +17,27 @@ import SignUpBtn from "./SignUpBtn";
 import BackBtn from '../../../utils/backBtn/back'
 import CenterTitle from '../../../utils/title/centerTitle';
 import {useRecoilState} from "recoil";
-import {cefiBtnRecoilState, phoneceficonfirmmodalRecoilState, phonecefimodalRecoilState, phoneDuplicateRecoilState, phoneNumberRecoilState, severURLRecoilState} from "../../../recoil";
+import {
+    cefiBtnRecoilState,
+    phoneceficonfirmmodalRecoilState,
+    phonecefimodalRecoilState,
+    phoneDuplicateRecoilState,
+    phoneNumberRecoilState,
+    severURLRecoilState
+} from "../../../recoil";
 import PhoneCefiModal from "../../../utils/modal/phoneCefimodal";
 
 const SignUpLast = ({route, navigation}) => {
 
     const [IP, setIP] = useRecoilState(severURLRecoilState);
 
-
     const [loading, setLoading] = useState(false)
     const [signUp, setSignUp] = useState('');
     const [error, setError] = useState(null);
 
-    const [duplicatePhone, setDuplicatePhone] = useRecoilState(phoneDuplicateRecoilState);
-
+    const [duplicatePhone, setDuplicatePhone] = useRecoilState(
+        phoneDuplicateRecoilState
+    );
 
     // 전 화면에서 받아온 데이터
     const {id} = route.params.id
@@ -38,7 +46,9 @@ const SignUpLast = ({route, navigation}) => {
     const [nameInput, setNameInput] = useState('');
     //const [phoneNumInput, setPhoneNumInput] = useState('');
 
-    const [phoneNumInput, setPhoneNumInput] = useRecoilState(phoneNumberRecoilState);
+    const [phoneNumInput, setPhoneNumInput] = useRecoilState(
+        phoneNumberRecoilState
+    );
 
     const [certificationNumInput, setCertificationNumInput] = useState('');
     const [responseCertificationNum, setResponseCertificationNum] = useState('');
@@ -46,9 +56,13 @@ const SignUpLast = ({route, navigation}) => {
         cefiBtnRecoilState
     );
 
-    const [phoneCefimodalState, setPhoneCefiModalState] = useRecoilState(phonecefimodalRecoilState);
+    const [phoneCefimodalState, setPhoneCefiModalState] = useRecoilState(
+        phonecefimodalRecoilState
+    );
 
-    const [phoneCefiCofirmState, setPhoneCefiConfirmState] = useRecoilState(phoneceficonfirmmodalRecoilState);
+    const [phoneCefiCofirmState, setPhoneCefiConfirmState] = useRecoilState(
+        phoneceficonfirmmodalRecoilState
+    );
 
     const [nameInputmessage, setNameInputmessage] = useState("");
     const [phoneNumberInputmessage, setPhoneNumberInputmessage] = useState("");
@@ -70,13 +84,12 @@ const SignUpLast = ({route, navigation}) => {
         }
     }, [certificationNumInput])
 
-
     useEffect(() => {
         console.log(phoneNumInput);
         console.log("phoneNumberRegex", phoneNumberRegex.test(phoneNumInput));
         console.log("certificationNumBtnStatus", certificationNumBtnStatus);
-        if (phoneNumberRegex.test(phoneNumInput) && certificationNumBtnStatus === true && phoneCefiCofirmState == true ) {
-            
+        if (phoneNumberRegex.test(phoneNumInput) && certificationNumBtnStatus === true && phoneCefiCofirmState == true) {
+
             console.log("duplicatePhone", duplicatePhone)
 
             if (duplicatePhone === true) {
@@ -88,15 +101,14 @@ const SignUpLast = ({route, navigation}) => {
                 setCertificationNumBtnStatus(false);
             }
 
-        } else if(phoneNumberRegex.test(phoneNumInput) === false) {
+        } else if (phoneNumberRegex.test(phoneNumInput) === false) {
             setCertificationNumBtnStatus(false);
             setPhoneNumberInputmessage('휴대폰 번호를 입력해주세요.');
         }
 
-        if(certificationNumBtnStatus === false){
+        if (certificationNumBtnStatus === false) {
             setResponseCertificationNum('');
         }
-        
 
     }, [certificationNumBtnStatus, phoneNumInput])
 
@@ -186,38 +198,49 @@ const SignUpLast = ({route, navigation}) => {
         )
     } else {
         return (
-            <ScrollView style={styles.container}>
-                {
-                    phoneCefimodalState != false && <PhoneCefiModal/>
-                }
+            <SafeAreaView style={styles.topContainer}>
                 <View style={styles.headerContainer}>
-                    <TouchableOpacity onPress={() => navigation.replace('SignUp')} activeOpacity={0.95}>
+                    <TouchableOpacity
+                        onPress={() => navigation.replace('SignUp')}
+                        activeOpacity={0.95}>
                         <BackBtn/>
                     </TouchableOpacity>
                     <CenterTitle type={"signInText"}/>
-                    <View/>
+                    <View style={styles.viewContainer}/>
                 </View>
-                <View style={styles.formArea}>
-                    <AuthForm
-                        style={styles.formArea}
-                        setNameInput={setNameInput}
-                        setPhoneNumInput={setPhoneNumInput}
-                        setCertificationNumInput={setCertificationNumInput}
-                        nameInputmessage={nameInputmessage}
-                        phoneNumberInputmessage={phoneNumberInputmessage}
-                        setPhoneNumberInputmessage={setPhoneNumberInputmessage}
-                        certificationNumInputmessage={certificationNumInputmessage}/>
-                </View>
-                <TouchableOpacity onPress={onPressSignUpBtn} style={styles.signUpBtn} activeOpacity={0.95}>
-                    <SignUpBtn/>
-                </TouchableOpacity>
-            </ScrollView>
+                <ScrollView style={styles.container}>
+                    {phoneCefimodalState != false && <PhoneCefiModal/>}
+                    <View style={styles.formArea}>
+                        <AuthForm
+                            style={styles.formArea}
+                            setNameInput={setNameInput}
+                            setPhoneNumInput={setPhoneNumInput}
+                            setCertificationNumInput={setCertificationNumInput}
+                            nameInputmessage={nameInputmessage}
+                            phoneNumberInputmessage={phoneNumberInputmessage}
+                            setPhoneNumberInputmessage={setPhoneNumberInputmessage}
+                            certificationNumInputmessage={certificationNumInputmessage}/>
+                    </View>
+                    <TouchableOpacity
+                        onPress={onPressSignUpBtn}
+                        style={styles.signUpBtn}
+                        activeOpacity={0.95}>
+                        <SignUpBtn/>
+                    </TouchableOpacity>
+                </ScrollView>
+            </SafeAreaView>
+
         )
     }
 
 }
 
 const styles = StyleSheet.create({
+    topContainer: {
+        backgroundColor: 'white',
+        width: wp('100%'),
+        height: hp('100%')
+    },
     loading: {
         flex: 1,
         backgroundColor: 'white',
@@ -264,10 +287,15 @@ const styles = StyleSheet.create({
         marginBottom: hp('4%')
     },
     headerContainer: {
-        marginTop: hp('7%'),
+        marginTop: hp('3%'),
         flexDirection: "row",
         justifyContent: "space-between",
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingLeft: wp('10%'),
+        paddingRight: wp('10%')
+    },
+    viewContainer: {
+        width: wp('10%')
     }
 })
 

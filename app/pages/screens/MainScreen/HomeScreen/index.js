@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
     Text,
     View,
@@ -7,6 +7,7 @@ import {
     ScrollView,
     SafeAreaView,
     TouchableOpacity,
+    RefreshControl
 } from 'react-native';
 //import {ScrollView} from 'react-native-gesture-handler';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -36,10 +37,21 @@ const HomeScreen = ({navigation}) => {
 
     const [qrModalState, setQeModalState] = useRecoilState(qrModalRecoilState);
 
-    const [purchasemodalState, setPurchaseModalState] = useRecoilState(purchasemodalRecoilState);
-
+    const [purchasemodalState, setPurchaseModalState] = useRecoilState(
+        purchasemodalRecoilState
+    );
 
     const [paymentsState, setPamentsState] = useRecoilState(paymentsRecoilState);
+
+    const wait = (timeout) => {
+        return new Promise(resolve => setTimeout(resolve, timeout));
+    }
+    const [refreshing, setRefreshing] = useState(false);
+
+    const onRefresh = useCallback(() => {
+        setRefreshing(true);
+        wait(2000).then(() => setRefreshing(false));
+    }, []);
 
     useEffect(() => {
 
@@ -70,31 +82,41 @@ const HomeScreen = ({navigation}) => {
     } else {
         return (
             <SafeAreaView style={styles.topContainer}>
-                {
-                    modalState != false && <TicketCountModal/>
-                }
-                {
-                    qrModalState != false && <QrModal/>
-                }
+                {modalState != false && <TicketCountModal/>}
+                {qrModalState != false && <QrModal/>}
                 {purchasemodalState != false && <PurchaseResultModal/>}
-
-                <ScrollView style={styles.container}>
-                    <HomeLogo style={styles.logoArea}/>
+                <HomeLogo style={styles.logoArea}/>
+                <ScrollView
+                    style={styles.container}
+                    refreshControl={<RefreshControl
+                    refreshing = {
+                        refreshing
+                    }
+                    onRefresh = {
+                        onRefresh
+                    }
+                    />}>
                     <View style={styles.titlecontainer}>
                         <TodayMealTitle/>
-                        <TouchableOpacity onPress={() => navigation.replace('WeekMeals')} activeOpacity={0.95}>
+                        <TouchableOpacity
+                            onPress={() => navigation.replace('WeekMeals')}
+                            activeOpacity={0.95}>
                             <TodayMealBtn/>
                         </TouchableOpacity>
                     </View>
                     <MealList/>
                     <TicketPurchaseTitle/>
-                    <TouchableOpacity onPress={() => navigation.replace('TicketPurchase')} activeOpacity={0.95}>
+                    <TouchableOpacity
+                        onPress={() => navigation.replace('TicketPurchase')}
+                        activeOpacity={0.95}>
                         <TicketPurchaseBtn/>
                     </TouchableOpacity>
 
                     <View style={styles.titlecontainer}>
                         <MyTicketTitle/>
-                        <TouchableOpacity onPress={() => navigation.replace('MyTicket')} activeOpacity={0.95}>
+                        <TouchableOpacity
+                            onPress={() => navigation.replace('MyTicket')}
+                            activeOpacity={0.95}>
                             <MyTicketBtn/>
                         </TouchableOpacity>
                     </View>
@@ -129,7 +151,8 @@ const styles = StyleSheet.create({
     },
     paddingContainer: {
         paddingLeft: wp('10%'),
-        paddingRight: wp('10%')
+        paddingRight: wp('10%'),
+        marginBottom: hp('5%')
     },
     logoArea: {
         width: '100%',
@@ -140,8 +163,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         flexDirection: "row",
         alignItems: "center"
-    },
-
+    }
 });
 
 export default HomeScreen;

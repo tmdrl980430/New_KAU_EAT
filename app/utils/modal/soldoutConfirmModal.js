@@ -69,7 +69,7 @@ const SoldOutConfirmModal = (props) => {
 
                     <Text style={styles.descirptionText}>품절된 식권을{'\n'}구매하시겠습니까?</Text>
                     <View style={styles.textAlignmentContainer}>
-                        <Text style={styles.descirption2Text}>현 식권은 </Text>
+                        <Text style={styles.descirption2Text}>해당 식권은 </Text>
                         <Text style={styles.descirption2underlineText}>당일 사용이 불가능</Text>
                         <Text style={styles.descirption2Text}>합니다.</Text>
                     </View>

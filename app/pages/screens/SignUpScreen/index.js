@@ -6,7 +6,8 @@ import {
     ScrollView,
     Text,
     Button,
-    TouchableOpacity
+    TouchableOpacity,
+    SafeAreaView
 } from 'react-native';
 import axios from 'axios';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -127,7 +128,7 @@ const SignUp = ({navigation}) => {
         )
     } else {
         return (
-            <ScrollView style={styles.container}>
+            <SafeAreaView style={styles.topContainer}>
                 <View style={styles.headerContainer}>
                     <TouchableOpacity
                         onPress={() => navigation.replace('Login')}
@@ -135,37 +136,44 @@ const SignUp = ({navigation}) => {
                         <BackBtn/>
                     </TouchableOpacity>
                     <CenterTitle type={"signInText"}/>
-                    <View/>
+                    <View style={styles.viewContainer}/>
                 </View>
-                <View>
-                    <Introduction/>
-                </View>
-                <View style={styles.formArea}>
-                    <AuthForm
-                        style={styles.formArea}
-                        setId={setId}
-                        setPassword={setPassword}
-                        setPasswordCheck={setPasswordCheck}
-                        setduplicateId={duplicateId}
-                        setformatPassword={formatPassword}
-                        setsamePassword={samePassword}
-                        idInputmessage={idInputmessage}
-                        passwordInputmessage={passwordInputmessage}
-                        passwordcheckInputmessage={passwordcheckInputmessage}/>
-                </View>
-                <TouchableOpacity
-                    style={styles.loginBtn}
-                    onPress={onPressNextBtn}
-                    activeOpacity={0.95}>
-                    <SignUpBtn/>
-                </TouchableOpacity>
-            </ScrollView>
+                <ScrollView style={styles.container}>
+                    <View>
+                        <Introduction/>
+                    </View>
+                    <View style={styles.formArea}>
+                        <AuthForm
+                            style={styles.formArea}
+                            setId={setId}
+                            setPassword={setPassword}
+                            setPasswordCheck={setPasswordCheck}
+                            setduplicateId={duplicateId}
+                            setformatPassword={formatPassword}
+                            setsamePassword={samePassword}
+                            idInputmessage={idInputmessage}
+                            passwordInputmessage={passwordInputmessage}
+                            passwordcheckInputmessage={passwordcheckInputmessage}/>
+                    </View>
+                    <TouchableOpacity
+                        style={styles.loginBtn}
+                        onPress={onPressNextBtn}
+                        activeOpacity={0.95}>
+                        <SignUpBtn/>
+                    </TouchableOpacity>
+                </ScrollView>
+            </SafeAreaView>
         )
     }
 
 }
 
 const styles = StyleSheet.create({
+    topContainer: {
+        backgroundColor: 'white',
+        width: wp('100%'),
+        height: hp('100%')
+    },
     loading: {
         flex: 1,
         backgroundColor: 'white',
@@ -192,9 +200,9 @@ const styles = StyleSheet.create({
         borderColor: '#888',
         width: '100%',
         height: hp('5%'),
-        paddingLeft: 5,
-        paddingRight: 5,
-        marginBottom: 5
+        paddingLeft: wp('0.5%'),
+        paddingRight: wp('0.5%'),
+        marginBottom: hp('0.5%'),
     },
     signuptextArea: {
         marginTop: hp("3%"),
@@ -212,10 +220,15 @@ const styles = StyleSheet.create({
         marginBottom: hp('4%')
     },
     headerContainer: {
-        marginTop: hp('7%'),
+        marginTop: hp('3%'),
         flexDirection: "row",
         justifyContent: "space-between",
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingLeft: wp('10%'),
+        paddingRight: wp('10%')
+    },
+    viewContainer: {
+        width: wp('10%'),
     }
 })
 

@@ -9,8 +9,8 @@ import {
     TouchableOpacity
 } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import { useRecoilState } from 'recoil';
-import { clickQrImgRecoilState, modalRecoilState, qrModalRecoilState } from '../../../../recoil';
+import {useRecoilState} from 'recoil';
+import {clickQrImgRecoilState, modalRecoilState, qrModalRecoilState} from '../../../../recoil';
 import BackBtn from '../../../../utils/backBtn/back'
 import TicketCountModal from '../../../../utils/modal/tickeCountmodal';
 import QrModal from '../../../../utils/modal/ticketmodal';
@@ -54,20 +54,18 @@ const MyTicketScreen = ({navigation}) => {
     } else {
         return (
             <SafeAreaView style={styles.safeAreaContainer}>
-                {
-                    modalState != false && <TicketCountModal/>
-                }
-                {
-                    qrModalState != false && <QrModal/>
-                }
+                {modalState != false && <TicketCountModal/>}
+                {qrModalState != false && <QrModal/>}
+                <View style={styles.headerContainer}>
+                    <TouchableOpacity
+                        onPress={() => navigation.replace('Main')}
+                        activeOpacity={0.95}>
+                        <BackBtn/>
+                    </TouchableOpacity>
+                    <CenterTitle type={"myTicketText"}/>
+                    <View style={styles.viewContainer}/>
+                </View>
                 <ScrollView style={styles.container}>
-                    <View style={styles.headerContainer}>
-                        <TouchableOpacity onPress={() => navigation.replace('Main')} activeOpacity={0.95}>
-                            <BackBtn/>
-                        </TouchableOpacity>
-                        <CenterTitle type={"myTicketText"}/>
-                        <View/>
-                    </View>
                     <View style={styles.ticketContainer}>
                         <TicketList/>
                     </View>
@@ -87,7 +85,8 @@ const styles = StyleSheet.create({
         justufyContent: 'center'
     },
     ticketContainer: {
-        marginTop: hp('4%')
+        marginTop: hp('4%'),
+        marginBottom: hp('15%')
     },
     loading: {
         flex: 1,
@@ -103,7 +102,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         paddingLeft: wp('10%'),
         paddingRight: wp('10%'),
-        width: wp('100%'),
+        width: wp('95%'),
         height: hp('100%')
     },
     logoArea: {
@@ -112,10 +111,15 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     headerContainer: {
+        paddingLeft: wp('10%'),
+        paddingRight: wp('10%'),
         marginTop: hp('3%'),
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: 'center'
+    },
+    viewContainer: {
+        width: wp('10%'),
     }
 });
 

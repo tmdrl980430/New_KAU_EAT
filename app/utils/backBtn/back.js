@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
     },
     viewContainer: {
         width: wp('10%'),
-        height: hp('2%'),
     }
 })
 

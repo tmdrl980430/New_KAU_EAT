@@ -84,7 +84,7 @@ const PurchaseTable = () => {
             console.log(jwt);
 
             // loading 상태를 true 로 바꿉니다.
-            setLoading(true);
+            //setLoading(true);
 
             const response = await axios
                 .get(`${IP}/meals?date=${date}`, {
@@ -101,9 +101,11 @@ const PurchaseTable = () => {
                     setTableObject3(response.data.result[3]);
 
                     console.log("조회", response.data.result[1]);
+
                 })
                 .catch((error) => {
                     console.log(error);
+
                 });
             // 데이터는 response.data.code 안에 들어있다. console.log(response.data.result);
         } catch (e) {

@@ -26,11 +26,11 @@ const Main = ({navigation}) => {
     const [mainRe, setMainRe] = useRecoilState(mainRerenderingRecoilState);
 
     useEffect(() => {
-        if(mainRe === true){
+        if (mainRe === true) {
             navigation.replace('Main');
         }
         setMainRe(false);
-    },[mainRe])
+    }, [mainRe])
 
     return (
         <Tab.Navigator
