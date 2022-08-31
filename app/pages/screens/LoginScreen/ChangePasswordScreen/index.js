@@ -34,7 +34,7 @@ const ChangePasswordScreen = ({navigation}) => {
     const [passwordInputmessage, setPasswordInputmessage] = useState("");
 
     const [passwordCheckInputmessage, setPasswordCheckInputmessage] = useState(
-        "비밀번호는 영문/숫자를 혼용 8~20자리 이내로 입력해주세요."
+        "비밀번호는 영문/숫자를 혼용 8~20자리 이내로 입력해주세요. "
     );
 
     const [passwordChangeLoginmodalState, setPasswordChangeLoginModalState] = useRecoilState(

@@ -79,7 +79,7 @@ const ChangePasswordScreen = ({navigation}) => {
         if (passwordCheckInput == "") {
             setPasswordCheckInputmessage("위와 동일한 비밀번호를 입력해주세요.");
         } else if (passwordRegex.test(passwordInput) !== true) {
-            setPasswordInputmessage('비밀번호는 영문/숫자를 혼용 8~20자리 이내로 입력해주세요.');
+            setPasswordInputmessage('비밀번호는 영문/숫자를 혼용 8~20자리 이내로 입력해주세요. ');
         }
         if (passwordInput != passwordCheckInput) {
             setPasswordCheckInputmessage("비밀번호가 일치하지 않습니다.");

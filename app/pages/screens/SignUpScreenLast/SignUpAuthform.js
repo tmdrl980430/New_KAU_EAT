@@ -47,6 +47,15 @@ const AuthForm = (props) => {
         setCefiIng(false);
     },[])
 
+
+    const phoneNumberRegex = /^(01\d{1})([0-9]{3,4})([0-9]{4})$/;
+
+    useEffect(() => {
+        if(phoneNumberRegex.test(phoneNumInput) !== true){
+            setCefiIng(false);
+        }
+    },[phoneNumInput])
+
     useEffect(() => {
 
 
@@ -106,7 +115,9 @@ const AuthForm = (props) => {
 
         console.log("certificationPhone", certificationNumBtnStatus);
 
-        phoneNumberDuplicate();
+        if(phoneNumberRegex.test(phoneNumInput) === true){
+            phoneNumberDuplicate();
+        }
         if(duplicatePhone === true){
             setPhoneCefiModalState(true);
         } else {
@@ -129,6 +140,7 @@ const AuthForm = (props) => {
                         setDuplicatePhone(true);
                     } else if (res.data.code === 3010) {
                         setDuplicatePhone(false);
+                        props.setPhoneNumberInputmessage('이미 가입된 휴대폰 번호입니다.');
                     } else {
                         setDuplicatePhone(false);
                     }

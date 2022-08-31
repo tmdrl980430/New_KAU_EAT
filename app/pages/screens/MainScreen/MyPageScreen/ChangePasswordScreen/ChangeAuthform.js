@@ -18,8 +18,8 @@ const AuthForm = (props) => {
                 placeholder='새로운 비밀번호를 입력해주세요.'/> 
             {
                 props.passwordInputmessage === ""
-                    ? (<View/>)
-                    : (<Text style={styles.messageText}>{props.passwordInputmessage}</Text>)
+                    ? (<Text style={styles.messageText}>{props.passwordInputmessage}</Text>)
+                    : (<Text style={styles.messageErrorText}>{props.passwordInputmessage}</Text>)
             }
             <Text style={styles.titleText}>새 비밀번호 확인</Text>
             <Input
@@ -31,9 +31,9 @@ const AuthForm = (props) => {
                 onChangeText={(text) => props.setPasswordCheckInput(text)}
                 placeholder='새로운 비밀번호를 입력해주세요.'/> 
             {
-                props.passwordCheckInputmessage === ""
-                    ? (<View/>)
-                    : (<Text style={styles.messageText}>{props.passwordCheckInputmessage}</Text>)
+                props.passwordCheckInputmessage === "비밀번호는 영문/숫자를 혼용 8~20자리 이내로 입력해주세요."
+                    ? (<Text style={styles.messageText}>{props.passwordCheckInputmessage}</Text>)
+                    : (<Text style={styles.messageErrorText}>{props.passwordCheckInputmessage}</Text>)
             }
 
         </View>
@@ -56,7 +56,14 @@ const styles = StyleSheet.create({
         marginStart: wp('4%'),
         fontSize: hp('1.3%'),
         color: '#AAACAE',
-        marginTop: hp('1.4%'),
+        marginTop: hp('1.4%')
+    },
+    messageErrorText: {
+        fontFamily: 'NotoSansKR-Regular',
+        marginStart: wp('4%'),
+        fontSize: hp('1.3%'),
+        color: 'red',
+        marginTop: hp('1.4%')
     }
 })
 

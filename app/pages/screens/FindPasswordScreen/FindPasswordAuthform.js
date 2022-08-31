@@ -48,6 +48,14 @@ const AuthForm = (props) => {
         setCefiIng(false);
     },[])
 
+    const phoneNumberRegex = /^(01\d{1})([0-9]{3,4})([0-9]{4})$/;
+
+    useEffect(() => {
+        if(phoneNumberRegex.test(phoneNumInput) !== true){
+            setCefiIng(false);
+        }
+    },[phoneNumInput])
+
     useEffect(() => {
 
 
@@ -106,8 +114,14 @@ const AuthForm = (props) => {
     const certificationPhone = () => {
 
         console.log("certificationPhone", certificationNumBtnStatus);
-        setPhoneCefiModalState(true);
 
+
+        if(phoneNumberRegex.test(phoneNumInput) === false){
+            setCefiIng(false);
+        } else {
+            setPhoneCefiModalState(true);
+
+        }
     }
 
 
