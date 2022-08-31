@@ -7,7 +7,7 @@ const FindIdNextBtn = () => {
     return (
         <View style={styles.buttonArea}>
             <View style={styles.button}>
-                <Text style={styles.buttonTitle}>다음</Text>
+                <Text style={styles.buttonTitle}>아이디 찾기</Text>
             </View>
         </View>
     )

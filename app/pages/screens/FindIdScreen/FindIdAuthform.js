@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'NotoSansKR-Bold',
-        fontSize: 14,
+        fontSize: hp('1.6%'),
         color: '#1F2C37',
         marginTop: hp('2.5%')
     },
@@ -243,7 +243,6 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     phoneArea: {
-        flex: 1,
         flexDirection: "row"
     },
     messageText: {

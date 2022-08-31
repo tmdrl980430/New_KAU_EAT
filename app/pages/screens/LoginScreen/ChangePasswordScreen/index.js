@@ -14,10 +14,11 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import AuthForm from "./ChangeAuthform";
 import ChangeBtn from "./ChangeBtn";
 import {useRecoilState} from "recoil";
-import {phoneNumberRecoilState, severURLRecoilState} from "../../../../recoil";
+import {passwordChangeLoginmodalRecoilState, passwordChangeNavigationLoginRecoilState, phoneNumberRecoilState, severURLRecoilState} from "../../../../recoil";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import BackBtn from '../../../../utils/backBtn/back'
 import CenterTitle from "../../../../utils/title/centerTitle";
+import PasswordChangeLoginModal from "../../../../utils/modal/passwordChangeLoginmodal";
 
 const ChangePasswordScreen = ({navigation}) => {
 
@@ -36,11 +37,33 @@ const ChangePasswordScreen = ({navigation}) => {
         "비밀번호는 영문/숫자를 혼용 8~20자리 이내로 입력해주세요."
     );
 
+    const [passwordChangeLoginmodalState, setPasswordChangeLoginModalState] = useRecoilState(
+        passwordChangeLoginmodalRecoilState
+    );
+    
+
+    const [passwordChangeNavigationLoginState, setPasswordChangeNavigationLoginState] = useRecoilState(
+        passwordChangeNavigationLoginRecoilState
+    );
+
     const [IP, setIP] = useRecoilState(severURLRecoilState);
 
     const [loading, setLoading] = useState(false)
 
     const [error, setError] = useState(null);
+
+    useEffect(() => {
+        setPasswordChangeNavigationLoginState(false);
+        setPasswordChangeLoginModalState(false);
+    }, [])
+
+    useEffect(() => {
+        if (passwordChangeNavigationLoginState === true) {
+            setPasswordChangeNavigationLoginState(false);
+            navigation.navigate('Login');
+        }
+
+    }, [passwordChangeLoginmodalState])
 
     useEffect(() => {
         setPasswordInput('');
@@ -93,7 +116,7 @@ const ChangePasswordScreen = ({navigation}) => {
                             console.log(`response code확인`, response);
 
                             if (response.data.code == 1000) {
-                                navigation.navigate('Login');
+                                setPasswordChangeLoginModalState(true);
                             }
                             if (response.data.code == 3007) {
                                 setPasswordInputmessage("기존 비밀번호와 동일합니다.");
@@ -122,6 +145,8 @@ const ChangePasswordScreen = ({navigation}) => {
     } else {
         return (
             <SafeAreaView style={styles.topContainer}>
+                {passwordChangeLoginmodalState != false && <PasswordChangeLoginModal/>}
+
                 <View style={styles.headerContainer}>
                     <TouchableOpacity
                         onPress={() => navigation.replace('Login')}
@@ -132,24 +157,28 @@ const ChangePasswordScreen = ({navigation}) => {
                     <View style={styles.viewContainer}/>
                 </View>
                 <ScrollView style={styles.container}>
-                    <View style={styles.formArea}>
-                        <AuthForm
-                            style={styles.formArea}
-                            setPasswordInput={setPasswordInput}
-                            passwordInput={passwordInput}
-                            passwordInputmessage={passwordInputmessage}
-                            setPasswordInputmessage={setPasswordInputmessage}
-                            passwordCheckInput={passwordCheckInput}
-                            setPasswordCheckInput={setPasswordCheckInput}
-                            passwordCheckInputmessage={passwordCheckInputmessage}
-                            setPasswordCheckInputmessage={setPasswordCheckInputmessage}/>
+                    <View style={styles.ContentsViewFlex}>
+                        <View style={styles.formArea}>
+                            <AuthForm
+                                style={styles.formArea}
+                                setPasswordInput={setPasswordInput}
+                                passwordInput={passwordInput}
+                                passwordInputmessage={passwordInputmessage}
+                                setPasswordInputmessage={setPasswordInputmessage}
+                                passwordCheckInput={passwordCheckInput}
+                                setPasswordCheckInput={setPasswordCheckInput}
+                                passwordCheckInputmessage={passwordCheckInputmessage}
+                                setPasswordCheckInputmessage={setPasswordCheckInputmessage}/>
+                        </View>
                     </View>
-                    <TouchableOpacity
-                        style={styles.loginBtn}
-                        onPress={patchPassword}
-                        activeOpacity={0.95}>
-                        <ChangeBtn/>
-                    </TouchableOpacity>
+                    <View style={styles.buttonViewFlex}>
+                        <TouchableOpacity
+                            style={styles.loginBtn}
+                            onPress={patchPassword}
+                            activeOpacity={0.95}>
+                            <ChangeBtn/>
+                        </TouchableOpacity>
+                    </View>
                 </ScrollView>
             </SafeAreaView>
 
@@ -174,7 +203,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
         paddingLeft: wp('10%'),
-        paddingRight: wp('10%')
+        paddingRight: wp('10%'),
     },
     logoArea: {
         width: '100%',
@@ -207,7 +236,6 @@ const styles = StyleSheet.create({
         fontSize: 14
     },
     loginBtn: {
-        marginTop: hp('48%')
     },
     headerContainer: {
         marginTop: hp('3%'),
@@ -219,6 +247,28 @@ const styles = StyleSheet.create({
     },
     viewContainer: {
         width: wp('10%')
+    },
+    ContentsViewFlex: {
+        ...Platform.select({
+            ios: {
+                height: hp('75%'),
+
+            },
+            android: {
+                height: hp('80%'),
+            }
+        })
+    },
+    buttonViewFlex: {
+        ...Platform.select({
+            ios: {
+                height: hp('5%'),
+
+            },
+            android: {
+                height: hp('15.6%'),
+            }
+        })
     }
 })
 

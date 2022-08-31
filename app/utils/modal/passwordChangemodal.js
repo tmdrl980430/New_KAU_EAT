@@ -13,41 +13,40 @@ import MinusImg from '../../assets/images/minus_arrow.png'
 import PlusImg from '../../assets/images/plus_arrow.png'
 import CloseImg from '../../assets/images/close.png'
 import {useRecoilState} from "recoil";
-import {jwtRecoilState, findIdmodalRecoilState, idChangeNavigationLoginRecoilState} from "../../recoil";
+import {jwtRecoilState, isLoginRecoilState, passwordChangemodalRecoilState} from "../../recoil";
 
 //재사용 가능 제목 component
 
-const FindIdModal = (props) => {
+const PasswordChangeModal = (props) => {
 
-    const [findIdmodalState, setFindIdModalState] = useRecoilState(findIdmodalRecoilState);
+    const [passwordChangemodalState, setPasswordChangeModalState] = useRecoilState(passwordChangemodalRecoilState);
 
+    const [jwt, setJwt] = useRecoilState(jwtRecoilState);
+    const [login, setLogin] = useRecoilState(isLoginRecoilState);
 
-    const [idNavigationLoginState, setIdNavigationLoginState] = useRecoilState(
-        idChangeNavigationLoginRecoilState
-    );
+    const [count, setCount] = useState(1);
 
     const clickConfirm = () => {
-        setFindIdModalState(false);
-        setIdNavigationLoginState(true);
+        setPasswordChangeModalState(false);
+        console.log(`jwt : ${jwt}`);
     }
 
     return (
-        <Modal animationType="fade" transparent={false} visible={findIdmodalState}>
+        <Modal animationType="fade" transparent={false} visible={passwordChangemodalState}>
             <View style={styles.bigmodalContainer}>
                 <View style={styles.modalContainer}>
                     <View style={styles.closeContainer}>
                         <View/>
                         <TouchableOpacity
                             onPress={() => {
-                                setLogoutModalState(false);
+                                setPasswordChangeModalState(false);
                                 setClickKind("");
-                            }}
-                            activeOpacity={0.95}>
+                            }} activeOpacity={0.95}>
                             <Image style={styles.closeImg} source={CloseImg} resizeMode={'contain'}/>
                         </TouchableOpacity>
                     </View>
 
-                    <Text style={styles.descirptionText}>유저의 아이디는{'\n'}{props.findId}입니다.</Text>
+                    <Text style={styles.descirptionText}>비밀번호가{'\n'}변경되었습니다.</Text>
                     <View style={styles.buttonContainer}>
                         <TouchableOpacity style={styles.confirmContainer} onPress={clickConfirm} activeOpacity={0.95}>
                             <Text style={styles.confirmText}>확인</Text>
@@ -165,4 +164,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default FindIdModal;
+export default PasswordChangeModal;

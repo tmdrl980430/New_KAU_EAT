@@ -204,29 +204,36 @@ const PurchaseConfirmScreen = ({navigation}) => {
                     <View style={styles.viewContainer}/>
                 </View>
                 <ScrollView style={styles.container}>
-                    <View style={styles.tableContainer}>
-                        {
-                            ticketObject && ticketObject.map((ticket, index) => (
-                                <PaymentsTableComponent
-                                    mealTypeName={ticket.mealTypeName}
-                                    menu={ticket.menu}
-                                    price={ticket.price}
-                                    count={purchaseTicket[index]}
-                                    key={index}/>
-                            ))
-                        }
+                    <View style={styles.scrollViewContainer}>
+                        <View style={styles.ContentsViewFlex}>
+                            <View style={styles.tableContainer}>
+                                {
+                                    ticketObject && ticketObject.map((ticket, index) => (
+                                        <PaymentsTableComponent
+                                            mealTypeName={ticket.mealTypeName}
+                                            menu={ticket.menu}
+                                            price={ticket.price}
+                                            count={purchaseTicket[index]}
+                                            key={index}/>
+                                    ))
+                                }
+                            </View>
+                            <View style={styles.lineView}></View>
+                            <View style={styles.priceContainer}>
+                                <Text style={styles.priceText}>총 결제금액</Text>
+                                <Text style={styles.priceText}>{cost}원</Text>
+                            </View>
+                        </View>
+                        <View style={styles.buttonViewFlex}>
+                            <TouchableOpacity
+                                style={styles.purchaseBtn}
+                                onPress={clickPurchase}
+                                activeOpacity={0.95}>
+                                <PaymentsBtn cost={cost}/>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                    <View style={styles.lineView}></View>
-                    <View style={styles.priceContainer}>
-                        <Text style={styles.priceText}>총 결제금액</Text>
-                        <Text style={styles.priceText}>{cost}원</Text>
-                    </View>
-                    <TouchableOpacity
-                        style={styles.purchaseBtn}
-                        onPress={clickPurchase}
-                        activeOpacity={0.95}>
-                        <PaymentsBtn cost={cost}/>
-                    </TouchableOpacity>
+
                 </ScrollView>
 
             </SafeAreaView>
@@ -236,12 +243,6 @@ const PurchaseConfirmScreen = ({navigation}) => {
 }
 
 const styles = StyleSheet.create({
-    backgroud: {
-        flex: 1,
-        backgroudColor: 'white',
-        alignItems: 'center',
-        justufyContent: 'center'
-    },
     loading: {
         flex: 1,
         backgroundColor: 'white',
@@ -250,14 +251,17 @@ const styles = StyleSheet.create({
     },
     safeAreaContainer: {
         backgroundColor: 'white',
-        paddingBottom: hp('5%')
+        paddingBottom: hp('5%'),
+        height: hp('150%')
     },
     container: {
         backgroundColor: 'white',
         paddingLeft: wp('9%'),
         paddingRight: wp('9%'),
+        paddingBottom: hp('5%'),
         width: wp('100%'),
-        height: hp('100%')
+        height: hp('80%'),
+        marginBottom: hp('50%')
     },
     tableContainer: {
         ...Platform.select({
@@ -267,11 +271,6 @@ const styles = StyleSheet.create({
                 paddingEnd: wp('4%')
             }
         })
-    },
-    logoArea: {
-        width: '100%',
-        marginTop: hp('40%'),
-        alignItems: 'center'
     },
     headerContainer: {
         paddingLeft: wp('9%'),
@@ -285,7 +284,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginTop: hp('2.85%')
+        marginTop: hp('2.85%'),
+        marginBottom: hp('2.85%')
     },
     priceText: {
         fontFamily: 'NotoSansKR-Bold',
@@ -298,11 +298,19 @@ const styles = StyleSheet.create({
         marginTop: hp('3%')
     },
     purchaseBtn: {
-        marginTop: hp('50%'),
-        marginBottom: hp('15%')
+        marginTop: hp('0%')
     },
     viewContainer: {
-        width: wp('10%'),
+        width: wp('10%')
+    },
+    ContentsViewFlex: {
+        flex : 3,
+    },
+    buttonViewFlex: {
+        flex : 1,
+    },
+    scrollViewContainer: {
+        display: 'flex',
     }
 });
 

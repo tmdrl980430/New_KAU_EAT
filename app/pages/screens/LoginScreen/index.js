@@ -138,48 +138,55 @@ const Login = ({
     } else {
         return (
             <SafeAreaView style={styles.topContainer}>
+                <View style={styles.headerContainer}>
+                    <View/>
+                    <CenterTitle type="loginText"/>
+                    <View/>
+                </View>
                 <ScrollView style={styles.container}>
-                    <View style={styles.headerContainer}>
-                        <View/>
-                        <CenterTitle type="loginText"/>
-                        <View/>
+                    <View style={styles.ContentsViewFlex}>
+                        <View>
+                            <Introduction/>
+                        </View>
+                        <View style={styles.formArea}>
+                            <AuthForm
+                                style={styles.formArea}
+                                setEmailInput={setEmailInput}
+                                setPasswordInput={setPasswordInput}
+                                idInputmessage={idInputmessage}
+                                passwordInputmessage={passwordInputmessage}/>
+                        </View>
                     </View>
-                    <View>
-                        <Introduction/>
-                    </View>
-                    <View style={styles.formArea}>
-                        <AuthForm
-                            style={styles.formArea}
-                            setEmailInput={setEmailInput}
-                            setPasswordInput={setPasswordInput}
-                            idInputmessage={idInputmessage}
-                            passwordInputmessage={passwordInputmessage}/>
-                    </View>
-                    <TouchableOpacity activeOpacity={0.95} style={styles.loginBtn} onPress={onPressLoginBtn}>
-                        <LoginBtn/>
-                    </TouchableOpacity>
-                    <View style={styles.signuptextArea}>
+                    <View style={styles.buttonViewFlex}>
                         <TouchableOpacity
-                            onPress={() => navigation.navigate('FindIdScreen')}
-                            activeOpacity={0.95}>
-                            <Text style={styles.signuptext}>아이디 찾기</Text>
+                            activeOpacity={0.95}
+                            style={styles.loginBtn}
+                            onPress={onPressLoginBtn}>
+                            <LoginBtn/>
                         </TouchableOpacity>
-                        <Text style={styles.signuptext}>
-                            |
-                        </Text>
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('FindPasswordScreen')}
-                            activeOpacity={0.95}>
-                            <Text style={styles.signuptext}>비밀번호 찾기</Text>
-                        </TouchableOpacity>
-                        <Text style={styles.signuptext}>
-                            |
-                        </Text>
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('SignUp')}
-                            activeOpacity={0.95}>
-                            <Text style={styles.signuptext}>회원가입</Text>
-                        </TouchableOpacity>
+                        <View style={styles.signuptextArea}>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('FindIdScreen')}
+                                activeOpacity={0.95}>
+                                <Text style={styles.signuptext}>아이디 찾기</Text>
+                            </TouchableOpacity>
+                            <Text style={styles.signuptext}>
+                                |
+                            </Text>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('FindPasswordScreen')}
+                                activeOpacity={0.95}>
+                                <Text style={styles.signuptext}>비밀번호 찾기</Text>
+                            </TouchableOpacity>
+                            <Text style={styles.signuptext}>
+                                |
+                            </Text>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('SignUp')}
+                                activeOpacity={0.95}>
+                                <Text style={styles.signuptext}>회원가입</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </ScrollView>
             </SafeAreaView>
@@ -192,8 +199,8 @@ const Login = ({
 const styles = StyleSheet.create({
     topContainer: {
         backgroundColor: 'white',
-        width : wp('100%'),
-        height: hp('100%'),
+        width: wp('100%'),
+        height: hp('100%')
     },
     loading: {
         flex: 1,
@@ -208,10 +215,10 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     container: {
-        flex: 1,
         backgroundColor: 'white',
         paddingLeft: wp('10%'),
-        paddingRight: wp('10%')
+        paddingRight: wp('10%'),
+        height: hp('100%')
     },
     logoArea: {
         width: '100%',
@@ -222,21 +229,11 @@ const styles = StyleSheet.create({
         width: '100%',
         paddingBottom: wp('10%')
     },
-    textForm: {
-        borderWidth: 0.5,
-        borderColor: '#888',
-        width: '100%',
-        height: hp('5%'),
-        paddingLeft: 5,
-        paddingRight: 5,
-        marginBottom: 5
-    },
     signuptextArea: {
         marginTop: hp("3%"),
         flexDirection: "row",
         justifyContent: "center",
-        alignItems: 'center',
-        marginBottom: hp('3%')
+        alignItems: 'center'
     },
     signuptext: {
         fontFamily: 'NotoSansKR-Black',
@@ -244,7 +241,29 @@ const styles = StyleSheet.create({
         fontSize: 14
     },
     loginBtn: {
-        marginTop: hp('30%')
+        // marginTop : hp('25%'),
+    },
+    ContentsViewFlex: {
+        ...Platform.select({
+            ios: {
+                height: hp('70%'),
+
+            },
+            android: {
+                height: hp('75%'),
+            }
+        })
+    },
+    buttonViewFlex: {
+        ...Platform.select({
+            ios: {
+                height: hp('12%'),
+
+            },
+            android: {
+                height: hp('15.6%'),
+            }
+        })
     }
 })
 

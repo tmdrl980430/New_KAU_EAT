@@ -165,7 +165,6 @@ const Navigation = () => {
                                     <Stack.Screen name='PurchaseConfirmScreen' component={PurchaseConfirmScreen}></Stack.Screen>
                                     <Stack.Screen name='Payment' component={Payment}></Stack.Screen>
                                     <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen}></Stack.Screen>
-
                                 </Stack.Group>
                             )
                             : (

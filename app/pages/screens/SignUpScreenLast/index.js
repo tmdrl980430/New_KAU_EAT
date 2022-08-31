@@ -81,9 +81,9 @@ const SignUpLast = ({route, navigation}) => {
 
         if (certificationNumInput != "" && responseCertificationNum != "" && certificationNumInput === responseCertificationNum) {
             setCertificationNumInputmessage("인증되었습니다.");
-        } else if ( certificationNumInput.length > 3 && responseCertificationNum.length > 3 && certificationNumInput !== responseCertificationNum){
+        } else if (certificationNumInput.length > 3 && responseCertificationNum.length > 3 && certificationNumInput !== responseCertificationNum) {
             setCertificationNumInputmessage("인증번호가 일치하지 않습니다.");
-        } else if (certificationNumInput.length < 4 && responseCertificationNum.length > 3){
+        } else if (certificationNumInput.length < 4 && responseCertificationNum.length > 3) {
             setCertificationNumInputmessage("인증번호를 입력해주세요.");
         }
     }, [certificationNumInput])
@@ -218,23 +218,27 @@ const SignUpLast = ({route, navigation}) => {
                 </View>
                 <ScrollView style={styles.container}>
                     {phoneCefimodalState != false && <PhoneCefiModal/>}
-                    <View style={styles.formArea}>
-                        <AuthForm
-                            style={styles.formArea}
-                            setNameInput={setNameInput}
-                            setPhoneNumInput={setPhoneNumInput}
-                            setCertificationNumInput={setCertificationNumInput}
-                            nameInputmessage={nameInputmessage}
-                            phoneNumberInputmessage={phoneNumberInputmessage}
-                            setPhoneNumberInputmessage={setPhoneNumberInputmessage}
-                            certificationNumInputmessage={certificationNumInputmessage}/>
+                    <View style={styles.ContentsViewFlex}>
+                        <View style={styles.formArea}>
+                            <AuthForm
+                                style={styles.formArea}
+                                setNameInput={setNameInput}
+                                setPhoneNumInput={setPhoneNumInput}
+                                setCertificationNumInput={setCertificationNumInput}
+                                nameInputmessage={nameInputmessage}
+                                phoneNumberInputmessage={phoneNumberInputmessage}
+                                setPhoneNumberInputmessage={setPhoneNumberInputmessage}
+                                certificationNumInputmessage={certificationNumInputmessage}/>
+                        </View>
                     </View>
-                    <TouchableOpacity
-                        onPress={onPressSignUpBtn}
-                        style={styles.signUpBtn}
-                        activeOpacity={0.95}>
-                        <SignUpBtn/>
-                    </TouchableOpacity>
+                    <View style={styles.buttonViewFlex}>
+                        <TouchableOpacity
+                            onPress={onPressSignUpBtn}
+                            style={styles.signUpBtn}
+                            activeOpacity={0.95}>
+                            <SignUpBtn/>
+                        </TouchableOpacity>
+                    </View>
                 </ScrollView>
             </SafeAreaView>
 
@@ -247,7 +251,7 @@ const styles = StyleSheet.create({
     topContainer: {
         backgroundColor: 'white',
         width: wp('100%'),
-        height: hp('100%')
+        height: hp('150%')
     },
     loading: {
         flex: 1,
@@ -291,8 +295,6 @@ const styles = StyleSheet.create({
         fontSize: 14
     },
     signUpBtn: {
-        marginTop: hp('28%'),
-        marginBottom: hp('4%')
     },
     headerContainer: {
         marginTop: hp('3%'),
@@ -304,6 +306,28 @@ const styles = StyleSheet.create({
     },
     viewContainer: {
         width: wp('10%')
+    },
+    ContentsViewFlex: {
+        ...Platform.select({
+            ios: {
+                height: hp('75%'),
+
+            },
+            android: {
+                height: hp('80%'),
+            }
+        })
+    },
+    buttonViewFlex: {
+        ...Platform.select({
+            ios: {
+                height: hp('5%'),
+
+            },
+            android: {
+                height: hp('15.6%'),
+            }
+        })
     }
 })
 

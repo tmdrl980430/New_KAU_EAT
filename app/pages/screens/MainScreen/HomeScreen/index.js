@@ -21,7 +21,7 @@ import TicketPurchaseTitle from './ticketPurchaseTitle';
 import TodayMealBtn from './mealTableBtn';
 import MyTicketTitle from './myTicketTitle'
 import {useRecoilState} from 'recoil';
-import {clickQrImgRecoilState, modalRecoilState, paymentsRecoilState, purchasemodalRecoilState, qrModalRecoilState} from '../../../../recoil';
+import {clickQrImgRecoilState, modalRecoilState, paymentsRecoilState, purchasemodalRecoilState, purchaseTicketRecoilState, qrModalRecoilState} from '../../../../recoil';
 
 import TicketCountModal from '../../../../utils/modal/tickeCountmodal'
 
@@ -53,6 +53,14 @@ const HomeScreen = ({navigation}) => {
         wait(2000).then(() => setRefreshing(false));
     }, []);
 
+    const [purchaseTicket, setPurchaseTicket] = useRecoilState(
+        purchaseTicketRecoilState
+    );
+
+
+    useEffect(() => {
+        setPurchaseTicket([0, 0, 0, 0]);
+    }, []);
 
     useEffect(() => {
 

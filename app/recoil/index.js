@@ -71,12 +71,19 @@ export const clickQrImgRecoilState = atom(
 
 export const mainRerenderingRecoilState = atom({key: 'mainRerenderingRecoilState', default: false});
 
-
 export const paymentsRecoilState = atom({key: 'paymentsRecoilState', default: false});
 
 export const modalRecoilState = atom({key: 'modalRecoilState', default: false});
 
 export const logoutmodalRecoilState = atom({key: 'logoutmodalRecoilState', default: false});
+
+export const passwordChangemodalRecoilState = atom({key: 'passwordChangemodalRecoilState', default: false});
+
+export const passwordChangeLoginmodalRecoilState = atom({key: 'passwordChangeLoginmodalRecoilState', default: false});
+
+export const passwordChangeNavigationLoginRecoilState = atom({key: 'passwordChangeNavigationLoginRecoilState', default: false});
+
+export const idChangeNavigationLoginRecoilState = atom({key: 'idChangeNavigationLoginRecoilState', default: false});
 
 export const findIdmodalRecoilState = atom({key: 'findIdmodalRecoilState', default: false});
 

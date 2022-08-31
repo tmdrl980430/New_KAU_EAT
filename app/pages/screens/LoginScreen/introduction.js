@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 
     introductionText: {
         fontFamily: 'NotoSansKR-Bold',
-        fontSize: 24,
+        fontSize: hp('2.4%'),
         color: '#1F2C37',
         lineHeight: 32,
         justifyContent: 'flex-start'

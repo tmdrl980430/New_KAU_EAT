@@ -139,28 +139,32 @@ const SignUp = ({navigation}) => {
                     <View style={styles.viewContainer}/>
                 </View>
                 <ScrollView style={styles.container}>
-                    <View>
-                        <Introduction/>
+                    <View style={styles.ContentsViewFlex}>
+                        <View>
+                            <Introduction/>
+                        </View>
+                        <View style={styles.formArea}>
+                            <AuthForm
+                                style={styles.formArea}
+                                setId={setId}
+                                setPassword={setPassword}
+                                setPasswordCheck={setPasswordCheck}
+                                setduplicateId={duplicateId}
+                                setformatPassword={formatPassword}
+                                setsamePassword={samePassword}
+                                idInputmessage={idInputmessage}
+                                passwordInputmessage={passwordInputmessage}
+                                passwordcheckInputmessage={passwordcheckInputmessage}/>
+                        </View>
                     </View>
-                    <View style={styles.formArea}>
-                        <AuthForm
-                            style={styles.formArea}
-                            setId={setId}
-                            setPassword={setPassword}
-                            setPasswordCheck={setPasswordCheck}
-                            setduplicateId={duplicateId}
-                            setformatPassword={formatPassword}
-                            setsamePassword={samePassword}
-                            idInputmessage={idInputmessage}
-                            passwordInputmessage={passwordInputmessage}
-                            passwordcheckInputmessage={passwordcheckInputmessage}/>
+                    <View style={styles.buttonViewFlex}>
+                        <TouchableOpacity
+                            style={styles.loginBtn}
+                            onPress={onPressNextBtn}
+                            activeOpacity={0.95}>
+                            <SignUpBtn/>
+                        </TouchableOpacity>
                     </View>
-                    <TouchableOpacity
-                        style={styles.loginBtn}
-                        onPress={onPressNextBtn}
-                        activeOpacity={0.95}>
-                        <SignUpBtn/>
-                    </TouchableOpacity>
                 </ScrollView>
             </SafeAreaView>
         )
@@ -202,7 +206,7 @@ const styles = StyleSheet.create({
         height: hp('5%'),
         paddingLeft: wp('0.5%'),
         paddingRight: wp('0.5%'),
-        marginBottom: hp('0.5%'),
+        marginBottom: hp('0.5%')
     },
     signuptextArea: {
         marginTop: hp("3%"),
@@ -216,8 +220,6 @@ const styles = StyleSheet.create({
         fontSize: 14
     },
     loginBtn: {
-        marginTop: hp('16%'),
-        marginBottom: hp('4%')
     },
     headerContainer: {
         marginTop: hp('3%'),
@@ -228,7 +230,27 @@ const styles = StyleSheet.create({
         paddingRight: wp('10%')
     },
     viewContainer: {
-        width: wp('10%'),
+        width: wp('10%')
+    },
+    ContentsViewFlex: {
+        ...Platform.select({
+            ios: {
+                height: hp('78%')
+            },
+            android: {
+                height: hp('80%')
+            }
+        })
+    },
+    buttonViewFlex: {
+        ...Platform.select({
+            ios: {
+                height: hp('9%')
+            },
+            android: {
+                height: hp('13.6%')
+            }
+        })
     }
 })
 

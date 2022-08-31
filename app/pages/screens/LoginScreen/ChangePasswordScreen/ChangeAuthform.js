@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'NotoSansKR-Bold',
-        fontSize: 14,
+        fontSize: hp('1.6%'),
         color: '#1F2C37',
         marginTop: 20
     },

@@ -75,7 +75,6 @@ const TicketPurchaseScreen = ({navigation}) => {
     ) + (purchaseTicket[3] * 5000)
 
     useEffect(() => {
-        setPurchaseTicket([0, 0, 0, 0]);
         getPruchaseTable();
     }, []);
 
@@ -244,7 +243,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     purchaseBtn: {
-        marginTop: hp('7%'),
+        marginTop: hp('4%'),
         marginBottom: hp('20%')
     },
     viewContainer: {

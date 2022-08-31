@@ -8,7 +8,7 @@
 
 import React, { useEffect } from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, StatusBar} from 'react-native';
 import Navigation from './pages/navigation';
 
 import {LogBox} from "react-native";
@@ -31,7 +31,17 @@ const App = () => {
             SplashScreen.hide();
         }, 1000);
     }, []);
-    return (<Navigation/>);
+
+    // if (Platform.OS == 'android') {
+  	//   StatusBar.setBarStyle('default', true);	//<<--- add this
+    // }
+
+    return (
+        <>
+        <StatusBar  barStyle="dark-content"/>
+        <Navigation/>
+        </>
+    );
 };
 
 const styles = StyleSheet.create({

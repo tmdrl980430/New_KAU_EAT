@@ -19,6 +19,7 @@ import {useRecoilState} from "recoil";
 import {
     cefiBtnRecoilState,
     findIdmodalRecoilState,
+    idChangeNavigationLoginRecoilState,
     phoneceficonfirmmodalRecoilState,
     phonecefimodalRecoilState,
     phoneDuplicateRecoilState,
@@ -32,9 +33,6 @@ const FindIdScreen = ({route, navigation}) => {
 
     const [IP, setIP] = useRecoilState(severURLRecoilState);
 
-    const [findIdmodalState, setFindIdModalState] = useRecoilState(
-        findIdmodalRecoilState
-    );
 
     const [findId, setFindId] = useState("");
 
@@ -70,17 +68,37 @@ const FindIdScreen = ({route, navigation}) => {
 
     const phoneNumberRegex = /^(01\d{1})([0-9]{3,4})([0-9]{4})$/;
 
+    const [findIdmodalState, setFindIdModalState] = useRecoilState(
+        findIdmodalRecoilState
+    );
+
+    const [idNavigationLoginState, setIdNavigationLoginState] = useRecoilState(
+        idChangeNavigationLoginRecoilState
+    );
+    useEffect(() => {
+        setIdNavigationLoginState(false);
+        setFindIdModalState(false);
+    }, [])
+
+    useEffect(() => {
+        if (idNavigationLoginState === true) {
+            setIdNavigationLoginState(false);
+            navigation.navigate('Login');
+        }
+
+    }, [idNavigationLoginState])
+
     useEffect(() => {
         setPhoneNumInput("");
     }, [])
     useEffect(() => {
         console.log("certificationNumBtnStatus", certificationNumBtnStatus);
 
-        if (certificationNumInput.length > 3 && responseCertificationNum.length > 3&& certificationNumInput === responseCertificationNum) {
+        if (certificationNumInput.length > 3 && responseCertificationNum.length > 3 && certificationNumInput === responseCertificationNum) {
             setCertificationNumInputmessage("인증되었습니다.");
-        } else if ( certificationNumInput.length > 3 && responseCertificationNum.length > 3 && certificationNumInput !== responseCertificationNum){
+        } else if (certificationNumInput.length > 3 && responseCertificationNum.length > 3 && certificationNumInput !== responseCertificationNum) {
             setCertificationNumInputmessage("인증번호가 일치하지 않습니다.");
-        } else if (certificationNumInput.length < 4 && responseCertificationNum.length > 3){
+        } else if (certificationNumInput.length < 4 && responseCertificationNum.length > 3) {
             setCertificationNumInputmessage("인증번호를 입력해주세요.");
         }
     }, [certificationNumInput])
@@ -195,38 +213,42 @@ const FindIdScreen = ({route, navigation}) => {
         return (
             <SafeAreaView style={styles.topContainer}>
                 <View style={styles.headerContainer}>
-                        <TouchableOpacity
-                            onPress={() => navigation.replace('Login')}
-                            activeOpacity={0.95}>
-                            <BackBtn/>
-                        </TouchableOpacity>
-                        <CenterTitle type={"findIdText"}/>
-                        <View style={styles.viewContainer}/>
-                    </View>
+                    <TouchableOpacity
+                        onPress={() => navigation.replace('Login')}
+                        activeOpacity={0.95}>
+                        <BackBtn/>
+                    </TouchableOpacity>
+                    <CenterTitle type={"findIdText"}/>
+                    <View style={styles.viewContainer}/>
+                </View>
                 <ScrollView style={styles.container}>
 
                     {findIdmodalState != false && <FindIdModal findId={findId}/>}
                     {phoneCefimodalState != false && <PhoneCefiModal/>}
-                    <View style={styles.formArea}>
-                        <AuthForm
-                            style={styles.formArea}
-                            setIdInput={setIdInput}
-                            setPhoneNumInput={setPhoneNumInput}
-                            setCertificationNumInput={setCertificationNumInput}
-                            idInputmessage={idInputmessage}
-                            setIdInputmessage={setIdInputmessage}
-                            phoneNumberInputmessage={phoneNumberInputmessage}
-                            setPhoneNumberInputmessage={setPhoneNumberInputmessage}
-                            certificationNumInputmessage={certificationNumInputmessage}
-                            certificationNumBtnStatus={certificationNumBtnStatus}
-                            setCertificationNumBtnStatus={setCertificationNumBtnStatus}/>
+                    <View style={styles.ContentsViewFlex}>
+                        <View style={styles.formArea}>
+                            <AuthForm
+                                style={styles.formArea}
+                                setIdInput={setIdInput}
+                                setPhoneNumInput={setPhoneNumInput}
+                                setCertificationNumInput={setCertificationNumInput}
+                                idInputmessage={idInputmessage}
+                                setIdInputmessage={setIdInputmessage}
+                                phoneNumberInputmessage={phoneNumberInputmessage}
+                                setPhoneNumberInputmessage={setPhoneNumberInputmessage}
+                                certificationNumInputmessage={certificationNumInputmessage}
+                                certificationNumBtnStatus={certificationNumBtnStatus}
+                                setCertificationNumBtnStatus={setCertificationNumBtnStatus}/>
+                        </View>
                     </View>
-                    <TouchableOpacity
-                        onPress={onPressSignUpBtn}
-                        style={styles.signUpBtn}
-                        activeOpacity={0.95}>
-                        <FindIdNextBtn/>
-                    </TouchableOpacity>
+                    <View style={styles.buttonViewFlex}>
+                        <TouchableOpacity
+                            onPress={onPressSignUpBtn}
+                            style={styles.signUpBtn}
+                            activeOpacity={0.95}>
+                            <FindIdNextBtn/>
+                        </TouchableOpacity>
+                    </View>
                 </ScrollView>
             </SafeAreaView>
 
@@ -280,10 +302,9 @@ const styles = StyleSheet.create({
     signuptext: {
         fontFamily: 'NotoSansKR-Bold',
         color: "#AAACAE",
-        fontSize: 14
+        fontSize: hp("1.6%"),
     },
     signUpBtn: {
-        marginTop: hp('45%'),
         marginBottom: hp('4%')
     },
     headerContainer: {
@@ -296,6 +317,26 @@ const styles = StyleSheet.create({
     },
     viewContainer: {
         width: wp('10%')
+    },
+    ContentsViewFlex: {
+        ...Platform.select({
+            ios: {
+                height: hp('75%')
+            },
+            android: {
+                height: hp('80%')
+            }
+        })
+    },
+    buttonViewFlex: {
+        ...Platform.select({
+            ios: {
+                height: hp('5%')
+            },
+            android: {
+                height: hp('15.6%')
+            }
+        })
     }
 })
 
