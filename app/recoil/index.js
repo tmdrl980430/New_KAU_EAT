@@ -1,10 +1,13 @@
 import React from "react";
 import {atom} from "recoil";
 
+export const severURLRecoilState = atom(
+    {key: 'severURLRecoilState', default: 'http://3.38.35.114/web'}
+);
 
-export const severURLRecoilState = atom({key: 'severURLRecoilState', default: 'http://3.38.35.114/web'});
-
-export const phoneDuplicateRecoilState = atom({key: 'phoneDuplicateRecoilState', default: false});
+export const phoneDuplicateRecoilState = atom(
+    {key: 'phoneDuplicateRecoilState', default: false}
+);
 
 export const jwtRecoilState = atom({key: 'jwtRecoilState', default: ''});
 
@@ -44,6 +47,7 @@ let milliseconds = koreaNow.getMilliseconds(); //밀리초
 const currentTime = hours + ':' + minutes + ':' + seconds + ':' +
         milliseconds
 
+
 export const currentTimeRecoilState = atom(
     {key: 'currentTimeRecoilState', default: currentTime}
 );
@@ -54,7 +58,9 @@ export const merchantUidRecoilState = atom(
 
 export const dateRecoilState = atom({key: 'dateRecoilState', default: today});
 
-export const weekDateRecoilState = atom({key: 'weekDateRecoilState', default: today});
+export const weekDateRecoilState = atom(
+    {key: 'weekDateRecoilState', default: today}
+);
 
 export const cefiBtnRecoilState = atom(
     {key: 'cefiBtnRecoilState', default: false}
@@ -69,35 +75,63 @@ export const clickQrImgRecoilState = atom(
     {key: 'clickQrImgRecoilState', default: ""}
 );
 
-export const mainRerenderingRecoilState = atom({key: 'mainRerenderingRecoilState', default: false});
+export const mainRerenderingRecoilState = atom(
+    {key: 'mainRerenderingRecoilState', default: false}
+);
 
-export const paymentsRecoilState = atom({key: 'paymentsRecoilState', default: false});
+export const paymentsRecoilState = atom(
+    {key: 'paymentsRecoilState', default: false}
+);
 
 export const modalRecoilState = atom({key: 'modalRecoilState', default: false});
 
-export const logoutmodalRecoilState = atom({key: 'logoutmodalRecoilState', default: false});
+export const logoutmodalRecoilState = atom(
+    {key: 'logoutmodalRecoilState', default: false}
+);
 
-export const passwordChangemodalRecoilState = atom({key: 'passwordChangemodalRecoilState', default: false});
+export const passwordChangemodalRecoilState = atom(
+    {key: 'passwordChangemodalRecoilState', default: false}
+);
 
-export const passwordChangeLoginmodalRecoilState = atom({key: 'passwordChangeLoginmodalRecoilState', default: false});
+export const passwordChangeLoginmodalRecoilState = atom(
+    {key: 'passwordChangeLoginmodalRecoilState', default: false}
+);
 
-export const passwordChangeNavigationLoginRecoilState = atom({key: 'passwordChangeNavigationLoginRecoilState', default: false});
+export const passwordChangeNavigationLoginRecoilState = atom(
+    {key: 'passwordChangeNavigationLoginRecoilState', default: false}
+);
 
-export const idChangeNavigationLoginRecoilState = atom({key: 'idChangeNavigationLoginRecoilState', default: false});
+export const idChangeNavigationLoginRecoilState = atom(
+    {key: 'idChangeNavigationLoginRecoilState', default: false}
+);
 
-export const findIdmodalRecoilState = atom({key: 'findIdmodalRecoilState', default: false});
+export const findIdmodalRecoilState = atom(
+    {key: 'findIdmodalRecoilState', default: false}
+);
 
-export const phoneNumberRecoilState = atom({key: 'phoneNumberRecoilState', default: ''});
+export const phoneNumberRecoilState = atom(
+    {key: 'phoneNumberRecoilState', default: ''}
+);
 
-export const phonecefimodalRecoilState = atom({key: 'phonecefimodalRecoilState', default: false});
+export const phonecefimodalRecoilState = atom(
+    {key: 'phonecefimodalRecoilState', default: false}
+);
 
-export const phoneceficonfirmmodalRecoilState = atom({key: 'phoneceficonfirmmodalRecoilState', default: false});
+export const phoneceficonfirmmodalRecoilState = atom(
+    {key: 'phoneceficonfirmmodalRecoilState', default: false}
+);
 
-export const purchasemodalRecoilState = atom({key: 'purchasemodalRecoilState', default: false});
+export const purchasemodalRecoilState = atom(
+    {key: 'purchasemodalRecoilState', default: false}
+);
 
-export const SoldOutConfirmModalRecoilState = atom({key: 'SoldOutConfirmModalRecoilState', default: false});
+export const SoldOutConfirmModalRecoilState = atom(
+    {key: 'SoldOutConfirmModalRecoilState', default: false}
+);
 
-export const SoldOutConfirmRecoilState = atom({key: 'SoldOutConfirmRecoilState', default: false});
+export const SoldOutConfirmRecoilState = atom(
+    {key: 'SoldOutConfirmRecoilState', default: false}
+);
 
 export const qrModalRecoilState = atom(
     {key: 'qrModalRecoilState', default: false}

@@ -7,7 +7,14 @@ import DashedLine from '../../assets/images/dashedline.png'
 
 import axios from "axios";
 import {useRecoilState} from "recoil";
-import {jwtRecoilState, userIdxRecoilState, clickQrImg, clickQrImgRecoilState} from "../../recoil";
+import {
+    jwtRecoilState,
+    userIdxRecoilState,
+    clickQrImg,
+    clickQrImgRecoilState,
+    dateRecoilState,
+    setTicketTimeRecoilState
+} from "../../recoil";
 
 //재사용 가능 식권 모양
 
@@ -16,137 +23,256 @@ const userTicket = (props) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+
     const [clickKind, setClickKind] = useRecoilState(clickQrImgRecoilState);
 
+    const now = new Date();
+
+    const utcNow = now.getTime() + (now.getTimezoneOffset() * 60 * 1000); // 현재 시간을 utc로 변환한 밀리세컨드값
+    const koreaTimeDiff = 9 * 60 * 60 * 1000; // 한국 시간은 UTC보다 9시간 빠름(9시간의 밀리세컨드 표현)
+    let koreaNow = new Date(utcNow + koreaTimeDiff); // utc로 변환된 값을 한국 시간으로 변환시키기 위해 9시간(밀리세컨드)를 더함
+
+    const [currentTime, setCurrentTime] = useState("")
+    const [hour, setHour] = useState(koreaNow.getHours())
+    const [minute, setmMnute] = useState(koreaNow.getMinutes())
+
+    const [days, setDays] = useState(koreaNow.getDay());
+
+    const [ticketUse, setTicketUse] = useState(false);
+
     const clickQrImg = () => {
-        if (0 < props.mealTicketCount) {
-            setClickKind(
-                {mealType: props.mealTypeName, ticketCount: props.mealTicketCount, mealTypeIdx: props.mealTypeIdx}
-            );
+
+        koreaNow = new Date(utcNow + koreaTimeDiff); // utc로 변환된 값을 한국 시간으로 변환시키기 위해 9시간(밀리세컨드)를 더함
+        setHour(koreaNow.getHours());
+        setmMnute(koreaNow.getMinutes());
+        divideWeeks();
+
+        if(days){//평일일 때
+            setWeekdayTimes();
+        } else {
+            setWeekendTimes();
+        }
+
+        if(ticketUse){
+            if (0 < props.mealTicketCount) {
+                setClickKind(
+                    {mealType: props.mealTypeName, ticketCount: props.mealTicketCount, mealTypeIdx: props.mealTypeIdx}
+                );
+            }
+        }
+        setCurrentTime(hour + ':' + minute )
+        console.log("currentTime", currentTime)
+
+    }
+
+    //평일
+    const setWeekdayTimes = () => {
+        //조식일 때 처리
+        if (props.mealTypeName === "조식") {
+            if(hour < 10 && hour >= 8){
+                if(hour === 8 && minute < 10){
+                    setTicketUse(false);
+                    return;
+                } else {
+                    setTicketUse(true);
+                    return;
+                }
+            } else if(hour === 9){
+                setTicketUse(true);
+                return;
+            } else {
+                setTicketUse(false);
+                return;
+            }
+        } else if (props.mealTypeName === "중식 | 일품" || props.mealTypeName === "중식 | 한식") { //중식일 때 처리
+            if(hour < 14 && hour >= 11){
+                setTicketUse(true);
+                return;
+            } else if (hour === 12 || hour === 13 ) {
+                setTicketUse(true);
+                return;
+            } else {
+                setTicketUse(false);
+                return;
+            }
+        } else if (props.mealTypeName === "석식") { //석식일 때 처리
+            if(hour < 19 && hour >= 17){
+                setTicketUse(true);
+                return;
+            } else if (hour === 18 ) {
+                setTicketUse(true);
+                return;
+            } else {
+                setTicketUse(false);
+                return;
+            }
+        }
+
+    }
+
+    //주말
+    const setWeekendTimes = () => {
+
+        if (props.mealTypeName === "중식 | 일품" || props.mealTypeName === "중식 | 한식") { //중식일 때 처리
+            if(hour <= 13 && hour >= 11){
+                if(hour === 11 && minute < 30){
+                    setTicketUse(false);
+                    return;
+                } else if(hour === 11 && minute >= 30) {
+                    setTicketUse(true);
+                    return;
+                } else if(hour === 13 && minute > 30){
+                    setTicketUse(false);
+                    return;
+                } else if(hour === 13 && minute <= 30) {
+                    setTicketUse(true);
+                    return;
+                } else if (hour === 12 ) {
+                    setTicketUse(true);
+                    return;
+                } else {
+                    setTicketUse(false);
+                    return;
+                }
+            } 
+        } else if (props.mealTypeName === "석식") { //석식일 때 처리
+            if(hour < 19 && hour >= 17){
+                setTicketUse(true);
+                return;
+            } else if (hour === 18 ) {
+                setTicketUse(true);
+                return;
+            } else {
+                setTicketUse(false);
+                return;
+            }
         }
     }
+        const divideWeeks = () => {
+            if (days === 0 || days === 6) {
+                setDays(false);
+            } else {
+                setDays(true);
+            }
+        }
 
-    useEffect(() => {
-        console.log("clickKind : ", clickKind);
-    }, []);
+        useEffect(() => {
+            console.log("clickKind : ", clickKind);
+        }, []);
 
-    return (
-        <View style={styles.ticketContainer}>
-            <View style={styles.whitecircle}/>
-            <View style={styles.ticketBoxContainer}>
-                <View style={styles.ticketInfoView}>
-                    <Text style={styles.menuTypeText}>{props.mealTypeName}</Text>
-                    <Image style={styles.ticketImg} source={TicketImg} resizeMode={'contain'}/> 
-                    {
-                        props.mealTicketCount === null
-                            ? (
-                                <Text style={styles.ticketCount}>X 0</Text>
-                            )
-                            : (
-                                <Text style={styles.ticketCount}>X {props.mealTicketCount}</Text>
-                            )
-                    }
-                    {
-                        props.menuStatus === '품절'
-                            ? (
-                                <View style={styles.soldoutContainer}>
-                                    <Text style={styles.soldoutText}>품절</Text>
-                                </View>
-                            )
-                            : (<View/>)
-                    }
+        return (
+            <View style={styles.ticketContainer}>
+                <View style={styles.whitecircle}/>
+                <View style={styles.ticketBoxContainer}>
+                    <View style={styles.ticketInfoView}>
+                        <Text style={styles.menuTypeText}>{props.mealTypeName}</Text>
+                        <Image style={styles.ticketImg} source={TicketImg} resizeMode={'contain'}/> 
+                        {
+                            props.mealTicketCount === null
+                                ? (<Text style={styles.ticketCount}>X 0</Text>)
+                                : (<Text style={styles.ticketCount}>X {props.mealTicketCount}</Text>)
+                        }
+                        {
+                            props.menuStatus === '품절'
+                                ? (
+                                    <View style={styles.soldoutContainer}>
+                                        <Text style={styles.soldoutText}>품절</Text>
+                                    </View>
+                                )
+                                : (<View/>)
+                        }
 
+                    </View>
+                    <View style={styles.qrimgContainer}>
+                        <Image style={styles.dashedLine} source={DashedLine} resizeMode={'contain'}/>
+                        <TouchableOpacity onPress={clickQrImg} activeOpacity={0.95}>
+                            <Image style={styles.QrImg} source={QrImg} resizeMode={'contain'}/>
+                        </TouchableOpacity>
+
+                    </View>
                 </View>
-                <View style={styles.qrimgContainer}>
-                    <Image style={styles.dashedLine} source={DashedLine} resizeMode={'contain'}/>
-                    <TouchableOpacity onPress={clickQrImg} activeOpacity={0.95}>
-                        <Image style={styles.QrImg} source={QrImg} resizeMode={'contain'}/>
-                    </TouchableOpacity>
 
-                </View>
             </View>
+        )
 
-        </View>
-    )
-
-}
-
-const styles = StyleSheet.create({
-    ticketContainer: {
-        flexDirection: 'row',
-        backgroundColor: "#D9D9D9",
-        borderRadius: 10,
-        height: hp('7%'),
-        width: wp('80%'),
-        marginTop: hp('1%'),
-        marginEnd: wp('10%'),
-        alignItems: 'center'
-    },
-    whitecircle: {
-        width: 30,
-        height: 30,
-        backgroundColor: "#FFFFFF",
-        borderRadius: 50,
-        position: 'absolute',
-        left: wp('-4%')
-    },
-    menuTypeText: {
-        fontSize: 15,
-        fontFamily: 'NotoSansKR-Regular',
-        color: 'black',
-        marginStart: wp('7%')
-    },
-    ticketImg: {
-        width: 19,
-        height: 16,
-        marginStart: wp('3%')
-    },
-    QrImg: {
-        width: 35,
-        height: 35,
-        marginStart: wp('3%')
-    },
-    dashedLine: {
-        width: wp('1%'),
-        height: hp('5.2%')
-    },
-    ticketCount: {
-        fontSize: hp('1.5%'),
-        fontFamily: 'NotoSansKR-Regular',
-        color: 'black',
-        marginStart: wp('1.5%')
-    },
-    qrimgContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginEnd: wp('4%')
-    },
-    ticketInfoView: {
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    ticketBoxContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between'
-    },
-    soldoutContainer: {
-        backgroundColor: '#26265180',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: hp('2%'),
-        paddingStart: wp('2%'),
-        paddingEnd: wp('2%'),
-        paddingTop: hp('0.1%'),
-        paddingBottom: hp('0.2%'),
-        marginStart: wp('1.5%')
-    },
-    soldoutText: {
-        fontSize: hp('1.4%'),
-        fontFamily: 'NotoSansKR-Regular',
-        color: 'white'
     }
-})
+
+    const styles = StyleSheet.create({
+        ticketContainer: {
+            flexDirection: 'row',
+            backgroundColor: "#D9D9D9",
+            borderRadius: 10,
+            height: hp('7%'),
+            width: wp('80%'),
+            marginTop: hp('1%'),
+            marginEnd: wp('10%'),
+            alignItems: 'center'
+        },
+        whitecircle: {
+            width: 30,
+            height: 30,
+            backgroundColor: "#FFFFFF",
+            borderRadius: 50,
+            position: 'absolute',
+            left: wp('-4%')
+        },
+        menuTypeText: {
+            fontSize: 15,
+            fontFamily: 'NotoSansKR-Regular',
+            color: 'black',
+            marginStart: wp('7%')
+        },
+        ticketImg: {
+            width: 19,
+            height: 16,
+            marginStart: wp('3%')
+        },
+        QrImg: {
+            width: 35,
+            height: 35,
+            marginStart: wp('3%')
+        },
+        dashedLine: {
+            width: wp('1%'),
+            height: hp('5.2%')
+        },
+        ticketCount: {
+            fontSize: hp('1.5%'),
+            fontFamily: 'NotoSansKR-Regular',
+            color: 'black',
+            marginStart: wp('1.5%')
+        },
+        qrimgContainer: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginEnd: wp('4%')
+        },
+        ticketInfoView: {
+            flexDirection: 'row',
+            alignItems: 'center'
+        },
+        ticketBoxContainer: {
+            flex: 1,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+        },
+        soldoutContainer: {
+            backgroundColor: '#26265180',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: hp('2%'),
+            paddingStart: wp('2%'),
+            paddingEnd: wp('2%'),
+            paddingTop: hp('0.1%'),
+            paddingBottom: hp('0.2%'),
+            marginStart: wp('1.5%')
+        },
+        soldoutText: {
+            fontSize: hp('1.4%'),
+            fontFamily: 'NotoSansKR-Regular',
+            color: 'white'
+        }
+    })
 
 export default userTicket;
