@@ -13,7 +13,7 @@ import MinusImg from '../../assets/images/minus_arrow.png'
 import PlusImg from '../../assets/images/plus_arrow.png'
 import CloseImg from '../../assets/images/close.png'
 import {useRecoilState} from "recoil";
-import {jwtRecoilState, isLoginRecoilState, passwordChangemodalRecoilState} from "../../recoil";
+import {jwtRecoilState, isLoginRecoilState, passwordChangemodalRecoilState, passwordChangeNavigationMainRecoilState} from "../../recoil";
 
 //재사용 가능 제목 component
 
@@ -21,14 +21,14 @@ const PasswordChangeModal = (props) => {
 
     const [passwordChangemodalState, setPasswordChangeModalState] = useRecoilState(passwordChangemodalRecoilState);
 
-    const [jwt, setJwt] = useRecoilState(jwtRecoilState);
-    const [login, setLogin] = useRecoilState(isLoginRecoilState);
-
-    const [count, setCount] = useState(1);
+    const [passwordChangeNavigationState, setPasswordChangeNavigationState] = useRecoilState(
+        passwordChangeNavigationMainRecoilState
+    );
 
     const clickConfirm = () => {
         setPasswordChangeModalState(false);
-        console.log(`jwt : ${jwt}`);
+        setPasswordChangeNavigationState(true);
+
     }
 
     return (
@@ -40,6 +40,7 @@ const PasswordChangeModal = (props) => {
                         <TouchableOpacity
                             onPress={() => {
                                 setPasswordChangeModalState(false);
+                                setPasswordChangeNavigationState(true);
                                 setClickKind("");
                             }} activeOpacity={0.95}>
                             <Image style={styles.closeImg} source={CloseImg} resizeMode={'contain'}/>

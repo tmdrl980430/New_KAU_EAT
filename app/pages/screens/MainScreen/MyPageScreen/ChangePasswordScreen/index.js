@@ -14,7 +14,7 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import AuthForm from "./ChangeAuthform";
 import ChangeBtn from "./ChangeBtn";
 import {useRecoilState} from "recoil";
-import {passwordChangemodalRecoilState, phoneNumberRecoilState, severURLRecoilState, userIdxRecoilState} from "../../../../../recoil";
+import {passwordChangemodalRecoilState, passwordChangeNavigationMainRecoilState, phoneNumberRecoilState, severURLRecoilState, userIdxRecoilState} from "../../../../../recoil";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import BackBtn from '../../../../../utils/backBtn/back'
 import CenterTitle from "../../../../../utils/title/centerTitle";
@@ -43,11 +43,31 @@ const ChangePasswordScreen = ({navigation}) => {
         passwordChangemodalRecoilState
     );
 
+
+    const [passwordChangeNavigationState, setPasswordChangeNavigationState] = useRecoilState(
+        passwordChangeNavigationMainRecoilState
+    );
+
+
     const [IP, setIP] = useRecoilState(severURLRecoilState);
 
     const [loading, setLoading] = useState(false)
 
     const [error, setError] = useState(null);
+
+    useEffect(() => {
+        setPasswordChangeNavigationState(false);
+        setPasswordChangeModalState(false);
+    }, [])
+
+
+    useEffect(() => {
+        if (passwordChangeNavigationState === true) {
+            setPasswordChangeNavigationState(false);
+            navigation.navigate('Main');
+        }
+
+    }, [passwordChangemodalState])
 
     useEffect(() => {
         setPasswordChangeModalState(false);
@@ -104,8 +124,6 @@ const ChangePasswordScreen = ({navigation}) => {
 
                             if (response.data.code == 1000) {
                                 setPasswordChangeModalState(true);
-                                navigation.navigate('Main');
-
                             }
                             if (response.data.code == 3007) {
                                 setPasswordInputmessage("기존 비밀번호와 동일합니다.");

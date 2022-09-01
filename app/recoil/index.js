@@ -101,6 +101,10 @@ export const passwordChangeNavigationLoginRecoilState = atom(
     {key: 'passwordChangeNavigationLoginRecoilState', default: false}
 );
 
+export const passwordChangeNavigationMainRecoilState = atom(
+    {key: 'passwordChangeNavigationMainRecoilState', default: false}
+);
+
 export const idChangeNavigationLoginRecoilState = atom(
     {key: 'idChangeNavigationLoginRecoilState', default: false}
 );

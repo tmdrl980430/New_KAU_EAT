@@ -65,14 +65,15 @@ const styles = StyleSheet.create({
     },
     safeAreaContainer: {
         backgroundColor: 'white',
-        paddingBottom: hp('5%')
+        height: hp('100%'),
     },
     container: {
         backgroundColor: 'white',
         paddingLeft: wp('10%'),
         paddingRight: wp('10%'),
         width: wp('100%'),
-        height: hp('100%')
+        height: hp('100%'),
+        marginBottom: hp('5%'),
     },
     logoArea: {
         width: '100%',

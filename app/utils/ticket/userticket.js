@@ -201,7 +201,7 @@ const userTicket = (props) => {
         ticketContainer: {
             flexDirection: 'row',
             backgroundColor: "#D9D9D9",
-            borderRadius: 10,
+            borderRadius: hp('1%'),
             height: hp('7%'),
             width: wp('80%'),
             marginTop: hp('1%'),
@@ -209,27 +209,27 @@ const userTicket = (props) => {
             alignItems: 'center'
         },
         whitecircle: {
-            width: 30,
-            height: 30,
-            backgroundColor: "#FFFFFF",
-            borderRadius: 50,
+            width: wp('7%'),
+            height: hp('3.5%'),
+            backgroundColor: "white",
+            borderRadius: hp('5%'),
             position: 'absolute',
-            left: wp('-4%')
+            left: wp('-3%')
         },
         menuTypeText: {
-            fontSize: 15,
+            fontSize: hp('1.7%'),
             fontFamily: 'NotoSansKR-Regular',
             color: 'black',
             marginStart: wp('7%')
         },
         ticketImg: {
-            width: 19,
-            height: 16,
+            width: wp('5%'),
+            height: hp('1.6%'),
             marginStart: wp('3%')
         },
         QrImg: {
-            width: 35,
-            height: 35,
+            width: wp('9%'),
+            height: hp('6%'),
             marginStart: wp('3%')
         },
         dashedLine: {

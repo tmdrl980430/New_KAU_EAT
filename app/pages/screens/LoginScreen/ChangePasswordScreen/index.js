@@ -57,6 +57,7 @@ const ChangePasswordScreen = ({navigation}) => {
         setPasswordChangeLoginModalState(false);
     }, [])
 
+    
     useEffect(() => {
         if (passwordChangeNavigationLoginState === true) {
             setPasswordChangeNavigationLoginState(false);
