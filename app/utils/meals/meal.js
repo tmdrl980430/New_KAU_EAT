@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         color: '#1F2C37'
     },
     lineView: {
-        height: 1,
+        height:  hp('0.1%'),
         backgroundColor: '#E5E5E5',
         marginTop: hp('2.2%')
     }

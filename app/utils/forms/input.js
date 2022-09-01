@@ -35,14 +35,14 @@ const styles = StyleSheet.create({
                 height: hp('8.5%')
             }
         }),
-        borderRadius: 20,
-        borderWidth: 1,
-        paddingStart: 16,
-        paddingTop: 16,
-        paddingBottom: 16,
+        borderRadius: hp('2%'),
+        borderWidth: wp('0.2%'),
+        paddingStart: hp('1.6%'),
+        paddingTop: hp('1.6%'),
+        paddingBottom:  hp('1.6%'),
         marginTop: hp('1%'),
         fontFamily: 'NotoSansKR-Regular',
-        fontSize: 12
+        fontSize:  hp('1.7%'),
     },
     textFormRevised: {
         ...Platform.select({
@@ -54,14 +54,14 @@ const styles = StyleSheet.create({
             }
         }),
         borderColor: '#FF3D3D',
-        borderRadius: 20,
-        borderWidth: 1,
-        paddingStart: 14,
-        paddingTop: 16,
-        paddingBottom: 16,
+        borderRadius: hp('2%'),
+        borderWidth: wp('0.2%'),
+        paddingStart: hp('1.6%'),
+        paddingTop: hp('1.6%'),
+        paddingBottom:  hp('1.6%'),
         marginTop: hp('1%'),
         fontFamily: 'NotoSansKR-Regular',
-        fontSize: 12
+        fontSize:  hp('1.7%'),
     },
     textSignUpInput: {
         ...Platform.select({
@@ -73,14 +73,14 @@ const styles = StyleSheet.create({
             }
         }),
         borderColor: '#ECF1F6',
-        borderRadius: 20,
-        borderWidth: 1,
-        paddingStart: 16,
-        paddingTop: 16,
-        paddingBottom: 16,
+        borderRadius: hp('2%'),
+        borderWidth: wp('0.2%'),
+        paddingStart: hp('1.6%'),
+        paddingTop: hp('1.6%'),
+        paddingBottom:  hp('1.6%'),
         marginTop: hp('1%'),
         fontFamily: 'NotoSansKR-Regular',
-        fontSize: 12
+        fontSize:  hp('1.7%'),
     }
 })
 
