@@ -20,6 +20,7 @@ import {
     jwtRecoilState,
     logoutmodalRecoilState,
     severURLRecoilState,
+    userDelecteModalRecoilState,
     userIdRecoilState,
     userIdxRecoilState,
     userNameRecoilState,
@@ -28,6 +29,8 @@ import {
 import Navigation from '../../../navigation';
 import axios from 'axios';
 import LogoutModal from '../../../../utils/modal/logoutmodal';
+import UserInfoDelete from './userInfoDelete';
+import UserDeleteModal from '../../../../utils/modal/userDeletemodal';
 
 const MyPageScreen = ({navigation}) => {
 
@@ -47,10 +50,18 @@ const MyPageScreen = ({navigation}) => {
         logoutmodalRecoilState
     );
 
+    const [userDeleteModalState, setUserDeleteModalState] = useRecoilState(userDelecteModalRecoilState);
+
+
     console.log(`jwt : ${jwt}`);
 
     const logOutMadal = () => {
         setLogoutModalState(true);
+        console.log(`logoutodalState : ${logoutodalState}`);
+    }
+
+    const userDeleteModal = () => {
+        setUserDeleteModalState(true);
         console.log(`logoutodalState : ${logoutodalState}`);
     }
 
@@ -97,6 +108,7 @@ const MyPageScreen = ({navigation}) => {
         setLoading(false);
     };
 
+    
     if (loading) {
         return (
             <View style={styles.loading}>
@@ -110,21 +122,32 @@ const MyPageScreen = ({navigation}) => {
                     backgroundColor: '#3D3580'
                 }}>
                 {logoutodalState != false && <LogoutModal/>}
+                {userDeleteModalState != false && <UserDeleteModal/>}
                 <ScrollView style={styles.container}>
                     <View style={styles.headerContainer}>
                         <BackBtn/>
                     </View>
                     <View style={styles.viweBackground}>
+                        <Text style={styles.titleText}>유저 식권 조회</Text>
                         <TouchableOpacity
                             style={styles.ticketContainer}
-                            onPress={() => navigation.push('MyTicket')} activeOpacity={0.95}>
+                            onPress={() => navigation.push('MyTicket')}
+                            activeOpacity={0.95}>
                             <UserTicket/>
                         </TouchableOpacity>
                         <View style={styles.lineView}/>
+                        <Text style={styles.titleText}>회원 정보</Text>
                         <TouchableOpacity
                             style={styles.userInfoChangeContainer}
-                            onPress={() => navigation.replace('ChangePasswordScreen')} activeOpacity={0.95}>
+                            onPress={() => navigation.replace('ChangePasswordScreen')}
+                            activeOpacity={0.95}>
                             <UserInfoChange/>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.userInfoDeleteContainer}
+                            onPress={userDeleteModal}
+                            activeOpacity={0.95}>
+                            <UserInfoDelete/>
                         </TouchableOpacity>
                         <View style={styles.lineView}/>
                         <TouchableOpacity onPress={logOutMadal} activeOpacity={0.95}>
@@ -174,6 +197,10 @@ const styles = StyleSheet.create({
         paddingLeft: wp('10%'),
         paddingRight: wp('10%')
     },
+    userInfoDeleteContainer: {
+        paddingLeft: wp('9.5%'),
+        paddingRight: wp('10%')
+    },
     lineView: {
         height: 1,
         backgroundColor: '#F2F2F5',
@@ -190,10 +217,20 @@ const styles = StyleSheet.create({
         marginStart: wp('44%'),
         justifyContent: 'center'
     },
-    viweBackground : {
-        backgroundColor : 'white',
-        height : hp('100%'),
-    }
+    viweBackground: {
+        backgroundColor: 'white',
+        height: hp('100%')
+    },
+    titleText: {
+        fontFamily: 'NotoSansKR-Regular',
+        color: '#343434',
+        fontSize: hp('1.6%'),
+        lineHeight: hp('2.2%'),
+        marginTop: hp('2.8%'),
+        paddingLeft: wp('10%'),
+        paddingRight: wp('10%'),
+        marginTop: hp('2.8%'),
+    },
 });
 
 export default MyPageScreen;

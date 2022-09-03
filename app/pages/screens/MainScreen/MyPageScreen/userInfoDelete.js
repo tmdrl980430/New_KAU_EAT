@@ -1,15 +1,15 @@
 import React, {useState} from "react";
 import {View, Text, Image, StyleSheet} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import LockImg from '../../../../assets/images/lock.png';
+import LockImg from '../../../../assets/images/user_delete_img.png';
 
-const UserInfoChange = () => {
+const UserInfoDelete = () => {
 
     return (
         <View style={styles.headerContainer}>
             <View style={styles.ticketContainer}>
                 <Image style={styles.ticketImg} source={LockImg} resizeMode={'contain'}/>
-                <Text style={styles.countText}>비밀번호 변경</Text>
+                <Text style={styles.countText}>계정 삭제</Text>
             </View>
         </View>
     )
@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
         alignItems : 'center'
     },
     ticketImg: {
-        width: wp('4%'),
-        height: hp('3%'),
+        width: wp('5%'),
+        height: hp('5%'),
         resizeMode: 'contain'
     },
     titleText: {
@@ -45,4 +45,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default UserInfoChange;
+export default UserInfoDelete;

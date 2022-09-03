@@ -12,9 +12,8 @@ const UserTicket = ({navigation}) => {
 
     return (
         <View style={styles.headerContainer}>
-            <Text style={styles.titleText}>유저 식권 조회</Text>
             <View style={styles.ticketContainer}>
-                <Image style={styles.backImg} source={TicketImg} resizeMode={'contain'}/>
+                <Image style={styles.ticketImg} source={TicketImg} resizeMode={'contain'}/>
                 <Text style={styles.countText}>유저 식권({userTicket})</Text>
             </View>
         </View>
@@ -23,7 +22,7 @@ const UserTicket = ({navigation}) => {
 
 const styles = StyleSheet.create({
     headerContainer: {
-        marginTop: hp('2.8%')
+        marginTop: hp('0.1%')
     },
     ticketContainer : {
         marginTop: hp('2.8%'),
@@ -31,22 +30,22 @@ const styles = StyleSheet.create({
         alignItems : 'center'
     },
     ticketImg: {
-        width: 20,
-        height: 16,
+        width: wp('5%'),
+        height: hp('4%'),
         resizeMode: 'contain'
     },
     titleText: {
         fontFamily: 'NotoSansKR-Regular',
         color: '#343434',
-        fontSize: 14,
-        lineHeight: 22,
+        fontSize: hp('1.6%'),
+        lineHeight: hp('2.2%'),
         marginTop: hp('2.8%')
     },
     countText: {
         fontFamily: 'NotoSansKR-Regular',
         color: 'black',
-        fontSize: 16,
-        lineHeight: 24,
+        fontSize: hp('2%'),
+        lineHeight: hp('2.4%'),
         marginStart : wp('1.8%')
     }
 })

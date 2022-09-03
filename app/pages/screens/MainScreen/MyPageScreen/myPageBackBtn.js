@@ -24,13 +24,6 @@ const BackBtn = () => {
 }
 
 const styles = StyleSheet.create({
-    kauImg: {
-        width: wp('30%'),
-        height: hp('30%'),
-        resizeMode: 'contain',
-        marginTop: hp('-3%'),
-        right : hp('-5%'),
-    },
     headerContainer: {
         height: hp('25%')
     },

@@ -89,6 +89,10 @@ export const logoutmodalRecoilState = atom(
     {key: 'logoutmodalRecoilState', default: false}
 );
 
+export const userDelecteModalRecoilState = atom(
+    {key: 'userDelecteModalRecoilState', default: false}
+);
+
 export const passwordChangemodalRecoilState = atom(
     {key: 'passwordChangemodalRecoilState', default: false}
 );
