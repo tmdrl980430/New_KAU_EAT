@@ -199,6 +199,21 @@ const TicketPurchaseScreen = ({navigation}) => {
                         activeOpacity={0.95}>
                         <PurchaseBtn/>
                     </TouchableOpacity>
+                    <View style={styles.signuptextArea}>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('BuisnessInfoScreen')}
+                                activeOpacity={0.95}>
+                                <Text style={styles.signuptext}>사업자정보확인</Text>
+                            </TouchableOpacity>
+                            <Text style={styles.signuptext}>
+                                |
+                            </Text>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('RefundInfoScreen')}
+                                activeOpacity={0.95}>
+                                <Text style={styles.signuptext}>환불정보</Text>
+                            </TouchableOpacity>
+                        </View>
                 </ScrollView>
             </SafeAreaView>
         )
@@ -244,11 +259,22 @@ const styles = StyleSheet.create({
     },
     purchaseBtn: {
         marginTop: hp('4%'),
-        marginBottom: hp('20%')
+        marginBottom: hp('3%')
     },
     viewContainer: {
         width: wp('10%')
-    }
+    },
+    signuptextArea: {
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: 'center',
+        marginBottom: hp('20%')
+    },
+    signuptext: {
+        fontFamily: 'NotoSansKR-Black',
+        color: "#AAACAE",
+        fontSize: hp('1.7%')
+    },
 });
 
 export default TicketPurchaseScreen;

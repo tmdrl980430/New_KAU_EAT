@@ -17,11 +17,14 @@ import FindPasswordScreen from '../screens/FindPasswordScreen';
 import FindIdScreen from '../screens/FindIdScreen';
 import ChangePasswordScreenLogin from '../screens/LoginScreen/ChangePasswordScreen';
 import ChangePasswordScreen from '../screens/MainScreen/MyPageScreen/ChangePasswordScreen';
+import UserDeleteScreen from '../screens/MainScreen/MyPageScreen/UserDeleteScreen';
 import Main from "../screens/MainScreen";
 import WeekMeals from "../screens/MainScreen/WeekMealScreen";
 import MyTicket from "../screens/MainScreen/MyticketScreen";
 import TicketPurchase from "../screens/MainScreen/TicketPurchaseScreen";
 import Payment from '../screens/MainScreen/TicketPurchaseScreen/Payment';
+import RefundInfoScreen from '../screens/MainScreen/TicketPurchaseScreen/RefundInfo ';
+import BuisnessInfoScreen from '../screens/MainScreen/TicketPurchaseScreen/BuisnessInfo';
 import {useRecoilState} from 'recoil';
 import {
     isLoginRecoilState,
@@ -164,7 +167,11 @@ const Navigation = () => {
                                     <Stack.Screen name="TicketPurchase" component={TicketPurchase}></Stack.Screen>
                                     <Stack.Screen name='PurchaseConfirmScreen' component={PurchaseConfirmScreen}></Stack.Screen>
                                     <Stack.Screen name='Payment' component={Payment}></Stack.Screen>
+                                    <Stack.Screen name='BuisnessInfoScreen' component={BuisnessInfoScreen}></Stack.Screen>
+                                    <Stack.Screen name='RefundInfoScreen' component={RefundInfoScreen}></Stack.Screen>
                                     <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen}></Stack.Screen>
+                                    <Stack.Screen name="UserDeleteScreen" component={UserDeleteScreen}></Stack.Screen>
+
                                 </Stack.Group>
                             )
                             : (

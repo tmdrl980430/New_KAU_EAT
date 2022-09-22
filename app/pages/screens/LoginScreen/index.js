@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
     signuptext: {
         fontFamily: 'NotoSansKR-Black',
         color: "#AAACAE",
-        fontSize: 14
+        fontSize: hp('1.7%')
     },
     loginBtn: {
         // marginTop : hp('25%'),

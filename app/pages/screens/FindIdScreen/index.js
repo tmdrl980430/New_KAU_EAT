@@ -55,6 +55,7 @@ const FindIdScreen = ({route, navigation}) => {
     const [phoneCefimodalState, setPhoneCefiModalState] = useRecoilState(
         phonecefimodalRecoilState
     );
+    
 
     const [phoneCefiCofirmState, setPhoneCefiConfirmState] = useRecoilState(
         phoneceficonfirmmodalRecoilState

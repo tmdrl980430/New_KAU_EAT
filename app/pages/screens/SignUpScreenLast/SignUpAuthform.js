@@ -45,6 +45,7 @@ const AuthForm = (props) => {
 
     useEffect(() => {
         setCefiIng(false);
+        setDuplicatePhone(false);
     },[])
 
 
@@ -118,12 +119,16 @@ const AuthForm = (props) => {
         if(phoneNumberRegex.test(phoneNumInput) === true){
             phoneNumberDuplicate();
         }
+    }
+
+
+    useEffect(() => {
         if(duplicatePhone === true){
             setPhoneCefiModalState(true);
         } else {
             props.setPhoneNumberInputmessage('이미 가입된 휴대폰 번호입니다.');
         }
-    }
+    },[duplicatePhone])
 
     const phoneNumberDuplicate = async () => {
         console.log('phoneNumberDuplicate')

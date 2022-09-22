@@ -36,6 +36,15 @@ const CenterTitle = (props) => {
         case "findIdText":
             template = <Text style={styles.text}>아이디 찾기</Text>
             break;
+        case "userDeleteText":
+            template = <Text style={styles.text}>계정 삭제</Text>
+            break;
+        case "buisnessInfoText":
+            template = <Text style={styles.text}>사업자 정보 확인</Text>
+            break;
+        case "refundInfoText":
+            template = <Text style={styles.text}>환불 정보</Text>
+            break;
         default:
             return template
     }

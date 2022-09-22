@@ -16,7 +16,7 @@ const AuthForm = (props) => {
                             type={"textinput"}
                             autoCapitalize={'none'}
                             keyboardType={'email-address'}
-                            placeholder='이메일을 입력해주세요.'
+                            placeholder='아이디를 입력해주세요.'
                             onChangeText={text => props.setEmailInput(text)}/>
                     )
                     : (

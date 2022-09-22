@@ -23,7 +23,6 @@ LogBox.ignoreLogs([
     "Did not receive response to shouldStartLoad in time, defaulting to YES"
 ])
 
-const Stack = createNativeStackNavigator();
 
 const App = () => {
     useEffect(() => {

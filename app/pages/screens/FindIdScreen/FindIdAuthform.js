@@ -25,6 +25,7 @@ const AuthForm = (props) => {
     const [certificationNumBtnStatus, setCertificationNumBtnStatus] = useRecoilState(
         cefiBtnRecoilState
     );
+    
 
     const [phoneCefimodalState, setPhoneCefiModalState] = useRecoilState(phonecefimodalRecoilState);
 
@@ -116,6 +117,7 @@ const AuthForm = (props) => {
         console.log("certificationPhone", certificationNumBtnStatus);
         if(phoneNumberRegex.test(phoneNumInput) === false){
             setCefiIng(false);
+            console.log("cefiing", cefiing);
         } else {
             setPhoneCefiModalState(true);
         }

@@ -122,7 +122,6 @@ const MyPageScreen = ({navigation}) => {
                     backgroundColor: '#3D3580'
                 }}>
                 {logoutodalState != false && <LogoutModal/>}
-                {userDeleteModalState != false && <UserDeleteModal/>}
                 <ScrollView style={styles.container}>
                     <View style={styles.headerContainer}>
                         <BackBtn/>
@@ -145,7 +144,7 @@ const MyPageScreen = ({navigation}) => {
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.userInfoDeleteContainer}
-                            onPress={userDeleteModal}
+                            onPress={() => navigation.replace('UserDeleteScreen')}
                             activeOpacity={0.95}>
                             <UserInfoDelete/>
                         </TouchableOpacity>
@@ -161,7 +160,6 @@ const MyPageScreen = ({navigation}) => {
         )
     }
 }
-
 const styles = StyleSheet.create({
     backgroud: {
         flex: 1,

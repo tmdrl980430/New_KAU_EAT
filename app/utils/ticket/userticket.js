@@ -60,6 +60,7 @@ const userTicket = (props) => {
                 );
             }
         }
+        
         setCurrentTime(hour + ':' + minute )
         console.log("currentTime", currentTime)
 

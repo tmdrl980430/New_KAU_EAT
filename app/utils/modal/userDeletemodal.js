@@ -9,20 +9,28 @@ import {
     Image
 } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import MinusImg from '../../assets/images/minus_arrow.png'
-import PlusImg from '../../assets/images/plus_arrow.png'
 import CloseImg from '../../assets/images/close.png'
 import {useRecoilState} from "recoil";
 import axios from "axios";
-import {clickQrImgRecoilState, dateRecoilState, modalRecoilState, qrModalRecoilState, userIdxRecoilState, qrTicketCountRecoilState, logoutmodalRecoilState, jwtRecoilState, isLoginRecoilState, userDelecteModalRecoilState, severURLRecoilState} from "../../recoil";
+import {
+    userIdxRecoilState,
+    jwtRecoilState,
+    isLoginRecoilState,
+    userDelecteModalRecoilState,
+    severURLRecoilState
+} from "../../recoil";
 
 //재사용 가능 제목 component
 
 const UserDeleteModal = (props) => {
 
-    const [userDeleteModalState, setUserDeleteModalState] = useRecoilState(userDelecteModalRecoilState);
+    const [userDeleteModalState, setUserDeleteModalState] = useRecoilState(
+        userDelecteModalRecoilState
+    );
 
     const [IP, setIP] = useRecoilState(severURLRecoilState);
+
+    const [userIdx, setUserIdx] = useRecoilState(userIdxRecoilState);
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -32,7 +40,6 @@ const UserDeleteModal = (props) => {
 
     const [count, setCount] = useState(1);
 
-
     const clickCancle = () => {
         setUserDeleteModalState(false);
     }
@@ -40,36 +47,38 @@ const UserDeleteModal = (props) => {
     const clickConfirm = () => {
         setUserDeleteModalState(false);
         setUserDelete();
-        setJwt("");
-        setLogin(false);
         console.log(`jwt : ${jwt}`);
         console.log(`login : ${login}`);
+        console.log('userIdx : ', userIdx)
     }
 
     const setUserDelete = async () => {
-        console.log('getUserInfo');
+        console.log('setUserDelete');
         setLoading(true);
 
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
             setError(null);
-            console.log('getUserInfo');
+            console.log('setUserDelete_try');
             console.log(jwt);
 
             // loading 상태를 true 로 바꿉니다.
             setLoading(true);
 
             const response = await axios
-                .get(`${IP}/users/${userIdx}`, {
+                .patch(`${IP}/users/status`, {
+                    userIdx: userIdx
+                }, {
                     headers: {
                         "x-access-token": jwt
                     }
                 })
                 .then((response) => {
+                    if (response.data.code === 1000) {
+                        setJwt('');
+                        setLogin(false);
+                    }
                     console.log(`userInfo response 확인 : ${response.data.code}`);
-                    setUserId(response.data.result.userInfo.id);
-                    setUserName(response.data.result.userInfo.name);
-                    setUserTicket(response.data.result.userInfo.mealTicketCount);
 
                 })
                 .catch((error) => {
@@ -77,14 +86,13 @@ const UserDeleteModal = (props) => {
                 });
             // 데이터는 response.data.code 안에 들어있다. console.log(response.data.result);
         } catch (e) {
-            console.log('getUserInfo_catch');
+            console.log('setUserDelete_catch');
             console.log(e);
             setError(e);
         }
         // loading 끄기
         setLoading(false);
     };
-
 
     return (
         <Modal animationType="fade" transparent={false} visible={userDeleteModalState}>
@@ -96,17 +104,24 @@ const UserDeleteModal = (props) => {
                             onPress={() => {
                                 setUserDeleteModalState(false);
                                 setClickKind("");
-                            }} activeOpacity={0.95}>
+                            }}
+                            activeOpacity={0.95}>
                             <Image style={styles.closeImg} source={CloseImg} resizeMode={'contain'}/>
                         </TouchableOpacity>
                     </View>
 
                     <Text style={styles.descirptionText}>계정을{'\n'}식제하시겠습니까?</Text>
                     <View style={styles.buttonContainer}>
-                        <TouchableOpacity style={styles.cancleContainer} onPress={clickCancle} activeOpacity={0.95}>
+                        <TouchableOpacity
+                            style={styles.cancleContainer}
+                            onPress={clickCancle}
+                            activeOpacity={0.95}>
                             <Text style={styles.cancleText}>취소</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.confirmContainer} onPress={clickConfirm} activeOpacity={0.95}>
+                        <TouchableOpacity
+                            style={styles.confirmContainer}
+                            onPress={clickConfirm}
+                            activeOpacity={0.95}>
                             <Text style={styles.confirmText}>확인</Text>
                         </TouchableOpacity>
                     </View>
@@ -187,13 +202,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: wp('1.5%')
     },
-    buttonContainer : {
+    buttonContainer: {
         width: wp('68%'),
         flexDirection: "row",
         alignItems: 'center',
         justifyContent: "center",
         marginTop: hp('5.7%'),
-        marginBottom: hp('3.3%'),
+        marginBottom: hp('3.3%')
     },
     cancleContainer: {
         justifyContent: 'center',
@@ -210,15 +225,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#3D3580',
         borderRadius: 5
     },
-    cancleText : {
+    cancleText: {
         fontSize: wp('4%'),
         fontFamily: 'NotoSansKR-Bold',
-        color: 'black',
+        color: 'black'
     },
-    confirmText : {
+    confirmText: {
         fontSize: wp('4%'),
         fontFamily: 'NotoSansKR-Bold',
-        color: '#FDFDFD',
+        color: '#FDFDFD'
     }
 })
 
