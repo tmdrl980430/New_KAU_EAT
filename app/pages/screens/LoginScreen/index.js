@@ -90,6 +90,7 @@ const Login = ({
                     .then((response) => {
                         console.log(`response jwt확인 : ${response.data.result.jwt}`);
                         console.log(`response code확인 : ${response.data.code}`);
+                        console.log(`response 로그인 확인 : ${JSON.stringify(response)}`);
                         if (response.data.code == 1000) {
                             setJwt(response.data.result.jwt);
                             console.log(jwt);
@@ -99,6 +100,7 @@ const Login = ({
                         }
                     })
                     .catch((error) => {
+                        console.log("error",error);
                         if (error.response.data.code == 3002) {
                             setPasswordInputmessage("비밀번호가 틀렸습니다.");
                             setEmailInput("");
@@ -113,6 +115,7 @@ const Login = ({
 
             } catch (e) {
                 setError(e);
+                console.log("위치", e);
             }
             // loading 끄기
             setLoading(false);
