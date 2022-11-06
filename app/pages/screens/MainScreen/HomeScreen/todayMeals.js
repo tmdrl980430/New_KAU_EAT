@@ -7,7 +7,7 @@ import {dateRecoilState, jwtRecoilState, severURLRecoilState} from '../../../../
 import axios from 'axios';
 
 
-const MealList = () => {
+const MealList = (props) => {
 
     const [IP, setIP] = useRecoilState(severURLRecoilState);
 
@@ -24,6 +24,12 @@ const MealList = () => {
     const [menuStatus, setMenuStatus] = useState(false);
 
 
+    useEffect(() => {
+        if(props.refreshing == true) {
+            getMealTable()
+        }
+    },[props.refreshing])
+    
     useEffect(() => {
         getMealTable();
     }, [jwt])

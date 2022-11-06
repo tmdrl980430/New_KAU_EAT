@@ -59,6 +59,7 @@ const TicketPurchaseScreen = ({navigation}) => {
     const [tableObject1, setTableObject1] = useState([]);
     const [tableObject2, setTableObject2] = useState([]);
     const [tableObject3, setTableObject3] = useState([]);
+    const [tableObject4, setTableObject4] = useState([]);
 
     const wait = (timeout) => {
         return new Promise(resolve => setTimeout(resolve, timeout));
@@ -112,6 +113,7 @@ const TicketPurchaseScreen = ({navigation}) => {
                     setTableObject1(response.data.result[1]);
                     setTableObject2(response.data.result[2]);
                     setTableObject3(response.data.result[3]);
+                    setTableObject4(response.data.result[4]);
 
                     console.log("조회", response.data.result[1]);
                 })
@@ -132,8 +134,8 @@ const TicketPurchaseScreen = ({navigation}) => {
 
         //품절된 식권이 있을 떄 실행을 하는 것.
 
-        if (purchaseTicket[0] > 0 || purchaseTicket[1] > 0 || purchaseTicket[2] > 0 || purchaseTicket[3] > 0) {
-            if (tableObject0.menu === null || tableObject1.menu === null || tableObject2.menu === null || tableObject3.menu === null) {
+        if (purchaseTicket[0] > 0 || purchaseTicket[1] > 0 || purchaseTicket[2] > 0 || purchaseTicket[3] > 0|| purchaseTicket[4] > 0) {
+            if (tableObject0.menu === null || tableObject1.menu === null || tableObject2.menu === null || tableObject3.menu === null || tableObject4.menu === null) {
                 setSoldOutConfirmModalState(true);
             } else {
                 if (tableObject0.menu.menuStatus === "품절" && purchaseTicket[0] > 0) {
@@ -149,6 +151,10 @@ const TicketPurchaseScreen = ({navigation}) => {
                     return
                 }
                 if (tableObject3.menu.menuStatus === "품절" && purchaseTicket[3] > 0) {
+                    setSoldOutConfirmModalState(true);
+                    return
+                }
+                if (tableObject4.menu.menuStatus === "품절" && purchaseTicket[4] > 0) {
                     setSoldOutConfirmModalState(true);
                     return
                 }

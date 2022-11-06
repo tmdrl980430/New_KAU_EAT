@@ -114,7 +114,7 @@ const userTicket = (props) => {
     //주말
     const setWeekendTimes = () => {
 
-        if (props.mealTypeName === "중식 | 일품" || props.mealTypeName === "중식 | 한식") { //중식일 때 처리
+        if (props.mealTypeName === "중식 | 일품" || props.mealTypeName === "중식 | 한식" || props.mealTypeName === "중식 | 면") { //중식일 때 처리
             if(hour <= 13 && hour >= 11){
                 if(hour === 11 && minute < 30){
                     setTicketUse(false);

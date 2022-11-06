@@ -21,7 +21,14 @@ import TicketPurchaseTitle from './ticketPurchaseTitle';
 import TodayMealBtn from './mealTableBtn';
 import MyTicketTitle from './myTicketTitle'
 import {useRecoilState} from 'recoil';
-import {clickQrImgRecoilState, modalRecoilState, paymentsRecoilState, purchasemodalRecoilState, purchaseTicketRecoilState, qrModalRecoilState} from '../../../../recoil';
+import {
+    clickQrImgRecoilState,
+    modalRecoilState,
+    paymentsRecoilState,
+    purchasemodalRecoilState,
+    purchaseTicketRecoilState,
+    qrModalRecoilState
+} from '../../../../recoil';
 
 import TicketCountModal from '../../../../utils/modal/tickeCountmodal'
 
@@ -50,16 +57,17 @@ const HomeScreen = ({navigation}) => {
 
     const onRefresh = useCallback(() => {
         setRefreshing(true);
-        wait(2000).then(() => setRefreshing(false));
+        wait(2000).then(() => {
+            setRefreshing(false)
+        });
     }, []);
 
     const [purchaseTicket, setPurchaseTicket] = useRecoilState(
         purchaseTicketRecoilState
     );
 
-
     useEffect(() => {
-        setPurchaseTicket([0, 0, 0, 0]);
+        setPurchaseTicket([0, 0, 0, 0, 0]);
     }, []);
 
     useEffect(() => {
@@ -113,7 +121,8 @@ const HomeScreen = ({navigation}) => {
                             <TodayMealBtn/>
                         </TouchableOpacity>
                     </View>
-                    <MealList/>
+                    <MealList
+                    refreshing={refreshing}/>
                     <TicketPurchaseTitle/>
                     <TouchableOpacity
                         onPress={() => navigation.replace('TicketPurchase')}
@@ -130,7 +139,8 @@ const HomeScreen = ({navigation}) => {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.paddingContainer}>
-                        <TicketList/>
+                        <TicketList
+                        refreshing={refreshing}/>
                     </View>
                 </ScrollView>
             </SafeAreaView>

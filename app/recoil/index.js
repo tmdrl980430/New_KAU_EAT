@@ -68,7 +68,7 @@ export const cefiBtnRecoilState = atom(
 
 export const purchaseTicketRecoilState = atom({
     key: 'purchaseTicketRecoilState',
-    default: [0, 0, 0, 0]
+    default: [0, 0, 0, 0, 0]
 });
 
 export const clickQrImgRecoilState = atom(

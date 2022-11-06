@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {
@@ -7,7 +7,8 @@ import {
     StyleSheet,
     ActivityIndicator,
     TouchableOpacity,
-    SafeAreaView
+    SafeAreaView,
+    RefreshControl
 } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -54,6 +55,25 @@ const MyPageScreen = ({navigation}) => {
 
 
     console.log(`jwt : ${jwt}`);
+
+    const [refreshing, setRefreshing] = useState(false);
+
+    const wait = (timeout) => {
+        return new Promise(resolve => setTimeout(resolve, timeout));
+    }
+
+    const onRefresh = useCallback(() => {
+        setRefreshing(true);
+        wait(2000).then(() => {
+            setRefreshing(false)
+        });
+    }, []);
+
+    useEffect(() => {
+        if(refreshing == true) {
+            getUserInfo();
+        }
+    },[refreshing])
 
     const logOutMadal = () => {
         setLogoutModalState(true);
@@ -122,7 +142,15 @@ const MyPageScreen = ({navigation}) => {
                     backgroundColor: '#3D3580'
                 }}>
                 {logoutodalState != false && <LogoutModal/>}
-                <ScrollView style={styles.container}>
+                <ScrollView style={styles.container}
+                refreshControl={<RefreshControl
+                    refreshing = {
+                        refreshing
+                    }
+                    onRefresh = {
+                        onRefresh
+                    }
+                    />}>
                     <View style={styles.headerContainer}>
                         <BackBtn/>
                     </View>

@@ -8,7 +8,7 @@ import {purchaseTicketRecoilState} from "../../../../recoil";
 
 //재사용 가능 제목 component
 
-const PurchaseComponent2 = (props) => {
+const PurchaseComponent4 = (props) => {
 
     const [count, setCount] = useState(0);
 
@@ -17,25 +17,22 @@ const PurchaseComponent2 = (props) => {
     );
 
     const clickPlus = () => {
-
         setPurchaseTicket([
-            purchaseTicket[0], purchaseTicket[1], purchaseTicket[2] + 1,
-            purchaseTicket[3], purchaseTicket[4]
+            purchaseTicket[0], purchaseTicket[1], purchaseTicket[2], purchaseTicket[3] ,purchaseTicket[4]+ 1
         ]);
 
         console.log("purchaseTicket", purchaseTicket);
         console.log("count", count);
 
     }
+
     const clickMinus = () => {
 
-        if (purchaseTicket[2] != 0) {
+        if (purchaseTicket[4] != 0) {
             setPurchaseTicket([
-                purchaseTicket[0], purchaseTicket[1], purchaseTicket[2] - 1,
-                purchaseTicket[3], purchaseTicket[4]
+                purchaseTicket[0], purchaseTicket[1], purchaseTicket[2], purchaseTicket[3] ,purchaseTicket[4]- 1
             ]);
         }
-
         console.log("purchaseTicket", purchaseTicket);
         console.log("count", count);
 
@@ -152,4 +149,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default PurchaseComponent2;
+export default PurchaseComponent4;

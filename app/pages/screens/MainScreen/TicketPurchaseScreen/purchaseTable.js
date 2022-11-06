@@ -20,6 +20,7 @@ import PurchaseComponent from './purchaseComponent'
 import PurchaseComponent1 from './purchaseComponent1'
 import PurchaseComponent2 from './purchaseComponent2'
 import PurchaseComponent3 from './purchaseComponent3'
+import PurchaseComponent4 from './purchaseComponent4';
 
 const PurchaseTable = () => {
 
@@ -39,8 +40,8 @@ const PurchaseTable = () => {
     const [tableObject1, setTableObject1] = useState([]);
     const [tableObject2, setTableObject2] = useState([]);
     const [tableObject3, setTableObject3] = useState([]);
-
-    const [isCount, setCount] = useState([0, 0, 0, 0]);
+    const [tableObject4, setTableObject4] = useState([]);
+    const [isCount, setCount] = useState([0, 0, 0,0 ,0]);
 
     const [purchaseTicket, setPurchaseTicket] = useRecoilState(
         purchaseTicketRecoilState
@@ -99,8 +100,9 @@ const PurchaseTable = () => {
                     setTableObject1(response.data.result[1]);
                     setTableObject2(response.data.result[2]);
                     setTableObject3(response.data.result[3]);
+                    setTableObject4(response.data.result[4]);
 
-                    console.log("조회", response.data.result[1]);
+                    console.log("조회", response.data.result);
 
                 })
                 .catch((error) => {
@@ -177,6 +179,19 @@ const PurchaseTable = () => {
                             menu={tableObject3.menu}
                             key={3}
                             index={3}/>
+                        )
+                        : (<View/>)
+                }
+                {
+                    tableObject != null
+                        ? (
+                            <PurchaseComponent4
+                            type={tableObject4.mealTypeName}
+                            price={tableObject4.price}
+                            mealType={tableObject4.mealTypeName}
+                            menu={tableObject4.menu}
+                            key={4}
+                            index={4}/>
                         )
                         : (<View/>)
                 }

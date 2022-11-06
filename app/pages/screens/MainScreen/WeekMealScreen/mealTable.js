@@ -17,7 +17,7 @@ import {dateRecoilState, jwtRecoilState, severURLRecoilState, weekDateRecoilStat
 
 import MealTableComponent from '../../../../utils/meals/meal';
 
-const MealTable = () => {
+const MealTable = (props) => {
 
     const [IP, setIP] = useRecoilState(severURLRecoilState);
 
@@ -30,6 +30,13 @@ const MealTable = () => {
     const [date, setDate] = useRecoilState(weekDateRecoilState);
 
     const [tableObject, setTableObject] = useState([]);
+
+    useEffect(() => {
+        if(props.refreshing == true) {
+            getMealTable()
+        }
+    },[props.refreshing])
+
 
     useEffect(() => {
         if (date != "") {

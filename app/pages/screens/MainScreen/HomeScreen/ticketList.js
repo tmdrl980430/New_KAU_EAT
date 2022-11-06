@@ -7,7 +7,7 @@ import axios from 'axios';
 import {jwtRecoilState, severURLRecoilState, userIdxRecoilState} from '../../../../recoil';
 import {useRecoilState} from 'recoil';
 
-const TicketList = () => {
+const TicketList = (props) => {
 
 
     const [IP, setIP] = useRecoilState(severURLRecoilState);
@@ -30,6 +30,12 @@ const TicketList = () => {
     const today = String(koreaNow.getFullYear()) + '-' + String(
         koreaNow.getMonth() + 1
     ).padStart(2, '0') + '-' + String(koreaNow.getDate()).padStart(2, '0')
+
+    useEffect(() => {
+        if(props.refreshing == true) {
+            getUserTicket()
+        }
+    },[props.refreshing])
 
     useEffect(() => {
         getUserTicket();
@@ -58,7 +64,7 @@ const TicketList = () => {
                     }
                 )
                 .then((response) => {
-                    console.log(`response 확인 : ${response.data.code}`);
+                    console.log(`response 티켓 확인 : ${response.data.code}`);
                     setTicketObject(response.data.result.mealTickets);
                     console.log(response.data.result.mealTickets);
                 })

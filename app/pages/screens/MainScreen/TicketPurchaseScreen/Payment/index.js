@@ -109,6 +109,9 @@ const Payment = ({navigation, route}) => {
                     }, {
                         mealTypeIdx: 4,
                         amount: purchaseTicket[3]
+                    }, {
+                        mealTypeIdx: 5,
+                        amount: purchaseTicket[4]
                     }
                 ]
             })
@@ -118,7 +121,7 @@ const Payment = ({navigation, route}) => {
                 if (response.data.code == 1000) {
                     console.log('수정 완료');
 
-                    setPurchaseTicket([0, 0, 0, 0])
+                    setPurchaseTicket([0, 0, 0, 0, 0])
                     navigation.replace('Main');
                 }
             })
@@ -129,7 +132,7 @@ const Payment = ({navigation, route}) => {
 
     let cost = (purchaseTicket[0] * 3000) + (purchaseTicket[1] * 5000) + (
         purchaseTicket[2] * 6000
-    ) + (purchaseTicket[3] * 5000)
+    ) + (purchaseTicket[3] * 5000) + (purchaseTicket[4] * 4500)
 
     useEffect(() => {
         console.log('purchaseTicket', purchaseTicket);

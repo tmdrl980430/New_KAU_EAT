@@ -50,8 +50,8 @@ const RefundInfoScreen = ({navigation}) => {
                     <View style={styles.viewContainer}/>
                 </View>
                 <ScrollView style={styles.container}>
-                    <Text style={styles.buisnessText}>서비스제공기간 : 결제 후 6개월동안 사용가능</Text>
-                    <Text style={styles.buisnessText}>환불정책 : 1주일 내에 환불 시 100% 환불</Text>
+                    <Text style={styles.buisnessText}>서비스제공기간 : 결제 후 1개월동안 사용가능</Text>
+                    <Text style={styles.buisnessText}>환불정책 : 환불 불가</Text>
                 </ScrollView>
 
             </SafeAreaView>

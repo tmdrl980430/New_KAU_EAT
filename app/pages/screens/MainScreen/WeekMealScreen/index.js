@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {
     Text,
     View,
@@ -6,7 +6,8 @@ import {
     ActivityIndicator,
     ScrollView,
     SafeAreaView,
-    TouchableOpacity
+    TouchableOpacity,
+    RefreshControl
 } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import DateList from '../../../screens/MainScreen/WeekMealScreen/dateList'
@@ -19,6 +20,18 @@ import MealTable from './mealTable';
 const WeekMealsScreen = ({navigation}) => {
 
     const [loading, setLoading] = useState(false)
+
+    const wait = (timeout) => {
+        return new Promise(resolve => setTimeout(resolve, timeout));
+    }
+    const [refreshing, setRefreshing] = useState(false);
+
+    const onRefresh = useCallback(() => {
+        setRefreshing(true);
+        wait(2000).then(() => {
+            setRefreshing(false)
+        });
+    }, []);
 
     if (loading) {
         return (
@@ -38,10 +51,19 @@ const WeekMealsScreen = ({navigation}) => {
                     <CenterTitle type={"weekMealText"}/>
                     <View style={styles.viewContainer}/>
                 </View>
-                <ScrollView style={styles.container}>
+                <ScrollView style={styles.container}
+                refreshControl={<RefreshControl
+                    refreshing = {
+                        refreshing
+                    }
+                    onRefresh = {
+                        onRefresh
+                    }
+                    />}>
                     <Calendar/>
                     <DateTitle/>
-                    <MealTable/>
+                    <MealTable
+                    refreshing={refreshing}/>
                 </ScrollView>
 
             </SafeAreaView>

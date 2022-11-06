@@ -29,7 +29,8 @@ const PurchaseComponent = (props) => {
             purchaseTicket[0] + 1,
             purchaseTicket[1],
             purchaseTicket[2],
-            purchaseTicket[3]
+            purchaseTicket[3],
+            purchaseTicket[4]
         ]);
 
         console.log("purchaseTicket", purchaseTicket);
@@ -44,7 +45,8 @@ const PurchaseComponent = (props) => {
                 purchaseTicket[0] - 1,
                 purchaseTicket[1],
                 purchaseTicket[2],
-                purchaseTicket[3]
+                purchaseTicket[3],
+                purchaseTicket[4]
             ]);
         }
 

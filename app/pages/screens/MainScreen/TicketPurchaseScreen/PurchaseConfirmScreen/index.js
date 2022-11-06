@@ -60,12 +60,13 @@ const PurchaseConfirmScreen = ({navigation}) => {
     const [tableObject1, setTableObject1] = useState([]);
     const [tableObject2, setTableObject2] = useState([]);
     const [tableObject3, setTableObject3] = useState([]);
+    const [tableObject4, setTableObject4] = useState([]);
 
     const [ticketObject, setTicketObject] = useState([]);
 
     let cost = (purchaseTicket[0] * 3000) + (purchaseTicket[1] * 5000) + (
         purchaseTicket[2] * 6000
-    ) + (purchaseTicket[3] * 5000)
+    ) + (purchaseTicket[3] * 5000) + (purchaseTicket[4] * 4500)
 
     useEffect(() => {
         const now = new Date();
@@ -119,6 +120,8 @@ const PurchaseConfirmScreen = ({navigation}) => {
                     setTableObject1(response.data.result[1]);
                     setTableObject2(response.data.result[2]);
                     setTableObject3(response.data.result[3]);
+                    setTableObject4(response.data.result[4]);
+
                     setTicketObject(response.data.result);
                     console.log("조회", response.data.result[1]);
                 })

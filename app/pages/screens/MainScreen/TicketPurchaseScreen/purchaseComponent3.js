@@ -18,7 +18,7 @@ const PurchaseComponent3 = (props) => {
 
     const clickPlus = () => {
         setPurchaseTicket([
-            purchaseTicket[0], purchaseTicket[1], purchaseTicket[2], purchaseTicket[3] + 1
+            purchaseTicket[0], purchaseTicket[1], purchaseTicket[2], purchaseTicket[3] + 1, purchaseTicket[4]
         ]);
 
         console.log("purchaseTicket", purchaseTicket);
@@ -30,7 +30,7 @@ const PurchaseComponent3 = (props) => {
 
         if (purchaseTicket[3] != 0) {
             setPurchaseTicket([
-                purchaseTicket[0], purchaseTicket[1], purchaseTicket[2], purchaseTicket[3] - 1
+                purchaseTicket[0], purchaseTicket[1], purchaseTicket[2], purchaseTicket[3] - 1, purchaseTicket[4]
             ]);
         }
         console.log("purchaseTicket", purchaseTicket);
