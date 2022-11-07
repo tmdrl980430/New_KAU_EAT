@@ -80,16 +80,16 @@ const TicketCountModal = (props) => {
                         </TouchableOpacity >
                     </View>
 
-                    <Text style={styles.descirptionText}>식권을 몇장{'\n'}사용하시겠습니까?</Text>
+                    <Text style={styles.descirptionText}>식권을{'\n'}사용하시겠습니까?</Text>
 
                     <View style={styles.ticketCountView}>
-                        <TouchableOpacity onPress={clickMinus} activeOpacity={0.95}>
+                        {/* <TouchableOpacity onPress={clickMinus} activeOpacity={0.95}>
                             <Image style={styles.countImg} source={MinusImg} resizeMode={'contain'}/>
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
                         <Text style={styles.ticketCount}>{count}</Text>
-                        <TouchableOpacity onPress={clickPlus} activeOpacity={0.95}>
+                        {/* <TouchableOpacity onPress={clickPlus} activeOpacity={0.95}>
                             <Image style={styles.countImg} source={PlusImg} resizeMode={'contain'}/>
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
                     </View>
                     <View style={styles.buttonContainer}>
                         <TouchableOpacity style={styles.cancleContainer} onPress={clickCancle} activeOpacity={0.95}>
@@ -157,7 +157,6 @@ const styles = StyleSheet.create({
     },
     ticketCountView: {
         width: wp('35%'),
-        flexDirection: 'row',
         alignItems: 'center',
         marginTop: hp('4%'),
         justifyContent: 'space-between'
