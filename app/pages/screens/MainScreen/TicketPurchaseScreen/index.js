@@ -207,7 +207,7 @@ const TicketPurchaseScreen = ({navigation}) => {
                     </TouchableOpacity>
                     <View style={styles.signuptextArea}>
                             <TouchableOpacity
-                                onPress={() => navigation.navigate('BuisnessInfoScreen')}
+                                onPress={() => navigation.push('BuisnessInfoScreen')}
                                 activeOpacity={0.95}>
                                 <Text style={styles.signuptext}>사업자정보확인</Text>
                             </TouchableOpacity>
@@ -215,7 +215,7 @@ const TicketPurchaseScreen = ({navigation}) => {
                                 |
                             </Text>
                             <TouchableOpacity
-                                onPress={() => navigation.navigate('RefundInfoScreen')}
+                                onPress={() => navigation.push('RefundInfoScreen')}
                                 activeOpacity={0.95}>
                                 <Text style={styles.signuptext}>환불정보</Text>
                             </TouchableOpacity>

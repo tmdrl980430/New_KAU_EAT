@@ -100,6 +100,7 @@ const TicketList = (props) => {
 
 const styles = StyleSheet.create({
     container : {
+        marginTop: hp('1.7%'),
         paddingBottom : hp('3%')
     }
 })

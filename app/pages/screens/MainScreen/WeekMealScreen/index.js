@@ -44,7 +44,7 @@ const WeekMealsScreen = ({navigation}) => {
             <SafeAreaView style={styles.safeAreaContainer}>
                 <View style={styles.headerContainer}>
                     <TouchableOpacity
-                        onPress={() => navigation.replace('Main')}
+                        onPress={() => navigation.pop()}
                         activeOpacity={0.95}>
                         <BackBtn/>
                     </TouchableOpacity>

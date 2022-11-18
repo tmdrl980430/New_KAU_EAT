@@ -34,7 +34,7 @@ const BuisnessInfoScreen = ({navigation}) => {
             <SafeAreaView style={styles.safeAreaContainer}>
                 <View style={styles.headerContainer}>
                     <TouchableOpacity
-                        onPress={() => navigation.replace('TicketPurchase')}
+                        onPress={() => navigation.pop()}
                         activeOpacity={0.95}>
                         <BackBtn/>
                     </TouchableOpacity>

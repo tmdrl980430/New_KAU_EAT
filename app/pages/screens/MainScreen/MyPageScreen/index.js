@@ -166,13 +166,13 @@ const MyPageScreen = ({navigation}) => {
                         <Text style={styles.titleText}>회원 정보</Text>
                         <TouchableOpacity
                             style={styles.userInfoChangeContainer}
-                            onPress={() => navigation.replace('ChangePasswordScreen')}
+                            onPress={() => navigation.push('ChangePasswordScreen')}
                             activeOpacity={0.95}>
                             <UserInfoChange/>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.userInfoDeleteContainer}
-                            onPress={() => navigation.replace('UserDeleteScreen')}
+                            onPress={() => navigation.push('UserDeleteScreen')}
                             activeOpacity={0.95}>
                             <UserInfoDelete/>
                         </TouchableOpacity>

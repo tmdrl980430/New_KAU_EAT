@@ -47,6 +47,7 @@ const UserDeleteScreen = ({navigation}) => {
 
     useEffect(() => {
         setUserDeleteModalState(false);
+        setPasswordInputmessage("");
     }, [])
 
     useEffect(() => {
@@ -116,17 +117,16 @@ const UserDeleteScreen = ({navigation}) => {
         return (
             <SafeAreaView style={styles.topContainer}>
                 {userDeleteModalState != false && <UserDeleteModal/>}
-
                 <View style={styles.headerContainer}>
                     <TouchableOpacity
-                        onPress={() => navigation.replace('Main')}
+                        onPress={() => navigation.pop()}
                         activeOpacity={0.95}>
                         <BackBtn/>
                     </TouchableOpacity>
                     <CenterTitle type={"userDeleteText"}/>
                     <View style={styles.viewContainer}/>
                 </View>
-                <ScrollView style={styles.container}>
+                <View style={styles.container}>
                     <View style={styles.ContentsViewFlex}>
                         <View style={styles.formArea}>
                             <AuthForm
@@ -146,7 +146,7 @@ const UserDeleteScreen = ({navigation}) => {
                         </TouchableOpacity>
                     </View>
 
-                </ScrollView>
+                </View>
             </SafeAreaView>
         )
     }

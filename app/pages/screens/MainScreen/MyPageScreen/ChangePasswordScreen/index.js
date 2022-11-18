@@ -156,14 +156,14 @@ const ChangePasswordScreen = ({navigation}) => {
 
                 <View style={styles.headerContainer}>
                     <TouchableOpacity
-                        onPress={() => navigation.replace('Main')}
+                        onPress={() => navigation.pop()}
                         activeOpacity={0.95}>
                         <BackBtn/>
                     </TouchableOpacity>
                     <CenterTitle type={"changePasswordText"}/>
                     <View style={styles.viewContainer}/>
                 </View>
-                <ScrollView style={styles.container}>
+                <View style={styles.container}>
                     <View style={styles.ContentsViewFlex}>
                         <View style={styles.formArea}>
                             <AuthForm
@@ -187,7 +187,7 @@ const ChangePasswordScreen = ({navigation}) => {
                         </TouchableOpacity>
                     </View>
 
-                </ScrollView>
+                </View>
             </SafeAreaView>
         )
     }

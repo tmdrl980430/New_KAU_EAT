@@ -116,7 +116,7 @@ const HomeScreen = ({navigation}) => {
                     <View style={styles.titlecontainer}>
                         <TodayMealTitle/>
                         <TouchableOpacity
-                            onPress={() => navigation.replace('WeekMeals')}
+                            onPress={() => navigation.push('WeekMeals')}
                             activeOpacity={0.95}>
                             <TodayMealBtn/>
                         </TouchableOpacity>
@@ -125,7 +125,7 @@ const HomeScreen = ({navigation}) => {
                     refreshing={refreshing}/>
                     <TicketPurchaseTitle/>
                     <TouchableOpacity
-                        onPress={() => navigation.replace('TicketPurchase')}
+                        onPress={() => navigation.push('TicketPurchase')}
                         activeOpacity={0.95}>
                         <TicketPurchaseBtn/>
                     </TouchableOpacity>
@@ -133,7 +133,7 @@ const HomeScreen = ({navigation}) => {
                     <View style={styles.titlecontainer}>
                         <MyTicketTitle/>
                         <TouchableOpacity
-                            onPress={() => navigation.replace('MyTicket')}
+                            onPress={() => navigation.push('MyTicket')}
                             activeOpacity={0.95}>
                             <MyTicketBtn/>
                         </TouchableOpacity>
