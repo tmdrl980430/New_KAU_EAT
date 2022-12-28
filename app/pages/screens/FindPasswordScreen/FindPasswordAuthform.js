@@ -65,9 +65,6 @@ const AuthForm = (props) => {
                 setMinute(Math.floor(count / 60));
                 setSecond(count % 60);
                 setCount(count - 1);
-                // console.log('minute: ', minute);
-                // console.log('second: ', second);
-                // console.log('count: ', count);
 
     
                 if (count <= 0) {
@@ -86,11 +83,6 @@ const AuthForm = (props) => {
         
     }, [count])
 
-    useEffect(() => {
-        console.log("cefiing: ", cefiing);
-        console.log("certificationNumBtnStatus: ", certificationNumBtnStatus);
-
-    }, [cefiing, certificationNumBtnStatus])
 
     useEffect(() => {
         if(phoneCefiCofirmState === true){
@@ -113,7 +105,6 @@ const AuthForm = (props) => {
 
     const certificationPhone = () => {
 
-        console.log("certificationPhone", certificationNumBtnStatus);
 
 
         if(phoneNumberRegex.test(phoneNumInput) === false){

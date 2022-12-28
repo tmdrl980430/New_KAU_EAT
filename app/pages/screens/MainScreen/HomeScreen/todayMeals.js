@@ -44,15 +44,11 @@ const MealList = (props) => {
     )}-${String(now.getDate()).padStart(2, '0')}`
 
     const getMealTable = async () => {
-        console.log('getMealTable');
         setLoading(true);
 
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
             setError(null);
-            console.log('getMealTable_try');
-            console.log(jwt);
-
             // loading 상태를 true 로 바꿉니다.
             setLoading(true);
 
@@ -65,16 +61,12 @@ const MealList = (props) => {
                     }
                 })
                 .then((response) => {
-                    console.log(`response 확인 : ${response.data.code}`);
                     setResponseData(response.data.result);
                 })
                 .catch((error) => {
-                    console.log(error);
                 });
             // 데이터는 response.data.code 안에 들어있다. console.log(response.data.result);
         } catch (e) {
-            console.log('getMealTable_catch');
-            console.log(e);
             setError(e);
         }
         // loading 끄기

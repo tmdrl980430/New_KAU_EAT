@@ -42,15 +42,11 @@ const TicketList = (props) => {
     }, [])
 
     const getUserTicket = async () => {
-        console.log('getUserTicket');
         setLoading(true);
 
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
             setError(null);
-            console.log(jwt);
-            console.log(userIdx);
-
             // loading 상태를 true 로 바꿉니다.
             setLoading(true);
 
@@ -64,16 +60,12 @@ const TicketList = (props) => {
                     }
                 )
                 .then((response) => {
-                    console.log(`response 티켓 확인 : ${response.data.code}`);
                     setTicketObject(response.data.result.mealTickets);
-                    console.log(response.data.result.mealTickets);
                 })
                 .catch((error) => {
-                    console.log(error);
                 });
             // 데이터는 response.data.code 안에 들어있다. console.log(response.data.result);
         } catch (e) {
-            console.log(e);
             setError(e);
         }
 

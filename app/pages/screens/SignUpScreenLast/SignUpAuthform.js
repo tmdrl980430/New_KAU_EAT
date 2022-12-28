@@ -66,9 +66,6 @@ const AuthForm = (props) => {
                 setMinute(Math.floor(count / 60));
                 setSecond(count % 60);
                 setCount(count - 1);
-                // console.log('minute: ', minute);
-                // console.log('second: ', second);
-                // console.log('count: ', count);
 
     
                 if (count <= 0) {
@@ -86,12 +83,6 @@ const AuthForm = (props) => {
 
         
     }, [count])
-
-    useEffect(() => {
-        console.log("cefiing: ", cefiing);
-        console.log("certificationNumBtnStatus: ", certificationNumBtnStatus);
-
-    }, [cefiing, certificationNumBtnStatus])
 
     useEffect(() => {
         if(phoneCefiCofirmState === true){
@@ -114,7 +105,6 @@ const AuthForm = (props) => {
 
     const certificationPhone = () => {
 
-        console.log("certificationPhone", certificationNumBtnStatus);
 
         if(phoneNumberRegex.test(phoneNumInput) === true){
             phoneNumberDuplicate();
@@ -131,7 +121,6 @@ const AuthForm = (props) => {
     },[duplicatePhone])
 
     const phoneNumberDuplicate = async () => {
-        console.log('phoneNumberDuplicate')
         try {
             setError(null);
             const responseDuplicate = await axios
@@ -139,8 +128,6 @@ const AuthForm = (props) => {
                     `${IP}/auth/duplicate-phone?phoneNumber=${phoneNumInput}`
                 )
                 .then((res) => {
-                    console.log(res);
-                    console.log(res.data.code);
                     if (res.data.code === 1000) {
                         setDuplicatePhone(true);
                     } else if (res.data.code === 3010) {
@@ -151,13 +138,11 @@ const AuthForm = (props) => {
                     }
                 })
                 .catch((error) => {
-                    console.log(error);
                     setDuplicatePhone(false);
                 });
             // 데이터는 response.data.code 안에 들어있다.
 
         } catch (e) {
-            console.log('outerror')
             setError(e);
         }
     };

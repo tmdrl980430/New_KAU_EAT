@@ -44,15 +44,10 @@ const Payment = ({navigation, route}) => {
     const {uid} = route.params.uid
 
     useEffect(() => {
-        console.log("uid", uid);
         setPaymentsState(true);
     }, []);
 
     const fetchPay = async (res) => {
-        console.log('fetchPay');
-        console.log('fetchPay.imp', res.imp_uid);
-        console.log('fetchPay.merchant_uid', res.merchant_uid);
-        console.log('fetchPay.imp_success', res.imp_success);
         if (res.imp_success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
             // axios로 HTTP 요청
             axios({
@@ -69,7 +64,6 @@ const Payment = ({navigation, route}) => {
             })
                 .then((res) => {
                     // 서버 결제 API 성공시 로직
-                    console.log('callBackres', res.data.code);
 
                     if (res.data.code === 1000) {
                         userTicketModify();
@@ -79,18 +73,15 @@ const Payment = ({navigation, route}) => {
                     }
                 })
                 .catch((e) => {
-                    console.log(`out payerror : ${e}`);
                 })
             } else {
             //결제 실패 modal 띄워주기 (진행안함)
-            console.log(`결제에 실패하였습니다. 에러 내용: ${res.error_msg}`);
             setPurchaseModalState(true);
         }
 
     };
 
     const userTicketModify = async () => {
-        console.log('userTicketModify');
 
         const response = await axios
             .patch(`${IP}/mealtickets?type=buy`, {
@@ -116,17 +107,14 @@ const Payment = ({navigation, route}) => {
                 ]
             })
             .then((response) => {
-                console.log(`response code확인`, response);
 
                 if (response.data.code == 1000) {
-                    console.log('수정 완료');
 
                     setPurchaseTicket([0, 0, 0, 0, 0])
                     navigation.replace('Main');
                 }
             })
             .catch((error) => {
-                console.log(`error : `, error);
             });
     }
 
@@ -134,10 +122,6 @@ const Payment = ({navigation, route}) => {
         purchaseTicket[2] * 6000
     ) + (purchaseTicket[3] * 5000) + (purchaseTicket[4] * 4500)
 
-    useEffect(() => {
-        console.log('purchaseTicket', purchaseTicket);
-        console.log('cost', cost);
-    }, []);
 
     const data = {
         pg: 'uplus', // 실제 계약 후에는 실제 상점아이디로 변경
@@ -153,18 +137,8 @@ const Payment = ({navigation, route}) => {
     };
 
     const callBack = (res) => {
-        console.group('callback');
-        console.log('callBackres', res);
-        console.log('callBackres.imp', res.imp_uid);
-        console.log('callBackres.merchant_uid', res.merchant_uid);
-        console.log('callBackres.imp_success', res.imp_success);
+
         fetchPay(res);
-
-        console.groupEnd('callback');
-
-        console.group('userData');
-        console.log(data);
-        console.groupEnd('userData');
 
         //결제가 되는지 안되든지 메인화면으로 이동
         navigation.replace('Main');

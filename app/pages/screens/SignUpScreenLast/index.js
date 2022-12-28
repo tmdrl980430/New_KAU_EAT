@@ -77,7 +77,6 @@ const SignUpLast = ({route, navigation}) => {
         setDuplicatePhone(false);
     }, [])
     useEffect(() => {
-        console.log("certificationNumBtnStatus", certificationNumBtnStatus);
 
         if (certificationNumInput != "" && responseCertificationNum != "" && certificationNumInput === responseCertificationNum) {
             setCertificationNumInputmessage("인증되었습니다.");
@@ -89,18 +88,13 @@ const SignUpLast = ({route, navigation}) => {
     }, [certificationNumInput])
 
     useEffect(() => {
-        console.log(phoneNumInput);
-        console.log("phoneNumberRegex", phoneNumberRegex.test(phoneNumInput));
-        console.log("certificationNumBtnStatus", certificationNumBtnStatus);
         if (phoneNumberRegex.test(phoneNumInput) && certificationNumBtnStatus === true && phoneCefiCofirmState == true) {
 
-            console.log("duplicatePhone", duplicatePhone)
 
             if (duplicatePhone === true) {
                 requestCertificationPhone();
 
                 setPhoneNumberInputmessage('');
-                console.log("requestCertificationPhone 실행");
                 setPhoneCefiConfirmState(false);
                 setCertificationNumBtnStatus(false);
             }
@@ -121,7 +115,6 @@ const SignUpLast = ({route, navigation}) => {
     }, [certificationNumBtnStatus, phoneNumInput])
 
     const requestCertificationPhone = async () => {
-        console.log('requestCertificationPhone')
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
             setError(null);
@@ -134,12 +127,10 @@ const SignUpLast = ({route, navigation}) => {
                     {phoneNumber: phoneNumInput}
                 )
                 .then((response) => {
-                    console.log(response);
                     setResponseCertificationNum(response.data.result.authNumber);
                     return response;
                 })
                 .catch((error) => {
-                    console.log(error);
                 });
             // 데이터는 response.data.code 안에 들어있다.
 
@@ -149,10 +140,7 @@ const SignUpLast = ({route, navigation}) => {
     };
 
     const fetchSignUp = async () => {
-        console.log('fetchSignUp')
 
-        console.log("certificationNumInput", certificationNumInput)
-        console.log("responseCertificationNum", responseCertificationNum)
 
         if (certificationNumInput != "" && responseCertificationNum != "" && certificationNumInput === responseCertificationNum) {
             try {
@@ -171,12 +159,10 @@ const SignUpLast = ({route, navigation}) => {
                         phoneNumber: phoneNumInput
                     })
                     .then((response) => {
-                        console.log(response);
 
                         return response;
                     })
                     .catch((error) => {
-                        console.log(error);
                     });
 
                 navigation.replace('Login');
@@ -193,7 +179,6 @@ const SignUpLast = ({route, navigation}) => {
     };
 
     const onPressSignUpBtn = () => {
-        console.log('onPressSignUpBtn')
 
         fetchSignUp();
     }

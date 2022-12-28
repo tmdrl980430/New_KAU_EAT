@@ -20,10 +20,6 @@ const PurchaseComponent4 = (props) => {
         setPurchaseTicket([
             purchaseTicket[0], purchaseTicket[1], purchaseTicket[2], purchaseTicket[3] ,purchaseTicket[4]+ 1
         ]);
-
-        console.log("purchaseTicket", purchaseTicket);
-        console.log("count", count);
-
     }
 
     const clickMinus = () => {
@@ -33,9 +29,6 @@ const PurchaseComponent4 = (props) => {
                 purchaseTicket[0], purchaseTicket[1], purchaseTicket[2], purchaseTicket[3] ,purchaseTicket[4]- 1
             ]);
         }
-        console.log("purchaseTicket", purchaseTicket);
-        console.log("count", count);
-
     }
 
     return (

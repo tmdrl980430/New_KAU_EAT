@@ -7,14 +7,7 @@ import DashedLine from '../../assets/images/dashedline.png'
 
 import axios from "axios";
 import {useRecoilState} from "recoil";
-import {
-    jwtRecoilState,
-    userIdxRecoilState,
-    clickQrImg,
-    clickQrImgRecoilState,
-    dateRecoilState,
-    setTicketTimeRecoilState
-} from "../../recoil";
+import {clickQrImgRecoilState} from "../../recoil";
 
 //재사용 가능 식권 모양
 
@@ -62,7 +55,6 @@ const userTicket = (props) => {
         }
         
         setCurrentTime(hour + ':' + minute )
-        console.log("currentTime", currentTime)
 
     }
 
@@ -156,10 +148,6 @@ const userTicket = (props) => {
                 setDays(true);
             }
         }
-
-        useEffect(() => {
-            console.log("clickKind : ", clickKind);
-        }, []);
 
         return (
             <View style={styles.ticketContainer}>

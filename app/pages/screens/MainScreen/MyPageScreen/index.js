@@ -53,9 +53,6 @@ const MyPageScreen = ({navigation}) => {
 
     const [userDeleteModalState, setUserDeleteModalState] = useRecoilState(userDelecteModalRecoilState);
 
-
-    console.log(`jwt : ${jwt}`);
-
     const [refreshing, setRefreshing] = useState(false);
 
     const wait = (timeout) => {
@@ -77,12 +74,10 @@ const MyPageScreen = ({navigation}) => {
 
     const logOutMadal = () => {
         setLogoutModalState(true);
-        console.log(`logoutodalState : ${logoutodalState}`);
     }
 
     const userDeleteModal = () => {
         setUserDeleteModalState(true);
-        console.log(`logoutodalState : ${logoutodalState}`);
     }
 
     useEffect(() => {
@@ -90,15 +85,11 @@ const MyPageScreen = ({navigation}) => {
     }, [])
 
     const getUserInfo = async () => {
-        console.log('getUserInfo');
         setLoading(true);
 
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
             setError(null);
-            console.log('getUserInfo');
-            console.log(jwt);
-
             // loading 상태를 true 로 바꿉니다.
             setLoading(true);
 
@@ -109,19 +100,15 @@ const MyPageScreen = ({navigation}) => {
                     }
                 })
                 .then((response) => {
-                    console.log(`userInfo response 확인 : ${response.data.code}`);
                     setUserId(response.data.result.userInfo.id);
                     setUserName(response.data.result.userInfo.name);
                     setUserTicket(response.data.result.userInfo.mealTicketCount);
 
                 })
                 .catch((error) => {
-                    console.log(error);
                 });
             // 데이터는 response.data.code 안에 들어있다. console.log(response.data.result);
         } catch (e) {
-            console.log('getUserInfo_catch');
-            console.log(e);
             setError(e);
         }
         // loading 끄기

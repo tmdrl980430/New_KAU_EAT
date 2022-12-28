@@ -56,13 +56,7 @@ const QrModal = () => {
     `
     );
 
-    useEffect(() => {
-        console.log("data : " , date)
-    } , [])
 
-    useEffect(() => {
-        console.log('qrInfo', qrInfo);
-    }, [qrInfo]);
 
     return (
         <Modal animationType="fade" transparent={false} visible={qrModalState}>

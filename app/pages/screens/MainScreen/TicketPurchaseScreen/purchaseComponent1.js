@@ -25,8 +25,6 @@ const PurchaseComponent1 = (props) => {
             purchaseTicket[4]
         ]);
 
-        console.log("purchaseTicket", purchaseTicket);
-        console.log("count", count);
 
     }
 
@@ -44,8 +42,6 @@ const PurchaseComponent1 = (props) => {
             ]);
         }
 
-        console.log("purchaseTicket", purchaseTicket);
-        console.log("count", count);
 
     }
 

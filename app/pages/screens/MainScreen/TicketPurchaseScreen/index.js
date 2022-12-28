@@ -80,7 +80,6 @@ const TicketPurchaseScreen = ({navigation}) => {
     }, []);
 
     useEffect(() => {
-        console.log('soldOutConfirmState: ', soldOutConfirmState);
 
         if (soldOutConfirmState === true) {
             navigation.replace('PurchaseConfirmScreen')
@@ -90,13 +89,11 @@ const TicketPurchaseScreen = ({navigation}) => {
     }, [soldOutConfirmState]);
 
     const getPruchaseTable = async () => {
-        console.log('getPruchaseTable');
         setLoading(true);
 
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
             setError(null);
-            console.log(jwt);
 
             // loading 상태를 true 로 바꿉니다.
             setLoading(true);
@@ -108,21 +105,17 @@ const TicketPurchaseScreen = ({navigation}) => {
                     }
                 })
                 .then((response) => {
-                    console.log(`response 확인 : ${response.data.code}`);
                     setTableObject0(response.data.result[0]);
                     setTableObject1(response.data.result[1]);
                     setTableObject2(response.data.result[2]);
                     setTableObject3(response.data.result[3]);
                     setTableObject4(response.data.result[4]);
 
-                    console.log("조회", response.data.result[1]);
                 })
                 .catch((error) => {
-                    console.log(error);
                 });
             // 데이터는 response.data.code 안에 들어있다. console.log(response.data.result);
         } catch (e) {
-            console.log(e);
             setError(e);
         }
         // loading 끄기
@@ -165,7 +158,6 @@ const TicketPurchaseScreen = ({navigation}) => {
             }
         }
 
-        console.log('purchaseTicket', purchaseTicket);
 
     };
 

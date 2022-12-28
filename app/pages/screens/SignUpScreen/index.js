@@ -83,7 +83,6 @@ const SignUp = ({navigation}) => {
                     const response = await axios
                         .get(`${IP}/auth/duplicate-id?id=${id}`)
                         .then((response) => {
-                            console.log(`response code확인 : ${response.data.code}`);
                             if (response.data.code == 1000) {
                                 navigation.navigate('SignUpLast', {
                                     id: {
@@ -109,12 +108,6 @@ const SignUp = ({navigation}) => {
         }
 
     };
-
-    useEffect(() => {
-        console.log(id),
-        console.log(password),
-        console.log(passwordCheck)
-    }, [id, password, passwordCheck])
 
     const onPressNextBtn = () => {
         retrieveDuplicateId();

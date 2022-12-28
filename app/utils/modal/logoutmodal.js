@@ -37,8 +37,6 @@ const LogoutModal = (props) => {
         setLogoutModalState(false);
         setJwt("");
         setLogin(false);
-        console.log(`jwt : ${jwt}`);
-        console.log(`login : ${login}`);
     }
 
     return (

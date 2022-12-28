@@ -40,13 +40,9 @@ const MyTicketScreen = ({navigation}) => {
 
     useEffect(() => {
 
-        console.log("clickKind : ", clickKind);
-
         if (clickKind != "") {
             setModalState(true);
         }
-
-        console.log("실행댐 : ");
 
     }, [clickKind]);
 

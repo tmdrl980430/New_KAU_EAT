@@ -27,13 +27,9 @@ const DateTitle = () => {
 
 
     useEffect(() => {
-        console.log("date" , date);
 
         setMonth(date.substr(5,2));
         setDay(date.substr(8,9));
-
-        console.log("month",month);
-        console.log("day",day);
     }, [date])
 
     if (loading) {

@@ -50,16 +50,9 @@ const UserDeleteScreen = ({navigation}) => {
         setPasswordInputmessage("");
     }, [])
 
-    useEffect(() => {
-        console.log('passwordInput', passwordInput);
-    }, [passwordInput])
 
     //user의 비밀번호가 일치하는지 확인
     const patchPassword = async () => {
-
-        console.log('patchPassword');
-
-        console.log('passwordInput', passwordInput);
 
         if (passwordInput == "") {
             setPasswordInputmessage("비밀번호를 입력해주세요.");
@@ -84,7 +77,6 @@ const UserDeleteScreen = ({navigation}) => {
                         }
                     })
                     .then((response) => {
-                        console.log(`response code확인`, response);
 
                         if (response.data.code == 1000) {
                             setUserDeleteModalState(true);
@@ -94,12 +86,10 @@ const UserDeleteScreen = ({navigation}) => {
                         }
                     })
                     .catch((error) => {
-                        console.log(`password error : `, error);
                     });
 
                 // 데이터는 response.data.code 안에 들어있다.
             } catch (e) {
-                console.log(`e : `, e);
 
             }
             // loading 끄기

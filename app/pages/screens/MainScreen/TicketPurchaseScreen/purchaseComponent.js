@@ -33,9 +33,6 @@ const PurchaseComponent = (props) => {
             purchaseTicket[4]
         ]);
 
-        console.log("purchaseTicket", purchaseTicket);
-        console.log("count", count);
-
     }
 
     const clickMinus = () => {
@@ -49,9 +46,6 @@ const PurchaseComponent = (props) => {
                 purchaseTicket[4]
             ]);
         }
-
-        console.log("purchaseTicket", purchaseTicket);
-        console.log("count", count);
 
     }
 

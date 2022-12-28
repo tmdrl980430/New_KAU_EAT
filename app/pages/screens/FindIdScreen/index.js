@@ -93,7 +93,6 @@ const FindIdScreen = ({route, navigation}) => {
         setPhoneNumInput("");
     }, [])
     useEffect(() => {
-        console.log("certificationNumBtnStatus", certificationNumBtnStatus);
 
         if (certificationNumInput.length > 3 && responseCertificationNum.length > 3 && certificationNumInput === responseCertificationNum) {
             setCertificationNumInputmessage("인증되었습니다.");
@@ -105,15 +104,12 @@ const FindIdScreen = ({route, navigation}) => {
     }, [certificationNumInput])
 
     useEffect(() => {
-        console.log(phoneNumInput);
-        console.log("phoneNumberRegex", phoneNumberRegex.test(phoneNumInput));
-        console.log("certificationNumBtnStatus", certificationNumBtnStatus);
+        
         if (phoneNumberRegex.test(phoneNumInput) && certificationNumBtnStatus === true && phoneCefiCofirmState == true) {
 
             requestCertificationPhone();
 
             setPhoneNumberInputmessage('');
-            console.log("requestCertificationPhone 실행");
             setPhoneCefiConfirmState(false);
             setCertificationNumBtnStatus(false);
 
@@ -133,7 +129,6 @@ const FindIdScreen = ({route, navigation}) => {
     }, [certificationNumBtnStatus, phoneNumInput])
 
     const requestCertificationPhone = async () => {
-        console.log('requestCertificationPhone')
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
             setError(null);
@@ -146,12 +141,10 @@ const FindIdScreen = ({route, navigation}) => {
                     {phoneNumber: phoneNumInput}
                 )
                 .then((response) => {
-                    console.log(response);
                     setResponseCertificationNum(response.data.result.authNumber);
                     return response;
                 })
                 .catch((error) => {
-                    console.log(error);
                 });
             // 데이터는 response.data.code 안에 들어있다.
 
@@ -161,7 +154,6 @@ const FindIdScreen = ({route, navigation}) => {
     };
 
     const fetchIdFind = async () => {
-        console.log('fetchPasswordFind')
 
         if (certificationNumInput != "" && responseCertificationNum != "" && certificationNumInput === responseCertificationNum) {
             try {
@@ -173,9 +165,7 @@ const FindIdScreen = ({route, navigation}) => {
                 const response = await axios
                     .get(`${IP}/auth/id?phoneNumber=${phoneNumInput}`)
                     .then((response) => {
-                        console.log(response);
                         if (response.data.code === 1000) {
-                            console.log(response.data.code);
                             setFindId(response.data.result.id);
                             setFindIdModalState(true);
                             //아이디 알려줘야 함
@@ -184,7 +174,6 @@ const FindIdScreen = ({route, navigation}) => {
                         }
                     })
                     .catch((error) => {
-                        console.log("inerror: ", error);
                     });
                 // 데이터는 response.data.code 안에 들어있다.
 
@@ -198,7 +187,6 @@ const FindIdScreen = ({route, navigation}) => {
     };
 
     const onPressSignUpBtn = () => {
-        console.log('onPressNextBtn')
 
         fetchIdFind();
 

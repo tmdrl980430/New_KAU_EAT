@@ -37,11 +37,9 @@ const Calendar = () => {
 
     const lastday = new Date(koreaNow.getFullYear(), koreaNow.getMonth() + 1, 0).getDate();
 
-    console.log("datedatedate",date);
 
     const [nowMonth, setNowMonth] = useState(koreaNow.getMonth() + 1);
 
-    console.log("nowMonth", nowMonth);
 
     const [calendarObject, setCalendarObject] = useState([]);
 
@@ -160,9 +158,6 @@ const Calendar = () => {
                 todayWeek = 0;
             }
         }
-
-        console.log(weeklist);
-
         return weeklist;
     };
 
@@ -219,8 +214,6 @@ const Calendar = () => {
                 day: CalendarDay[0][6]
             }
         ]);
-        console.log(calendarObject);
-        console.log('isSelect3', isSelect);
 
     }, []);
 
@@ -228,8 +221,6 @@ const Calendar = () => {
         const FullDay = String(year) + '-' + String(month).padStart(2, '0') + '-' +
                 String(day).padStart(2, '0');
         // -> 이 FullDay를 넘겨줘야 함
-        console.log(index);
-        console.log('FullDay', FullDay);
 
         setDate(FullDay);
         //해당 인덱스 제외하고 false로 바꾸기
@@ -240,8 +231,6 @@ const Calendar = () => {
             ...isSelect.slice(temp + 1)
         ]);
 
-        console.log('isSelect1', isSelect);
-
         if (isSelect[index] === false) {
             setSelect([
                 ...isSelect.slice(0, index),
@@ -251,7 +240,6 @@ const Calendar = () => {
         }
         setTempIndex(index);
 
-        console.log('isSelect2', isSelect);
     };
 
     return (

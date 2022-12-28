@@ -67,7 +67,6 @@ const FindPasswordScreen = ({route, navigation}) => {
         setPhoneNumInput("");
     }, [])
     useEffect(() => {
-        console.log("certificationNumBtnStatus", certificationNumBtnStatus);
 
         if (certificationNumInput != "" && responseCertificationNum != "" && certificationNumInput === responseCertificationNum) {
             setCertificationNumInputmessage("인증되었습니다.");
@@ -79,15 +78,11 @@ const FindPasswordScreen = ({route, navigation}) => {
     }, [certificationNumInput])
 
     useEffect(() => {
-        console.log(phoneNumInput);
-        console.log("phoneNumberRegex", phoneNumberRegex.test(phoneNumInput));
-        console.log("certificationNumBtnStatus", certificationNumBtnStatus);
         if (phoneNumberRegex.test(phoneNumInput) && certificationNumBtnStatus === true && phoneCefiCofirmState == true) {
 
             requestCertificationPhone();
 
             setPhoneNumberInputmessage('');
-            console.log("requestCertificationPhone 실행");
             setPhoneCefiConfirmState(false);
             setCertificationNumBtnStatus(false);
 
@@ -107,7 +102,6 @@ const FindPasswordScreen = ({route, navigation}) => {
     }, [certificationNumBtnStatus, phoneNumInput])
 
     const requestCertificationPhone = async () => {
-        console.log('requestCertificationPhone')
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
             setError(null);
@@ -120,12 +114,10 @@ const FindPasswordScreen = ({route, navigation}) => {
                     {phoneNumber: phoneNumInput}
                 )
                 .then((response) => {
-                    console.log(response);
                     setResponseCertificationNum(response.data.result.authNumber);
                     return response;
                 })
                 .catch((error) => {
-                    console.log(error);
                 });
             // 데이터는 response.data.code 안에 들어있다.
 
@@ -135,7 +127,6 @@ const FindPasswordScreen = ({route, navigation}) => {
     };
 
     const fetchPasswordFind = async () => {
-        console.log('fetchPasswordFind')
 
         if (certificationNumInput != "" && responseCertificationNum != "" && certificationNumInput === responseCertificationNum) {
             try {
@@ -149,9 +140,7 @@ const FindPasswordScreen = ({route, navigation}) => {
                         `${IP}/auth/check/id?id=${idInput}&phoneNumber=${phoneNumInput}`
                     )
                     .then((response) => {
-                        console.log(response);
                         if (response.data.code === 1000) {
-                            console.log(response.data.code);
 
                             //비밀번호 변경화면으로 이동
                             navigation.replace('ChangePasswordScreenLogin', {phoneNumber: {
@@ -162,7 +151,6 @@ const FindPasswordScreen = ({route, navigation}) => {
                         }
                     })
                     .catch((error) => {
-                        console.log("inerror: ", error);
                     });
                 // 데이터는 response.data.code 안에 들어있다.
 
@@ -176,7 +164,6 @@ const FindPasswordScreen = ({route, navigation}) => {
     };
 
     const onPressSignUpBtn = () => {
-        console.log('onPressNextBtn')
 
         fetchPasswordFind();
     }

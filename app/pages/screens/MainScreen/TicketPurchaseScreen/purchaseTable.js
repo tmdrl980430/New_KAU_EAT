@@ -65,24 +65,15 @@ const PurchaseTable = () => {
         if (date != "") {
             getPruchaseTable();
         }
-        console.log("tableObject", tableObject);
     }, [date])
 
 
-    useEffect(() => {
-        console.log("tableObject0", tableObject0);
-        console.log("tableObject0.menu", tableObject0.menu);
-        
-    }, [tableObject0])
-
     const getPruchaseTable = async () => {
-        console.log('getPruchaseTable');
         setLoading(true);
 
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
             setError(null);
-            console.log(jwt);
 
             // loading 상태를 true 로 바꿉니다.
             //setLoading(true);
@@ -94,7 +85,6 @@ const PurchaseTable = () => {
                     }
                 })
                 .then((response) => {
-                    console.log(`response 확인 : ${response.data.code}`);
                     setTableObject(response.data.result);
                     setTableObject0(response.data.result[0]);
                     setTableObject1(response.data.result[1]);
@@ -102,16 +92,11 @@ const PurchaseTable = () => {
                     setTableObject3(response.data.result[3]);
                     setTableObject4(response.data.result[4]);
 
-                    console.log("조회", response.data.result);
-
                 })
                 .catch((error) => {
-                    console.log(error);
-
                 });
             // 데이터는 response.data.code 안에 들어있다. console.log(response.data.result);
         } catch (e) {
-            console.log(e);
             setError(e);
         }
         // loading 끄기

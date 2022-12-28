@@ -15,9 +15,7 @@ const PurchaseTableComponent = (props) => {
     const [purchaseTicket, setPurchaseTicket] = useRecoilState(purchaseTicketRecoilState);
 
     const clickPlus = (index) => {
-        console.log(index);
-        //setCount(count+1);
-        console.log("count",count);
+
 
         if (count >= 9) {
             setPurchaseTicket(purchaseTicket[index] + 1);

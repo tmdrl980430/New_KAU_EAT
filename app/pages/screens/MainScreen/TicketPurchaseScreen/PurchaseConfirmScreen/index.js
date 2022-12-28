@@ -92,18 +92,12 @@ const PurchaseConfirmScreen = ({navigation}) => {
 
     }, []);
 
-    useEffect(() => {
-        console.log('uid: ', uid);
-    }, [uid]);
-
     const getPruchaseTable = async () => {
-        console.log('getPruchaseTable');
         setLoading(true);
 
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
             setError(null);
-            console.log(jwt);
 
             // loading 상태를 true 로 바꿉니다.
             setLoading(true);
@@ -115,7 +109,6 @@ const PurchaseConfirmScreen = ({navigation}) => {
                     }
                 })
                 .then((response) => {
-                    console.log(`response 확인 : ${response.data.code}`);
                     setTableObject0(response.data.result[0]);
                     setTableObject1(response.data.result[1]);
                     setTableObject2(response.data.result[2]);
@@ -123,14 +116,11 @@ const PurchaseConfirmScreen = ({navigation}) => {
                     setTableObject4(response.data.result[4]);
 
                     setTicketObject(response.data.result);
-                    console.log("조회", response.data.result[1]);
                 })
                 .catch((error) => {
-                    console.log(error);
                 });
             // 데이터는 response.data.code 안에 들어있다. console.log(response.data.result);
         } catch (e) {
-            console.log(e);
             setError(e);
         }
         // loading 끄기
@@ -144,14 +134,11 @@ const PurchaseConfirmScreen = ({navigation}) => {
     };
 
     const postCreatePayments = async () => {
-        console.log('postCreatePayments');
         setLoading(true);
 
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
             setError(null);
-            console.log(jwt);
-            console.log(userIdx);
 
             // loading 상태를 true 로 바꿉니다.
             setLoading(true);
@@ -167,7 +154,6 @@ const PurchaseConfirmScreen = ({navigation}) => {
                     }
                 })
                 .then((response) => {
-                    console.log(`response 확인 : ${response.data.code}`);
                     if (response.data.code === 1000) {
                         navigation.replace('Payment', {uid: {
                                 uid
@@ -175,11 +161,9 @@ const PurchaseConfirmScreen = ({navigation}) => {
                     }
                 })
                 .catch((error) => {
-                    console.log(error);
                 });
             // 데이터는 response.data.code 안에 들어있다. console.log(response.data.result);
         } catch (e) {
-            console.log("outerror", e);
             setError(e);
         }
 
@@ -198,9 +182,7 @@ const PurchaseConfirmScreen = ({navigation}) => {
         return (
             <SafeAreaView style={styles.safeAreaContainer}>
                 <View style={styles.headerContainer}>
-                    <TouchableOpacity
-                        onPress={() => navigation.pop()}
-                        activeOpacity={0.95}>
+                    <TouchableOpacity onPress={() => navigation.pop()} activeOpacity={0.95}>
                         <BackBtn/>
                     </TouchableOpacity>
                     <CenterTitle type={"ticketPaymentsText"}/>
@@ -221,7 +203,11 @@ const PurchaseConfirmScreen = ({navigation}) => {
                                     ))
                                 }
                             </View>
+
                             <View style={styles.lineView}></View>
+                            <View style={styles.refundView}>
+                                <Text style={styles.refundText}>구매 후 환불이 불가능합니다.</Text>
+                            </View>
                             <View style={styles.priceContainer}>
                                 <Text style={styles.priceText}>총 결제금액</Text>
                                 <Text style={styles.priceText}>{cost}원</Text>
@@ -295,6 +281,15 @@ const styles = StyleSheet.create({
         fontSize: hp('1.8%'),
         color: 'black'
     },
+    refundText: {
+        fontFamily: 'NotoSansKR-Bold',
+        fontSize: hp('1.8%'),
+        color: 'black',
+    },
+    refundView: {
+        marginTop: hp('3%'),
+        alignItems: 'center',
+    },
     lineView: {
         height: hp('0.2%'),
         backgroundColor: '#F4F4F4',
@@ -307,13 +302,13 @@ const styles = StyleSheet.create({
         width: wp('10%')
     },
     ContentsViewFlex: {
-        flex : 3,
+        flex: 3
     },
     buttonViewFlex: {
-        flex : 1,
+        flex: 1
     },
     scrollViewContainer: {
-        display: 'flex',
+        display: 'flex'
     }
 });
 

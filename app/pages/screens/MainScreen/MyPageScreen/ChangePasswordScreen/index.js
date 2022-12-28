@@ -78,18 +78,7 @@ const ChangePasswordScreen = ({navigation}) => {
         setPasswordCheckInput('');
     }, [])
 
-    useEffect(() => {
-        console.log('passwordInput', passwordInput);
-        console.log('passwordCheckInput', passwordCheckInput);
-    }, [passwordInput, passwordCheckInput])
-
     const patchPassword = async () => {
-
-        console.log('patchPassword');
-
-        console.log('passwordInput', passwordInput);
-        console.log('passwordCheckInput', passwordCheckInput);
-        console.log('phoneNumber', phoneNumInput);
 
         if (passwordInput == "") {
             setPasswordInputmessage("비밀번호를 입력해주세요.");
@@ -120,7 +109,6 @@ const ChangePasswordScreen = ({navigation}) => {
                             newPassword: passwordInput
                         })
                         .then((response) => {
-                            console.log(`response code확인`, response);
 
                             if (response.data.code == 1000) {
                                 setPasswordChangeModalState(true);
@@ -130,13 +118,10 @@ const ChangePasswordScreen = ({navigation}) => {
                             }
                         })
                         .catch((error) => {
-                            console.log(`error : `, error);
                         });
                 }
                 // 데이터는 response.data.code 안에 들어있다.
             } catch (e) {
-                console.log(`e : `, e);
-
             }
             // loading 끄기
             setLoading(false);
