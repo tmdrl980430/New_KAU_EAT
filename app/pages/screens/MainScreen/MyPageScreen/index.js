@@ -32,6 +32,7 @@ import axios from 'axios';
 import LogoutModal from '../../../../utils/modal/logoutmodal';
 import UserInfoDelete from './userInfoDelete';
 import UserDeleteModal from '../../../../utils/modal/userDeletemodal';
+import UserPoint from './userPoint';
 
 const MyPageScreen = ({navigation}) => {
 
@@ -148,6 +149,11 @@ const MyPageScreen = ({navigation}) => {
                             onPress={() => navigation.push('MyTicket')}
                             activeOpacity={0.95}>
                             <UserTicket/>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.ticketContainer}
+                            activeOpacity={0.95}>
+                            <UserPoint/>
                         </TouchableOpacity>
                         <View style={styles.lineView}/>
                         <Text style={styles.titleText}>회원 정보</Text>

@@ -29,6 +29,10 @@ export const userTicketRecoilState = atom(
     {key: 'userTicketRecoilState', default: 0}
 );
 
+export const userPointRecoilState = atom(
+    {key: 'userPointRecoilState', default: 0}
+);
+
 const now = new Date();
 
 const utcNow = now.getTime() + (now.getTimezoneOffset() * 60 * 1000); // 현재 시간을 utc로 변환한 밀리세컨드값
