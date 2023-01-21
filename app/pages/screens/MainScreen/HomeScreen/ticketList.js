@@ -3,6 +3,8 @@ import {Text, View, StyleSheet, Image} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import RigthArrow from '../../../../assets/images/right_arrow.png';
 import Ticket from '../../../../utils/ticket/userticket';
+import Point from '../../../../utils/point/userpoint';
+
 import axios from 'axios';
 import {jwtRecoilState, severURLRecoilState, userIdxRecoilState} from '../../../../recoil';
 import {useRecoilState} from 'recoil';
@@ -19,6 +21,7 @@ const TicketList = (props) => {
 
     const [userIdx, setUserIdx] = useRecoilState(userIdxRecoilState);
 
+    const [userPoint, setUserPoint] = useState(null);
     const [ticketObject, setTicketObject] = useState([]);
 
     const now = new Date();
@@ -61,6 +64,8 @@ const TicketList = (props) => {
                 )
                 .then((response) => {
                     setTicketObject(response.data.result.mealTickets);
+                    setUserPoint(response.data.result.point)
+                    console.log(userPoint)
                 })
                 .catch((error) => {
                 });
@@ -85,6 +90,14 @@ const TicketList = (props) => {
                         menuStatus={ticket.menuStatus}
                         key={index}/>
                 ))
+            }
+            {
+                userPoint !== null ? (
+                    <View/>
+                ) : (
+                    <Point
+                        point={userPoint}/>
+                )
             }
         </View>
     )

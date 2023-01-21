@@ -11,7 +11,7 @@ import {clickQrImgRecoilState} from "../../recoil";
 
 //재사용 가능 식권 모양
 
-const userTicket = (props) => {
+const userPoint = (props) => {
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -61,9 +61,9 @@ const userTicket = (props) => {
     //평일
     const setWeekdayTimes = () => {
         //조식일 때 처리
-        if (props.mealTypeName === "조식") {
-            if(hour < 10 && hour >= 8){
-                if(hour === 8 && minute < 10){
+        if (hour < 10 && hour >= 8) {
+            if(hour === 8 && minute < 10){
+                if(props.point < 3000){
                     setTicketUse(false);
                     return;
                 } else {
@@ -71,28 +71,40 @@ const userTicket = (props) => {
                     return;
                 }
             } else if(hour === 9){
+                if(props.point >= 3000){
+                    setTicketUse(true);
+                    return;
+                }
+            } else {
+                setTicketUse(false);
+                return;
+            }
+        } else if (hour < 14 && hour >= 11) { //중식 | 한식일 때 처리
+            if (props.point >= 6000) {
                 setTicketUse(true);
                 return;
             } else {
                 setTicketUse(false);
                 return;
             }
-        } else if (props.mealTypeName === "중식 | 일품" || props.mealTypeName === "중식 | 한식") { //중식일 때 처리
-            if(hour < 14 && hour >= 11){
-                setTicketUse(true);
-                return;
-            } else if (hour === 12 || hour === 13 ) {
+        } else if (hour < 14 && hour >= 11) { //중식 | 일품일 때 처리
+            if (props.point >= 5000) {
                 setTicketUse(true);
                 return;
             } else {
                 setTicketUse(false);
                 return;
             }
-        } else if (props.mealTypeName === "석식") { //석식일 때 처리
-            if(hour < 19 && hour >= 17){
+        } else if (hour < 14 && hour >= 11) { //중식 | 면일 때 처리
+            if (props.point >= 5500) {
                 setTicketUse(true);
                 return;
-            } else if (hour === 18 ) {
+            } else {
+                setTicketUse(false);
+                return;
+            }
+        }else if (hour < 19 && hour >= 17) { //석식일 때 처리
+            if(props.point >= 5000){
                 setTicketUse(true);
                 return;
             } else {
@@ -154,23 +166,13 @@ const userTicket = (props) => {
                 <View style={styles.whitecircle}/>
                 <View style={styles.ticketBoxContainer}>
                     <View style={styles.ticketInfoView}>
-                        <Text style={styles.menuTypeText}>{props.mealTypeName}</Text>
+                        <Text style={styles.menuTypeText}>포인트</Text>
                         <Image style={styles.ticketImg} source={TicketImg} resizeMode={'contain'}/> 
                         {
-                            props.mealTicketCount === null
+                            props.point === null
                                 ? (<Text style={styles.ticketCount}>X 0</Text>)
-                                : (<Text style={styles.ticketCount}>X {props.mealTicketCount}</Text>)
+                                : (<Text style={styles.ticketCount}>X {props.point}</Text>)
                         }
-                        {
-                            props.menuStatus === '품절'
-                                ? (
-                                    <View style={styles.soldoutContainer}>
-                                        <Text style={styles.soldoutText}>품절</Text>
-                                    </View>
-                                )
-                                : (<View/>)
-                        }
-
                     </View>
                     <View style={styles.qrimgContainer}>
                         <Image style={styles.dashedLine} source={DashedLine} resizeMode={'contain'}/>
@@ -263,4 +265,4 @@ const userTicket = (props) => {
         }
     })
 
-export default userTicket;
+export default userPoint;
