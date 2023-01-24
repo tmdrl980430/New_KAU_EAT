@@ -54,7 +54,9 @@ const MyPageScreen = ({navigation}) => {
         logoutmodalRecoilState
     );
 
-    const [userDeleteModalState, setUserDeleteModalState] = useRecoilState(userDelecteModalRecoilState);
+    const [userDeleteModalState, setUserDeleteModalState] = useRecoilState(
+        userDelecteModalRecoilState
+    );
 
     const [refreshing, setRefreshing] = useState(false);
 
@@ -70,11 +72,11 @@ const MyPageScreen = ({navigation}) => {
     }, []);
 
     useEffect(() => {
-        if(refreshing == true) {
+        if (refreshing == true) {
             getUserInfo();
             getUserPoint();
         }
-    },[refreshing])
+    }, [refreshing])
 
     const logOutMadal = () => {
         setLogoutModalState(true);
@@ -89,14 +91,11 @@ const MyPageScreen = ({navigation}) => {
         getUserPoint()
     }, [])
 
-
-    useEffect(() => {
-    },[])
-
+    useEffect(() => {}, [])
 
     useEffect(() => {
         console.log("UserPoint", userPoint)
-    },[userPoint])
+    }, [userPoint])
 
     const now = new Date();
 
@@ -129,8 +128,7 @@ const MyPageScreen = ({navigation}) => {
                 .then((response) => {
                     setUserPoint(response.data.result.point.point)
                 })
-                .catch((error) => {
-                });
+                .catch((error) => {});
             // 데이터는 response.data.code 안에 들어있다. console.log(response.data.result);
         } catch (e) {
             setError(e);
@@ -162,8 +160,7 @@ const MyPageScreen = ({navigation}) => {
                     setUserTicket(response.data.result.userInfo.mealTicketCount);
 
                 })
-                .catch((error) => {
-                });
+                .catch((error) => {});
             // 데이터는 response.data.code 안에 들어있다. console.log(response.data.result);
         } catch (e) {
             setError(e);
@@ -172,7 +169,6 @@ const MyPageScreen = ({navigation}) => {
         setLoading(false);
     };
 
-    
     if (loading) {
         return (
             <View style={styles.loading}>
@@ -186,8 +182,9 @@ const MyPageScreen = ({navigation}) => {
                     backgroundColor: '#3D3580'
                 }}>
                 {logoutodalState != false && <LogoutModal/>}
-                <ScrollView style={styles.container}
-                refreshControl={<RefreshControl
+                <ScrollView
+                    style={styles.container}
+                    refreshControl={<RefreshControl
                     refreshing = {
                         refreshing
                     }
@@ -206,12 +203,15 @@ const MyPageScreen = ({navigation}) => {
                             activeOpacity={0.95}>
                             <UserTicket/>
                         </TouchableOpacity>
-                        <TouchableOpacity
-                            style={styles.ticketContainer}
-                            activeOpacity={0.95}>
-                            <UserPoint
-                            point={userPoint}/>
-                        </TouchableOpacity>
+                        {
+                            userPoint == null || userPoint == 0
+                                ? (<View/>)
+                                : (
+                                    <TouchableOpacity style={styles.ticketContainer} activeOpacity={0.95}>
+                                        <UserPoint point={userPoint}/>
+                                    </TouchableOpacity>
+                                )
+                        }
                         <View style={styles.lineView}/>
                         <Text style={styles.titleText}>회원 정보</Text>
                         <TouchableOpacity
@@ -305,8 +305,8 @@ const styles = StyleSheet.create({
         marginTop: hp('2.8%'),
         paddingLeft: wp('10%'),
         paddingRight: wp('10%'),
-        marginTop: hp('2.8%'),
-    },
+        marginTop: hp('2.8%')
+    }
 });
 
 export default MyPageScreen;
