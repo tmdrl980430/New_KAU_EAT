@@ -63,9 +63,10 @@ const TicketList = (props) => {
                     }
                 )
                 .then((response) => {
-                    setTicketObject(response.data.result.mealTickets);
-                    setUserPoint(response.data.result.point)
+                    setTicketObject(response.data.result.mealTickets)
+                    setUserPoint(response.data.result.point.point)
                     console.log(userPoint)
+                    console.log(response.data.result.mealTickets)
                 })
                 .catch((error) => {
                 });
@@ -92,7 +93,7 @@ const TicketList = (props) => {
                 ))
             }
             {
-                userPoint !== null ? (
+                userPoint == null ? (
                     <View/>
                 ) : (
                     <Point

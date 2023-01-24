@@ -40,12 +40,17 @@ const userPoint = (props) => {
         setmMnute(koreaNow.getMinutes());
         divideWeeks();
 
+        console.log(days)
+        console.log(hour)
+        console.log(ticketUse)
+
         if(days){//평일일 때
             setWeekdayTimes();
         } else {
             setWeekendTimes();
         }
 
+        console.log(ticketUse)
         if(ticketUse){
             if (0 < props.mealTicketCount) {
                 setClickKind(
@@ -79,15 +84,7 @@ const userPoint = (props) => {
                 setTicketUse(false);
                 return;
             }
-        } else if (hour < 14 && hour >= 11) { //중식 | 한식일 때 처리
-            if (props.point >= 6000) {
-                setTicketUse(true);
-                return;
-            } else {
-                setTicketUse(false);
-                return;
-            }
-        } else if (hour < 14 && hour >= 11) { //중식 | 일품일 때 처리
+        } else if (hour < 14 && hour >= 11) { //중식 | 면일 때 처리
             if (props.point >= 5000) {
                 setTicketUse(true);
                 return;
@@ -95,16 +92,8 @@ const userPoint = (props) => {
                 setTicketUse(false);
                 return;
             }
-        } else if (hour < 14 && hour >= 11) { //중식 | 면일 때 처리
-            if (props.point >= 5500) {
-                setTicketUse(true);
-                return;
-            } else {
-                setTicketUse(false);
-                return;
-            }
-        }else if (hour < 19 && hour >= 17) { //석식일 때 처리
-            if(props.point >= 5000){
+        } else if (hour < 19 && hour >= 17) { //석식일 때 처리
+            if(props.point >= 0){
                 setTicketUse(true);
                 return;
             } else {
