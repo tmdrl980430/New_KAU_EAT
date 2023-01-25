@@ -54,7 +54,7 @@ const userPoint = (props) => {
         if(ticketUse){
             if (0 < props.point) {
                 setClickKind(
-                    {mealType: props.mealTypeName, ticketCount: props.mealTicketCount, mealTypeIdx: props.mealTypeIdx}
+                    {mealType: "포인트", ticketCount: props.mealTicketCount, mealTypeIdx: 10}
                 );
             }
         }
@@ -84,7 +84,7 @@ const userPoint = (props) => {
                 setTicketUse(false);
                 return;
             }
-        } else if (hour < 14 && hour >= 11) { //중식 | 면일 때 처리
+        } else if (hour < 14 && hour >= 11) { //중식일 때 처리
             if (props.point >= 5000) {
                 setTicketUse(true);
                 return;
