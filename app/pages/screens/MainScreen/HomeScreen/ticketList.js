@@ -64,7 +64,7 @@ const TicketList = (props) => {
                 )
                 .then((response) => {
                     setTicketObject(response.data.result.mealTickets)
-                    setUserPoint(response.data.result.point.point)
+                    setUserPoint(response.data.result.point)
                 })
                 .catch((error) => {
                 });

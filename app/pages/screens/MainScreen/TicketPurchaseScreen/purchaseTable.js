@@ -79,18 +79,18 @@ const PurchaseTable = () => {
             //setLoading(true);
 
             const response = await axios
-                .get(`${IP}/meals?date=${date}`, {
+                .get(`${IP}/menus?date=${date}`, {
                     headers: {
                         "x-access-token": jwt
                     }
                 })
                 .then((response) => {
-                    setTableObject(response.data.result);
-                    setTableObject0(response.data.result[0]);
-                    setTableObject1(response.data.result[1]);
-                    setTableObject2(response.data.result[2]);
-                    setTableObject3(response.data.result[3]);
-                    setTableObject4(response.data.result[4]);
+                    setTableObject(response.data.result.menus);
+                    setTableObject0(response.data.result.menus[0]);
+                    setTableObject1(response.data.result.menus[1]);
+                    setTableObject2(response.data.result.menus[2]);
+                    setTableObject3(response.data.result.menus[3]);
+                    setTableObject4(response.data.result.menus[4]);
 
                 })
                 .catch((error) => {

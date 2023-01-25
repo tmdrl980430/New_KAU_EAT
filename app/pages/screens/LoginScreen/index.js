@@ -85,7 +85,6 @@ const Login = ({
 
                         if (response.data.code == 1000) {
                             setJwt(response.data.result.jwt);
-                            console.log(jwt);
                             setLogin(true);
                             setEmailInput("");
                             setPasswordInput("");

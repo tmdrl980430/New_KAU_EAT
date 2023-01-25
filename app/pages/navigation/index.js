@@ -78,7 +78,7 @@ const Navigation = () => {
     }
 
 
-    const authLogin = async () => {
+    const autoLogin = async () => {
         //getData();
 
         console.log('autoLogin');
@@ -96,25 +96,18 @@ const Navigation = () => {
                     }
                 })
                 .then((response) => {
-                    console.log(`response 상태 확인 : ${response.data.code}`);
                     //setIsLogin(response.data.code);
-                    console.log(response.data.code);
-                    console.log(response.data.result.jwt);
-
-                    if (response.data.code === 1001) {
+                    if (response.data.code === 1000) {
                         setUserIdx(response.data.result.userIdx);
-                        console.log(userIdx);
                         setIsLogin(true);
                         setLoading(false);
                     }
 
                 })
                 .catch((error) => {
-                    console.log(`error : ${response.data.code}`);
 
                     setLoading(false);
 
-                    //console.log(error);
                 });
             // 데이터는 response.data.code 안에 들어있다.
         } catch (e) {
@@ -125,13 +118,10 @@ const Navigation = () => {
     };
 
     useEffect(() => {
-        console.log(`Loading : ${loading}`);
-        console.log(`isLogIn : ${isLogIn}`);
-        console.log(`jwt : ${jwt}`);
 
         if (jwt != "") {
             setLoading(true);
-            authLogin();
+            autoLogin();
             setLoading(false);
 
         } else if (jwt === '') {

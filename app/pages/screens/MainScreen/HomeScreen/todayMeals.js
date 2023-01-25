@@ -55,13 +55,13 @@ const MealList = (props) => {
             // axios     .defaults     .headers     .common['x-access-token'] = jwt
 
             const response = await axios
-                .get(`${IP}/meals?date=${date}`, {
+                .get(`${IP}/menus?date=${date}`, {
                     headers: {
                         "x-access-token": jwt
                     }
                 })
                 .then((response) => {
-                    setResponseData(response.data.result);
+                    setResponseData(response.data.result.menus);
                 })
                 .catch((error) => {
                 });

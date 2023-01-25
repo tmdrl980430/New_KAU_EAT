@@ -69,13 +69,13 @@ const MealTable = (props) => {
             setLoading(true);
 
             const response = await axios
-                .get(`${IP}/meals?date=${date}`, {
+                .get(`${IP}/menus?date=${date}`, {
                     headers: {
                         "x-access-token": jwt
                     }
                 })
                 .then((response) => {
-                    setTableObject(response.data.result);
+                    setTableObject(response.data.result.menus);
                 })
                 .catch((error) => {
                 });

@@ -52,7 +52,7 @@ const userPoint = (props) => {
 
         console.log(ticketUse)
         if(ticketUse){
-            if (0 < props.mealTicketCount) {
+            if (0 < props.point) {
                 setClickKind(
                     {mealType: props.mealTypeName, ticketCount: props.mealTicketCount, mealTypeIdx: props.mealTypeIdx}
                 );
@@ -92,7 +92,7 @@ const userPoint = (props) => {
                 setTicketUse(false);
                 return;
             }
-        } else if (hour < 19 && hour >= 17) { //석식일 때 처리
+        } else if (hour < 24 && hour >= 17) { //석식일 때 처리
             if(props.point >= 0){
                 setTicketUse(true);
                 return;
