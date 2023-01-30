@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { useRecoilState } from "recoil";
@@ -14,10 +14,9 @@ const PaymentsTableComponent = (props) => {
 
     const [purchaseTicket, setPurchaseTicket] = useRecoilState(purchaseTicketRecoilState);
 
-
     if(props.count == 0){
         return (<View/>)
-    }else {
+    } else {
         return (
             <View style={styles.container}>
                 <Text style={styles.text}>{props.mealTypeName}</Text>
@@ -25,7 +24,7 @@ const PaymentsTableComponent = (props) => {
                     {
                         props.menu === null
                             ? (<Text style={styles.menuText} numberOfLines={1}>휴무</Text>)
-                            : (<Text style={styles.menuText} numberOfLines={1}>{props.menu.menu}</Text>)
+                            : (<Text style={styles.menuText} numberOfLines={1}>{props.menu}</Text>)
                     }
                 </View>
                 <View style={styles.lineView}></View>

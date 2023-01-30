@@ -81,8 +81,6 @@ const Navigation = () => {
     const autoLogin = async () => {
         //getData();
 
-        console.log('autoLogin');
-
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
             setError(null);

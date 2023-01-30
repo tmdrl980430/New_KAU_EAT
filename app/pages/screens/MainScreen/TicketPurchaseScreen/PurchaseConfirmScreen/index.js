@@ -56,17 +56,18 @@ const PurchaseConfirmScreen = ({navigation}) => {
 
     const [uid, setUid] = useRecoilState(merchantUidRecoilState);
 
-    const [tableObject0, setTableObject0] = useState([]);
-    const [tableObject1, setTableObject1] = useState([]);
-    const [tableObject2, setTableObject2] = useState([]);
-    const [tableObject3, setTableObject3] = useState([]);
-    const [tableObject4, setTableObject4] = useState([]);
 
     const [ticketObject, setTicketObject] = useState([]);
 
-    let cost = (purchaseTicket[0] * 3000) + (purchaseTicket[1] * 5000) + (
-        purchaseTicket[2] * 6000
-    ) + (purchaseTicket[3] * 5000) + (purchaseTicket[4] * 4500)
+    const [price0, setPrice0] = useState(0);
+    const [price1, setPrice1] = useState(0);
+    const [price2, setPrice2] = useState(0);
+    const [price3, setPrice3] = useState(0);
+    const [price4, setPrice4] = useState(0);
+
+    let cost = (purchaseTicket[0] * price0) + (purchaseTicket[1] * price1) + (purchaseTicket[2] * price2) +
+        (purchaseTicket[3] * price3) + (purchaseTicket[4] * price4)
+
 
     useEffect(() => {
         const now = new Date();
@@ -103,19 +104,18 @@ const PurchaseConfirmScreen = ({navigation}) => {
             setLoading(true);
 
             const response = await axios
-                .get(`${IP}/meals?date=${date}`, {
+                .get(`${IP}/menus?date=${date}`, {
                     headers: {
                         "x-access-token": jwt
                     }
                 })
                 .then((response) => {
-                    setTableObject0(response.data.result[0]);
-                    setTableObject1(response.data.result[1]);
-                    setTableObject2(response.data.result[2]);
-                    setTableObject3(response.data.result[3]);
-                    setTableObject4(response.data.result[4]);
-
-                    setTicketObject(response.data.result);
+                    setPrice0(response.data.result.menus[0].price)
+                    setPrice1(response.data.result.menus[1].price)
+                    setPrice2(response.data.result.menus[2].price)
+                    setPrice3(response.data.result.menus[3].price)
+                    setPrice4(response.data.result.menus[4].price)
+                    setTicketObject(response.data.result.menus);
                 })
                 .catch((error) => {
                 });

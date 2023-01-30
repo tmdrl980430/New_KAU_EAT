@@ -34,10 +34,6 @@ const MealList = (props) => {
         getMealTable();
     }, [jwt])
 
-    useEffect(() => {
-        console.log('responseData', responseData);
-    }, [responseData])
-
     const todayDate = `${now.getFullYear()}-${String(now.getMonth()).padStart(
         2,
         '0'
@@ -147,7 +143,7 @@ const MealList = (props) => {
                                     width: wp('60%'),
                                     marginTop: hp('1%'),
                                     marginBottom: hp('0.3%')
-                                }}>{item.menu.menu}</Text>
+                                }}>{item.menu}</Text>
                         )
                 }
                 {

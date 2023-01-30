@@ -7,7 +7,7 @@ import DashedLine from '../../assets/images/dashedline.png'
 
 import axios from "axios";
 import {useRecoilState} from "recoil";
-import {clickQrImgRecoilState} from "../../recoil";
+import {clickQrImgRecoilState, userPointRecoilState} from "../../recoil";
 
 //재사용 가능 식권 모양
 
@@ -40,21 +40,16 @@ const userPoint = (props) => {
         setmMnute(koreaNow.getMinutes());
         divideWeeks();
 
-        console.log(days)
-        console.log(hour)
-        console.log(ticketUse)
-
         if(days){//평일일 때
             setWeekdayTimes();
         } else {
             setWeekendTimes();
         }
 
-        console.log(ticketUse)
         if(ticketUse){
             if (0 < props.point) {
                 setClickKind(
-                    {mealType: "포인트", ticketCount: props.mealTicketCount, mealTypeIdx: 10}
+                    {mealType: "포인트", ticketCount: 1, mealTypeIdx: 10}
                 );
             }
         }
@@ -84,16 +79,16 @@ const userPoint = (props) => {
                 setTicketUse(false);
                 return;
             }
-        } else if (hour < 14 && hour >= 11) { //중식일 때 처리
-            if (props.point >= 5000) {
+        } else if (hour < 15 && hour >= 11) { //중식일 때 처리
+            if (props.point >= 4500) {
                 setTicketUse(true);
                 return;
             } else {
                 setTicketUse(false);
                 return;
             }
-        } else if (hour < 24 && hour >= 17) { //석식일 때 처리
-            if(props.point >= 0){
+        } else if (hour < 19 && hour >= 17) { //석식일 때 처리
+            if(props.point >= 5000){
                 setTicketUse(true);
                 return;
             } else {

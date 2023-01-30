@@ -103,7 +103,7 @@ const MealTable = (props) => {
                             type={menu.mealTypeName}
                             price={menu.price}
                             mealType={menu.mealTypeName}
-                            menu={menu.menu}
+                            menu={menu}
                             key={index}/>
                     ))
                 }

@@ -24,7 +24,8 @@ import {
     modalRecoilState,
     qrModalRecoilState,
     qrTicketCountRecoilState,
-    userIdxRecoilState
+    userIdxRecoilState,
+    userPointRecoilState
 } from "../../recoil";
 
 //재사용 가능 제목 component

@@ -25,11 +25,10 @@
 		2E02C1A49A474EA990644F71 /* SFPRODISPLAYBOLD.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 7EBF4DB04A544D49847674AB /* SFPRODISPLAYBOLD.OTF */; };
 		3A0F7D7CDA574DDF82FAC60E /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B5E6086708D4600AF587FB8 /* Inter-Regular.ttf */; };
 		429173813A2C493585174F0B /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 880E8E9A201D4D00847C4DB0 /* Inter-Light.ttf */; };
-		44EED67EEE92A81334251B83 /* libPods-KAU_EAT-KAU_EATTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 615F98FF9F757453318E2D24 /* libPods-KAU_EAT-KAU_EATTests.a */; };
 		4956CFDCD2344EAA8AAC5403 /* SFPRODISPLAY-MEDIUM.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 1B6B9AE4819741E8B3FA77DA /* SFPRODISPLAY-MEDIUM.OTF */; };
 		498544DD37C64693B31353BB /* NotoSansKR-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = F8AA073CFB1D49AFA81F978C /* NotoSansKR-Thin.otf */; };
 		4FB4E5B0CEBF432AADC400DB /* SFPRODISPLAY-LIGHTITALIC.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 64FD966F1022476891FD6BD5 /* SFPRODISPLAY-LIGHTITALIC.OTF */; };
-		524A8E89F7141D5095E86685 /* libPods-KAU_EAT.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A181471795F4FFD148E681 /* libPods-KAU_EAT.a */; };
+		52549A1196CFB8CF84E55129 /* libPods-KAU_EAT-KAU_EATTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B58AFFE002ACDF07135E3C /* libPods-KAU_EAT-KAU_EATTests.a */; };
 		56E2016453BB47BE8441838E /* NotoSansKRBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 82DA691A6F4B48A7829F92DE /* NotoSansKRBold.otf */; };
 		570C165528B41EF900656A77 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 570C165428B41EF900656A77 /* SplashScreen.storyboard */; };
 		570C165728B42AD900656A77 /* splash_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 570C165628B42AD900656A77 /* splash_logo.png */; };
@@ -48,6 +47,7 @@
 		8CB22969B3CA4172A7D6A820 /* LotteMartDreamMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0688774403714804B1906734 /* LotteMartDreamMedium.ttf */; };
 		9412E9C3CC1E456AB5EA7031 /* SFPRODISPLAY-SEMIBOLDITALIC.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 619E2202B3A041BEB05B20E2 /* SFPRODISPLAY-SEMIBOLDITALIC.OTF */; };
 		9F2EB7D0BBB445C1996F3CA7 /* SFPRODISPLAY-REGULAR.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 9F0B8B4EB453416B940F499C /* SFPRODISPLAY-REGULAR.OTF */; };
+		A02FCC4671D3CB846A1E82BC /* libPods-KAU_EAT.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 086B69FCE49CEC6F9C9493A3 /* libPods-KAU_EAT.a */; };
 		AAC15A1F47E2418B8B493849 /* LotteMartDreamBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D10D7C784EB44EBE8E43BA65 /* LotteMartDreamBold.ttf */; };
 		AED04B36B78D430E9D7E837B /* SFPRODISPLAYREGULAR.OTF in Resources */ = {isa = PBXBuildFile; fileRef = E6BFB505012C4D40833C9F3D /* SFPRODISPLAYREGULAR.OTF */; };
 		BBE2409F9C0D4E5785DF6FFD /* SFPRODISPLAYMEDIUM.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 1070DB28C8C845988BCD5244 /* SFPRODISPLAYMEDIUM.OTF */; };
@@ -85,6 +85,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* KAU_EATTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KAU_EATTests.m; sourceTree = "<group>"; };
 		0688774403714804B1906734 /* LotteMartDreamMedium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = LotteMartDreamMedium.ttf; path = ../app/assets/fonts/LotteMartDreamMedium.ttf; sourceTree = "<group>"; };
+		086B69FCE49CEC6F9C9493A3 /* libPods-KAU_EAT.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KAU_EAT.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1070DB28C8C845988BCD5244 /* SFPRODISPLAYMEDIUM.OTF */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SFPRODISPLAYMEDIUM.OTF; path = ../app/assets/fonts/SFPRODISPLAYMEDIUM.OTF; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* KAU_EAT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KAU_EAT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = KAU_EAT/AppDelegate.h; sourceTree = "<group>"; };
@@ -93,11 +94,9 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = KAU_EAT/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = KAU_EAT/main.m; sourceTree = "<group>"; };
 		14970260B2514ECA98ABFB80 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = ../app/assets/fonts/MaterialCommunityIcons.ttf; sourceTree = "<group>"; };
-		16F7B4DC4776E0CAF7481AFA /* Pods-KAU_EAT-KAU_EATTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KAU_EAT-KAU_EATTests.debug.xcconfig"; path = "Target Support Files/Pods-KAU_EAT-KAU_EATTests/Pods-KAU_EAT-KAU_EATTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1B6B9AE4819741E8B3FA77DA /* SFPRODISPLAY-MEDIUM.OTF */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFPRODISPLAY-MEDIUM.OTF"; path = "../app/assets/fonts/SFPRODISPLAY-MEDIUM.OTF"; sourceTree = "<group>"; };
 		1F5C807DE64E46EBB3A0072D /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = ../app/assets/fonts/Entypo.ttf; sourceTree = "<group>"; };
 		22D9C8A492B34E24BFD06E24 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = ../app/assets/fonts/EvilIcons.ttf; sourceTree = "<group>"; };
-		2EB869BF0EA9BD0FEE390E99 /* Pods-KAU_EAT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KAU_EAT.debug.xcconfig"; path = "Target Support Files/Pods-KAU_EAT/Pods-KAU_EAT.debug.xcconfig"; sourceTree = "<group>"; };
 		37B0188C21EE4509A7E33915 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = ../app/assets/fonts/FontAwesome5_Solid.ttf; sourceTree = "<group>"; };
 		3D463FBFC134446BB2B4A241 /* NotoSansKRBlack.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = NotoSansKRBlack.otf; path = ../app/assets/fonts/NotoSansKRBlack.otf; sourceTree = "<group>"; };
 		3D95DB6817D14DFBA91A14DA /* Inter-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-ExtraBold.ttf"; path = "../app/assets/fonts/Inter-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -105,17 +104,17 @@
 		40CB7C2C01F14D83B851B5E1 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = ../app/assets/fonts/Octicons.ttf; sourceTree = "<group>"; };
 		45B1F65FB27F4584AD47AFD9 /* NotoSansKRRegular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = NotoSansKRRegular.otf; path = ../app/assets/fonts/NotoSansKRRegular.otf; sourceTree = "<group>"; };
 		47FA534342B44DCFBD00146F /* LotteMartHappy-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LotteMartHappy-Light.ttf"; path = "../app/assets/fonts/LotteMartHappy-Light.ttf"; sourceTree = "<group>"; };
-		4B8FC1E3D2DE7083AE8CC915 /* Pods-KAU_EAT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KAU_EAT.release.xcconfig"; path = "Target Support Files/Pods-KAU_EAT/Pods-KAU_EAT.release.xcconfig"; sourceTree = "<group>"; };
+		4C0970070BF668ECCF7EDED9 /* Pods-KAU_EAT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KAU_EAT.release.xcconfig"; path = "Target Support Files/Pods-KAU_EAT/Pods-KAU_EAT.release.xcconfig"; sourceTree = "<group>"; };
 		570C165428B41EF900656A77 /* SplashScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = KAU_EAT/SplashScreen.storyboard; sourceTree = "<group>"; };
 		570C165628B42AD900656A77 /* splash_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash_logo.png; path = ../app/assets/images/splash_logo.png; sourceTree = "<group>"; };
 		5DDC22B8CD32464D9E877104 /* Inter-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-ExtraLight.ttf"; path = "../app/assets/fonts/Inter-ExtraLight.ttf"; sourceTree = "<group>"; };
-		615F98FF9F757453318E2D24 /* libPods-KAU_EAT-KAU_EATTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KAU_EAT-KAU_EATTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		619E2202B3A041BEB05B20E2 /* SFPRODISPLAY-SEMIBOLDITALIC.OTF */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFPRODISPLAY-SEMIBOLDITALIC.OTF"; path = "../app/assets/fonts/SFPRODISPLAY-SEMIBOLDITALIC.OTF"; sourceTree = "<group>"; };
 		62448CADAFE74835831CA8FA /* LotteMartDream-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LotteMartDream-Medium.ttf"; path = "../app/assets/fonts/LotteMartDream-Medium.ttf"; sourceTree = "<group>"; };
 		64ECC114C0D547B1B5B533A5 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = ../app/assets/fonts/FontAwesome.ttf; sourceTree = "<group>"; };
 		64FD966F1022476891FD6BD5 /* SFPRODISPLAY-LIGHTITALIC.OTF */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFPRODISPLAY-LIGHTITALIC.OTF"; path = "../app/assets/fonts/SFPRODISPLAY-LIGHTITALIC.OTF"; sourceTree = "<group>"; };
 		6BC1645C2EF74A619C8B4FAE /* Inter-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Bold.ttf"; path = "../app/assets/fonts/Inter-Bold.ttf"; sourceTree = "<group>"; };
 		6D21336CAEA14C7C9A91F110 /* LotteMartHappy-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LotteMartHappy-Medium.ttf"; path = "../app/assets/fonts/LotteMartHappy-Medium.ttf"; sourceTree = "<group>"; };
+		6E6DB763F1B9A3DCD2B0BD87 /* Pods-KAU_EAT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KAU_EAT.debug.xcconfig"; path = "Target Support Files/Pods-KAU_EAT/Pods-KAU_EAT.debug.xcconfig"; sourceTree = "<group>"; };
 		73F32950359F4EAE83C79F54 /* LotteMartDreamLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = LotteMartDreamLight.ttf; path = ../app/assets/fonts/LotteMartDreamLight.ttf; sourceTree = "<group>"; };
 		77F6E229F1DC4F3DB2E4A3FA /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSansKR-Medium.otf"; path = "../app/assets/fonts/NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
 		77FB2128C29E40AEAF5C9EAE /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = ../app/assets/fonts/AntDesign.ttf; sourceTree = "<group>"; };
@@ -133,6 +132,7 @@
 		956276CE31CE4E44BE64AB39 /* Inter-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Black.ttf"; path = "../app/assets/fonts/Inter-Black.ttf"; sourceTree = "<group>"; };
 		957EBE296FC34E309B45FA03 /* Inter-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Thin.ttf"; path = "../app/assets/fonts/Inter-Thin.ttf"; sourceTree = "<group>"; };
 		96ADAD0DD8964E07AAC0F22F /* LotteMartHappyMedium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = LotteMartHappyMedium.ttf; path = ../app/assets/fonts/LotteMartHappyMedium.ttf; sourceTree = "<group>"; };
+		96B58AFFE002ACDF07135E3C /* libPods-KAU_EAT-KAU_EATTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KAU_EAT-KAU_EATTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		97A3F7D180AD47B1A940FAE4 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = ../app/assets/fonts/Foundation.ttf; sourceTree = "<group>"; };
 		9A9E948B76154292BCA2625B /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = ../app/assets/fonts/Feather.ttf; sourceTree = "<group>"; };
 		9B0E4659467B400EA9D99BD1 /* SFPRODISPLAY-BOLD.OTF */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFPRODISPLAY-BOLD.OTF"; path = "../app/assets/fonts/SFPRODISPLAY-BOLD.OTF"; sourceTree = "<group>"; };
@@ -142,17 +142,16 @@
 		ABA76F5A79D943D8A7996882 /* LotteMartHappyLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = LotteMartHappyLight.ttf; path = ../app/assets/fonts/LotteMartHappyLight.ttf; sourceTree = "<group>"; };
 		AF5C6796B5CB45A2A5DC67A1 /* NotoSansKR-Black.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSansKR-Black.otf"; path = "../app/assets/fonts/NotoSansKR-Black.otf"; sourceTree = "<group>"; };
 		B337E243FFDE4BD3BAA7FFFC /* LotteMartHappy-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LotteMartHappy-Bold.ttf"; path = "../app/assets/fonts/LotteMartHappy-Bold.ttf"; sourceTree = "<group>"; };
+		B9D026A3DAF7BA4DBA98DD41 /* Pods-KAU_EAT-KAU_EATTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KAU_EAT-KAU_EATTests.release.xcconfig"; path = "Target Support Files/Pods-KAU_EAT-KAU_EATTests/Pods-KAU_EAT-KAU_EATTests.release.xcconfig"; sourceTree = "<group>"; };
 		BE170F883FBE47A3B2AD1E02 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = ../app/assets/fonts/SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		BE2A5D71036045DCA935E5C9 /* SFPRODISPLAY-HEAVYITALIC.OTF */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFPRODISPLAY-HEAVYITALIC.OTF"; path = "../app/assets/fonts/SFPRODISPLAY-HEAVYITALIC.OTF"; sourceTree = "<group>"; };
 		C0BCEDC633D94CCE8D3DB411 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-SemiBold.ttf"; path = "../app/assets/fonts/Inter-SemiBold.ttf"; sourceTree = "<group>"; };
 		C38C39C7743245C598880B07 /* LotteMartHappyBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = LotteMartHappyBold.ttf; path = ../app/assets/fonts/LotteMartHappyBold.ttf; sourceTree = "<group>"; };
 		C45D9890127C46DF827AA85B /* SFPRODISPLAY-ULTRALIGHTITALIC.OTF */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFPRODISPLAY-ULTRALIGHTITALIC.OTF"; path = "../app/assets/fonts/SFPRODISPLAY-ULTRALIGHTITALIC.OTF"; sourceTree = "<group>"; };
-		C6A181471795F4FFD148E681 /* libPods-KAU_EAT.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KAU_EAT.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C881DD0B881441F0B73C0A0D /* SFPRODISPLAY-THINITALIC.OTF */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFPRODISPLAY-THINITALIC.OTF"; path = "../app/assets/fonts/SFPRODISPLAY-THINITALIC.OTF"; sourceTree = "<group>"; };
 		CF4B2B536DFF49C48E4903D7 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSansKR-Bold.otf"; path = "../app/assets/fonts/NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
 		D0249D8802FF4B20B28689C8 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSansKR-Regular.otf"; path = "../app/assets/fonts/NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
 		D10D7C784EB44EBE8E43BA65 /* LotteMartDreamBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = LotteMartDreamBold.ttf; path = ../app/assets/fonts/LotteMartDreamBold.ttf; sourceTree = "<group>"; };
-		D11406A16B7799F4F5139698 /* Pods-KAU_EAT-KAU_EATTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KAU_EAT-KAU_EATTests.release.xcconfig"; path = "Target Support Files/Pods-KAU_EAT-KAU_EATTests/Pods-KAU_EAT-KAU_EATTests.release.xcconfig"; sourceTree = "<group>"; };
 		D4049CCA29AC4A74A571CA2D /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = ../app/assets/fonts/Zocial.ttf; sourceTree = "<group>"; };
 		D7F8CAED6E1B4A018676666E /* NotoSansKRLight.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = NotoSansKRLight.otf; path = ../app/assets/fonts/NotoSansKRLight.otf; sourceTree = "<group>"; };
 		DA663FCA3CB34549B1BC9B4A /* LotteMartDream-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LotteMartDream-Light.ttf"; path = "../app/assets/fonts/LotteMartDream-Light.ttf"; sourceTree = "<group>"; };
@@ -162,6 +161,7 @@
 		E1040A069D7846FD8A7F6C3B /* SFPRODISPLAY-BLACKITALIC.OTF */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFPRODISPLAY-BLACKITALIC.OTF"; path = "../app/assets/fonts/SFPRODISPLAY-BLACKITALIC.OTF"; sourceTree = "<group>"; };
 		E20F2B12791948E88551DE56 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = ../app/assets/fonts/Ionicons.ttf; sourceTree = "<group>"; };
 		E4E92A7CE5B14F389D13E60F /* SFPRODISPLAYTHINITALIC.OTF */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SFPRODISPLAYTHINITALIC.OTF; path = ../app/assets/fonts/SFPRODISPLAYTHINITALIC.OTF; sourceTree = "<group>"; };
+		E4F7FD8170DB233C52AD73F4 /* Pods-KAU_EAT-KAU_EATTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KAU_EAT-KAU_EATTests.debug.xcconfig"; path = "Target Support Files/Pods-KAU_EAT-KAU_EATTests/Pods-KAU_EAT-KAU_EATTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E6BFB505012C4D40833C9F3D /* SFPRODISPLAYREGULAR.OTF */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SFPRODISPLAYREGULAR.OTF; path = ../app/assets/fonts/SFPRODISPLAYREGULAR.OTF; sourceTree = "<group>"; };
 		E96A977140FE4282AD3B33C6 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = ../app/assets/fonts/FontAwesome5_Brands.ttf; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -174,7 +174,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44EED67EEE92A81334251B83 /* libPods-KAU_EAT-KAU_EATTests.a in Frameworks */,
+				52549A1196CFB8CF84E55129 /* libPods-KAU_EAT-KAU_EATTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,7 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				524A8E89F7141D5095E86685 /* libPods-KAU_EAT.a in Frameworks */,
+				A02FCC4671D3CB846A1E82BC /* libPods-KAU_EAT.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,8 +225,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				C6A181471795F4FFD148E681 /* libPods-KAU_EAT.a */,
-				615F98FF9F757453318E2D24 /* libPods-KAU_EAT-KAU_EATTests.a */,
+				086B69FCE49CEC6F9C9493A3 /* libPods-KAU_EAT.a */,
+				96B58AFFE002ACDF07135E3C /* libPods-KAU_EAT-KAU_EATTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -340,10 +340,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2EB869BF0EA9BD0FEE390E99 /* Pods-KAU_EAT.debug.xcconfig */,
-				4B8FC1E3D2DE7083AE8CC915 /* Pods-KAU_EAT.release.xcconfig */,
-				16F7B4DC4776E0CAF7481AFA /* Pods-KAU_EAT-KAU_EATTests.debug.xcconfig */,
-				D11406A16B7799F4F5139698 /* Pods-KAU_EAT-KAU_EATTests.release.xcconfig */,
+				6E6DB763F1B9A3DCD2B0BD87 /* Pods-KAU_EAT.debug.xcconfig */,
+				4C0970070BF668ECCF7EDED9 /* Pods-KAU_EAT.release.xcconfig */,
+				E4F7FD8170DB233C52AD73F4 /* Pods-KAU_EAT-KAU_EATTests.debug.xcconfig */,
+				B9D026A3DAF7BA4DBA98DD41 /* Pods-KAU_EAT-KAU_EATTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -355,12 +355,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "KAU_EATTests" */;
 			buildPhases = (
-				6A370F3EC9F40536B9296BCE /* [CP] Check Pods Manifest.lock */,
+				A217496A48647F9909E66F1E /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				9F39DCAD1EA39E4D73A1933E /* [CP] Embed Pods Frameworks */,
-				0676183B621D9626FF8B971F /* [CP] Copy Pods Resources */,
+				C1D43F8D9270B916EFFFFD7D /* [CP] Embed Pods Frameworks */,
+				34B3D07DB05B454951D3C894 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -376,14 +376,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "KAU_EAT" */;
 			buildPhases = (
-				29DB1E9B8529EBC6A567B804 /* [CP] Check Pods Manifest.lock */,
+				61768EBC080EF6FD80188D20 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				3A71169E1FC54B5248FC5C4B /* [CP] Embed Pods Frameworks */,
-				355C8FBA98C768C0E8D564B2 /* [CP] Copy Pods Resources */,
+				2ECD9059870D2EA62DE7AD1F /* [CP] Embed Pods Frameworks */,
+				1D9588855B87A7CD981F3C20 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -518,7 +518,41 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		0676183B621D9626FF8B971F /* [CP] Copy Pods Resources */ = {
+		1D9588855B87A7CD981F3C20 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KAU_EAT/Pods-KAU_EAT-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KAU_EAT/Pods-KAU_EAT-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KAU_EAT/Pods-KAU_EAT-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2ECD9059870D2EA62DE7AD1F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KAU_EAT/Pods-KAU_EAT-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KAU_EAT/Pods-KAU_EAT-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KAU_EAT/Pods-KAU_EAT-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		34B3D07DB05B454951D3C894 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -535,7 +569,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KAU_EAT-KAU_EATTests/Pods-KAU_EAT-KAU_EATTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		29DB1E9B8529EBC6A567B804 /* [CP] Check Pods Manifest.lock */ = {
+		61768EBC080EF6FD80188D20 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -557,41 +591,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		355C8FBA98C768C0E8D564B2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KAU_EAT/Pods-KAU_EAT-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KAU_EAT/Pods-KAU_EAT-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KAU_EAT/Pods-KAU_EAT-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3A71169E1FC54B5248FC5C4B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KAU_EAT/Pods-KAU_EAT-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KAU_EAT/Pods-KAU_EAT-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KAU_EAT/Pods-KAU_EAT-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6A370F3EC9F40536B9296BCE /* [CP] Check Pods Manifest.lock */ = {
+		A217496A48647F9909E66F1E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -613,7 +613,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9F39DCAD1EA39E4D73A1933E /* [CP] Embed Pods Frameworks */ = {
+		C1D43F8D9270B916EFFFFD7D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -682,7 +682,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16F7B4DC4776E0CAF7481AFA /* Pods-KAU_EAT-KAU_EATTests.debug.xcconfig */;
+			baseConfigurationReference = E4F7FD8170DB233C52AD73F4 /* Pods-KAU_EAT-KAU_EATTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -711,7 +711,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D11406A16B7799F4F5139698 /* Pods-KAU_EAT-KAU_EATTests.release.xcconfig */;
+			baseConfigurationReference = B9D026A3DAF7BA4DBA98DD41 /* Pods-KAU_EAT-KAU_EATTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -737,7 +737,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2EB869BF0EA9BD0FEE390E99 /* Pods-KAU_EAT.debug.xcconfig */;
+			baseConfigurationReference = 6E6DB763F1B9A3DCD2B0BD87 /* Pods-KAU_EAT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
@@ -768,7 +768,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4B8FC1E3D2DE7083AE8CC915 /* Pods-KAU_EAT.release.xcconfig */;
+			baseConfigurationReference = 4C0970070BF668ECCF7EDED9 /* Pods-KAU_EAT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;

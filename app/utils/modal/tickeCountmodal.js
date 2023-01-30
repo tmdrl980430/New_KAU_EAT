@@ -14,7 +14,7 @@ import MinusImg from '../../assets/images/minus_arrow.png'
 import PlusImg from '../../assets/images/plus_arrow.png'
 import CloseImg from '../../assets/images/close.png'
 import {useRecoilState} from "recoil";
-import {clickQrImgRecoilState, dateRecoilState, modalRecoilState, qrModalRecoilState, userIdxRecoilState, qrTicketCountRecoilState} from "../../recoil";
+import {clickQrImgRecoilState, dateRecoilState, modalRecoilState, qrModalRecoilState, userIdxRecoilState, qrTicketCountRecoilState, userPointRecoilState} from "../../recoil";
 
 //재사용 가능 제목 component
 
@@ -29,6 +29,8 @@ const TicketCountModal = (props) => {
     const [clickKind, setClickKind] = useRecoilState(clickQrImgRecoilState);
 
     const [qrModalState, setQrModalState] = useRecoilState(qrModalRecoilState);
+
+    const [userPoint, setUserPoint] = useRecoilState(userPointRecoilState);
 
 
     const [qrTicketCount, setQrTicketCount] = useRecoilState(qrTicketCountRecoilState);

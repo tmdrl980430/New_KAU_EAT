@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {StyleSheet, View, Text, Image} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
@@ -13,7 +13,7 @@ const MealTableComponent = (props) => {
                     <Text style={styles.text}>{props.mealType}</Text>
                     <View style={styles.viewContainer}>
                         {
-                            props.menu === null
+                            props.menu.menu === null
                                 ? (<Text style={styles.menuText} numberOfLines={2}>휴무</Text>)
                                 : (<Text style={styles.menuText} numberOfLines={3}>{props.menu.menu}</Text>)
                         }

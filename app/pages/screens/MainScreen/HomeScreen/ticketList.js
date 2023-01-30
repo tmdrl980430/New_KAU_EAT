@@ -91,7 +91,7 @@ const TicketList = (props) => {
                 ))
             }
             {
-                userPoint == null ? (
+                userPoint == null || userPoint == 0 ? (
                     <View/>
                 ) : (
                     <Point

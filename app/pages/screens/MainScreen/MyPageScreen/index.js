@@ -89,11 +89,6 @@ const MyPageScreen = ({navigation}) => {
         getUserInfo();
     }, [])
 
-    useEffect(() => {}, [])
-
-    useEffect(() => {
-        console.log("UserPoint", userPoint)
-    }, [userPoint])
 
     const getUserInfo = async () => {
         setLoading(true);

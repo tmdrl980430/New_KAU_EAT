@@ -41,9 +41,21 @@ const Payment = ({navigation, route}) => {
         purchaseTicketRecoilState
     );
 
+
+    const [price0, setPrice0] = useState(0);
+    const [price1, setPrice1] = useState(0);
+    const [price2, setPrice2] = useState(0);
+    const [price3, setPrice3] = useState(0);
+    const [price4, setPrice4] = useState(0);
+
+    let cost = (purchaseTicket[0] * price0) + (purchaseTicket[1] * price1) + (purchaseTicket[2] * price2) +
+        (purchaseTicket[3] * price3) + (purchaseTicket[4] * price4)
+
+
     const {uid} = route.params.uid
 
     useEffect(() => {
+        getPruchaseTable()
         setPaymentsState(true);
     }, []);
 
@@ -78,6 +90,41 @@ const Payment = ({navigation, route}) => {
             //결제 실패 modal 띄워주기 (진행안함)
             setPurchaseModalState(true);
         }
+
+    };
+
+    const getPruchaseTable = async () => {
+        setLoading(true);
+
+        try {
+            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+            setError(null);
+
+            // loading 상태를 true 로 바꿉니다.
+            setLoading(true);
+
+            const response = await axios
+                .get(`${IP}/menus?date=${date}`, {
+                    headers: {
+                        "x-access-token": jwt
+                    }
+                })
+                .then((response) => {
+                    console.log(response.data.result)
+                    setPrice0(response.data.result.menus[0].price)
+                    setPrice1(response.data.result.menus[1].price)
+                    setPrice2(response.data.result.menus[2].price)
+                    setPrice3(response.data.result.menus[3].price)
+                    setPrice4(response.data.result.menus[4].price)
+                })
+                .catch((error) => {
+                });
+            // 데이터는 response.data.code 안에 들어있다. console.log(response.data.result);
+        } catch (e) {
+            setError(e);
+        }
+        // loading 끄기
+        setLoading(false);
 
     };
 
@@ -117,10 +164,6 @@ const Payment = ({navigation, route}) => {
             .catch((error) => {
             });
     }
-
-    let cost = (purchaseTicket[0] * 3000) + (purchaseTicket[1] * 5000) + (
-        purchaseTicket[2] * 6000
-    ) + (purchaseTicket[3] * 5000) + (purchaseTicket[4] * 4500)
 
 
     const data = {

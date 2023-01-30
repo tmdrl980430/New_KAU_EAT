@@ -71,12 +71,18 @@ const TicketPurchaseScreen = ({navigation}) => {
         wait(2000).then(() => setRefreshing(false));
     }, []);
 
-    let cost = (purchaseTicket[0] * 3000) + (purchaseTicket[1] * 5000) + (
-        purchaseTicket[2] * 6000
-    ) + (purchaseTicket[3] * 5000)
+    const [price0, setPrice0] = useState(0);
+    const [price1, setPrice1] = useState(0);
+    const [price2, setPrice2] = useState(0);
+    const [price3, setPrice3] = useState(0);
+    const [price4, setPrice4] = useState(0);
+
+    let cost = (purchaseTicket[0] * price0) + (purchaseTicket[1] * price1) + (purchaseTicket[2] * price2) +
+        (purchaseTicket[3] * price3) + (purchaseTicket[4] * price4)
 
     useEffect(() => {
         getPruchaseTable();
+        setPurchaseTicket([0,0,0,0,0])
     }, []);
 
     useEffect(() => {
@@ -99,17 +105,22 @@ const TicketPurchaseScreen = ({navigation}) => {
             setLoading(true);
 
             const response = await axios
-                .get(`${IP}/meals?date=${date}`, {
+                .get(`${IP}/menus?date=${date}`, {
                     headers: {
                         "x-access-token": jwt
                     }
                 })
                 .then((response) => {
-                    setTableObject0(response.data.result[0]);
-                    setTableObject1(response.data.result[1]);
-                    setTableObject2(response.data.result[2]);
-                    setTableObject3(response.data.result[3]);
-                    setTableObject4(response.data.result[4]);
+                    setPrice0(response.data.result.menus[0].price)
+                    setPrice1(response.data.result.menus[1].price)
+                    setPrice2(response.data.result.menus[2].price)
+                    setPrice3(response.data.result.menus[3].price)
+                    setPrice4(response.data.result.menus[4].price)
+                    setTableObject0(response.data.result.menus[0]);
+                    setTableObject1(response.data.result.menus[1]);
+                    setTableObject2(response.data.result.menus[2]);
+                    setTableObject3(response.data.result.menus[3]);
+                    setTableObject4(response.data.result.menus[4]);
 
                 })
                 .catch((error) => {
@@ -126,28 +137,27 @@ const TicketPurchaseScreen = ({navigation}) => {
     const clickPurchase = () => {
 
         //품절된 식권이 있을 떄 실행을 하는 것.
-
         if (purchaseTicket[0] > 0 || purchaseTicket[1] > 0 || purchaseTicket[2] > 0 || purchaseTicket[3] > 0|| purchaseTicket[4] > 0) {
             if (tableObject0.menu === null || tableObject1.menu === null || tableObject2.menu === null || tableObject3.menu === null || tableObject4.menu === null) {
                 setSoldOutConfirmModalState(true);
             } else {
-                if (tableObject0.menu.menuStatus === "품절" && purchaseTicket[0] > 0) {
+                if (tableObject0.menuStatus === "품절" && purchaseTicket[0] > 0) {
                     setSoldOutConfirmModalState(true);
                     return
                 }
-                if (tableObject1.menu.menuStatus === "품절" && purchaseTicket[1] > 0) {
+                if (tableObject1.menuStatus === "품절" && purchaseTicket[1] > 0) {
                     setSoldOutConfirmModalState(true);
                     return
                 }
-                if (tableObject2.menu.menuStatus === "품절" && purchaseTicket[2] > 0) {
+                if (tableObject2.menuStatus === "품절" && purchaseTicket[2] > 0) {
                     setSoldOutConfirmModalState(true);
                     return
                 }
-                if (tableObject3.menu.menuStatus === "품절" && purchaseTicket[3] > 0) {
+                if (tableObject3.menuStatus === "품절" && purchaseTicket[3] > 0) {
                     setSoldOutConfirmModalState(true);
                     return
                 }
-                if (tableObject4.menu.menuStatus === "품절" && purchaseTicket[4] > 0) {
+                if (tableObject4.menuStatus === "품절" && purchaseTicket[4] > 0) {
                     setSoldOutConfirmModalState(true);
                     return
                 }
