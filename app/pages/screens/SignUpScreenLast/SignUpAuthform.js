@@ -130,11 +130,12 @@ const AuthForm = (props) => {
                 .then((res) => {
                     if (res.data.code === 1000) {
                         setDuplicatePhone(true);
-                    } else if (res.data.code === 3010) {
+                    } else if (res.data.code === 2026) {
                         setDuplicatePhone(false);
                         props.setPhoneNumberInputmessage('이미 가입된 휴대폰 번호입니다.');
                     } else {
                         setDuplicatePhone(false);
+                        props.setPhoneNumberInputmessage(res.data.message);
                     }
                 })
                 .catch((error) => {

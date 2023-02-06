@@ -93,9 +93,13 @@ const SignUp = ({navigation}) => {
                                     }
                                 });
                             }
-                            if (response.data.code == 3001) {
+                            if (response.data.code == 2018) {
                                 setIdInputmessage("중복된 아이디입니다.");
 
+                            } else if(response.data.code == 2002){
+                                setIdInputmessage(response.data.message);
+                            } else if(response.data.code == 2001){
+                                setIdInputmessage(response.data.message);
                             }
                         })
                         .catch((error) => {});
