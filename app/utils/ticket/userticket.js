@@ -31,7 +31,7 @@ const userTicket = (props) => {
 
     const [days, setDays] = useState(koreaNow.getDay());
 
-    const [ticketUse, setTicketUse] = useState(false);
+    const [ticketUse, setTicketUse] = useState(true);
 
     const clickQrImg = () => {
 
@@ -40,11 +40,13 @@ const userTicket = (props) => {
         setmMnute(koreaNow.getMinutes());
         divideWeeks();
 
-        if(days){//평일일 때
-            setWeekdayTimes();
-        } else {
-            setWeekendTimes();
-        }
+        // if(days){//평일일 때
+        //     setWeekdayTimes();
+        // } else {
+        //     setWeekendTimes();
+        // }
+
+        setTicketUse(true)
 
         if(ticketUse){
             if (0 < props.mealTicketCount) {

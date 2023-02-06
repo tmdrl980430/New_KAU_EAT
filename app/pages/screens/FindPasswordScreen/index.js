@@ -137,7 +137,7 @@ const FindPasswordScreen = ({route, navigation}) => {
 
                 const response = await axios
                     .get(
-                        `${IP}/auth/check/id?id=${idInput}&phoneNumber=${phoneNumInput}`
+                        `${IP}/auth/id?id=${idInput}&phoneNumber=${phoneNumInput}`
                     )
                     .then((response) => {
                         if (response.data.code === 1000) {
