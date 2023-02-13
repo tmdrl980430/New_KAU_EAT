@@ -18,6 +18,8 @@ import TicketPurchaseBtn from './ticketPurchase';
 import MyTicketBtn from './myTicketBtn';
 import TicketList from './ticketList';
 import TicketPurchaseTitle from './ticketPurchaseTitle';
+import PointPurchaseTitle from './pointPurchaseTitle';
+import PointPurchaseBtn from './pointPurchase';
 import TodayMealBtn from './mealTableBtn';
 import MyTicketTitle from './myTicketTitle'
 import {useRecoilState} from 'recoil';
@@ -125,7 +127,12 @@ const HomeScreen = ({navigation}) => {
                         activeOpacity={0.95}>
                         <TicketPurchaseBtn/>
                     </TouchableOpacity>
-
+                    {/* <PointPurchaseTitle/>
+                    <TouchableOpacity
+                        onPress={() => navigation.push('PointPurchase')}
+                        activeOpacity={0.95}>
+                        <PointPurchaseBtn/>
+                    </TouchableOpacity> */}
                     <View style={styles.titlecontainer}>
                         <MyTicketTitle/>
                         <TouchableOpacity

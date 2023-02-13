@@ -25,6 +25,9 @@ import TicketPurchase from "../screens/MainScreen/TicketPurchaseScreen";
 import Payment from '../screens/MainScreen/TicketPurchaseScreen/Payment';
 import RefundInfoScreen from '../screens/MainScreen/TicketPurchaseScreen/RefundInfo ';
 import BuisnessInfoScreen from '../screens/MainScreen/TicketPurchaseScreen/BuisnessInfo';
+import PointPurchaseScreen from '../screens/MainScreen/PointPurchaseScreen';
+import PurchasePointConfirmScreen from '../screens/MainScreen/PointPurchaseScreen/PurchaseConfirmScreen';
+import PointPayment from '../screens/MainScreen/PointPurchaseScreen/Payment';
 import {useRecoilState} from 'recoil';
 import {
     isLoginRecoilState,
@@ -153,12 +156,15 @@ const Navigation = () => {
                                     <Stack.Screen name="WeekMeals" component={WeekMeals}></Stack.Screen>
                                     <Stack.Screen name="MyTicket" component={MyTicket}></Stack.Screen>
                                     <Stack.Screen name="TicketPurchase" component={TicketPurchase}></Stack.Screen>
+                                    <Stack.Screen name="PointPurchase" component={PointPurchaseScreen}></Stack.Screen>
                                     <Stack.Screen name='PurchaseConfirmScreen' component={PurchaseConfirmScreen}></Stack.Screen>
                                     <Stack.Screen name='Payment' component={Payment}></Stack.Screen>
                                     <Stack.Screen name='BuisnessInfoScreen' component={BuisnessInfoScreen}></Stack.Screen>
                                     <Stack.Screen name='RefundInfoScreen' component={RefundInfoScreen}></Stack.Screen>
                                     <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen}></Stack.Screen>
                                     <Stack.Screen name="UserDeleteScreen" component={UserDeleteScreen}></Stack.Screen>
+                                    <Stack.Screen name="PurchasePointConfirmScreen" component={PurchasePointConfirmScreen}></Stack.Screen>
+                                    <Stack.Screen name="PointPayment" component={PointPayment}></Stack.Screen>
 
                                 </Stack.Group>
                             )

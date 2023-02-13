@@ -75,6 +75,11 @@ export const purchaseTicketRecoilState = atom({
     default: [0, 0, 0, 0, 0]
 });
 
+export const purchasePointRecoilState = atom({
+    key: 'purchasePointRecoilState',
+    default: [0, 0, 0]
+});
+
 export const clickQrImgRecoilState = atom(
     {key: 'clickQrImgRecoilState', default: ""}
 );

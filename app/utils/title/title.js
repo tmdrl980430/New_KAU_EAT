@@ -29,6 +29,13 @@ const title = (props) => {
                 </View>
             </View>
             break;
+        case "purchasePointText":
+            template = <View style={styles.container}>
+                <View>
+                    <Text style={styles.todayMealText}>포인트 구매하기</Text>
+                </View>
+            </View>
+            break;
         default:
             return template
     }
