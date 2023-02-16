@@ -110,7 +110,6 @@ const Payment = ({navigation, route}) => {
                     }
                 })
                 .then((response) => {
-                    console.log(response.data.result)
                     setPrice0(response.data.result.menus[0].price)
                     setPrice1(response.data.result.menus[1].price)
                     setPrice2(response.data.result.menus[2].price)
@@ -128,35 +127,30 @@ const Payment = ({navigation, route}) => {
 
     };
 
-    const userTicketModify = async () => {
+    let mealTicketlist = []
 
+    const addAmount = () => {
+        for (let i = 0; i < purchaseTicket.length; i++){
+            if (purchaseTicket[i] > 0){
+                mealTicketlist.push({
+                    mealTypeIdx: i+1,
+                    amount: purchaseTicket[i]
+                })
+            }
+        }
+    }
+
+    const userTicketModify = async () => {
+        addAmount()
         const response = await axios
             .patch(`${IP}/mealtickets?type=buy`, {
                 userIdx: userIdx,
                 date: date,
-                mealTickets: [
-                    {
-                        mealTypeIdx: 1,
-                        amount: purchaseTicket[0]
-                    }, {
-                        mealTypeIdx: 2,
-                        amount: purchaseTicket[1]
-                    }, {
-                        mealTypeIdx: 3,
-                        amount: purchaseTicket[2]
-                    }, {
-                        mealTypeIdx: 4,
-                        amount: purchaseTicket[3]
-                    }, {
-                        mealTypeIdx: 5,
-                        amount: purchaseTicket[4]
-                    }
-                ]
+                mealTickets: mealTicketlist
             })
             .then((response) => {
-
                 if (response.data.code == 1000) {
-
+                    mealTicketlist = []
                     setPurchaseTicket([0, 0, 0, 0, 0])
                     navigation.replace('Main');
                 }

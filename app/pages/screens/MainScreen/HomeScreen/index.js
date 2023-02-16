@@ -25,6 +25,7 @@ import MyTicketTitle from './myTicketTitle'
 import {useRecoilState} from 'recoil';
 import {
     clickQrImgRecoilState,
+    modalPointRecoilState,
     modalRecoilState,
     paymentsRecoilState,
     purchasemodalRecoilState,
@@ -36,6 +37,7 @@ import TicketCountModal from '../../../../utils/modal/tickeCountmodal'
 
 import QrModal from '../../../../utils/modal/ticketmodal'
 import PurchaseResultModal from '../../../../utils/modal/puschaseResultmodal';
+import PointConfirmModal from '../../../../utils/modal/pointConfirmmodal';
 const HomeScreen = ({navigation}) => {
 
     const [loading, setLoading] = useState(false)
@@ -43,6 +45,8 @@ const HomeScreen = ({navigation}) => {
     const [clickKind, setClickKind] = useRecoilState(clickQrImgRecoilState);
 
     const [modalState, setModalState] = useRecoilState(modalRecoilState);
+
+    const [modalPointState, setModalPointState] = useRecoilState(modalPointRecoilState);
 
     const [qrModalState, setQeModalState] = useRecoilState(qrModalRecoilState);
 
@@ -74,8 +78,14 @@ const HomeScreen = ({navigation}) => {
 
     useEffect(() => {
 
+        
         if (clickKind != "") {
-            setModalState(true);
+            if(clickKind.mealTypeIdx == 10){
+                setModalPointState(true)
+            } else{
+                setModalState(true);
+
+            }
         }
 
     }, [clickKind]);
@@ -85,6 +95,8 @@ const HomeScreen = ({navigation}) => {
         setModalState(false);
         setQeModalState(false);
         setPamentsState(false);
+        setModalPointState(false)
+
 
     }, []);
 
@@ -98,6 +110,7 @@ const HomeScreen = ({navigation}) => {
         return (
             <SafeAreaView style={styles.topContainer}>
                 {modalState != false && <TicketCountModal/>}
+                {modalPointState != false && <PointConfirmModal/>}
                 {qrModalState != false && <QrModal/>}
                 {purchasemodalState != false && <PurchaseResultModal/>}
                 <HomeLogo style={styles.logoArea}/>

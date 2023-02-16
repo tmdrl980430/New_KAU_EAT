@@ -94,6 +94,8 @@ export const paymentsRecoilState = atom(
 
 export const modalRecoilState = atom({key: 'modalRecoilState', default: false});
 
+export const modalPointRecoilState = atom({key: 'modalPointRecoilState', default: false});
+
 export const logoutmodalRecoilState = atom(
     {key: 'logoutmodalRecoilState', default: false}
 );
